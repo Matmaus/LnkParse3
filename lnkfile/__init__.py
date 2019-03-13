@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # 2016 - Silas Cutler (silas.cutler@blacklistthisdomain.com)
 
 import sys
@@ -90,9 +90,9 @@ class lnk_file(object):
 					out += " " + self.data['commandLineArguments']
 
 			self.lnk_command = out
-		except Exception as e:
+		except Exception, e:
 			if self.debug:
-				print("Exception define_common: %s" % e)
+				print "Exception define_common: %s" % e
 
 
 	def get_command(self):
@@ -104,9 +104,9 @@ class lnk_file(object):
 					out += " " + self.data['commandLineArguments']
 
 			return out
-		except Exception as e:
+		except Exception, e:
 			if self.debug:
-				print("Exception get_command: %s" % (e))
+				print "Exception get_command: %s" % (e)
 			return ""
 
 	def define_static(self):
@@ -154,7 +154,7 @@ class lnk_file(object):
 			"SW_SHOWNA",
 			"SW_RESTORE",  
 			"SW_SHOWDEFAULT",
-			]       
+			]		
 
 	def clean_line(self, rstring):
 		return ''.join(i for i in rstring if ord(i)<128 and ord(i)>20)
@@ -162,14 +162,14 @@ class lnk_file(object):
 
 
 	def parse_lnk_header(self):
-		#Parse the LNK file header  
+		#Parse the LNK file header	
 		try: 
 			# Header always starts with { 4c 00 00 00 } and is the size of the header
 			self.lnk_header["header_size"] = struct.unpack('<I', self.indata[:4])[0]
 
 			lnk_header = self.indata[:self.lnk_header["header_size"]]
 
-			self.lnk_header['guid'] = lnk_header[4:20].hex()
+			self.lnk_header['guid'] = lnk_header[4:20].encode('hex')
 	
 			self.lnk_header['linkFlags'] = struct.unpack('<i', lnk_header[20:24])[0]
 			self.lnk_header['fileFlags'] = struct.unpack('<i', lnk_header[24:28])[0]
@@ -179,39 +179,39 @@ class lnk_file(object):
 			self.lnk_header['modified_time'] = struct.unpack('<q', lnk_header[44:52])[0]
 
 			self.lnk_header['file_size'] = struct.unpack('<i', lnk_header[52:56])[0]
-			self.lnk_header['rfile_size'] = lnk_header[52:56].hex()
+			self.lnk_header['rfile_size'] = lnk_header[52:56].encode('hex')
 
 			self.lnk_header['icon_index'] = struct.unpack('<I', lnk_header[56:60])[0]
 			try:
-				if struct.unpack('<i', lnk_header[60:64])[0] < len(self.WINDOWSTYLES):
+				if struct.unpack('<i', lnk_header[60:64])[0] < (self.WINDOWSTYLES):
 					self.lnk_header['windowstyle'] = self.WINDOWSTYLES[struct.unpack('<i', lnk_header[60:64])[0]]
 				else:
 					self.lnk_header['windowstyle'] = struct.unpack('<i', lnk_header[60:64])[0]
-			except Exception as e:
+			except Exception, e:
 				if self.debug:
-					print("Error Parsing WindowStyle in Header: %s" % e)
+					print "Error Parsing WindowStyle in Header: %s" % e
 				self.lnk_header['windowstyle'] = struct.unpack('<i', lnk_header[60:64])[0]
 
 			try:
 				self.lnk_header['hotkey'] = "%s - %s {0x%s}" % (
 					self.HOTKEY_VALUES[ chr(struct.unpack('<B', lnk_header[65:66])[0]) ], 
 					self.clean_line(chr(struct.unpack('<B', lnk_header[64:65])[0])), 
-					lnk_header[64:66].hex() 
+					lnk_header[64:66].encode('hex') 
 					)
 
 				self.lnk_header['rhotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
-			except Exception as e:
+			except Exception, e:
 				if self.debug:
-					print("Exception parsing HOTKEY part of header: %s" % e)
-					print(lnk_header[65:66].hex())
+					print "Exception parsing HOTKEY part of header: %s" % e
+					print lnk_header[65:66].encode('hex')
 				self.lnk_header['hotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
 		
 			self.lnk_header['reserved0'] = struct.unpack('<H', lnk_header[66:68])[0]
 			self.lnk_header['reserved1'] = struct.unpack('<i', lnk_header[68:72])[0]
 			self.lnk_header['reserved2'] = struct.unpack('<i', lnk_header[72:76])[0]
-		except Exception as e:
+		except Exception,e:
 			if self.debug:
-				print("Exception parsing LNK Header: %s" % e )
+				print "Exception parsing LNK Header: %s" % e 
 			return False
 
 		if self.lnk_header["header_size"] == 76:
@@ -315,7 +315,7 @@ class lnk_file(object):
 		while True:
 			tmp_item = {}
 			tmp_item['size'] = struct.unpack('<H', self.link_target_list[ index : index + 2])[0]
-			tmp_item['rsize'] = self.link_target_list[index : index + 2].hex()
+			tmp_item['rsize'] = self.link_target_list[index : index + 2].encode('hex')
 
 			self.items.append(tmp_item)
 			index += tmp_item['size']
@@ -335,11 +335,11 @@ class lnk_file(object):
 					}
 			index += 3
 
-#           self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
-#           print("[%s] %s" % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') ))
-#           print(self.indata[ index: index + ItemID['size'] ].hex()[:50])
+#			self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
+#			print "[%s] %s" % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') )
+#			print self.indata[ index: index + ItemID['size'] ].encode('hex')[:50]
 			index += ItemID['size']
-#           print(self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00',''))
+#			print self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00','')
 
 
 
@@ -347,7 +347,7 @@ class lnk_file(object):
 	def process(self):
 		index = 0
 		if not self.parse_lnk_header():
-			print("Failed Header Check")
+			print "Failed Header Check"
 
 		self.parse_link_flags()
 		self.parse_file_flags()
@@ -361,9 +361,9 @@ class lnk_file(object):
 				if self.debug:
 					self.parse_targets(index)
 				index += self.targets['size']
-			except Exception as e:
+			except Exception ,e:
 				if self.debug:
-					print("Exception parsing TargetIDList: %s" % e)
+					print "Exception parsing TargetIDList: %s" % e
 				return False
 
 		if self.linkFlag['HasTargetIDList']:
@@ -423,9 +423,9 @@ class lnk_file(object):
 
 
 
-			except Exception as e:
+			except Exception ,e:
 				if self.debug:
-					print("Exception parsing Location information: %s" % e)
+					print "Exception parsing Location information: %s" % e
 				return False
 
 								
@@ -460,10 +460,9 @@ class lnk_file(object):
 					self.data['iconLocation'] = self.indata[index + 2: index + 2 + icon_size].replace("\x00",'')
 					index += (2 + icon_size)
 
-			except Exception as e:
-				raise e
+			except Exception, e:
 				if self.debug:
-					print("Exception in parsing data: %s" % e)
+					print "Exception in parsing data: %s" % e
 				return False
 			
 			try:
@@ -474,14 +473,14 @@ class lnk_file(object):
 						self.EXTRA_SIGS[sig](index, size)
 						
 						index += ( size)
-					except Exception as e :
+					except Exception,e :
 						if self.debug:
-							print("Exception in EXTRABLOCK Parsing: %s " % e)
+							print "Exception in EXTRABLOCK Parsing: %s " % e
 						index = len(self.data)
-						break                       
-			except Exception as e:
+						break						
+			except Exception, e:
 				if self.debug:
-					print("Exception in EXTRABLOCK: %s" % e)
+					print "Exception in EXTRABLOCK: %s" % e
 
 	def parse_environment_block(self, index, size):
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK'] = {}
@@ -497,10 +496,10 @@ class lnk_file(object):
 
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['machine_identifier'] = self.clean_line(self.indata[index + 16: index + 32])
 
-		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['droid_volume_identifier'] = self.indata[index + 32: index + 48].hex()
-		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['droid_file_identifier'] = self.indata[index + 48: index + 64].hex()
-		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['birth_droid_volume_identifier'] = self.indata[index + 64: index + 80 ].hex()
-		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['birth_droid_file_identifier'] = self.indata[index + 80: index + 96 ].hex()
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['droid_volume_identifier'] = self.indata[index + 32: index + 48].encode('hex')
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['droid_file_identifier'] = self.indata[index + 48: index + 64].encode('hex')
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['birth_droid_volume_identifier'] = self.indata[index + 64: index + 80 ].encode('hex')
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['birth_droid_file_identifier'] = self.indata[index + 80: index + 96 ].encode('hex')
 
 
 	def parse_codepage_block(self, index, size):
@@ -524,33 +523,33 @@ class lnk_file(object):
 
 		
 	def print_lnk_file(self):
-		print("Windows Shortcut Information:")
-		print("\tLink Flags: %s - (%s)" % (self.format_linkFlags(), self.lnk_header['linkFlags']))
-		print("\tFile Flags: %s - (%s)" % (self.format_fileFlags(), self.lnk_header['fileFlags']))
-		print("")
+		print "Windows Shortcut Information:"
+		print "\tLink Flags: %s - (%s)" % (self.format_linkFlags(), self.lnk_header['linkFlags'])
+		print "\tFile Flags: %s - (%s)" % (self.format_fileFlags(), self.lnk_header['fileFlags'])
+		print ""
 		try:
-			print("\tCreation Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['creation_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S'))
-			print("\tModified Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['modified_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S'))
-			print("\tAccessed Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['accessed_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S'))
-			print("")
+			print "\tCreation Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['creation_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S')
+			print "\tModified Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['modified_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S')
+			print "\tAccessed Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['accessed_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S')
+			print ""
 		except:
-			print("\tProblem Parsing Timestamps")
-		print("\tFile Size: %s (r: %s)" % (str(self.lnk_header['file_size']), str(len(self.indata))))
-		print("\tIcon Index: %s " % (str(self.lnk_header['icon_index'])))
-		print("\tWindow Style: %s " % (str(self.lnk_header['windowstyle'])))
-		print("\tHotKey: %s " % (str(self.lnk_header['hotkey'])))
+			print "\tProblem Parsing Timestamps"
+		print "\tFile Size: %s (r: %s)" % (str(self.lnk_header['file_size']), str(len(self.indata)))
+		print "\tIcon Index: %s " % (str(self.lnk_header['icon_index']))
+		print "\tWindow Style: %s " % (str(self.lnk_header['windowstyle']))
+		print "\tHotKey: %s " % (str(self.lnk_header['hotkey']))
 
-		print("")
+		print ""
 
 		for rline in self.data:
-			print("\t%s: %s" % (rline, self.data[rline]))
+			print "\t%s: %s" % (rline, self.data[rline])
 
-		print("")
-		print("\tEXTRA BLOCKS:")
+		print ""
+		print "\tEXTRA BLOCKS:"
 		for enabled in self.extraBlocks:
-			print("\t\t%s" % enabled)
+			print "\t\t%s" % enabled
 			for block in self.extraBlocks[enabled]:
-				print("\t\t\t[%s] %s" % ( block, self.extraBlocks[enabled][block]))
+				print "\t\t\t[%s] %s" % ( block, self.extraBlocks[enabled][block])
 
 
 	def format_linkFlags(self):
@@ -575,24 +574,24 @@ class lnk_file(object):
 			out += " " + self.data['commandLineArguments']
 		
 		if pjson:
-			print(json.dumps( { 'command': out } ))
+			print json.dumps( { 'command': out } )
 		else:
-			print(out)
+			print out		
 
 	def print_json(self):
 		res = {}
 		res['header'] = self.lnk_header
-		res['data'] = self.data     
+		res['data'] = self.data		
 		res['extra'] = self.extraBlocks
-		print(json.dumps(res))
+		print json.dumps(res)
 
 
 
 def test_case():
 	tmp = lnk_file(fhandle = open(sys.argv[1], 'rb'), debug=True)
 	tmp.print_lnk_file()
-#   tmp.print_short(True)
-#   tmp.print_json()
+#	tmp.print_short(True)
+#	tmp.print_json()
 
 
 
