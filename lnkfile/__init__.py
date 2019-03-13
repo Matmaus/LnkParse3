@@ -528,9 +528,9 @@ class lnk_file(object):
 		print "\tFile Flags: %s - (%s)" % (self.format_fileFlags(), self.lnk_header['fileFlags'])
 		print ""
 		try:
-			print "\tCreation Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['creation_time'] / 100000000)).strftime('%Y-%m-%d %H:%M:%S')
-			print "\tModified Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['modified_time'] / 100000000)).strftime('%Y-%m-%d %H:%M:%S')
-			print "\tAccessed Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['accessed_time'] / 100000000)).strftime('%Y-%m-%d %H:%M:%S')
+			print "\tCreation Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['creation_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S')
+			print "\tModified Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['modified_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S')
+			print "\tAccessed Timestamp: %s" % (datetime.datetime.fromtimestamp(self.lnk_header['accessed_time'] / 10000000.0 - 11644473600)).strftime('%Y-%m-%d %H:%M:%S')
 			print ""
 		except:
 			print "\tProblem Parsing Timestamps"
