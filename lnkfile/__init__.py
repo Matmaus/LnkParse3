@@ -8,7 +8,7 @@ import datetime
 
 
 class lnk_file(object):
-	def __init__(self, fhandle=False, indata=False, debug=False):
+	def __init__(self, fhandle=None, indata=None, debug=False):
 		self.define_static()
 
 		if fhandle:
@@ -158,7 +158,7 @@ class lnk_file(object):
 		return ''.join(chr(i) for i in rstring if 128 > i > 20)
 
 	def parse_lnk_header(self):
-		# Parse the LNK file header  
+		# Parse the LNK file header
 		try:
 			# Header always starts with { 4c 00 00 00 } and is the size of the header
 			self.lnk_header["header_size"] = struct.unpack('<I', self.indata[:4])[0]
@@ -167,8 +167,8 @@ class lnk_file(object):
 
 			self.lnk_header['guid'] = lnk_header[4:20].hex()
 
-			self.lnk_header['linkFlags'] = struct.unpack('<i', lnk_header[20:24])[0]
-			self.lnk_header['fileFlags'] = struct.unpack('<i', lnk_header[24:28])[0]
+			self.lnk_header['rlinkFlags'] = struct.unpack('<i', lnk_header[20:24])[0]
+			self.lnk_header['rfileFlags'] = struct.unpack('<i', lnk_header[24:28])[0]
 
 			self.lnk_header['creation_time'] = struct.unpack('<q', lnk_header[28:36])[0]
 			self.lnk_header['accessed_time'] = struct.unpack('<q', lnk_header[36:44])[0]
@@ -215,97 +215,101 @@ class lnk_file(object):
 			return True
 
 	def parse_link_flags(self):
-		if self.lnk_header['linkFlags'] & 0x00000001:
+		if self.lnk_header['rlinkFlags'] & 0x00000001:
 			self.linkFlag['HasTargetIDList'] = True
-		if self.lnk_header['linkFlags'] & 0x00000002:
+		if self.lnk_header['rlinkFlags'] & 0x00000002:
 			self.linkFlag['HasLinkInfo'] = True
-		if self.lnk_header['linkFlags'] & 0x00000004:
+		if self.lnk_header['rlinkFlags'] & 0x00000004:
 			self.linkFlag['HasName'] = True
-		if self.lnk_header['linkFlags'] & 0x00000008:
+		if self.lnk_header['rlinkFlags'] & 0x00000008:
 			self.linkFlag['HasRelativePath'] = True
-		if self.lnk_header['linkFlags'] & 0x00000010:
+		if self.lnk_header['rlinkFlags'] & 0x00000010:
 			self.linkFlag['HasWorkingDir'] = True
-		if self.lnk_header['linkFlags'] & 0x00000020:
+		if self.lnk_header['rlinkFlags'] & 0x00000020:
 			self.linkFlag['HasArguments'] = True
-		if self.lnk_header['linkFlags'] & 0x00000040:
+		if self.lnk_header['rlinkFlags'] & 0x00000040:
 			self.linkFlag['HasIconLocation'] = True
-		if self.lnk_header['linkFlags'] & 0x00000080:
+		if self.lnk_header['rlinkFlags'] & 0x00000080:
 			self.linkFlag['IsUnicode'] = True
-		if self.lnk_header['linkFlags'] & 0x00000100:
+		if self.lnk_header['rlinkFlags'] & 0x00000100:
 			self.linkFlag['ForceNoLinkInfo'] = True
-		if self.lnk_header['linkFlags'] & 0x00000200:
+		if self.lnk_header['rlinkFlags'] & 0x00000200:
 			self.linkFlag['HasExpString'] = True
-		if self.lnk_header['linkFlags'] & 0x00000400:
+		if self.lnk_header['rlinkFlags'] & 0x00000400:
 			self.linkFlag['RunInSeparateProcess'] = True
-		if self.lnk_header['linkFlags'] & 0x00000800:
+		if self.lnk_header['rlinkFlags'] & 0x00000800:
 			self.linkFlag['Reserved0'] = True
-		if self.lnk_header['linkFlags'] & 0x00001000:
+		if self.lnk_header['rlinkFlags'] & 0x00001000:
 			self.linkFlag['HasDarwinID'] = True
-		if self.lnk_header['linkFlags'] & 0x00002000:
+		if self.lnk_header['rlinkFlags'] & 0x00002000:
 			self.linkFlag['RunAsUser'] = True
-		if self.lnk_header['linkFlags'] & 0x00004000:
+		if self.lnk_header['rlinkFlags'] & 0x00004000:
 			self.linkFlag['HasExpIcon'] = True
-		if self.lnk_header['linkFlags'] & 0x00008000:
+		if self.lnk_header['rlinkFlags'] & 0x00008000:
 			self.linkFlag['NoPidlAlias'] = True
-		if self.lnk_header['linkFlags'] & 0x000100000:
+		if self.lnk_header['rlinkFlags'] & 0x000100000:
 			self.linkFlag['Reserved1'] = True
 
-		if self.lnk_header['linkFlags'] & 0x00020000:
+		if self.lnk_header['rlinkFlags'] & 0x00020000:
 			self.linkFlag['RunWithShimLayer'] = True
-		if self.lnk_header['linkFlags'] & 0x00040000:
+		if self.lnk_header['rlinkFlags'] & 0x00040000:
 			self.linkFlag['ForceNoLinkTrack'] = True
-		if self.lnk_header['linkFlags'] & 0x00080000:
+		if self.lnk_header['rlinkFlags'] & 0x00080000:
 			self.linkFlag['EnableTargetMetadata'] = True
-		if self.lnk_header['linkFlags'] & 0x00100000:
+		if self.lnk_header['rlinkFlags'] & 0x00100000:
 			self.linkFlag['DisableLinkPathTracking'] = True
-		if self.lnk_header['linkFlags'] & 0x00200000:
+		if self.lnk_header['rlinkFlags'] & 0x00200000:
 			self.linkFlag['DisableKnownFolderTracking'] = True
-		if self.lnk_header['linkFlags'] & 0x00400000:
+		if self.lnk_header['rlinkFlags'] & 0x00400000:
 			self.linkFlag['DisableKnownFolderAlias'] = True
-		if self.lnk_header['linkFlags'] & 0x00800000:
+		if self.lnk_header['rlinkFlags'] & 0x00800000:
 			self.linkFlag['AllowLinkToLink'] = True
-		if self.lnk_header['linkFlags'] & 0x01000000:
+		if self.lnk_header['rlinkFlags'] & 0x01000000:
 			self.linkFlag['UnaliasOnSave'] = True
-		if self.lnk_header['linkFlags'] & 0x02000000:
+		if self.lnk_header['rlinkFlags'] & 0x02000000:
 			self.linkFlag['PreferEnvironmentPath'] = True
-		if self.lnk_header['linkFlags'] & 0x04000000:
+		if self.lnk_header['rlinkFlags'] & 0x04000000:
 			self.linkFlag['KeepLocalIDListForUNCTarget'] = True
 
+		self.lnk_header['linkFlags'] = self.enabled_flags_to_list(self.linkFlag)
+
 	def parse_file_flags(self):
-		if self.lnk_header['fileFlags'] & 0x00000001:
+		if self.lnk_header['rfileFlags'] & 0x00000001:
 			self.fileFlag['FILE_ATTRIBUTE_READONLY'] = True
-		if self.lnk_header['fileFlags'] & 0x00000002:
+		if self.lnk_header['rfileFlags'] & 0x00000002:
 			self.fileFlag['FILE_ATTRIBUTE_HIDDEN'] = True
-		if self.lnk_header['fileFlags'] & 0x00000004:
+		if self.lnk_header['rfileFlags'] & 0x00000004:
 			self.fileFlag['FILE_ATTRIBUTE_SYSTEM'] = True
-		if self.lnk_header['fileFlags'] & 0x00000008:
+		if self.lnk_header['rfileFlags'] & 0x00000008:
 			self.fileFlag['Reserved, not used by the LNK format'] = True
-		if self.lnk_header['fileFlags'] & 0x00000010:
+		if self.lnk_header['rfileFlags'] & 0x00000010:
 			self.fileFlag['FILE_ATTRIBUTE_DIRECTORY'] = True
-		if self.lnk_header['fileFlags'] & 0x00000020:
+		if self.lnk_header['rfileFlags'] & 0x00000020:
 			self.fileFlag['FILE_ATTRIBUTE_ARCHIVE'] = True
-		if self.lnk_header['fileFlags'] & 0x00000040:
+		if self.lnk_header['rfileFlags'] & 0x00000040:
 			self.fileFlag['FILE_ATTRIBUTE_DEVICE'] = True
-		if self.lnk_header['fileFlags'] & 0x00000080:
+		if self.lnk_header['rfileFlags'] & 0x00000080:
 			self.fileFlag['FILE_ATTRIBUTE_NORMAL'] = True
-		if self.lnk_header['fileFlags'] & 0x00000100:
+		if self.lnk_header['rfileFlags'] & 0x00000100:
 			self.fileFlag['FILE_ATTRIBUTE_TEMPORARY'] = True
-		if self.lnk_header['fileFlags'] & 0x00000200:
+		if self.lnk_header['rfileFlags'] & 0x00000200:
 			self.fileFlag['FILE_ATTRIBUTE_SPARSE_FILE'] = True
-		if self.lnk_header['fileFlags'] & 0x00000400:
+		if self.lnk_header['rfileFlags'] & 0x00000400:
 			self.fileFlag['FILE_ATTRIBUTE_REPARSE_POINT'] = True
-		if self.lnk_header['fileFlags'] & 0x00000800:
+		if self.lnk_header['rfileFlags'] & 0x00000800:
 			self.fileFlag['FILE_ATTRIBUTE_COMPRESSED'] = True
-		if self.lnk_header['fileFlags'] & 0x00001000:
+		if self.lnk_header['rfileFlags'] & 0x00001000:
 			self.fileFlag['FILE_ATTRIBUTE_OFFLINE'] = True
-		if self.lnk_header['fileFlags'] & 0x00002000:
+		if self.lnk_header['rfileFlags'] & 0x00002000:
 			self.fileFlag['FILE_ATTRIBUTE_NOT_CONTENT_INDEXED'] = True
-		if self.lnk_header['fileFlags'] & 0x00004000:
+		if self.lnk_header['rfileFlags'] & 0x00004000:
 			self.fileFlag['FILE_ATTRIBUTE_ENCRYPTED'] = True
-		if self.lnk_header['fileFlags'] & 0x00008000:
+		if self.lnk_header['rfileFlags'] & 0x00008000:
 			self.fileFlag['Unknown (seen on Windows 95 FAT)'] = True
-		if self.lnk_header['fileFlags'] & 0x00010000:
+		if self.lnk_header['rfileFlags'] & 0x00010000:
 			self.fileFlag['FILE_ATTRIBUTE_VIRTUAL'] = True
+
+		self.lnk_header['fileFlags'] = self.enabled_flags_to_list(self.fileFlag)
 
 	def parse_link_information(self):
 		index = 0
@@ -347,7 +351,7 @@ class lnk_file(object):
 		index += self.lnk_header["header_size"]
 
 		# Parse ID List
-		if (self.linkFlag['HasTargetIDList'] and self.linkFlag['ForceNoLinkInfo'] == False):
+		if self.linkFlag['HasTargetIDList'] and self.linkFlag['ForceNoLinkInfo'] == False:
 			try:
 				self.targets['size'] = struct.unpack('<H', self.indata[index: index + 2])[0]
 				index += 2
@@ -400,8 +404,6 @@ class lnk_file(object):
 						self.loc_information['VolumeIDAndLocalBasePath']['driveType'] = \
 							self.DRIVE_TYPES[
 								self.loc_information['VolumeIDAndLocalBasePath']['rdriveType']]
-
-
 				elif self.loc_information['locationFlags'] & 0x0002:
 					self.loc_information['location'] = "CommonNetworkRelativeLinkAndPathSuffix"
 					self.loc_information['CommonNetworkRelativeLinkAndPathSuffix'] = {
@@ -424,8 +426,6 @@ class lnk_file(object):
 								self.loc_information['VolumeIDAndLocalBasePath']['rdriveType']]
 
 				index += (self.loc_information['size'] - self.loc_information['hsize'])
-
-
 
 			except Exception as e:
 				if self.debug:
@@ -468,7 +468,6 @@ class lnk_file(object):
 					index += (2 + icon_size)
 
 			except Exception as e:
-				raise e
 				if self.debug:
 					print("Exception in parsing data: %s" % e)
 				return False
@@ -545,8 +544,8 @@ class lnk_file(object):
 
 	def print_lnk_file(self):
 		print("Windows Shortcut Information:")
-		print("\tLink Flags: %s - (%s)" % (self.format_linkFlags(), self.lnk_header['linkFlags']))
-		print("\tFile Flags: %s - (%s)" % (self.format_fileFlags(), self.lnk_header['fileFlags']))
+		print("\tLink Flags: %s - (%s)" % (self.format_linkFlags(), self.lnk_header['rlinkFlags']))
+		print("\tFile Flags: %s - (%s)" % (self.format_fileFlags(), self.lnk_header['rfileFlags']))
 		print("")
 		try:
 			print("\tCreation Timestamp: %s" % (datetime.datetime.fromtimestamp(
@@ -579,18 +578,20 @@ class lnk_file(object):
 			for block in self.extraBlocks[enabled]:
 				print("\t\t\t[%s] %s" % (block, self.extraBlocks[enabled][block]))
 
-	def format_linkFlags(self):
+	@staticmethod
+	def enabled_flags_to_list(flags):
 		enabled = []
-		for flag in self.linkFlag:
-			if self.linkFlag[flag]:
+		for flag in flags:
+			if flags[flag]:
 				enabled.append(flag)
+		return enabled
+
+	def format_linkFlags(self):
+		enabled = self.enabled_flags_to_list(self.linkFlag)
 		return " | ".join(enabled)
 
 	def format_fileFlags(self):
-		enabled = []
-		for flag in self.fileFlag:
-			if self.fileFlag[flag]:
-				enabled.append(flag)
+		enabled = self.enabled_flags_to_list(self.fileFlag)
 		return " | ".join(enabled)
 
 	def print_short(self, pjson=False):
@@ -606,20 +607,18 @@ class lnk_file(object):
 			print(out)
 
 	def print_json(self):
-		res = {}
-		res['header'] = self.lnk_header
-		res['data'] = self.data
-		res['extra'] = self.extraBlocks
-		print(json.dumps(res))
+		res = {'header': self.lnk_header, 'data': self.data, 'extra': self.extraBlocks}
+		print(json.dumps(res, indent=4, separators=(',', ': ')))
 
 
-def test_case():
-	tmp = lnk_file(fhandle=open(sys.argv[1], 'rb'), debug=True)
-	tmp.print_lnk_file()
-#   tmp.print_short(True)
-#   tmp.print_json()
+def test_case(filename):
+	with open(filename, 'rb') as file:
+		tmp = lnk_file(fhandle=file, debug=True)
+		tmp.print_lnk_file()
+		# tmp.print_short(True)
+		# tmp.print_json()
 
 
 if __name__ == "__main__":
 	if sys.argv[1]:
-		test_case()
+		test_case(sys.argv[1])
