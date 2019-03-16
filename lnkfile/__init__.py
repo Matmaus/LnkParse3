@@ -697,7 +697,23 @@ class lnk_file(object):
 		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK']['CodePage'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
 
 	def parse_specialFolder_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize == 0x00000010                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000005                              |
+		--------------------------------------------------------------------------------------------------
+		|                                   <u_int32> SpecialFolderID                                    |
+		--------------------------------------------------------------------------------------------------
+		|                                         <u_int32> Offset                                       |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK'] = {}
+		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['size'] = size
+		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['SpecialFolderID'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
+		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['Offset'] = struct.unpack('<I', self.indata[index + 12: index + 16])[0]
 
 	def parse_darwin_block(self, index, size):
 		self.extraBlocks['DARWIN_BLOCK'] = {}
