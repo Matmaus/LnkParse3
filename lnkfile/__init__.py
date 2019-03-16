@@ -514,10 +514,25 @@ class lnk_file(object):
 					print('Exception in EXTRABLOCK: %s' % e)
 
 	def parse_environment_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize == 0x00000314                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000001                              |
+		--------------------------------------------------------------------------------------------------
+		|                                      <str> TargetAnsi                                          |
+		|                                           260 B                                                |
+		--------------------------------------------------------------------------------------------------
+		|                                <unicode_str> TargetUnicode                                     |
+		|                                           520 B                                                |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK'] = {}
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['size'] = size
-		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK'][
-			'variable_location'] = self.clean_line(self.indata[index + 8: index + 8 + size])
+		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['TargetAnsi'] = self.read_string(index + 8)
+		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['TargetUnicode'] = self.read_unicode_string(index + 268)
 
 	def parse_console_block(self, index, size):
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'] = {}
