@@ -17,6 +17,8 @@ def main():
 							help='absolute or relative path to the file')
 	arg_parser.add_argument('-j', '--json', action='store_true',
 							help='print output in JSON')
+	arg_parser.add_argument('-d', '--json_debug', action='store_true',
+							help='print all extracted data in JSON (i.e. offsets and sizes)')
 	arg_parser.add_argument('-D', '--debug', action='store_true',
 							help='print debug info')
 	args = arg_parser.parse_args()
@@ -24,7 +26,7 @@ def main():
 	with open(args.file, 'rb') as file:
 		lnk = lnkfile.lnk_file(fhandle=file, debug=args.debug)
 		if args.json:
-			lnk.print_json()
+			lnk.print_json(args.json_debug)
 		else:
 			lnk.print_lnk_file()
 

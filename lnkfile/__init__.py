@@ -78,6 +78,7 @@ class lnk_file(object):
 			'items': [],
 		}
 
+		self.loc_information = {}
 		self.data = {}
 		self.extraBlocks = {}
 
@@ -638,10 +639,37 @@ class lnk_file(object):
 		else:
 			print(out)
 
-	def print_json(self):
-		res = {'header': self.lnk_header, 'data': self.data, 'extra': self.extraBlocks}
-		print(json.dumps(res, indent=4, separators=(',', ': ')))
+	def print_json(self, print_all=False):
+		res = {'header': self.lnk_header, 'data': self.data, 'target': self.targets, 'link_info': self.loc_information, 'extra': self.extraBlocks}
 
+		if 'creation_time' in res['header']:
+			res['header']['creation_time'] = self.ms_time_to_unix_time(res['header']['creation_time'])
+		if 'accessed_time' in res['header']:
+			res['header']['accessed_time'] = self.ms_time_to_unix_time(res['header']['accessed_time'])
+		if 'modified_time' in res['header']:
+			res['header']['modified_time'] = self.ms_time_to_unix_time(res['header']['modified_time'])
+
+		if not print_all:
+			res['header'].pop('header_size')
+			res['header'].pop('reserved0')
+			res['header'].pop('reserved1')
+			res['header'].pop('reserved2')
+			res['target'].pop('size')
+			res['link_info'].pop('LinkInfoSize')
+			res['link_info'].pop('LinkInfoHeaderSize')
+			res['link_info'].pop('VolumeIDOffset')
+			res['link_info'].pop('LocalBasePathOffset')
+			res['link_info'].pop('CommonNetworkRelativeLinkOffset')
+			res['link_info'].pop('CommonPathSuffixOffset')
+			if 'VolumeIDAndLocalBasePath' in res['link_info']:
+				res['link_info']['VolumeIDAndLocalBasePath'].pop('VolumeIDSize')
+				res['link_info']['VolumeIDAndLocalBasePath'].pop('VolumeLabelOffset')
+			if 'CommonNetworkRelativeLinkAndPathSuffix' in res['link_info']:
+				res['link_info']['CommonNetworkRelativeLinkAndPathSuffix'].pop('CommonNetworkRelativeLinkSize')
+				res['link_info']['CommonNetworkRelativeLinkAndPathSuffix'].pop('NetNameOffset')
+				res['link_info']['CommonNetworkRelativeLinkAndPathSuffix'].pop('DeviceNameOffset')
+
+		print(json.dumps(res, indent=4, separators=(',', ': ')))
 
 def test_case(filename):
 	with open(filename, 'rb') as file:
@@ -657,6 +685,8 @@ def main():
 							help='absolute or relative path to the file')
 	arg_parser.add_argument('-j', '--json', action='store_true',
 							help='print output in JSON')
+	arg_parser.add_argument('-d', '--json_debug', action='store_true',
+							help='print all extracted data in JSON (i.e. offsets and sizes)')
 	arg_parser.add_argument('-D', '--debug', action='store_true',
 							help='print debug info')
 	args = arg_parser.parse_args()
@@ -664,7 +694,7 @@ def main():
 	with open(args.file, 'rb') as file:
 		lnk = lnk_file(fhandle=file, debug=args.debug)
 		if args.json:
-			lnk.print_json()
+			lnk.print_json(args.json_debug)
 		else:
 			lnk.print_lnk_file()
 
