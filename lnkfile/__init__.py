@@ -737,7 +737,25 @@ class lnk_file(object):
 		self.extraBlocks['DARWIN_BLOCK']['DarwinDataUnicode'] = self.read_unicode_string(index + 268)
 
 	def parse_icon_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize == 0x00000314                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000007                              |
+		--------------------------------------------------------------------------------------------------
+		|                                      <str> TargetAnsi                                          |
+		|                                           260 B                                                |
+		--------------------------------------------------------------------------------------------------
+		|                                <unicode_str> TargetUnicode                                     |
+		|                                           520 B                                                |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['ICON_LOCATION_BLOCK'] = {}
+		self.extraBlocks['ICON_LOCATION_BLOCK']['size'] = size
+		self.extraBlocks['ICON_LOCATION_BLOCK']['TargetAnsi'] = self.read_string(index + 8)
+		self.extraBlocks['ICON_LOCATION_BLOCK']['TargetUnicode'] = self.read_unicode_string(index + 268)
 
 	def parse_shimLayer_block(self, index, size):
 		self.extraBlocks['SHIM_LAYER_BLOCK'] = {}
