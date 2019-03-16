@@ -477,7 +477,7 @@ class lnk_file(object):
 					u_mult = 2
 
 				if self.linkFlag['HasName']:
-					self.data['description'] = self.read_stringData(index, u_mult)
+					index, self.data['description'] = self.read_stringData(index, u_mult)
 
 				if self.linkFlag['HasRelativePath']:
 					index, self.data['relativePath'] = self.read_stringData(index, u_mult)
