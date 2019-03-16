@@ -681,7 +681,20 @@ class lnk_file(object):
 			'birth_droid_file_identifier'] = self.indata[index + 80: index + 96].hex()
 
 	def parse_codepage_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize == 0x0000000C                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000004                              |
+		--------------------------------------------------------------------------------------------------
+		|                                     <u_int32> CodePage                                         |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK'] = {}
+		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK']['size'] = size
+		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK']['CodePage'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
 
 	def parse_specialFolder_block(self, index, size):
 		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK'] = {}
