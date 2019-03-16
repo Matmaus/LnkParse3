@@ -538,15 +538,9 @@ class lnk_file(object):
 		print('\tFile Flags: %s - (%s)' % (self.format_fileFlags(), self.lnk_header['rfileFlags']))
 		print('')
 		try:
-			print('\tCreation Timestamp: %s' % (datetime.datetime.fromtimestamp(
-				self.lnk_header['creation_time'] / 10000000.0 - 11644473600)).strftime(
-				'%Y-%m-%d %H:%M:%S'))
-			print('\tModified Timestamp: %s' % (datetime.datetime.fromtimestamp(
-				self.lnk_header['modified_time'] / 10000000.0 - 11644473600)).strftime(
-				'%Y-%m-%d %H:%M:%S'))
-			print('\tAccessed Timestamp: %s' % (datetime.datetime.fromtimestamp(
-				self.lnk_header['accessed_time'] / 10000000.0 - 11644473600)).strftime(
-				'%Y-%m-%d %H:%M:%S'))
+			print('\tCreation Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['creation_time'])))
+			print('\tModified Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['modified_time'])))
+			print('\tAccessed Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['accessed_time'])))
 			print('')
 		except:
 			print('\tProblem Parsing Timestamps')
@@ -567,6 +561,9 @@ class lnk_file(object):
 			print('\t\t%s' % enabled)
 			for block in self.extraBlocks[enabled]:
 				print('\t\t\t[%s] %s' % (block, self.extraBlocks[enabled][block]))
+
+	def ms_time_to_unix_time(self, time):
+		return datetime.datetime.fromtimestamp(time / 10000000.0 - 11644473600).strftime('%Y-%m-%d %H:%M:%S')
 
 	def read_stringData(self, index, u_mult):
 		string_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
