@@ -635,19 +635,46 @@ class lnk_file(object):
 			'ColorTable'] = struct.unpack('<I', self.indata[index + 140: index + 144])[0]
 
 	def parse_distributedTracker_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize == 0x00000060                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000003                              |
+		--------------------------------------------------------------------------------------------------
+		|                                      <u_int32> Length                                          |
+		--------------------------------------------------------------------------------------------------
+		|                                      <u_int32> Version                                         |
+		--------------------------------------------------------------------------------------------------
+		|                                       <str> MachineID                                          |
+		|                                             16 B                                               |
+		--------------------------------------------------------------------------------------------------
+		|                                    <GUID> DroidVolumeId                                        |
+		|                                             16 B                                               |
+		--------------------------------------------------------------------------------------------------
+		|                                     <GUID> DroidFileId                                         |
+		|                                             16 B                                               |
+		--------------------------------------------------------------------------------------------------
+		|                                  <GUID> DroidBirthVolumeId                                     |
+		|                                             16 B                                               |
+		--------------------------------------------------------------------------------------------------
+		|                                   <GUID> DroidBirthFileId                                      |
+		|                                             16 B                                               |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'] = {}
-		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['size'] = \
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['size'] = size
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['length'] = \
 			struct.unpack('<I', self.indata[index + 8: index + 12])[0]
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['version'] = \
 			struct.unpack('<I', self.indata[index + 12: index + 16])[0]
-
-		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['machine_identifier'] = self.clean_line(
-			self.indata[index + 16: index + 32])
-
-		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['droid_volume_identifier'] = self.indata[
-																						index + 32: index + 48].hex()
-		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['droid_file_identifier'] = self.indata[
-																					  index + 48: index + 64].hex()
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
+			'machine_identifier'] = self.clean_line(self.indata[index + 16: index + 32])
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
+			'droid_volume_identifier'] = self.indata[index + 32: index + 48].hex()
+		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
+			'droid_file_identifier'] = self.indata[index + 48: index + 64].hex()
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
 			'birth_droid_volume_identifier'] = self.indata[index + 64: index + 80].hex()
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
