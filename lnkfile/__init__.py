@@ -535,7 +535,104 @@ class lnk_file(object):
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['TargetUnicode'] = self.read_unicode_string(index + 268)
 
 	def parse_console_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize == 0x000000CC                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000002                              |
+		--------------------------------------------------------------------------------------------------
+		|         <u_int16> FillAttributes             |        <u_int16> PopupFillAttributes            |
+		--------------------------------------------------------------------------------------------------
+		|         <int16> ScreenBufferSizeX            |             <int16> ScreenBufferSizeY           |
+		|             <int16> WindowSizeX              |               <int16> WindowSizeY               |
+		--------------------------------------------------------------------------------------------------
+		|            <int16> WindowOriginX             |              <int16> WindowOriginY              |
+		--------------------------------------------------------------------------------------------------
+		|                                           Unused1                                              |
+		--------------------------------------------------------------------------------------------------
+		|                                           Unused2                                              |
+		--------------------------------------------------------------------------------------------------
+		|                                      <u_int32> FontSize                                        |
+		--------------------------------------------------------------------------------------------------
+		|                                     <u_int32> FontFamily                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                     <u_int32> FontWeight                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                    <unicode_str> Face Name                                     |
+		|                                            64 B                                                |
+		--------------------------------------------------------------------------------------------------
+		|                                     <u_int32> CursorSize                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                     <u_int32> FullScreen                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                      <u_int32> QuickEdit                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                     <u_int32> InsertMode                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                    <u_int32> AutoPosition                                      |
+		--------------------------------------------------------------------------------------------------
+		|                                 <u_int32> HistoryBufferSize                                    |
+		--------------------------------------------------------------------------------------------------
+		|                               <u_int32> NumberOfHistoryBuffers                                 |
+		--------------------------------------------------------------------------------------------------
+		|                                   <u_int32> HistoryNoDup                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                <vector<u_int32>> ColorTable                                    |
+		|                                            64 B                                                |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'] = {}
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK']['size'] = size
+		# 16b
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'FillAttributes'] = struct.unpack('<I', self.indata[index + 8: index + 10])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'PopupFillAttributes'] = struct.unpack('<I', self.indata[index + 10: index + 12])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'ScreenBufferSizeX'] = struct.unpack('<i', self.indata[index + 12: index + 14])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'ScreenBufferSizeY'] = struct.unpack('<i', self.indata[index + 14: index + 16])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'WindowSizeX'] = struct.unpack('<i', self.indata[index + 16: index + 18])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'WindowSizeY'] = struct.unpack('<i', self.indata[index + 18: index + 20])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'WindowOriginX'] = struct.unpack('<i', self.indata[index + 20: index + 22])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'WindowOriginY'] = struct.unpack('<i', self.indata[index + 22: index + 24])[0]
+		# Bytes 24-28 & 28-32 are unused
+		# 32b
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'FontSize'] = struct.unpack('<I', self.indata[index + 32: index + 36])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'FontFamily'] = struct.unpack('<I', self.indata[index + 36: index + 40])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'FontWeight'] = struct.unpack('<I', self.indata[index + 40: index + 44])[0]
+		# 64b
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'Face'] = self.clean_line(self.indata[index + 44: index + 108])
+		# 32b
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'CursorSize'] = struct.unpack('<I', self.indata[index + 108: index + 112])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'FullScreen'] = struct.unpack('<I', self.indata[index + 112: index + 116])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'QuickEdit'] = struct.unpack('<I', self.indata[index + 116: index + 120])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'InsertMode'] = struct.unpack('<I', self.indata[index + 120: index + 124])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'AutoPosition'] = struct.unpack('<I', self.indata[index + 124: index + 128])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'HistoryBufferSize'] = struct.unpack('<I', self.indata[index + 128: index + 132])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'NumberOfHistoryBuffers'] = struct.unpack('<I', self.indata[index + 132: index + 136])[0]
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'HistoryNoDup'] = struct.unpack('<I', self.indata[index + 136: index + 140])[0]
+		# 64b
+		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
+			'ColorTable'] = struct.unpack('<I', self.indata[index + 140: index + 144])[0]
 
 	def parse_distributedTracker_block(self, index, size):
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'] = {}
