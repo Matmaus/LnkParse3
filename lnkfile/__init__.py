@@ -443,34 +443,19 @@ class lnk_file(object):
 					u_mult = 2
 
 				if self.linkFlag['HasName']:
-					desc_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
-					self.data['description'] = self.clean_line(
-						self.indata[index + 2: index + 2 + desc_size].replace(b'\x00', b''))
-					index += (2 + desc_size)
+					self.data['description'] = self.read_stringData(index, u_mult)
 
 				if self.linkFlag['HasRelativePath']:
-					rel_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
-					self.data['relativePath'] = self.clean_line(
-						self.indata[index + 2: index + 2 + rel_size].replace(b'\x00', b''))
-					index += (2 + rel_size)
+					index, self.data['relativePath'] = self.read_stringData(index, u_mult)
 
 				if self.linkFlag['HasWorkingDir']:
-					wor_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
-					self.data['workingDirectory'] = self.clean_line(
-						self.indata[index + 2: index + 2 + wor_size].replace(b'\x00', b''))
-					index += (2 + wor_size)
+					index, self.data['workingDirectory'] = self.read_stringData(index, u_mult)
 
 				if self.linkFlag['HasArguments']:
-					cli_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
-					self.data['commandLineArguments'] = self.clean_line(
-						self.indata[index + 2: index + 2 + cli_size].replace(b'\x00', b''))
-					index += (2 + cli_size)
+					index, self.data['commandLineArguments'] = self.read_stringData(index, u_mult)
 
 				if self.linkFlag['HasIconLocation']:
-					icon_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
-					self.data['iconLocation'] = self.clean_line(
-						self.indata[index + 2: index + 2 + icon_size].replace(b'\x00', b''))
-					index += (2 + icon_size)
+					index, self.data['iconLocation'] = self.read_stringData(index, u_mult)
 
 			except Exception as e:
 				if self.debug:
@@ -582,6 +567,12 @@ class lnk_file(object):
 			print('\t\t%s' % enabled)
 			for block in self.extraBlocks[enabled]:
 				print('\t\t\t[%s] %s' % (block, self.extraBlocks[enabled][block]))
+
+	def read_stringData(self, index, u_mult):
+		string_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
+		string = self.clean_line(self.indata[index + 2: index + 2 + string_size].replace(b'\x00', b''))
+		new_index = index + string_size + 2
+		return new_index, string
 
 	@staticmethod
 	def enabled_flags_to_list(flags):
