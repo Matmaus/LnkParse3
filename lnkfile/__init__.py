@@ -758,7 +758,21 @@ class lnk_file(object):
 		self.extraBlocks['ICON_LOCATION_BLOCK']['TargetUnicode'] = self.read_unicode_string(index + 268)
 
 	def parse_shimLayer_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize >= 0x00000088                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000008                              |
+		--------------------------------------------------------------------------------------------------
+		|                                    <unicode_str> LayerName                                     |
+		|                                            ? B                                                 |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['SHIM_LAYER_BLOCK'] = {}
+		self.extraBlocks['SHIM_LAYER_BLOCK']['size'] = size
+		self.extraBlocks['SHIM_LAYER_BLOCK']['LayerName'] = self.read_unicode_string(index + 8)
 
 	def parse_metadata_block(self, index, size):
 		self.extraBlocks['METADATA_PRPERTIES_BLOCK'] = {}
