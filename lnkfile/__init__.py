@@ -356,7 +356,7 @@ class lnk_file(object):
 		index += self.lnk_header['header_size']
 
 		# Parse ID List
-		if self.linkFlag['HasTargetIDList'] and self.linkFlag['ForceNoLinkInfo'] == False:
+		if self.linkFlag['HasTargetIDList']:
 			try:
 				self.targets['size'] = struct.unpack('<H', self.indata[index: index + 2])[0]
 				index += 2
@@ -368,69 +368,102 @@ class lnk_file(object):
 					print('Exception parsing TargetIDList: %s' % e)
 				return False
 
-		if self.linkFlag['HasTargetIDList']:
+		if self.linkFlag['HasLinkInfo'] and self.linkFlag['ForceNoLinkInfo'] == False:
 			try:
 				self.loc_information = {
-					'size': struct.unpack('<i', self.indata[index: index + 4])[0],
-					'hsize': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-					'locationFlags': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
-					'o_volumeInfo': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
-					'o_localPath': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
-					'o_netPath': struct.unpack('<i', self.indata[index + 20: index + 24])[0],
-					'o_commonPath': struct.unpack('<i', self.indata[index + 24: index + 28])[0],
+					'LinkInfoSize': struct.unpack('<i', self.indata[index: index + 4])[0],
+					'LinkInfoHeaderSize': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
+					'LinkInfoFlags': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
+					'VolumeIDOffset': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
+					'LocalBasePathOffset': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
+					'CommonNetworkRelativeLinkOffset': struct.unpack('<i', self.indata[index + 20: index + 24])[0],
+					'CommonPathSuffixOffset': struct.unpack('<i', self.indata[index + 24: index + 28])[0],
 				}
 
-				index += self.loc_information['hsize']
+				if self.loc_information['LinkInfoFlags'] & 0x0001:
+					if self.loc_information['LinkInfoHeaderSize'] >= 36:
+						self.loc_information['o_LocalBasePathOffsetUnicode'] = \
+								struct.unpack('<i', self.indata[index + 28: index + 32])[0]
+						local_index = index + self.loc_information['o_LocalBasePathOffsetUnicode']
+						self.loc_information['o_LocalBasePathUnicode'] = \
+								struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+					else:
+						local_index = index + self.loc_information['LocalBasePathOffset']
+						self.loc_information['LocalBasePath'] = self.read_string(local_index)
 
-				if self.loc_information['hsize'] > 28:
-					self.loc_information['o_unicodeLocalPath'] = \
-						struct.unpack('<i', self.indata[index: index + 4])[0]
-				if self.loc_information['hsize'] > 32:
-					self.loc_information['o_unicodeCommonPath'] = \
-						struct.unpack('<i', self.indata[index + 4: index + 8])[0]
-
-				if self.loc_information['locationFlags'] & 0x0001:
+					local_index = index + self.loc_information['VolumeIDOffset']
 					self.loc_information['location'] = 'VolumeIDAndLocalBasePath'
 					self.loc_information['VolumeIDAndLocalBasePath'] = {
-						'sizeVolInformation':
-							struct.unpack('<i', self.indata[index + 0: index + 4])[0],
-						'rdriveType': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-						'driveSerial': hex(
-							struct.unpack('<i', self.indata[index + 8: index + 12])[0]),
-						'o_VolLabel': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
+						'VolumeIDSize':
+							struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
+						'rDriveType':
+							struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
+						'DriveSerialNumber': hex(
+							struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0]),
+						'VolumeLabelOffset':
+							struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
 					}
 
-					if self.loc_information['VolumeIDAndLocalBasePath']['o_VolLabel'] > 16:
-						self.loc_information['VolumeIDAndLocalBasePath']['o_VolLabel'] = \
-							struct.unpack('<i', self.indata[index + 16: index + 20])[0]
+					if self.loc_information['VolumeIDAndLocalBasePath']['rDriveType'] < len(self.DRIVE_TYPES):
+						self.loc_information['VolumeIDAndLocalBasePath']['DriveType'] = self.DRIVE_TYPES[self.loc_information['VolumeIDAndLocalBasePath']['rDriveType']]
 
-					if self.loc_information['VolumeIDAndLocalBasePath']['rdriveType'] < len(
-							self.DRIVE_TYPES):
-						self.loc_information['VolumeIDAndLocalBasePath']['driveType'] = \
-							self.DRIVE_TYPES[
-								self.loc_information['VolumeIDAndLocalBasePath']['rdriveType']]
-				elif self.loc_information['locationFlags'] & 0x0002:
+					if self.loc_information['VolumeIDAndLocalBasePath']['VolumeLabelOffset'] != 20:
+						length = self.loc_information['VolumeIDAndLocalBasePath']['VolumeIDSize'] - self.loc_information['VolumeIDAndLocalBasePath']['VolumeLabelOffset']
+						local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['VolumeIDAndLocalBasePath']['VolumeLabelOffset']
+						self.loc_information['VolumeIDAndLocalBasePath']['VolumeLabel'] = self.clean_line(self.indata[local_index: local_index + length].replace(b'\x00', b''))
+					else:
+						self.loc_information['VolumeIDAndLocalBasePath']['o_VolumeLabelOffsetUnicode'] = struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0]
+						local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['VolumeIDAndLocalBasePath']['o_VolumeLabelOffsetUnicode']
+						self.loc_information['VolumeIDAndLocalBasePath']['o_VolumeLabelUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+
+				elif self.loc_information['LinkInfoFlags'] & 0x0002:
+					if self.loc_information['LinkInfoHeaderSize'] >= 36:
+						self.loc_information['o_CommonPathSuffixOffsetUnicode'] = \
+								struct.unpack('<i', self.indata[index + 28: index + 32])[0]
+						local_index = index + self.loc_information['o_CommonPathSuffixOffsetUnicode']
+						self.loc_information['o_CommonPathSuffixUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+					else:
+						local_index = index + self.loc_information['CommonPathSuffixOffset']
+						self.loc_information['CommonPathSuffix'] = \
+								struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+
+					local_index = index + self.loc_information['CommonNetworkRelativeLinkOffset']
 					self.loc_information['location'] = 'CommonNetworkRelativeLinkAndPathSuffix'
 					self.loc_information['CommonNetworkRelativeLinkAndPathSuffix'] = {
-						'sizeNetInformation':
-							struct.unpack('<i', self.indata[index + 0: index + 4])[0],
-						'netShareFlags': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-						'o_netShareName': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
-						'o_netDeviceName': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
-						'netProviderType': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
+						'CommonNetworkRelativeLinkSize':
+							struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
+						'CommonNetworkRelativeLinkFlags':
+							struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
+						'NetNameOffset':
+							struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0],
+						'DeviceNameOffset':
+							struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
+						'NetworkProviderType':
+							struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0],
 					}
 
-					if self.loc_information['VolumeIDAndLocalBasePath']['o_VolLabel'] > 16:
-						self.loc_information['VolumeIDAndLocalBasePath']['o_VolLabel'] = \
-							struct.unpack('<i', self.indata[index + 16: index + 20])[0]
+					if self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffset'] > 20:
+						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffsetUnicode'] = \
+						struct.unpack('<i', self.indata[local_index + 20: index + 24])[0]
+						local_index = index + self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffsetUnicode']
+						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffsetUnicode'] = \
+							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
-					if self.loc_information['VolumeIDAndLocalBasePath']['rdriveType'] < len(
-							self.DRIVE_TYPES):
-						self.loc_information['VolumeIDAndLocalBasePath']['driveType'] = \
-							self.DRIVE_TYPES[
-								self.loc_information['VolumeIDAndLocalBasePath']['rdriveType']]
+						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffsetUnicode'] = \
+						struct.unpack('<i', self.indata[local_index + 24: index + 28])[0]
+						local_index = self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffsetUnicode']
+						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffsetUnicode'] = \
+							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+					else:
+						local_index = index + self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffset']
+						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffset'] = \
+							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
-				index += (self.loc_information['size'] - self.loc_information['hsize'])
+						local_index = self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffset']
+						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffset'] = \
+							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+
+				index += (self.loc_information['LinkInfoSize'])
 
 			except Exception as e:
 				if self.debug:
@@ -466,8 +499,7 @@ class lnk_file(object):
 				while index <= len(self.indata) - 10:
 					try:
 						size = struct.unpack('<I', self.indata[index: index + 4])[0]
-						sig = str(hex(struct.unpack('<I', self.indata[index + 4: index + 8])[0]))[
-							  2:]
+						sig = str(hex(struct.unpack('<I', self.indata[index + 4: index + 8])[0]))[2:]
 						self.EXTRA_SIGS[sig](index, size)
 
 						index += (size)
@@ -564,6 +596,13 @@ class lnk_file(object):
 
 	def ms_time_to_unix_time(self, time):
 		return datetime.datetime.fromtimestamp(time / 10000000.0 - 11644473600).strftime('%Y-%m-%d %H:%M:%S')
+
+	def read_string(self, index):
+		result = ''
+		while self.indata[index] != 0x00:
+			result += chr(self.indata[index])
+			index += 1
+		return result
 
 	def read_stringData(self, index, u_mult):
 		string_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
