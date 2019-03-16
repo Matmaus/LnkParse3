@@ -798,7 +798,20 @@ class lnk_file(object):
 		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['Offset'] = struct.unpack('<I', self.indata[index + 24: index + 28])[0]
 
 	def parse_shellItem_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize >= 0x0000000A                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA000000C                              |
+		--------------------------------------------------------------------------------------------------
+		|                                       <IDList> IDList                                          |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK'] = {}
+		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['size'] = size
+		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['IDList'] = '' # TODO
 
 	def print_lnk_file(self):
 		print('Windows Shortcut Information:')
