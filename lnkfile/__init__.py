@@ -86,76 +86,76 @@ class lnk_file(object):
 
 	def define_common(self):
 		try:
-			out = ""
+			out = ''
 			if self.linkFlag['HasRelativePath']:
 				out += self.data['relativePath']
 			if self.linkFlag['HasArguments']:
-				out += " " + self.data['commandLineArguments']
+				out += ' ' + self.data['commandLineArguments']
 
 			self.lnk_command = out
 		except Exception as e:
 			if self.debug:
-				print("Exception define_common: %s" % e)
+				print('Exception define_common: %s' % e)
 
 	def get_command(self):
 		try:
-			out = ""
+			out = ''
 			if self.linkFlag['HasRelativePath']:
 				out += self.data['relativePath']
 			if self.linkFlag['HasArguments']:
-				out += " " + self.data['commandLineArguments']
+				out += ' ' + self.data['commandLineArguments']
 
 			return out
 		except Exception as e:
 			if self.debug:
-				print("Exception get_command: %s" % (e))
-			return ""
+				print('Exception get_command: %s' % (e))
+			return ''
 
 	def define_static(self):
 		# Define static constents used within the LNK format
 
 		# Each MAGIC string refernces a function for processing
 		self.EXTRA_SIGS = {
-			"a0000001": self.parse_environment_block,
-			"a0000002": self.parse_console_block,
-			"a0000003": self.parse_distributedTracker_block,
-			"a0000004": self.parse_codepage_block,
-			"a0000005": self.parse_specialFolder_block,
-			"a0000006": self.parse_darwin_block,
-			"a0000007": self.parse_icon_block,
-			"a0000008": self.parse_shimLayer_block,
-			"a0000009": self.parse_metadata_block,
-			"a000000b": self.parse_knownFolder_block,
-			"a000000c": self.parse_shellItem_block,
+			'a0000001': self.parse_environment_block,
+			'a0000002': self.parse_console_block,
+			'a0000003': self.parse_distributedTracker_block,
+			'a0000004': self.parse_codepage_block,
+			'a0000005': self.parse_specialFolder_block,
+			'a0000006': self.parse_darwin_block,
+			'a0000007': self.parse_icon_block,
+			'a0000008': self.parse_shimLayer_block,
+			'a0000009': self.parse_metadata_block,
+			'a000000b': self.parse_knownFolder_block,
+			'a000000c': self.parse_shellItem_block,
 		}
 
 		self.DRIVE_TYPES = [
-			"DRIVE_UNKNOWN",
-			"DRIVE_NO_ROOT_DIR",
-			"DRIVE_REMOVABLE",
-			"DRIVE_FIXED",
-			"DRIVE_REMOTE",
-			"DRIVE_CDROM",
-			"DRIVE_RAMDISK",
+			'DRIVE_UNKNOWN',
+			'DRIVE_NO_ROOT_DIR',
+			'DRIVE_REMOVABLE',
+			'DRIVE_FIXED',
+			'DRIVE_REMOTE',
+			'DRIVE_CDROM',
+			'DRIVE_RAMDISK',
 		]
 		self.HOTKEY_VALUES = {
-			"\x00": "UNSET",
-			"\x01": "HOTKEYF_SHIFT",
-			"\x02": "HOTKEYF_CONTROL",
-			"\x03": "HOTKEYF_ALT",
+			'\x00': 'UNSET',
+			'\x01': 'HOTKEYF_SHIFT',
+			'\x02': 'HOTKEYF_CONTROL',
+			'\x03': 'HOTKEYF_ALT',
 		}
 		self.WINDOWSTYLES = [
-			"SW_HIDE",
-			"SW_NORMAL",
-			"SW_SHOWMINIMIZED",
-			"SW_MAXIMIZE ",
-			"SW_SHOWNOACTIVATE",
-			"SW_SHOW",
-			"SW_MINIMIZE",
-			"SW_SHOWMINNOACTIVE",
-			"SW_SHOWNA",
-			"SW_RESTORE",
-			"SW_SHOWDEFAULT",
+			'SW_HIDE',
+			'SW_NORMAL',
+			'SW_SHOWMINIMIZED',
+			'SW_MAXIMIZE ',
+			'SW_SHOWNOACTIVATE',
+			'SW_SHOW',
+			'SW_MINIMIZE',
+			'SW_SHOWMINNOACTIVE',
+			'SW_SHOWNA',
+			'SW_RESTORE',
+			'SW_SHOWDEFAULT',
 		]
 
 	@staticmethod
@@ -166,9 +166,9 @@ class lnk_file(object):
 		# Parse the LNK file header
 		try:
 			# Header always starts with { 4c 00 00 00 } and is the size of the header
-			self.lnk_header["header_size"] = struct.unpack('<I', self.indata[:4])[0]
+			self.lnk_header['header_size'] = struct.unpack('<I', self.indata[:4])[0]
 
-			lnk_header = self.indata[:self.lnk_header["header_size"]]
+			lnk_header = self.indata[:self.lnk_header['header_size']]
 
 			self.lnk_header['guid'] = lnk_header[4:20].hex()
 
@@ -191,11 +191,11 @@ class lnk_file(object):
 					self.lnk_header['windowstyle'] = struct.unpack('<i', lnk_header[60:64])[0]
 			except Exception as e:
 				if self.debug:
-					print("Error Parsing WindowStyle in Header: %s" % e)
+					print('Error Parsing WindowStyle in Header: %s' % e)
 				self.lnk_header['windowstyle'] = struct.unpack('<i', lnk_header[60:64])[0]
 
 			try:
-				self.lnk_header['hotkey'] = "%s - %s {0x%s}" % (
+				self.lnk_header['hotkey'] = '%s - %s {0x%s}' % (
 					self.HOTKEY_VALUES[chr(struct.unpack('<B', lnk_header[65:66])[0])],
 					self.clean_line(struct.unpack('<B', lnk_header[64:65])),
 					lnk_header[64:66].hex()
@@ -204,7 +204,7 @@ class lnk_file(object):
 				self.lnk_header['rhotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
 			except Exception as e:
 				if self.debug:
-					print("Exception parsing HOTKEY part of header: %s" % e)
+					print('Exception parsing HOTKEY part of header: %s' % e)
 					print(lnk_header[65:66].hex())
 				self.lnk_header['hotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
 
@@ -213,10 +213,10 @@ class lnk_file(object):
 			self.lnk_header['reserved2'] = struct.unpack('<i', lnk_header[72:76])[0]
 		except Exception as e:
 			if self.debug:
-				print("Exception parsing LNK Header: %s" % e)
+				print('Exception parsing LNK Header: %s' % e)
 			return False
 
-		if self.lnk_header["header_size"] == 76:
+		if self.lnk_header['header_size'] == 76:
 			return True
 
 	def parse_link_flags(self):
@@ -326,7 +326,7 @@ class lnk_file(object):
 			self.items.append(tmp_item)
 			index += tmp_item['size']
 
-			return ""
+			return ''
 
 	# Still in development // repair
 	def parse_targets(self, index):
@@ -334,13 +334,13 @@ class lnk_file(object):
 
 		while (index < max_size):
 			ItemID = {
-				"size": struct.unpack('<H', self.indata[index: index + 2])[0],
-				"type": struct.unpack('<B', self.indata[index + 2: index + 3])[0],
+				'size': struct.unpack('<H', self.indata[index: index + 2])[0],
+				'type': struct.unpack('<B', self.indata[index + 2: index + 3])[0],
 			}
 			index += 3
 
 			#           self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
-			#           print("[%s] %s" % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') ))
+			#           print('[%s] %s' % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') ))
 			#           print(self.indata[ index: index + ItemID['size'] ].hex()[:50])
 			index += ItemID['size']
 
@@ -349,11 +349,11 @@ class lnk_file(object):
 	def process(self):
 		index = 0
 		if not self.parse_lnk_header():
-			print("Failed Header Check")
+			print('Failed Header Check')
 
 		self.parse_link_flags()
 		self.parse_file_flags()
-		index += self.lnk_header["header_size"]
+		index += self.lnk_header['header_size']
 
 		# Parse ID List
 		if self.linkFlag['HasTargetIDList'] and self.linkFlag['ForceNoLinkInfo'] == False:
@@ -365,39 +365,39 @@ class lnk_file(object):
 				index += self.targets['size']
 			except Exception as e:
 				if self.debug:
-					print("Exception parsing TargetIDList: %s" % e)
+					print('Exception parsing TargetIDList: %s' % e)
 				return False
 
 		if self.linkFlag['HasTargetIDList']:
 			try:
 				self.loc_information = {
-					"size": struct.unpack('<i', self.indata[index: index + 4])[0],
-					"hsize": struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-					"locationFlags": struct.unpack('<i', self.indata[index + 8: index + 12])[0],
-					"o_volumeInfo": struct.unpack('<i', self.indata[index + 12: index + 16])[0],
-					"o_localPath": struct.unpack('<i', self.indata[index + 16: index + 20])[0],
-					"o_netPath": struct.unpack('<i', self.indata[index + 20: index + 24])[0],
-					"o_commonPath": struct.unpack('<i', self.indata[index + 24: index + 28])[0],
+					'size': struct.unpack('<i', self.indata[index: index + 4])[0],
+					'hsize': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
+					'locationFlags': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
+					'o_volumeInfo': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
+					'o_localPath': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
+					'o_netPath': struct.unpack('<i', self.indata[index + 20: index + 24])[0],
+					'o_commonPath': struct.unpack('<i', self.indata[index + 24: index + 28])[0],
 				}
 
 				index += self.loc_information['hsize']
 
 				if self.loc_information['hsize'] > 28:
-					self.loc_information["o_unicodeLocalPath"] = \
+					self.loc_information['o_unicodeLocalPath'] = \
 						struct.unpack('<i', self.indata[index: index + 4])[0]
 				if self.loc_information['hsize'] > 32:
-					self.loc_information["o_unicodeCommonPath"] = \
+					self.loc_information['o_unicodeCommonPath'] = \
 						struct.unpack('<i', self.indata[index + 4: index + 8])[0]
 
 				if self.loc_information['locationFlags'] & 0x0001:
-					self.loc_information['location'] = "VolumeIDAndLocalBasePath"
+					self.loc_information['location'] = 'VolumeIDAndLocalBasePath'
 					self.loc_information['VolumeIDAndLocalBasePath'] = {
-						"sizeVolInformation":
+						'sizeVolInformation':
 							struct.unpack('<i', self.indata[index + 0: index + 4])[0],
-						"rdriveType": struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-						"driveSerial": hex(
+						'rdriveType': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
+						'driveSerial': hex(
 							struct.unpack('<i', self.indata[index + 8: index + 12])[0]),
-						"o_VolLabel": struct.unpack('<i', self.indata[index + 12: index + 16])[0],
+						'o_VolLabel': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
 					}
 
 					if self.loc_information['VolumeIDAndLocalBasePath']['o_VolLabel'] > 16:
@@ -410,14 +410,14 @@ class lnk_file(object):
 							self.DRIVE_TYPES[
 								self.loc_information['VolumeIDAndLocalBasePath']['rdriveType']]
 				elif self.loc_information['locationFlags'] & 0x0002:
-					self.loc_information['location'] = "CommonNetworkRelativeLinkAndPathSuffix"
+					self.loc_information['location'] = 'CommonNetworkRelativeLinkAndPathSuffix'
 					self.loc_information['CommonNetworkRelativeLinkAndPathSuffix'] = {
-						"sizeNetInformation":
+						'sizeNetInformation':
 							struct.unpack('<i', self.indata[index + 0: index + 4])[0],
-						"netShareFlags": struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-						"o_netShareName": struct.unpack('<i', self.indata[index + 8: index + 12])[0],
-						"o_netDeviceName": struct.unpack('<i', self.indata[index + 12: index + 16])[0],
-						"netProviderType": struct.unpack('<i', self.indata[index + 16: index + 20])[0],
+						'netShareFlags': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
+						'o_netShareName': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
+						'o_netDeviceName': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
+						'netProviderType': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
 					}
 
 					if self.loc_information['VolumeIDAndLocalBasePath']['o_VolLabel'] > 16:
@@ -434,7 +434,7 @@ class lnk_file(object):
 
 			except Exception as e:
 				if self.debug:
-					print("Exception parsing Location information: %s" % e)
+					print('Exception parsing Location information: %s' % e)
 				return False
 
 			try:
@@ -474,7 +474,7 @@ class lnk_file(object):
 
 			except Exception as e:
 				if self.debug:
-					print("Exception in parsing data: %s" % e)
+					print('Exception in parsing data: %s' % e)
 				return False
 
 			try:
@@ -488,16 +488,16 @@ class lnk_file(object):
 						index += (size)
 					except Exception as e:
 						if self.debug:
-							print("Exception in EXTRABLOCK Parsing: %s " % e)
+							print('Exception in EXTRABLOCK Parsing: %s ' % e)
 						index = len(self.data)
 						break
 			except Exception as e:
 				if self.debug:
-					print("Exception in EXTRABLOCK: %s" % e)
+					print('Exception in EXTRABLOCK: %s' % e)
 
 	def parse_environment_block(self, index, size):
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK'] = {}
-		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']["size"] = size
+		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['size'] = size
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK'][
 			'variable_location'] = self.clean_line(self.indata[index + 8: index + 8 + size])
 
@@ -548,40 +548,40 @@ class lnk_file(object):
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK'] = {}
 
 	def print_lnk_file(self):
-		print("Windows Shortcut Information:")
-		print("\tLink Flags: %s - (%s)" % (self.format_linkFlags(), self.lnk_header['rlinkFlags']))
-		print("\tFile Flags: %s - (%s)" % (self.format_fileFlags(), self.lnk_header['rfileFlags']))
-		print("")
+		print('Windows Shortcut Information:')
+		print('\tLink Flags: %s - (%s)' % (self.format_linkFlags(), self.lnk_header['rlinkFlags']))
+		print('\tFile Flags: %s - (%s)' % (self.format_fileFlags(), self.lnk_header['rfileFlags']))
+		print('')
 		try:
-			print("\tCreation Timestamp: %s" % (datetime.datetime.fromtimestamp(
+			print('\tCreation Timestamp: %s' % (datetime.datetime.fromtimestamp(
 				self.lnk_header['creation_time'] / 10000000.0 - 11644473600)).strftime(
 				'%Y-%m-%d %H:%M:%S'))
-			print("\tModified Timestamp: %s" % (datetime.datetime.fromtimestamp(
+			print('\tModified Timestamp: %s' % (datetime.datetime.fromtimestamp(
 				self.lnk_header['modified_time'] / 10000000.0 - 11644473600)).strftime(
 				'%Y-%m-%d %H:%M:%S'))
-			print("\tAccessed Timestamp: %s" % (datetime.datetime.fromtimestamp(
+			print('\tAccessed Timestamp: %s' % (datetime.datetime.fromtimestamp(
 				self.lnk_header['accessed_time'] / 10000000.0 - 11644473600)).strftime(
 				'%Y-%m-%d %H:%M:%S'))
-			print("")
+			print('')
 		except:
-			print("\tProblem Parsing Timestamps")
+			print('\tProblem Parsing Timestamps')
 		print(
-			"\tFile Size: %s (r: %s)" % (str(self.lnk_header['file_size']), str(len(self.indata))))
-		print("\tIcon Index: %s " % (str(self.lnk_header['icon_index'])))
-		print("\tWindow Style: %s " % (str(self.lnk_header['windowstyle'])))
-		print("\tHotKey: %s " % (str(self.lnk_header['hotkey'])))
+			'\tFile Size: %s (r: %s)' % (str(self.lnk_header['file_size']), str(len(self.indata))))
+		print('\tIcon Index: %s ' % (str(self.lnk_header['icon_index'])))
+		print('\tWindow Style: %s ' % (str(self.lnk_header['windowstyle'])))
+		print('\tHotKey: %s ' % (str(self.lnk_header['hotkey'])))
 
-		print("")
+		print('')
 
 		for rline in self.data:
-			print("\t%s: %s" % (rline, self.data[rline]))
+			print('\t%s: %s' % (rline, self.data[rline]))
 
-		print("")
-		print("\tEXTRA BLOCKS:")
+		print('')
+		print('\tEXTRA BLOCKS:')
 		for enabled in self.extraBlocks:
-			print("\t\t%s" % enabled)
+			print('\t\t%s' % enabled)
 			for block in self.extraBlocks[enabled]:
-				print("\t\t\t[%s] %s" % (block, self.extraBlocks[enabled][block]))
+				print('\t\t\t[%s] %s' % (block, self.extraBlocks[enabled][block]))
 
 	@staticmethod
 	def enabled_flags_to_list(flags):
@@ -593,18 +593,18 @@ class lnk_file(object):
 
 	def format_linkFlags(self):
 		enabled = self.enabled_flags_to_list(self.linkFlag)
-		return " | ".join(enabled)
+		return ' | '.join(enabled)
 
 	def format_fileFlags(self):
 		enabled = self.enabled_flags_to_list(self.fileFlag)
-		return " | ".join(enabled)
+		return ' | '.join(enabled)
 
 	def print_short(self, pjson=False):
-		out = ""
+		out = ''
 		if self.linkFlag['HasRelativePath']:
 			out += self.data['relativePath']
 		if self.linkFlag['HasArguments']:
-			out += " " + self.data['commandLineArguments']
+			out += ' ' + self.data['commandLineArguments']
 
 		if pjson:
 			print(json.dumps({'command': out}))
@@ -642,5 +642,5 @@ def main():
 			lnk.print_lnk_file()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 	main()
