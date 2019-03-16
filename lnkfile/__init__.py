@@ -716,7 +716,25 @@ class lnk_file(object):
 		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['Offset'] = struct.unpack('<I', self.indata[index + 12: index + 16])[0]
 
 	def parse_darwin_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize == 0x00000314                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000006                              |
+		--------------------------------------------------------------------------------------------------
+		|                                    <str> DarwinDataAnsi                                        |
+		|                                           260 B                                                |
+		--------------------------------------------------------------------------------------------------
+		|                               <unicode_str> DarwinDataUnicode                                  |
+		|                                           520 B                                                |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['DARWIN_BLOCK'] = {}
+		self.extraBlocks['DARWIN_BLOCK']['size'] = size
+		self.extraBlocks['DARWIN_BLOCK']['DarwinDataAnsi'] = self.read_string(index + 8)
+		self.extraBlocks['DARWIN_BLOCK']['DarwinDataUnicode'] = self.read_unicode_string(index + 268)
 
 	def parse_icon_block(self, index, size):
 		self.extraBlocks['ICON_LOCATION_BLOCK'] = {}
