@@ -778,7 +778,24 @@ class lnk_file(object):
 		self.extraBlocks['METADATA_PRPERTIES_BLOCK'] = {}
 
 	def parse_knownFolder_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize == 0x0000001C                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA000000B                              |
+		--------------------------------------------------------------------------------------------------
+		|                                     <GUID> KnownFolderID                                       |
+		|                                            16 B                                                |
+		--------------------------------------------------------------------------------------------------
+		|                                       <u_int32> Offset                                         |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK'] = {}
+		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['size'] = size
+		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['KnownFolderID'] = self.indata[index + 8: index + 24].hex()
+		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['Offset'] = struct.unpack('<I', self.indata[index + 24: index + 28])[0]
 
 	def parse_shellItem_block(self, index, size):
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK'] = {}
