@@ -775,7 +775,64 @@ class lnk_file(object):
 		self.extraBlocks['SHIM_LAYER_BLOCK']['LayerName'] = self.read_unicode_string(index + 8)
 
 	def parse_metadata_block(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
+		--------------------------------------------------------------------------------------------------
+		|                              <u_int32> BlockSize >= 0x0000000C                                 |
+		--------------------------------------------------------------------------------------------------
+		|                            <u_int32> BlockSignature == 0xA0000009                              |
+		--------------------------------------------------------------------------------------------------
+		|                                    <u_int32> StorageSize                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                    Version == 0x53505331                                       |
+		--------------------------------------------------------------------------------------------------
+		|                                      <GUID> FormatID                                           |
+		|                                            16 B                                                |
+		--------------------------------------------------------------------------------------------------
+		|                   <vector<MS_OLEPS>> SerializedPropertyValue (see MS-OLEPS)                    |
+		|                                             ? B                                                |
+		--------------------------------------------------------------------------------------------------
+		"""
 		self.extraBlocks['METADATA_PRPERTIES_BLOCK'] = {}
+		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['size'] = size
+		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['StorageSize'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
+		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['Version'] = hex(struct.unpack('<I', self.indata[index + 12: index + 16])[0])
+		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['FormatID'] = self.indata[index + 16: index + 32].hex()
+		if self.extraBlocks['METADATA_PRPERTIES_BLOCK']['FormatID'].upper() == 'D5CDD5052E9C101B939708002B2CF9AE':
+			# Serialized Property Value (String Name)
+			index += 32
+			result = []
+			while True:
+				value = {}
+				value['ValueSize'] = struct.unpack('<I', self.indata[index: index + 4])[0]
+				value['NameSize'] = struct.unpack('<I', self.indata[index + 4: index + 8])[0]
+				value['Name'] = self.read_unicode_string(index + 8)
+				value['Value'] = '' # TODO MS-OLEPS
+
+				result.append(value)
+				index += 4 + 4 + 2 + value['NameSize'] + value['ValueSize']
+
+			self.extraBlocks['METADATA_PRPERTIES_BLOCK']['SerializedPropertyValueString'] = result
+		else:
+			# Serialized Property Value (Integer Name)
+			try:
+				index += 32
+				result = []
+				while True:
+					value = {}
+					value['ValueSize'] = struct.unpack('<I', self.indata[index: index + 4])[0]
+					if hex(value['ValueSize']) == hex(0x0):
+						break
+					value['Id'] = struct.unpack('<I', self.indata[index + 4: index + 8])[0]
+					value['Value'] = '' # TODO MS-OLEPS
+
+					result.append(value)
+					index += value['ValueSize']
+
+				self.extraBlocks['METADATA_PRPERTIES_BLOCK']['SerializedPropertyValueInteger'] = result
+			except Exception as e:
+				print(e)
 
 	def parse_knownFolder_block(self, index, size):
 		"""
