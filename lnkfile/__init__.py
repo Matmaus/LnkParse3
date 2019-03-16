@@ -605,6 +605,13 @@ class lnk_file(object):
 			index += 1
 		return result
 
+	def read_unicode_string(self, index):
+		begin = end = index
+		while self.indata[index] != 0x00:
+			end += 1
+			index += 1
+		return self.clean_line(self.indata[begin: end].replace(b'\x00', b''))
+
 	def read_stringData(self, index, u_mult):
 		string_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
 		string = self.clean_line(self.indata[index + 2: index + 2 + string_size].replace(b'\x00', b''))
