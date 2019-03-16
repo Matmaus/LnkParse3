@@ -85,6 +85,7 @@ class lnk_file(object):
 		self.process()
 		self.define_common()
 
+
 	def define_common(self):
 		try:
 			out = ''
@@ -97,6 +98,7 @@ class lnk_file(object):
 		except Exception as e:
 			if self.debug:
 				print('Exception define_common: %s' % e)
+
 
 	def get_command(self):
 		try:
@@ -111,6 +113,7 @@ class lnk_file(object):
 			if self.debug:
 				print('Exception get_command: %s' % (e))
 			return ''
+
 
 	def define_static(self):
 		# Define static constents used within the LNK format
@@ -159,9 +162,11 @@ class lnk_file(object):
 			'SW_SHOWDEFAULT',
 		]
 
+
 	@staticmethod
 	def clean_line(rstring):
 		return ''.join(chr(i) for i in rstring if 128 > i > 20)
+
 
 	def parse_lnk_header(self):
 		# Parse the LNK file header
@@ -219,6 +224,7 @@ class lnk_file(object):
 
 		if self.lnk_header['header_size'] == 76:
 			return True
+
 
 	def parse_link_flags(self):
 		if self.lnk_header['rlinkFlags'] & 0x00000001:
@@ -279,6 +285,7 @@ class lnk_file(object):
 
 		self.lnk_header['linkFlags'] = self.enabled_flags_to_list(self.linkFlag)
 
+
 	def parse_file_flags(self):
 		if self.lnk_header['rfileFlags'] & 0x00000001:
 			self.fileFlag['FILE_ATTRIBUTE_READONLY'] = True
@@ -317,6 +324,7 @@ class lnk_file(object):
 
 		self.lnk_header['fileFlags'] = self.enabled_flags_to_list(self.fileFlag)
 
+
 	def parse_link_information(self):
 		index = 0
 		while True:
@@ -328,6 +336,7 @@ class lnk_file(object):
 			index += tmp_item['size']
 
 			return ''
+
 
 	# Still in development // repair
 	def parse_targets(self, index):
@@ -346,6 +355,7 @@ class lnk_file(object):
 			index += ItemID['size']
 
 	#           print(self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00',''))
+
 
 	def process(self):
 		index = 0
@@ -513,6 +523,7 @@ class lnk_file(object):
 				if self.debug:
 					print('Exception in EXTRABLOCK: %s' % e)
 
+
 	def parse_environment_block(self, index, size):
 		"""
 		--------------------------------------------------------------------------------------------------
@@ -533,6 +544,7 @@ class lnk_file(object):
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['size'] = size
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['TargetAnsi'] = self.read_string(index + 8)
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['TargetUnicode'] = self.read_unicode_string(index + 268)
+
 
 	def parse_console_block(self, index, size):
 		"""
@@ -634,6 +646,7 @@ class lnk_file(object):
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
 			'ColorTable'] = struct.unpack('<I', self.indata[index + 140: index + 144])[0]
 
+
 	def parse_distributedTracker_block(self, index, size):
 		"""
 		--------------------------------------------------------------------------------------------------
@@ -680,6 +693,7 @@ class lnk_file(object):
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
 			'birth_droid_file_identifier'] = self.indata[index + 80: index + 96].hex()
 
+
 	def parse_codepage_block(self, index, size):
 		"""
 		--------------------------------------------------------------------------------------------------
@@ -695,6 +709,7 @@ class lnk_file(object):
 		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK'] = {}
 		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK']['size'] = size
 		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK']['CodePage'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
+
 
 	def parse_specialFolder_block(self, index, size):
 		"""
@@ -714,6 +729,7 @@ class lnk_file(object):
 		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['size'] = size
 		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['SpecialFolderID'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
 		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['Offset'] = struct.unpack('<I', self.indata[index + 12: index + 16])[0]
+
 
 	def parse_darwin_block(self, index, size):
 		"""
@@ -736,6 +752,7 @@ class lnk_file(object):
 		self.extraBlocks['DARWIN_BLOCK']['DarwinDataAnsi'] = self.read_string(index + 8)
 		self.extraBlocks['DARWIN_BLOCK']['DarwinDataUnicode'] = self.read_unicode_string(index + 268)
 
+
 	def parse_icon_block(self, index, size):
 		"""
 		--------------------------------------------------------------------------------------------------
@@ -757,6 +774,7 @@ class lnk_file(object):
 		self.extraBlocks['ICON_LOCATION_BLOCK']['TargetAnsi'] = self.read_string(index + 8)
 		self.extraBlocks['ICON_LOCATION_BLOCK']['TargetUnicode'] = self.read_unicode_string(index + 268)
 
+
 	def parse_shimLayer_block(self, index, size):
 		"""
 		--------------------------------------------------------------------------------------------------
@@ -773,6 +791,7 @@ class lnk_file(object):
 		self.extraBlocks['SHIM_LAYER_BLOCK'] = {}
 		self.extraBlocks['SHIM_LAYER_BLOCK']['size'] = size
 		self.extraBlocks['SHIM_LAYER_BLOCK']['LayerName'] = self.read_unicode_string(index + 8)
+
 
 	def parse_metadata_block(self, index, size):
 		"""
@@ -834,6 +853,7 @@ class lnk_file(object):
 			except Exception as e:
 				print(e)
 
+
 	def parse_knownFolder_block(self, index, size):
 		"""
 		--------------------------------------------------------------------------------------------------
@@ -854,6 +874,7 @@ class lnk_file(object):
 		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['KnownFolderID'] = self.indata[index + 8: index + 24].hex()
 		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['Offset'] = struct.unpack('<I', self.indata[index + 24: index + 28])[0]
 
+
 	def parse_shellItem_block(self, index, size):
 		"""
 		--------------------------------------------------------------------------------------------------
@@ -869,6 +890,7 @@ class lnk_file(object):
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK'] = {}
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['size'] = size
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['IDList'] = '' # TODO
+
 
 	def print_lnk_file(self):
 		print('Windows Shortcut Information:')
@@ -900,8 +922,10 @@ class lnk_file(object):
 			for block in self.extraBlocks[enabled]:
 				print('\t\t\t[%s] %s' % (block, self.extraBlocks[enabled][block]))
 
+
 	def ms_time_to_unix_time(self, time):
 		return datetime.datetime.fromtimestamp(time / 10000000.0 - 11644473600).strftime('%Y-%m-%d %H:%M:%S')
+
 
 	def read_string(self, index):
 		result = ''
@@ -910,6 +934,7 @@ class lnk_file(object):
 			index += 1
 		return result
 
+
 	def read_unicode_string(self, index):
 		begin = end = index
 		while self.indata[index] != 0x00:
@@ -917,11 +942,13 @@ class lnk_file(object):
 			index += 1
 		return self.clean_line(self.indata[begin: end].replace(b'\x00', b''))
 
+
 	def read_stringData(self, index, u_mult):
 		string_size = struct.unpack('<H', self.indata[index: index + 2])[0] * u_mult
 		string = self.clean_line(self.indata[index + 2: index + 2 + string_size].replace(b'\x00', b''))
 		new_index = index + string_size + 2
 		return new_index, string
+
 
 	@staticmethod
 	def enabled_flags_to_list(flags):
@@ -931,13 +958,16 @@ class lnk_file(object):
 				enabled.append(flag)
 		return enabled
 
+
 	def format_linkFlags(self):
 		enabled = self.enabled_flags_to_list(self.linkFlag)
 		return ' | '.join(enabled)
 
+
 	def format_fileFlags(self):
 		enabled = self.enabled_flags_to_list(self.fileFlag)
 		return ' | '.join(enabled)
+
 
 	def print_short(self, pjson=False):
 		out = ''
@@ -950,6 +980,7 @@ class lnk_file(object):
 			print(json.dumps({'command': out}))
 		else:
 			print(out)
+
 
 	def print_json(self, print_all=False):
 		res = {'header': self.lnk_header, 'data': self.data, 'target': self.targets, 'link_info': self.loc_information, 'extra': self.extraBlocks}
@@ -982,6 +1013,7 @@ class lnk_file(object):
 				res['link_info']['CommonNetworkRelativeLinkAndPathSuffix'].pop('DeviceNameOffset')
 
 		print(json.dumps(res, indent=4, separators=(',', ': ')))
+
 
 def test_case(filename):
 	with open(filename, 'rb') as file:
