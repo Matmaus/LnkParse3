@@ -5,7 +5,6 @@ __description__ = 'Windows Shortcut file (LNK) parser'
 __author__ = 'Silas Cutler'
 __version__ = '0.2.1'
 
-import sys
 import json
 import struct
 import datetime
