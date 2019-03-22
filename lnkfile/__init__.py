@@ -212,7 +212,8 @@ class lnk_file(object):
 				if self.debug:
 					print('Exception parsing HOTKEY part of header: %s' % e)
 					print(lnk_header[65:66].hex())
-				self.lnk_header['hotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
+				self.lnk_header['hotkey'] = hex(struct.unpack('<H', lnk_header[64:66])[0])
+				self.lnk_header['rhotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
 
 			self.lnk_header['reserved0'] = struct.unpack('<H', lnk_header[66:68])[0]
 			self.lnk_header['reserved1'] = struct.unpack('<i', lnk_header[68:72])[0]
@@ -342,19 +343,18 @@ class lnk_file(object):
 	def parse_targets(self, index):
 		max_size = self.targets['size'] + index
 
-		while (index < max_size):
+		while ( index  < max_size ):
 			ItemID = {
-				'size': struct.unpack('<H', self.indata[index: index + 2])[0],
-				'type': struct.unpack('<B', self.indata[index + 2: index + 3])[0],
-			}
+				"size": struct.unpack('<H', self.indata[index : index + 2])[0] ,
+				"type": struct.unpack('<B', self.indata[index + 2 : index + 3])[0] ,
+					}
 			index += 3
 
-			#           self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
-			#           print('[%s] %s' % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') ))
-			#           print(self.indata[ index: index + ItemID['size'] ].hex()[:50])
+#			self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
+#			print "[%s] %s" % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') )
+#			print self.indata[ index: index + ItemID['size'] ].encode('hex')[:50]
 			index += ItemID['size']
-
-	#           print(self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00',''))
+#			print self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00','')
 
 
 	def process(self):
@@ -404,7 +404,7 @@ class lnk_file(object):
 
 					local_index = index + self.loc_information['VolumeIDOffset']
 					self.loc_information['location'] = 'VolumeIDAndLocalBasePath'
-					self.loc_information['VolumeIDAndLocalBasePath'] = {
+					self.loc_information['location_info'] = {
 						'VolumeIDSize':
 							struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
 						'rDriveType':
@@ -415,17 +415,17 @@ class lnk_file(object):
 							struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
 					}
 
-					if self.loc_information['VolumeIDAndLocalBasePath']['rDriveType'] < len(self.DRIVE_TYPES):
-						self.loc_information['VolumeIDAndLocalBasePath']['DriveType'] = self.DRIVE_TYPES[self.loc_information['VolumeIDAndLocalBasePath']['rDriveType']]
+					if self.loc_information['location_info']['rDriveType'] < len(self.DRIVE_TYPES):
+						self.loc_information['location_info']['DriveType'] = self.DRIVE_TYPES[self.loc_information['location_info']['rDriveType']]
 
-					if self.loc_information['VolumeIDAndLocalBasePath']['VolumeLabelOffset'] != 20:
-						length = self.loc_information['VolumeIDAndLocalBasePath']['VolumeIDSize'] - self.loc_information['VolumeIDAndLocalBasePath']['VolumeLabelOffset']
-						local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['VolumeIDAndLocalBasePath']['VolumeLabelOffset']
-						self.loc_information['VolumeIDAndLocalBasePath']['VolumeLabel'] = self.clean_line(self.indata[local_index: local_index + length].replace(b'\x00', b''))
+					if self.loc_information['location_info']['VolumeLabelOffset'] != 20:
+						length = self.loc_information['location_info']['VolumeIDSize'] - self.loc_information['location_info']['VolumeLabelOffset']
+						local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['location_info']['VolumeLabelOffset']
+						self.loc_information['location_info']['VolumeLabel'] = self.clean_line(self.indata[local_index: local_index + length].replace(b'\x00', b''))
 					else:
-						self.loc_information['VolumeIDAndLocalBasePath']['o_VolumeLabelOffsetUnicode'] = struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0]
-						local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['VolumeIDAndLocalBasePath']['o_VolumeLabelOffsetUnicode']
-						self.loc_information['VolumeIDAndLocalBasePath']['o_VolumeLabelUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+						self.loc_information['location_info']['o_VolumeLabelOffsetUnicode'] = struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0]
+						local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['location_info']['o_VolumeLabelOffsetUnicode']
+						self.loc_information['location_info']['o_VolumeLabelUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
 				elif self.loc_information['LinkInfoFlags'] & 0x0002:
 					if self.loc_information['LinkInfoHeaderSize'] >= 36:
@@ -440,7 +440,7 @@ class lnk_file(object):
 
 					local_index = index + self.loc_information['CommonNetworkRelativeLinkOffset']
 					self.loc_information['location'] = 'CommonNetworkRelativeLinkAndPathSuffix'
-					self.loc_information['CommonNetworkRelativeLinkAndPathSuffix'] = {
+					self.loc_information['location_info'] = {
 						'CommonNetworkRelativeLinkSize':
 							struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
 						'CommonNetworkRelativeLinkFlags':
@@ -453,25 +453,25 @@ class lnk_file(object):
 							struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0],
 					}
 
-					if self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffset'] > 20:
-						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffsetUnicode'] = \
+					if self.loc_information['location_info']['o_NetNameOffset'] > 20:
+						self.loc_information['location_info']['o_NetNameOffsetUnicode'] = \
 						struct.unpack('<i', self.indata[local_index + 20: index + 24])[0]
-						local_index = index + self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffsetUnicode']
-						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffsetUnicode'] = \
+						local_index = index + self.loc_information['location_info']['o_NetNameOffsetUnicode']
+						self.loc_information['location_info']['o_NetNameOffsetUnicode'] = \
 							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
-						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffsetUnicode'] = \
+						self.loc_information['location_info']['o_DeviceNameOffsetUnicode'] = \
 						struct.unpack('<i', self.indata[local_index + 24: index + 28])[0]
-						local_index = self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffsetUnicode']
-						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffsetUnicode'] = \
+						local_index = self.loc_information['location_info']['o_DeviceNameOffsetUnicode']
+						self.loc_information['location_info']['o_DeviceNameOffsetUnicode'] = \
 							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 					else:
-						local_index = index + self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffset']
-						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_NetNameOffset'] = \
+						local_index = index + self.loc_information['location_info']['o_NetNameOffset']
+						self.loc_information['location_info']['o_NetNameOffset'] = \
 							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
-						local_index = self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffset']
-						self.loc_information['CommonNetworkRelativeLinkAndPathSuffix']['o_DeviceNameOffset'] = \
+						local_index = self.loc_information['location_info']['o_DeviceNameOffset']
+						self.loc_information['location_info']['o_DeviceNameOffset'] = \
 							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
 				index += (self.loc_information['LinkInfoSize'])
@@ -825,6 +825,8 @@ class lnk_file(object):
 			while True:
 				value = {}
 				value['ValueSize'] = struct.unpack('<I', self.indata[index: index + 4])[0]
+				if hex(value['ValueSize']) == hex(0x0):
+					break
 				value['NameSize'] = struct.unpack('<I', self.indata[index + 4: index + 8])[0]
 				value['Name'] = self.read_unicode_string(index + 8)
 				value['Value'] = '' # TODO MS-OLEPS
@@ -983,6 +985,11 @@ class lnk_file(object):
 
 
 	def print_json(self, print_all=False):
+		res = self.get_json(print_all)
+		print(json.dumps(res, indent=4, separators=(',', ': ')))
+
+
+	def get_json(self, get_all=False):
 		res = {'header': self.lnk_header, 'data': self.data, 'target': self.targets, 'link_info': self.loc_information, 'extra': self.extraBlocks}
 
 		if 'creation_time' in res['header']:
@@ -992,7 +999,7 @@ class lnk_file(object):
 		if 'modified_time' in res['header']:
 			res['header']['modified_time'] = self.ms_time_to_unix_time(res['header']['modified_time'])
 
-		if not print_all:
+		if not get_all:
 			res['header'].pop('header_size')
 			res['header'].pop('reserved0')
 			res['header'].pop('reserved1')
@@ -1005,14 +1012,14 @@ class lnk_file(object):
 			res['link_info'].pop('CommonNetworkRelativeLinkOffset')
 			res['link_info'].pop('CommonPathSuffixOffset')
 			if 'VolumeIDAndLocalBasePath' in res['link_info']:
-				res['link_info']['VolumeIDAndLocalBasePath'].pop('VolumeIDSize')
-				res['link_info']['VolumeIDAndLocalBasePath'].pop('VolumeLabelOffset')
+				res['link_info']['location_info'].pop('VolumeIDSize')
+				res['link_info']['location_info'].pop('VolumeLabelOffset')
 			if 'CommonNetworkRelativeLinkAndPathSuffix' in res['link_info']:
-				res['link_info']['CommonNetworkRelativeLinkAndPathSuffix'].pop('CommonNetworkRelativeLinkSize')
-				res['link_info']['CommonNetworkRelativeLinkAndPathSuffix'].pop('NetNameOffset')
-				res['link_info']['CommonNetworkRelativeLinkAndPathSuffix'].pop('DeviceNameOffset')
+				res['link_info']['location_info'].pop('CommonNetworkRelativeLinkSize')
+				res['link_info']['location_info'].pop('NetNameOffset')
+				res['link_info']['location_info'].pop('DeviceNameOffset')
 
-		print(json.dumps(res, indent=4, separators=(',', ': ')))
+		return res
 
 
 def test_case(filename):
