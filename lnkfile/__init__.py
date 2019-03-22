@@ -325,17 +325,99 @@ class lnk_file(object):
 		self.lnk_header['fileFlags'] = self.enabled_flags_to_list(self.fileFlag)
 
 
-	def parse_link_information(self):
-		index = 0
-		while True:
-			tmp_item = {}
-			tmp_item['size'] = struct.unpack('<H', self.link_target_list[index: index + 2])[0]
-			tmp_item['rsize'] = self.link_target_list[index: index + 2].hex()
+	def parse_link_information(self, index):
+		self.loc_information = {
+			'LinkInfoSize': struct.unpack('<i', self.indata[index: index + 4])[0],
+			'LinkInfoHeaderSize': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
+			'LinkInfoFlags': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
+			'VolumeIDOffset': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
+			'LocalBasePathOffset': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
+			'CommonNetworkRelativeLinkOffset': struct.unpack('<i', self.indata[index + 20: index + 24])[0],
+			'CommonPathSuffixOffset': struct.unpack('<i', self.indata[index + 24: index + 28])[0],
+		}
 
-			self.items.append(tmp_item)
-			index += tmp_item['size']
+		if self.loc_information['LinkInfoFlags'] & 0x0001:
+			if self.loc_information['LinkInfoHeaderSize'] >= 36:
+				self.loc_information['o_LocalBasePathOffsetUnicode'] = \
+						struct.unpack('<i', self.indata[index + 28: index + 32])[0]
+				local_index = index + self.loc_information['o_LocalBasePathOffsetUnicode']
+				self.loc_information['o_LocalBasePathUnicode'] = \
+						struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+			else:
+				local_index = index + self.loc_information['LocalBasePathOffset']
+				self.loc_information['LocalBasePath'] = self.read_string(local_index)
 
-			return ''
+			local_index = index + self.loc_information['VolumeIDOffset']
+			self.loc_information['location'] = 'VolumeIDAndLocalBasePath'
+			self.loc_information['location_info'] = {
+				'VolumeIDSize':
+					struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
+				'rDriveType':
+					struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
+				'DriveSerialNumber': hex(
+					struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0]),
+				'VolumeLabelOffset':
+					struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
+			}
+
+			if self.loc_information['location_info']['rDriveType'] < len(self.DRIVE_TYPES):
+				self.loc_information['location_info']['DriveType'] = self.DRIVE_TYPES[self.loc_information['location_info']['rDriveType']]
+
+			if self.loc_information['location_info']['VolumeLabelOffset'] != 20:
+				length = self.loc_information['location_info']['VolumeIDSize'] - self.loc_information['location_info']['VolumeLabelOffset']
+				local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['location_info']['VolumeLabelOffset']
+				self.loc_information['location_info']['VolumeLabel'] = self.clean_line(self.indata[local_index: local_index + length].replace(b'\x00', b''))
+			else:
+				self.loc_information['location_info']['o_VolumeLabelOffsetUnicode'] = struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0]
+				local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['location_info']['o_VolumeLabelOffsetUnicode']
+				self.loc_information['location_info']['o_VolumeLabelUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+
+		elif self.loc_information['LinkInfoFlags'] & 0x0002:
+			if self.loc_information['LinkInfoHeaderSize'] >= 36:
+				self.loc_information['o_CommonPathSuffixOffsetUnicode'] = \
+						struct.unpack('<i', self.indata[index + 28: index + 32])[0]
+				local_index = index + self.loc_information['o_CommonPathSuffixOffsetUnicode']
+				self.loc_information['o_CommonPathSuffixUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+			else:
+				local_index = index + self.loc_information['CommonPathSuffixOffset']
+				self.loc_information['CommonPathSuffix'] = \
+						struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+
+			local_index = index + self.loc_information['CommonNetworkRelativeLinkOffset']
+			self.loc_information['location'] = 'CommonNetworkRelativeLinkAndPathSuffix'
+			self.loc_information['location_info'] = {
+				'CommonNetworkRelativeLinkSize':
+					struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
+				'CommonNetworkRelativeLinkFlags':
+					struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
+				'NetNameOffset':
+					struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0],
+				'DeviceNameOffset':
+					struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
+				'NetworkProviderType':
+					struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0],
+			}
+
+			if self.loc_information['location_info']['o_NetNameOffset'] > 20:
+				self.loc_information['location_info']['o_NetNameOffsetUnicode'] = \
+				struct.unpack('<i', self.indata[local_index + 20: index + 24])[0]
+				local_index = index + self.loc_information['location_info']['o_NetNameOffsetUnicode']
+				self.loc_information['location_info']['o_NetNameOffsetUnicode'] = \
+					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+
+				self.loc_information['location_info']['o_DeviceNameOffsetUnicode'] = \
+				struct.unpack('<i', self.indata[local_index + 24: index + 28])[0]
+				local_index = self.loc_information['location_info']['o_DeviceNameOffsetUnicode']
+				self.loc_information['location_info']['o_DeviceNameOffsetUnicode'] = \
+					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+			else:
+				local_index = index + self.loc_information['location_info']['o_NetNameOffset']
+				self.loc_information['location_info']['o_NetNameOffset'] = \
+					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+
+				local_index = self.loc_information['location_info']['o_DeviceNameOffset']
+				self.loc_information['location_info']['o_DeviceNameOffset'] = \
+					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
 
 	# Still in development // repair
@@ -380,101 +462,8 @@ class lnk_file(object):
 
 		if self.linkFlag['HasLinkInfo'] and self.linkFlag['ForceNoLinkInfo'] == False:
 			try:
-				self.loc_information = {
-					'LinkInfoSize': struct.unpack('<i', self.indata[index: index + 4])[0],
-					'LinkInfoHeaderSize': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-					'LinkInfoFlags': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
-					'VolumeIDOffset': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
-					'LocalBasePathOffset': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
-					'CommonNetworkRelativeLinkOffset': struct.unpack('<i', self.indata[index + 20: index + 24])[0],
-					'CommonPathSuffixOffset': struct.unpack('<i', self.indata[index + 24: index + 28])[0],
-				}
-
-				if self.loc_information['LinkInfoFlags'] & 0x0001:
-					if self.loc_information['LinkInfoHeaderSize'] >= 36:
-						self.loc_information['o_LocalBasePathOffsetUnicode'] = \
-								struct.unpack('<i', self.indata[index + 28: index + 32])[0]
-						local_index = index + self.loc_information['o_LocalBasePathOffsetUnicode']
-						self.loc_information['o_LocalBasePathUnicode'] = \
-								struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-					else:
-						local_index = index + self.loc_information['LocalBasePathOffset']
-						self.loc_information['LocalBasePath'] = self.read_string(local_index)
-
-					local_index = index + self.loc_information['VolumeIDOffset']
-					self.loc_information['location'] = 'VolumeIDAndLocalBasePath'
-					self.loc_information['location_info'] = {
-						'VolumeIDSize':
-							struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
-						'rDriveType':
-							struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
-						'DriveSerialNumber': hex(
-							struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0]),
-						'VolumeLabelOffset':
-							struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
-					}
-
-					if self.loc_information['location_info']['rDriveType'] < len(self.DRIVE_TYPES):
-						self.loc_information['location_info']['DriveType'] = self.DRIVE_TYPES[self.loc_information['location_info']['rDriveType']]
-
-					if self.loc_information['location_info']['VolumeLabelOffset'] != 20:
-						length = self.loc_information['location_info']['VolumeIDSize'] - self.loc_information['location_info']['VolumeLabelOffset']
-						local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['location_info']['VolumeLabelOffset']
-						self.loc_information['location_info']['VolumeLabel'] = self.clean_line(self.indata[local_index: local_index + length].replace(b'\x00', b''))
-					else:
-						self.loc_information['location_info']['o_VolumeLabelOffsetUnicode'] = struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0]
-						local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['location_info']['o_VolumeLabelOffsetUnicode']
-						self.loc_information['location_info']['o_VolumeLabelUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-
-				elif self.loc_information['LinkInfoFlags'] & 0x0002:
-					if self.loc_information['LinkInfoHeaderSize'] >= 36:
-						self.loc_information['o_CommonPathSuffixOffsetUnicode'] = \
-								struct.unpack('<i', self.indata[index + 28: index + 32])[0]
-						local_index = index + self.loc_information['o_CommonPathSuffixOffsetUnicode']
-						self.loc_information['o_CommonPathSuffixUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-					else:
-						local_index = index + self.loc_information['CommonPathSuffixOffset']
-						self.loc_information['CommonPathSuffix'] = \
-								struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-
-					local_index = index + self.loc_information['CommonNetworkRelativeLinkOffset']
-					self.loc_information['location'] = 'CommonNetworkRelativeLinkAndPathSuffix'
-					self.loc_information['location_info'] = {
-						'CommonNetworkRelativeLinkSize':
-							struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
-						'CommonNetworkRelativeLinkFlags':
-							struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
-						'NetNameOffset':
-							struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0],
-						'DeviceNameOffset':
-							struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
-						'NetworkProviderType':
-							struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0],
-					}
-
-					if self.loc_information['location_info']['o_NetNameOffset'] > 20:
-						self.loc_information['location_info']['o_NetNameOffsetUnicode'] = \
-						struct.unpack('<i', self.indata[local_index + 20: index + 24])[0]
-						local_index = index + self.loc_information['location_info']['o_NetNameOffsetUnicode']
-						self.loc_information['location_info']['o_NetNameOffsetUnicode'] = \
-							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-
-						self.loc_information['location_info']['o_DeviceNameOffsetUnicode'] = \
-						struct.unpack('<i', self.indata[local_index + 24: index + 28])[0]
-						local_index = self.loc_information['location_info']['o_DeviceNameOffsetUnicode']
-						self.loc_information['location_info']['o_DeviceNameOffsetUnicode'] = \
-							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-					else:
-						local_index = index + self.loc_information['location_info']['o_NetNameOffset']
-						self.loc_information['location_info']['o_NetNameOffset'] = \
-							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-
-						local_index = self.loc_information['location_info']['o_DeviceNameOffset']
-						self.loc_information['location_info']['o_DeviceNameOffset'] = \
-							struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-
+				self.parse_link_information(index)
 				index += (self.loc_information['LinkInfoSize'])
-
 			except Exception as e:
 				if self.debug:
 					print('Exception parsing Location information: %s' % e)
