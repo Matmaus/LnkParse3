@@ -481,47 +481,47 @@ class lnk_file(object):
 					print('Exception parsing Location information: %s' % e)
 				return False
 
-			try:
-				u_mult = 1
-				if self.linkFlag['IsUnicode']:
-					u_mult = 2
+		try:
+			u_mult = 1
+			if self.linkFlag['IsUnicode']:
+				u_mult = 2
 
-				if self.linkFlag['HasName']:
-					index, self.data['description'] = self.read_stringData(index, u_mult)
+			if self.linkFlag['HasName']:
+				index, self.data['description'] = self.read_stringData(index, u_mult)
 
-				if self.linkFlag['HasRelativePath']:
-					index, self.data['relativePath'] = self.read_stringData(index, u_mult)
+			if self.linkFlag['HasRelativePath']:
+				index, self.data['relativePath'] = self.read_stringData(index, u_mult)
 
-				if self.linkFlag['HasWorkingDir']:
-					index, self.data['workingDirectory'] = self.read_stringData(index, u_mult)
+			if self.linkFlag['HasWorkingDir']:
+				index, self.data['workingDirectory'] = self.read_stringData(index, u_mult)
 
-				if self.linkFlag['HasArguments']:
-					index, self.data['commandLineArguments'] = self.read_stringData(index, u_mult)
+			if self.linkFlag['HasArguments']:
+				index, self.data['commandLineArguments'] = self.read_stringData(index, u_mult)
 
-				if self.linkFlag['HasIconLocation']:
-					index, self.data['iconLocation'] = self.read_stringData(index, u_mult)
+			if self.linkFlag['HasIconLocation']:
+				index, self.data['iconLocation'] = self.read_stringData(index, u_mult)
 
-			except Exception as e:
-				if self.debug:
-					print('Exception in parsing data: %s' % e)
-				return False
+		except Exception as e:
+			if self.debug:
+				print('Exception in parsing data: %s' % e)
+			return False
 
-			try:
-				while index <= len(self.indata) - 10:
-					try:
-						size = struct.unpack('<I', self.indata[index: index + 4])[0]
-						sig = str(hex(struct.unpack('<I', self.indata[index + 4: index + 8])[0]))[2:]
-						self.EXTRA_SIGS[sig](index, size)
+		try:
+			while index <= len(self.indata) - 10:
+				try:
+					size = struct.unpack('<I', self.indata[index: index + 4])[0]
+					sig = str(hex(struct.unpack('<I', self.indata[index + 4: index + 8])[0]))[2:]
+					self.EXTRA_SIGS[sig](index, size)
 
-						index += (size)
-					except Exception as e:
-						if self.debug:
-							print('Exception in EXTRABLOCK Parsing: %s ' % e)
-						index = len(self.data)
-						break
-			except Exception as e:
-				if self.debug:
-					print('Exception in EXTRABLOCK: %s' % e)
+					index += (size)
+				except Exception as e:
+					if self.debug:
+						print('Exception in EXTRABLOCK Parsing: %s ' % e)
+					index = len(self.data)
+					break
+		except Exception as e:
+			if self.debug:
+				print('Exception in EXTRABLOCK: %s' % e)
 
 
 	def parse_environment_block(self, index, size):
