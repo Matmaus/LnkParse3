@@ -926,7 +926,7 @@ class lnk_file(object):
 
 
 	@staticmethod
-	def ms_time_to_unix_time(self, time):
+	def ms_time_to_unix_time(time):
 		if time == 0:
 			return ''
 		return datetime.datetime.fromtimestamp(time / 10000000.0 - 11644473600).strftime('%Y-%m-%d %H:%M:%S')
