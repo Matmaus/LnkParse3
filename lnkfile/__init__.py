@@ -1000,24 +1000,24 @@ class lnk_file(object):
 			res['header']['modified_time'] = self.ms_time_to_unix_time(res['header']['modified_time'])
 
 		if not get_all:
-			res['header'].pop('header_size')
-			res['header'].pop('reserved0')
-			res['header'].pop('reserved1')
-			res['header'].pop('reserved2')
-			res['target'].pop('size')
-			res['link_info'].pop('LinkInfoSize')
-			res['link_info'].pop('LinkInfoHeaderSize')
-			res['link_info'].pop('VolumeIDOffset')
-			res['link_info'].pop('LocalBasePathOffset')
-			res['link_info'].pop('CommonNetworkRelativeLinkOffset')
-			res['link_info'].pop('CommonPathSuffixOffset')
+			res['header'].pop('header_size', None)
+			res['header'].pop('reserved0', None)
+			res['header'].pop('reserved1', None)
+			res['header'].pop('reserved2', None)
+			res['target'].pop('size', None)
+			res['link_info'].pop('LinkInfoSize', None)
+			res['link_info'].pop('LinkInfoHeaderSize', None)
+			res['link_info'].pop('VolumeIDOffset', None)
+			res['link_info'].pop('LocalBasePathOffset', None)
+			res['link_info'].pop('CommonNetworkRelativeLinkOffset', None)
+			res['link_info'].pop('CommonPathSuffixOffset', None)
 			if 'VolumeIDAndLocalBasePath' in res['link_info']:
-				res['link_info']['location_info'].pop('VolumeIDSize')
-				res['link_info']['location_info'].pop('VolumeLabelOffset')
+				res['link_info']['location_info'].pop('VolumeIDSize', None)
+				res['link_info']['location_info'].pop('VolumeLabelOffset', None)
 			if 'CommonNetworkRelativeLinkAndPathSuffix' in res['link_info']:
-				res['link_info']['location_info'].pop('CommonNetworkRelativeLinkSize')
-				res['link_info']['location_info'].pop('NetNameOffset')
-				res['link_info']['location_info'].pop('DeviceNameOffset')
+				res['link_info']['location_info'].pop('CommonNetworkRelativeLinkSize', None)
+				res['link_info']['location_info'].pop('NetNameOffset', None)
+				res['link_info']['location_info'].pop('DeviceNameOffset', None)
 
 		return res
 
