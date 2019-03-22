@@ -438,6 +438,29 @@ class lnk_file(object):
 #			print self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00','')
 
 
+	def parse_string_data(self, index):
+		u_mult = 1
+		if self.linkFlag['IsUnicode']:
+			u_mult = 2
+
+		if self.linkFlag['HasName']:
+			index, self.data['description'] = self.read_stringData(index, u_mult)
+
+		if self.linkFlag['HasRelativePath']:
+			index, self.data['relativePath'] = self.read_stringData(index, u_mult)
+
+		if self.linkFlag['HasWorkingDir']:
+			index, self.data['workingDirectory'] = self.read_stringData(index, u_mult)
+
+		if self.linkFlag['HasArguments']:
+			index, self.data['commandLineArguments'] = self.read_stringData(index, u_mult)
+
+		if self.linkFlag['HasIconLocation']:
+			index, self.data['iconLocation'] = self.read_stringData(index, u_mult)
+
+		return index
+
+
 	def process(self):
 		index = 0
 		if not self.parse_lnk_header():
@@ -460,6 +483,7 @@ class lnk_file(object):
 					print('Exception parsing TargetIDList: %s' % e)
 				return False
 
+		# Parse Link Info
 		if self.linkFlag['HasLinkInfo'] and self.linkFlag['ForceNoLinkInfo'] == False:
 			try:
 				self.parse_link_information(index)
@@ -469,31 +493,15 @@ class lnk_file(object):
 					print('Exception parsing Location information: %s' % e)
 				return False
 
+		# Parse String Data
 		try:
-			u_mult = 1
-			if self.linkFlag['IsUnicode']:
-				u_mult = 2
-
-			if self.linkFlag['HasName']:
-				index, self.data['description'] = self.read_stringData(index, u_mult)
-
-			if self.linkFlag['HasRelativePath']:
-				index, self.data['relativePath'] = self.read_stringData(index, u_mult)
-
-			if self.linkFlag['HasWorkingDir']:
-				index, self.data['workingDirectory'] = self.read_stringData(index, u_mult)
-
-			if self.linkFlag['HasArguments']:
-				index, self.data['commandLineArguments'] = self.read_stringData(index, u_mult)
-
-			if self.linkFlag['HasIconLocation']:
-				index, self.data['iconLocation'] = self.read_stringData(index, u_mult)
-
+			index = self.parse_string_data(index)
 		except Exception as e:
 			if self.debug:
 				print('Exception in parsing data: %s' % e)
 			return False
 
+		# Parse Extra Data
 		try:
 			while index <= len(self.indata) - 10:
 				try:
