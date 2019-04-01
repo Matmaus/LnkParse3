@@ -89,9 +89,9 @@ class lnk_file(object):
 		try:
 			out = ''
 			if self.linkFlag['HasRelativePath']:
-				out += self.data['relativePath']
+				out += self.data['relative_path']
 			if self.linkFlag['HasArguments']:
-				out += ' ' + self.data['commandLineArguments']
+				out += ' ' + self.data['command_line_arguments']
 
 			self.lnk_command = out
 		except Exception as e:
@@ -103,9 +103,9 @@ class lnk_file(object):
 		try:
 			out = ''
 			if self.linkFlag['HasRelativePath']:
-				out += self.data['relativePath']
+				out += self.data['relative_path']
 			if self.linkFlag['HasArguments']:
-				out += ' ' + self.data['commandLineArguments']
+				out += ' ' + self.data['command_line_arguments']
 
 			return out
 		except Exception as e:
@@ -277,15 +277,15 @@ class lnk_file(object):
 
 			self.lnk_header['guid'] = lnk_header[4:20].hex()
 
-			self.lnk_header['rlinkFlags'] = struct.unpack('<i', lnk_header[20:24])[0]
-			self.lnk_header['rfileFlags'] = struct.unpack('<i', lnk_header[24:28])[0]
+			self.lnk_header['r_link_flags'] = struct.unpack('<i', lnk_header[20:24])[0]
+			self.lnk_header['r_file_flags'] = struct.unpack('<i', lnk_header[24:28])[0]
 
 			self.lnk_header['creation_time'] = struct.unpack('<q', lnk_header[28:36])[0]
 			self.lnk_header['accessed_time'] = struct.unpack('<q', lnk_header[36:44])[0]
 			self.lnk_header['modified_time'] = struct.unpack('<q', lnk_header[44:52])[0]
 
 			self.lnk_header['file_size'] = struct.unpack('<i', lnk_header[52:56])[0]
-			self.lnk_header['rfile_size'] = lnk_header[52:56].hex()
+			self.lnk_header['r_file_size'] = lnk_header[52:56].hex()
 
 			self.lnk_header['icon_index'] = struct.unpack('<I', lnk_header[56:60])[0]
 			try:
@@ -306,13 +306,13 @@ class lnk_file(object):
 					lnk_header[64:66].hex()
 				)
 
-				self.lnk_header['rhotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
+				self.lnk_header['r_hotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
 			except Exception as e:
 				if self.debug:
 					print('Exception parsing HOTKEY part of header: %s' % e)
 					print(lnk_header[65:66].hex())
 				self.lnk_header['hotkey'] = hex(struct.unpack('<H', lnk_header[64:66])[0])
-				self.lnk_header['rhotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
+				self.lnk_header['r_hotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
 
 			self.lnk_header['reserved0'] = struct.unpack('<H', lnk_header[66:68])[0]
 			self.lnk_header['reserved1'] = struct.unpack('<i', lnk_header[68:72])[0]
@@ -327,102 +327,102 @@ class lnk_file(object):
 
 
 	def parse_link_flags(self):
-		if self.lnk_header['rlinkFlags'] & 0x00000001:
+		if self.lnk_header['r_link_flags'] & 0x00000001:
 			self.linkFlag['HasTargetIDList'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000002:
+		if self.lnk_header['r_link_flags'] & 0x00000002:
 			self.linkFlag['HasLinkInfo'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000004:
+		if self.lnk_header['r_link_flags'] & 0x00000004:
 			self.linkFlag['HasName'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000008:
+		if self.lnk_header['r_link_flags'] & 0x00000008:
 			self.linkFlag['HasRelativePath'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000010:
+		if self.lnk_header['r_link_flags'] & 0x00000010:
 			self.linkFlag['HasWorkingDir'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000020:
+		if self.lnk_header['r_link_flags'] & 0x00000020:
 			self.linkFlag['HasArguments'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000040:
+		if self.lnk_header['r_link_flags'] & 0x00000040:
 			self.linkFlag['HasIconLocation'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000080:
+		if self.lnk_header['r_link_flags'] & 0x00000080:
 			self.linkFlag['IsUnicode'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000100:
+		if self.lnk_header['r_link_flags'] & 0x00000100:
 			self.linkFlag['ForceNoLinkInfo'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000200:
+		if self.lnk_header['r_link_flags'] & 0x00000200:
 			self.linkFlag['HasExpString'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000400:
+		if self.lnk_header['r_link_flags'] & 0x00000400:
 			self.linkFlag['RunInSeparateProcess'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00000800:
+		if self.lnk_header['r_link_flags'] & 0x00000800:
 			self.linkFlag['Reserved0'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00001000:
+		if self.lnk_header['r_link_flags'] & 0x00001000:
 			self.linkFlag['HasDarwinID'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00002000:
+		if self.lnk_header['r_link_flags'] & 0x00002000:
 			self.linkFlag['RunAsUser'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00004000:
+		if self.lnk_header['r_link_flags'] & 0x00004000:
 			self.linkFlag['HasExpIcon'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00008000:
+		if self.lnk_header['r_link_flags'] & 0x00008000:
 			self.linkFlag['NoPidlAlias'] = True
-		if self.lnk_header['rlinkFlags'] & 0x000100000:
+		if self.lnk_header['r_link_flags'] & 0x000100000:
 			self.linkFlag['Reserved1'] = True
 
-		if self.lnk_header['rlinkFlags'] & 0x00020000:
+		if self.lnk_header['r_link_flags'] & 0x00020000:
 			self.linkFlag['RunWithShimLayer'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00040000:
+		if self.lnk_header['r_link_flags'] & 0x00040000:
 			self.linkFlag['ForceNoLinkTrack'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00080000:
+		if self.lnk_header['r_link_flags'] & 0x00080000:
 			self.linkFlag['EnableTargetMetadata'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00100000:
+		if self.lnk_header['r_link_flags'] & 0x00100000:
 			self.linkFlag['DisableLinkPathTracking'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00200000:
+		if self.lnk_header['r_link_flags'] & 0x00200000:
 			self.linkFlag['DisableKnownFolderTracking'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00400000:
+		if self.lnk_header['r_link_flags'] & 0x00400000:
 			self.linkFlag['DisableKnownFolderAlias'] = True
-		if self.lnk_header['rlinkFlags'] & 0x00800000:
+		if self.lnk_header['r_link_flags'] & 0x00800000:
 			self.linkFlag['AllowLinkToLink'] = True
-		if self.lnk_header['rlinkFlags'] & 0x01000000:
+		if self.lnk_header['r_link_flags'] & 0x01000000:
 			self.linkFlag['UnaliasOnSave'] = True
-		if self.lnk_header['rlinkFlags'] & 0x02000000:
+		if self.lnk_header['r_link_flags'] & 0x02000000:
 			self.linkFlag['PreferEnvironmentPath'] = True
-		if self.lnk_header['rlinkFlags'] & 0x04000000:
+		if self.lnk_header['r_link_flags'] & 0x04000000:
 			self.linkFlag['KeepLocalIDListForUNCTarget'] = True
 
-		self.lnk_header['linkFlags'] = self.enabled_flags_to_list(self.linkFlag)
+		self.lnk_header['link_flags'] = self.enabled_flags_to_list(self.linkFlag)
 
 
 	def parse_file_flags(self):
-		if self.lnk_header['rfileFlags'] & 0x00000001:
+		if self.lnk_header['r_file_flags'] & 0x00000001:
 			self.fileFlag['FILE_ATTRIBUTE_READONLY'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000002:
+		if self.lnk_header['r_file_flags'] & 0x00000002:
 			self.fileFlag['FILE_ATTRIBUTE_HIDDEN'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000004:
+		if self.lnk_header['r_file_flags'] & 0x00000004:
 			self.fileFlag['FILE_ATTRIBUTE_SYSTEM'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000008:
+		if self.lnk_header['r_file_flags'] & 0x00000008:
 			self.fileFlag['Reserved, not used by the LNK format'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000010:
+		if self.lnk_header['r_file_flags'] & 0x00000010:
 			self.fileFlag['FILE_ATTRIBUTE_DIRECTORY'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000020:
+		if self.lnk_header['r_file_flags'] & 0x00000020:
 			self.fileFlag['FILE_ATTRIBUTE_ARCHIVE'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000040:
+		if self.lnk_header['r_file_flags'] & 0x00000040:
 			self.fileFlag['FILE_ATTRIBUTE_DEVICE'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000080:
+		if self.lnk_header['r_file_flags'] & 0x00000080:
 			self.fileFlag['FILE_ATTRIBUTE_NORMAL'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000100:
+		if self.lnk_header['r_file_flags'] & 0x00000100:
 			self.fileFlag['FILE_ATTRIBUTE_TEMPORARY'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000200:
+		if self.lnk_header['r_file_flags'] & 0x00000200:
 			self.fileFlag['FILE_ATTRIBUTE_SPARSE_FILE'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000400:
+		if self.lnk_header['r_file_flags'] & 0x00000400:
 			self.fileFlag['FILE_ATTRIBUTE_REPARSE_POINT'] = True
-		if self.lnk_header['rfileFlags'] & 0x00000800:
+		if self.lnk_header['r_file_flags'] & 0x00000800:
 			self.fileFlag['FILE_ATTRIBUTE_COMPRESSED'] = True
-		if self.lnk_header['rfileFlags'] & 0x00001000:
+		if self.lnk_header['r_file_flags'] & 0x00001000:
 			self.fileFlag['FILE_ATTRIBUTE_OFFLINE'] = True
-		if self.lnk_header['rfileFlags'] & 0x00002000:
+		if self.lnk_header['r_file_flags'] & 0x00002000:
 			self.fileFlag['FILE_ATTRIBUTE_NOT_CONTENT_INDEXED'] = True
-		if self.lnk_header['rfileFlags'] & 0x00004000:
+		if self.lnk_header['r_file_flags'] & 0x00004000:
 			self.fileFlag['FILE_ATTRIBUTE_ENCRYPTED'] = True
-		if self.lnk_header['rfileFlags'] & 0x00008000:
+		if self.lnk_header['r_file_flags'] & 0x00008000:
 			self.fileFlag['Unknown (seen on Windows 95 FAT)'] = True
-		if self.lnk_header['rfileFlags'] & 0x00010000:
+		if self.lnk_header['r_file_flags'] & 0x00010000:
 			self.fileFlag['FILE_ATTRIBUTE_VIRTUAL'] = True
 
-		self.lnk_header['fileFlags'] = self.enabled_flags_to_list(self.fileFlag)
+		self.lnk_header['file_flags'] = self.enabled_flags_to_list(self.fileFlag)
 
 
 	def parse_link_information(self, index):
@@ -468,16 +468,16 @@ class lnk_file(object):
 		--------------------------------------------------------------------------------------------------
 		"""
 		self.loc_information = {
-			'LinkInfoSize': struct.unpack('<i', self.indata[index: index + 4])[0],
-			'LinkInfoHeaderSize': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-			'LinkInfoFlags': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
-			'VolumeIDOffset': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
-			'LocalBasePathOffset': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
-			'CommonNetworkRelativeLinkOffset': struct.unpack('<i', self.indata[index + 20: index + 24])[0],
-			'CommonPathSuffixOffset': struct.unpack('<i', self.indata[index + 24: index + 28])[0],
+			'link_info_size': struct.unpack('<i', self.indata[index: index + 4])[0],
+			'link_info_header_size': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
+			'link_info_flags': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
+			'volume_id_offset': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
+			'local_base_path_offset': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
+			'common_network_relative_link_offset': struct.unpack('<i', self.indata[index + 20: index + 24])[0],
+			'common_path_suffix_offset': struct.unpack('<i', self.indata[index + 24: index + 28])[0],
 		}
 
-		if self.loc_information['LinkInfoFlags'] & 0x0001:
+		if self.loc_information['link_info_flags'] & 0x0001:
 			"""
 			--------------------------------------------------------------------------------------------------
 			|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
@@ -496,42 +496,42 @@ class lnk_file(object):
 			|                                            ? B                                                 |
 			--------------------------------------------------------------------------------------------------
 			"""
-			if self.loc_information['LinkInfoHeaderSize'] >= 36:
-				self.loc_information['o_LocalBasePathOffsetUnicode'] = \
+			if self.loc_information['link_info_header_size'] >= 36:
+				self.loc_information['o_local_base_path_offset_unicode'] = \
 						struct.unpack('<i', self.indata[index + 28: index + 32])[0]
-				local_index = index + self.loc_information['o_LocalBasePathOffsetUnicode']
-				self.loc_information['o_LocalBasePathUnicode'] = \
+				local_index = index + self.loc_information['o_local_base_path_offset_unicode']
+				self.loc_information['o_local_base_path_offset_unicode'] = \
 						struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 			else:
-				local_index = index + self.loc_information['LocalBasePathOffset']
-				self.loc_information['LocalBasePath'] = self.read_string(local_index)
+				local_index = index + self.loc_information['local_base_path_offset']
+				self.loc_information['local_base_path'] = self.read_string(local_index)
 
-			local_index = index + self.loc_information['VolumeIDOffset']
-			self.loc_information['location'] = 'VolumeIDAndLocalBasePath'
+			local_index = index + self.loc_information['volume_id_offset']
+			self.loc_information['location'] = 'Local'
 			self.loc_information['location_info'] = {
-				'VolumeIDSize':
+				'volume_id_size':
 					struct.unpack('<I', self.indata[local_index + 0: local_index + 4])[0],
-				'rDriveType':
+				'r_drive_type':
 					struct.unpack('<I', self.indata[local_index + 4: local_index + 8])[0],
-				'DriveSerialNumber': hex(
+				'drive_serial_number': hex(
 					struct.unpack('<I', self.indata[local_index + 8: local_index + 12])[0]),
-				'VolumeLabelOffset':
+				'volume_label_offset':
 					struct.unpack('<I', self.indata[local_index + 12: local_index + 16])[0],
 			}
 
-			if self.loc_information['location_info']['rDriveType'] < len(self.DRIVE_TYPES):
-				self.loc_information['location_info']['DriveType'] = self.DRIVE_TYPES[self.loc_information['location_info']['rDriveType']]
+			if self.loc_information['location_info']['r_drive_type'] < len(self.DRIVE_TYPES):
+				self.loc_information['location_info']['drive_type'] = self.DRIVE_TYPES[self.loc_information['location_info']['r_drive_type']]
 
-			if self.loc_information['location_info']['VolumeLabelOffset'] != 20:
-				length = self.loc_information['location_info']['VolumeIDSize'] - self.loc_information['location_info']['VolumeLabelOffset']
-				local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['location_info']['VolumeLabelOffset']
-				self.loc_information['location_info']['VolumeLabel'] = self.clean_line(self.indata[local_index: local_index + length].replace(b'\x00', b''))
+			if self.loc_information['location_info']['volume_label_offset'] != 20:
+				length = self.loc_information['location_info']['volume_id_size'] - self.loc_information['location_info']['volume_label_offset']
+				local_index = index + self.loc_information['volume_id_offset'] + self.loc_information['location_info']['volume_label_offset']
+				self.loc_information['location_info']['volume_label'] = self.clean_line(self.indata[local_index: local_index + length].replace(b'\x00', b''))
 			else:
-				self.loc_information['location_info']['o_VolumeLabelOffsetUnicode'] = struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0]
-				local_index = index + self.loc_information['VolumeIDOffset'] + self.loc_information['location_info']['o_VolumeLabelOffsetUnicode']
-				self.loc_information['location_info']['o_VolumeLabelUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+				self.loc_information['location_info']['o_volume_label_offset_unicode'] = struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0]
+				local_index = index + self.loc_information['volume_id_offset'] + self.loc_information['location_info']['o_volume_label_offset_unicode']
+				self.loc_information['location_info']['o_volume_label_unicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
-		elif self.loc_information['LinkInfoFlags'] & 0x0002:
+		elif self.loc_information['link_info_flags'] & 0x0002:
 			"""
 			--------------------------------------------------------------------------------------------------
 			|         0-7b         |         8-15b         |         16-23b         |         24-31b         |
@@ -563,50 +563,50 @@ class lnk_file(object):
 			|                                            ? B                                                 |
 			--------------------------------------------------------------------------------------------------
 			"""
-			if self.loc_information['LinkInfoHeaderSize'] >= 36:
-				self.loc_information['o_CommonPathSuffixOffsetUnicode'] = \
+			if self.loc_information['link_info_header_size'] >= 36:
+				self.loc_information['o_common_path_suffix_offset_unicode'] = \
 						struct.unpack('<i', self.indata[index + 28: index + 32])[0]
-				local_index = index + self.loc_information['o_CommonPathSuffixOffsetUnicode']
-				self.loc_information['o_CommonPathSuffixUnicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+				local_index = index + self.loc_information['o_common_path_suffix_offset_unicode']
+				self.loc_information['o_common_path_suffix_unicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 			else:
-				local_index = index + self.loc_information['CommonPathSuffixOffset']
-				self.loc_information['CommonPathSuffix'] = \
+				local_index = index + self.loc_information['common_path_suffix_offset']
+				self.loc_information['common_path_suffix'] = \
 						struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
-			local_index = index + self.loc_information['CommonNetworkRelativeLinkOffset']
-			self.loc_information['location'] = 'CommonNetworkRelativeLinkAndPathSuffix'
+			local_index = index + self.loc_information['common_network_relative_link_offset']
+			self.loc_information['location'] = 'Network'
 			self.loc_information['location_info'] = {
-				'CommonNetworkRelativeLinkSize':
+				'common_network_relative_link_size':
 					struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
-				'CommonNetworkRelativeLinkFlags':
+				'common_retwork_relative_link_flags':
 					struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
-				'NetNameOffset':
+				'net_name_offset':
 					struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0],
-				'DeviceNameOffset':
+				'device_name_offset':
 					struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
-				'NetworkProviderType':
+				'network_provider_type':
 					struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0],
 			}
 
-			if self.loc_information['location_info']['o_NetNameOffset'] > 20:
-				self.loc_information['location_info']['o_NetNameOffsetUnicode'] = \
+			if self.loc_information['location_info']['o_net_name_offset'] > 20:
+				self.loc_information['location_info']['o_net_name_offset_unicode'] = \
 				struct.unpack('<i', self.indata[local_index + 20: index + 24])[0]
-				local_index = index + self.loc_information['location_info']['o_NetNameOffsetUnicode']
-				self.loc_information['location_info']['o_NetNameOffsetUnicode'] = \
+				local_index = index + self.loc_information['location_info']['o_net_name_offset_unicode']
+				self.loc_information['location_info']['o_net_name_offset_unicode'] = \
 					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
-				self.loc_information['location_info']['o_DeviceNameOffsetUnicode'] = \
+				self.loc_information['location_info']['o_device_name_offset_unicode'] = \
 				struct.unpack('<i', self.indata[local_index + 24: index + 28])[0]
-				local_index = self.loc_information['location_info']['o_DeviceNameOffsetUnicode']
-				self.loc_information['location_info']['o_DeviceNameOffsetUnicode'] = \
+				local_index = self.loc_information['location_info']['o_device_name_offset_unicode']
+				self.loc_information['location_info']['o_device_name_offset_unicode'] = \
 					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 			else:
-				local_index = index + self.loc_information['location_info']['o_NetNameOffset']
-				self.loc_information['location_info']['o_NetNameOffset'] = \
+				local_index = index + self.loc_information['location_info']['o_net_name_offset']
+				self.loc_information['location_info']['o_net_name_offset'] = \
 					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
-				local_index = self.loc_information['location_info']['o_DeviceNameOffset']
-				self.loc_information['location_info']['o_DeviceNameOffset'] = \
+				local_index = self.loc_information['location_info']['o_device_name_offset']
+				self.loc_information['location_info']['o_device_name_offset'] = \
 					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
 
 
@@ -637,16 +637,16 @@ class lnk_file(object):
 			index, self.data['description'] = self.read_stringData(index, u_mult)
 
 		if self.linkFlag['HasRelativePath']:
-			index, self.data['relativePath'] = self.read_stringData(index, u_mult)
+			index, self.data['relative_path'] = self.read_stringData(index, u_mult)
 
 		if self.linkFlag['HasWorkingDir']:
-			index, self.data['workingDirectory'] = self.read_stringData(index, u_mult)
+			index, self.data['working_directory'] = self.read_stringData(index, u_mult)
 
 		if self.linkFlag['HasArguments']:
-			index, self.data['commandLineArguments'] = self.read_stringData(index, u_mult)
+			index, self.data['command_line_arguments'] = self.read_stringData(index, u_mult)
 
 		if self.linkFlag['HasIconLocation']:
-			index, self.data['iconLocation'] = self.read_stringData(index, u_mult)
+			index, self.data['icon_location'] = self.read_stringData(index, u_mult)
 
 		return index
 
@@ -678,7 +678,7 @@ class lnk_file(object):
 		if self.linkFlag['HasLinkInfo'] and self.linkFlag['ForceNoLinkInfo'] == False:
 			try:
 				self.parse_link_information(index)
-				index += (self.loc_information['LinkInfoSize'])
+				index += (self.loc_information['link_info_size'])
 			except Exception as e:
 				if self.debug:
 					print('Exception parsing Location information: %s' % e)
@@ -786,52 +786,52 @@ class lnk_file(object):
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK']['size'] = size
 		# 16b
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'FillAttributes'] = struct.unpack('<I', self.indata[index + 8: index + 10])[0]
+			'fill_attributes'] = struct.unpack('<I', self.indata[index + 8: index + 10])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'PopupFillAttributes'] = struct.unpack('<I', self.indata[index + 10: index + 12])[0]
+			'popup_fill_attributes'] = struct.unpack('<I', self.indata[index + 10: index + 12])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'ScreenBufferSizeX'] = struct.unpack('<i', self.indata[index + 12: index + 14])[0]
+			'screen_buffer_size_x'] = struct.unpack('<i', self.indata[index + 12: index + 14])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'ScreenBufferSizeY'] = struct.unpack('<i', self.indata[index + 14: index + 16])[0]
+			'screen_buffer_size_y'] = struct.unpack('<i', self.indata[index + 14: index + 16])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'WindowSizeX'] = struct.unpack('<i', self.indata[index + 16: index + 18])[0]
+			'window_size_x'] = struct.unpack('<i', self.indata[index + 16: index + 18])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'WindowSizeY'] = struct.unpack('<i', self.indata[index + 18: index + 20])[0]
+			'window_size_y'] = struct.unpack('<i', self.indata[index + 18: index + 20])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'WindowOriginX'] = struct.unpack('<i', self.indata[index + 20: index + 22])[0]
+			'window_origin_x'] = struct.unpack('<i', self.indata[index + 20: index + 22])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'WindowOriginY'] = struct.unpack('<i', self.indata[index + 22: index + 24])[0]
+			'window_origin_y'] = struct.unpack('<i', self.indata[index + 22: index + 24])[0]
 		# Bytes 24-28 & 28-32 are unused
 		# 32b
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'FontSize'] = struct.unpack('<I', self.indata[index + 32: index + 36])[0]
+			'font_size'] = struct.unpack('<I', self.indata[index + 32: index + 36])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'FontFamily'] = struct.unpack('<I', self.indata[index + 36: index + 40])[0]
+			'font_family'] = struct.unpack('<I', self.indata[index + 36: index + 40])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'FontWeight'] = struct.unpack('<I', self.indata[index + 40: index + 44])[0]
+			'font_weight'] = struct.unpack('<I', self.indata[index + 40: index + 44])[0]
 		# 64b
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'Face'] = self.clean_line(self.indata[index + 44: index + 108])
+			'face_name'] = self.clean_line(self.indata[index + 44: index + 108])
 		# 32b
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'CursorSize'] = struct.unpack('<I', self.indata[index + 108: index + 112])[0]
+			'cursor_size'] = struct.unpack('<I', self.indata[index + 108: index + 112])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'FullScreen'] = struct.unpack('<I', self.indata[index + 112: index + 116])[0]
+			'full_screen'] = struct.unpack('<I', self.indata[index + 112: index + 116])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'QuickEdit'] = struct.unpack('<I', self.indata[index + 116: index + 120])[0]
+			'quick_edit'] = struct.unpack('<I', self.indata[index + 116: index + 120])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'InsertMode'] = struct.unpack('<I', self.indata[index + 120: index + 124])[0]
+			'insert_mode'] = struct.unpack('<I', self.indata[index + 120: index + 124])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'AutoPosition'] = struct.unpack('<I', self.indata[index + 124: index + 128])[0]
+			'auto_position'] = struct.unpack('<I', self.indata[index + 124: index + 128])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'HistoryBufferSize'] = struct.unpack('<I', self.indata[index + 128: index + 132])[0]
+			'history_buffer_size'] = struct.unpack('<I', self.indata[index + 128: index + 132])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'NumberOfHistoryBuffers'] = struct.unpack('<I', self.indata[index + 132: index + 136])[0]
+			'number_of_history_buffers'] = struct.unpack('<I', self.indata[index + 132: index + 136])[0]
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'HistoryNoDup'] = struct.unpack('<I', self.indata[index + 136: index + 140])[0]
+			'history_no_dup'] = struct.unpack('<I', self.indata[index + 136: index + 140])[0]
 		# 64b
 		self.extraBlocks['CONSOLE_PROPERTIES_BLOCK'][
-			'ColorTable'] = struct.unpack('<I', self.indata[index + 140: index + 144])[0]
+			'color_table'] = struct.unpack('<I', self.indata[index + 140: index + 144])[0]
 
 
 	def parse_distributedTracker_block(self, index, size):
@@ -895,7 +895,7 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK'] = {}
 		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK']['size'] = size
-		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK']['CodePage'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
+		self.extraBlocks['CONSOLE_CODEPAGE_BLOCK']['code_page'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
 
 
 	def parse_specialFolder_block(self, index, size):
@@ -914,8 +914,8 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK'] = {}
 		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['size'] = size
-		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['SpecialFolderID'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
-		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['Offset'] = struct.unpack('<I', self.indata[index + 12: index + 16])[0]
+		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['special_folder_id'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
+		self.extraBlocks['SPECIAL_FOLDER_LOCATION_BLOCK']['offset'] = struct.unpack('<I', self.indata[index + 12: index + 16])[0]
 
 
 	def parse_darwin_block(self, index, size):
@@ -936,8 +936,8 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['DARWIN_BLOCK'] = {}
 		self.extraBlocks['DARWIN_BLOCK']['size'] = size
-		self.extraBlocks['DARWIN_BLOCK']['DarwinDataAnsi'] = self.read_string(index + 8)
-		self.extraBlocks['DARWIN_BLOCK']['DarwinDataUnicode'] = self.read_unicode_string(index + 268)
+		self.extraBlocks['DARWIN_BLOCK']['darwin_data_ansi'] = self.read_string(index + 8)
+		self.extraBlocks['DARWIN_BLOCK']['darwin_data_unicode'] = self.read_unicode_string(index + 268)
 
 
 	def parse_icon_block(self, index, size):
@@ -958,8 +958,8 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['ICON_LOCATION_BLOCK'] = {}
 		self.extraBlocks['ICON_LOCATION_BLOCK']['size'] = size
-		self.extraBlocks['ICON_LOCATION_BLOCK']['TargetAnsi'] = self.read_string(index + 8)
-		self.extraBlocks['ICON_LOCATION_BLOCK']['TargetUnicode'] = self.read_unicode_string(index + 268)
+		self.extraBlocks['ICON_LOCATION_BLOCK']['target_ansi'] = self.read_string(index + 8)
+		self.extraBlocks['ICON_LOCATION_BLOCK']['target_unicode'] = self.read_unicode_string(index + 268)
 
 
 	def parse_shimLayer_block(self, index, size):
@@ -977,7 +977,7 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['SHIM_LAYER_BLOCK'] = {}
 		self.extraBlocks['SHIM_LAYER_BLOCK']['size'] = size
-		self.extraBlocks['SHIM_LAYER_BLOCK']['LayerName'] = self.read_unicode_string(index + 8)
+		self.extraBlocks['SHIM_LAYER_BLOCK']['layer_name'] = self.read_unicode_string(index + 8)
 
 
 	def parse_metadata_block(self, index, size):
@@ -1002,26 +1002,26 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['METADATA_PRPERTIES_BLOCK'] = {}
 		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['size'] = size
-		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['StorageSize'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
-		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['Version'] = hex(struct.unpack('<I', self.indata[index + 12: index + 16])[0])
-		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['FormatID'] = self.indata[index + 16: index + 32].hex()
-		if self.extraBlocks['METADATA_PRPERTIES_BLOCK']['FormatID'].upper() == 'D5CDD5052E9C101B939708002B2CF9AE':
+		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['storage_size'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
+		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['version'] = hex(struct.unpack('<I', self.indata[index + 12: index + 16])[0])
+		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['format_id'] = self.indata[index + 16: index + 32].hex()
+		if self.extraBlocks['METADATA_PRPERTIES_BLOCK']['format_id'].upper() == 'D5CDD5052E9C101B939708002B2CF9AE':
 			# Serialized Property Value (String Name)
 			index += 32
 			result = []
 			while True:
 				value = {}
-				value['ValueSize'] = struct.unpack('<I', self.indata[index: index + 4])[0]
-				if hex(value['ValueSize']) == hex(0x0):
+				value['value_size'] = struct.unpack('<I', self.indata[index: index + 4])[0]
+				if hex(value['value_size']) == hex(0x0):
 					break
-				value['NameSize'] = struct.unpack('<I', self.indata[index + 4: index + 8])[0]
-				value['Name'] = self.read_unicode_string(index + 8)
-				value['Value'] = '' # TODO MS-OLEPS
+				value['name_size'] = struct.unpack('<I', self.indata[index + 4: index + 8])[0]
+				value['name'] = self.read_unicode_string(index + 8)
+				value['value'] = '' # TODO MS-OLEPS
 
 				result.append(value)
-				index += 4 + 4 + 2 + value['NameSize'] + value['ValueSize']
+				index += 4 + 4 + 2 + value['name_size'] + value['value_size']
 
-			self.extraBlocks['METADATA_PRPERTIES_BLOCK']['SerializedPropertyValueString'] = result
+			self.extraBlocks['METADATA_PRPERTIES_BLOCK']['serialized_property_value_string'] = result
 		else:
 			# Serialized Property Value (Integer Name)
 			try:
@@ -1029,16 +1029,16 @@ class lnk_file(object):
 				result = []
 				while True:
 					value = {}
-					value['ValueSize'] = struct.unpack('<I', self.indata[index: index + 4])[0]
-					if hex(value['ValueSize']) == hex(0x0):
+					value['value_size'] = struct.unpack('<I', self.indata[index: index + 4])[0]
+					if hex(value['value_size']) == hex(0x0):
 						break
-					value['Id'] = struct.unpack('<I', self.indata[index + 4: index + 8])[0]
-					value['Value'] = '' # TODO MS-OLEPS
+					value['id'] = struct.unpack('<I', self.indata[index + 4: index + 8])[0]
+					value['value'] = '' # TODO MS-OLEPS
 
 					result.append(value)
-					index += value['ValueSize']
+					index += value['value_size']
 
-				self.extraBlocks['METADATA_PRPERTIES_BLOCK']['SerializedPropertyValueInteger'] = result
+				self.extraBlocks['METADATA_PRPERTIES_BLOCK']['serialized_property_value_integer'] = result
 			except Exception as e:
 				print(e)
 
@@ -1060,8 +1060,8 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK'] = {}
 		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['size'] = size
-		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['KnownFolderID'] = self.indata[index + 8: index + 24].hex()
-		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['Offset'] = struct.unpack('<I', self.indata[index + 24: index + 28])[0]
+		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['known_folder_id'] = self.indata[index + 8: index + 24].hex()
+		self.extraBlocks['KNOWN_FOLDER_LOCATION_BLOCK']['offset'] = struct.unpack('<I', self.indata[index + 24: index + 28])[0]
 
 
 	def parse_shellItem_block(self, index, size):
@@ -1078,13 +1078,13 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK'] = {}
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['size'] = size
-		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['IDList'] = '' # TODO
+		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['id_list'] = '' # TODO
 
 
 	def print_lnk_file(self):
 		print('Windows Shortcut Information:')
-		print('\tLink Flags: %s - (%s)' % (self.format_linkFlags(), self.lnk_header['rlinkFlags']))
-		print('\tFile Flags: %s - (%s)' % (self.format_fileFlags(), self.lnk_header['rfileFlags']))
+		print('\tLink Flags: %s - (%s)' % (self.format_linkFlags(), self.lnk_header['r_link_flags']))
+		print('\tFile Flags: %s - (%s)' % (self.format_fileFlags(), self.lnk_header['r_file_flags']))
 		print('')
 		try:
 			print('\tCreation Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['creation_time'])))
@@ -1164,9 +1164,9 @@ class lnk_file(object):
 	def print_short(self, pjson=False):
 		out = ''
 		if self.linkFlag['HasRelativePath']:
-			out += self.data['relativePath']
+			out += self.data['relative_path']
 		if self.linkFlag['HasArguments']:
-			out += ' ' + self.data['commandLineArguments']
+			out += ' ' + self.data['command_line_arguments']
 
 		if pjson:
 			print(json.dumps({'command': out}))
@@ -1195,29 +1195,21 @@ class lnk_file(object):
 			res['header'].pop('reserved1', None)
 			res['header'].pop('reserved2', None)
 			res['target'].pop('size', None)
-			res['link_info'].pop('LinkInfoSize', None)
-			res['link_info'].pop('LinkInfoHeaderSize', None)
-			res['link_info'].pop('VolumeIDOffset', None)
-			res['link_info'].pop('LocalBasePathOffset', None)
-			res['link_info'].pop('CommonNetworkRelativeLinkOffset', None)
-			res['link_info'].pop('CommonPathSuffixOffset', None)
-			if 'VolumeIDAndLocalBasePath' in res['link_info']:
-				res['link_info']['location_info'].pop('VolumeIDSize', None)
-				res['link_info']['location_info'].pop('VolumeLabelOffset', None)
-			if 'CommonNetworkRelativeLinkAndPathSuffix' in res['link_info']:
-				res['link_info']['location_info'].pop('CommonNetworkRelativeLinkSize', None)
-				res['link_info']['location_info'].pop('NetNameOffset', None)
-				res['link_info']['location_info'].pop('DeviceNameOffset', None)
+			res['link_info'].pop('link_info_size', None)
+			res['link_info'].pop('link_info_header_size', None)
+			res['link_info'].pop('volume_id_offset', None)
+			res['link_info'].pop('local_base_path_offset', None)
+			res['link_info'].pop('common_network_relative_link_offset', None)
+			res['link_info'].pop('common_path_suffix_offset', None)
+			if 'Local' in res['link_info']:
+				res['link_info']['location_info'].pop('volume_id_size', None)
+				res['link_info']['location_info'].pop('volume_label_offset', None)
+			if 'Network' in res['link_info']:
+				res['link_info']['location_info'].pop('common_network_relative_link_size', None)
+				res['link_info']['location_info'].pop('net_name_offset', None)
+				res['link_info']['location_info'].pop('device_name_offset', None)
 
 		return res
-
-
-def test_case(filename):
-	with open(filename, 'rb') as file:
-		tmp = lnk_file(fhandle=file, debug=True)
-		tmp.print_lnk_file()
-		# tmp.print_short(True)
-		# tmp.print_json()
 
 
 def main():
