@@ -1,13 +1,11 @@
 #!/usr/bin/env python
-# By Silas Cutler
-#    silas.cutler@blacklistthisdomain.com
 
 __description__ = 'Windows Shortcut file (LNK) parser'
-__author__ = 'Silas Cutler'
-__version__ = '0.2.1'
+__author__ = 'Matúš Jasnický'
+__version__ = '0.3.0'
 
 import sys
-import lnkfile
+import LnkParse3
 import argparse
 
 
@@ -24,7 +22,7 @@ def main():
 	args = arg_parser.parse_args()
 
 	with open(args.file, 'rb') as file:
-		lnk = lnkfile.lnk_file(fhandle=file, debug=args.debug)
+		lnk = LnkParse3.lnk_file(fhandle=file, debug=args.debug)
 		if args.json:
 			lnk.print_json(args.json_debug)
 		else:

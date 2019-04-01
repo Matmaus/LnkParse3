@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-# 2016 - Silas Cutler (silas.cutler@blacklistthisdomain.com)
 
 __description__ = 'Windows Shortcut file (LNK) parser'
-__author__ = 'Silas Cutler'
-__version__ = '0.2.1'
+__author__ = 'Matúš Jasnický'
+__version__ = '0.3.0'
 
 import json
 import struct
@@ -611,21 +610,49 @@ class lnk_file(object):
 
 
 	# Still in development // repair
+# 	def parse_targets(self, index):
+# 		max_size = self.targets['size'] + index
+
+# 		while ( index  < max_size ):
+# 			ItemID = {
+# 				"size": struct.unpack('<H', self.indata[index : index + 2])[0] ,
+# 				"type": struct.unpack('<B', self.indata[index + 2 : index + 3])[0] ,
+# 					}
+# 			index += 3
+
+# #			self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
+# #			print "[%s] %s" % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') )
+# #			print self.indata[ index: index + ItemID['size'] ].encode('hex')[:50]
+# 			index += ItemID['size']
+# #			print self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00','')
+
+	# Still in development // repair
 	def parse_targets(self, index):
-		max_size = self.targets['size'] + index
+		return
+		max_size = self.targets['size'] + index - 2
 
-		while ( index  < max_size ):
-			ItemID = {
-				"size": struct.unpack('<H', self.indata[index : index + 2])[0] ,
-				"type": struct.unpack('<B', self.indata[index + 2 : index + 3])[0] ,
-					}
-			index += 3
-
-#			self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
-#			print "[%s] %s" % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') )
-#			print self.indata[ index: index + ItemID['size'] ].encode('hex')[:50]
-			index += ItemID['size']
-#			print self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00','')
+		while (index < max_size):
+			size = struct.unpack('<H', self.indata[index: index + 2])[0]
+			if size:
+				print('index1: ' + hex(index + 2))
+				print('size: ' + str(size - 2))
+				item_type = struct.unpack('<B', self.indata[index + 2 : index + 3])[0]
+				print('type' + str(item_type))
+				item = self.clean_line(self.indata[index + 3: index + size].replace(b'\x00', b''))
+				print('item: ' + item)
+				# i = 2
+				# while i < size:
+				# 	print(chr(self.indata[index + i]))
+				# 	i += 1
+				self.targets['items'].append(item)
+				index += size
+				print('index2: ' + hex(index))
+				print()
+			#           self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
+			#           print('[%s] %s' % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') ))
+			#           print(self.indata[ index: index + ItemID['size'] ].hex()[:50])
+			#           print(self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00',''))
+		# print(self.targets)
 
 
 	def parse_string_data(self, index):
