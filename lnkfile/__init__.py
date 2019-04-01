@@ -510,13 +510,13 @@ class lnk_file(object):
 			self.loc_information['location'] = 'VolumeIDAndLocalBasePath'
 			self.loc_information['location_info'] = {
 				'VolumeIDSize':
-					struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
+					struct.unpack('<I', self.indata[local_index + 0: local_index + 4])[0],
 				'rDriveType':
-					struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
+					struct.unpack('<I', self.indata[local_index + 4: local_index + 8])[0],
 				'DriveSerialNumber': hex(
-					struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0]),
+					struct.unpack('<I', self.indata[local_index + 8: local_index + 12])[0]),
 				'VolumeLabelOffset':
-					struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
+					struct.unpack('<I', self.indata[local_index + 12: local_index + 16])[0],
 			}
 
 			if self.loc_information['location_info']['rDriveType'] < len(self.DRIVE_TYPES):
