@@ -319,17 +319,16 @@ class lnk_file(object):
 
 			self.lnk_header['guid'] = lnk_header[4:20].hex()
 
-			self.lnk_header['r_link_flags'] = struct.unpack('<i', lnk_header[20:24])[0]
-			self.lnk_header['r_file_flags'] = struct.unpack('<i', lnk_header[24:28])[0]
+			self.lnk_header['r_link_flags'] = struct.unpack('<I', lnk_header[20:24])[0]
+			self.lnk_header['r_file_flags'] = struct.unpack('<I', lnk_header[24:28])[0]
 
 			self.lnk_header['creation_time'] = struct.unpack('<q', lnk_header[28:36])[0]
 			self.lnk_header['accessed_time'] = struct.unpack('<q', lnk_header[36:44])[0]
 			self.lnk_header['modified_time'] = struct.unpack('<q', lnk_header[44:52])[0]
 
-			self.lnk_header['file_size'] = struct.unpack('<i', lnk_header[52:56])[0]
-			self.lnk_header['r_file_size'] = lnk_header[52:56].hex()
+			self.lnk_header['file_size'] = struct.unpack('<I', lnk_header[52:56])[0]
 
-			self.lnk_header['icon_index'] = struct.unpack('<I', lnk_header[56:60])[0]
+			self.lnk_header['icon_index'] = struct.unpack('<i', lnk_header[56:60])[0]
 			try:
 				if struct.unpack('<i', lnk_header[60:64])[0] < len(self.WINDOWSTYLES):
 					self.lnk_header['windowstyle'] = self.WINDOWSTYLES[
@@ -357,8 +356,8 @@ class lnk_file(object):
 				self.lnk_header['r_hotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
 
 			self.lnk_header['reserved0'] = struct.unpack('<H', lnk_header[66:68])[0]
-			self.lnk_header['reserved1'] = struct.unpack('<i', lnk_header[68:72])[0]
-			self.lnk_header['reserved2'] = struct.unpack('<i', lnk_header[72:76])[0]
+			self.lnk_header['reserved1'] = struct.unpack('<I', lnk_header[68:72])[0]
+			self.lnk_header['reserved2'] = struct.unpack('<I', lnk_header[72:76])[0]
 		except Exception as e:
 			if self.debug:
 				print('Exception parsing LNK Header: %s' % e)
@@ -510,13 +509,13 @@ class lnk_file(object):
 		--------------------------------------------------------------------------------------------------
 		"""
 		self.loc_information = {
-			'link_info_size': struct.unpack('<i', self.indata[index: index + 4])[0],
-			'link_info_header_size': struct.unpack('<i', self.indata[index + 4: index + 8])[0],
-			'link_info_flags': struct.unpack('<i', self.indata[index + 8: index + 12])[0],
-			'volume_id_offset': struct.unpack('<i', self.indata[index + 12: index + 16])[0],
-			'local_base_path_offset': struct.unpack('<i', self.indata[index + 16: index + 20])[0],
-			'common_network_relative_link_offset': struct.unpack('<i', self.indata[index + 20: index + 24])[0],
-			'common_path_suffix_offset': struct.unpack('<i', self.indata[index + 24: index + 28])[0],
+			'link_info_size': struct.unpack('<I', self.indata[index: index + 4])[0],
+			'link_info_header_size': struct.unpack('<I', self.indata[index + 4: index + 8])[0],
+			'link_info_flags': struct.unpack('<I', self.indata[index + 8: index + 12])[0],
+			'volume_id_offset': struct.unpack('<I', self.indata[index + 12: index + 16])[0],
+			'local_base_path_offset': struct.unpack('<I', self.indata[index + 16: index + 20])[0],
+			'common_network_relative_link_offset': struct.unpack('<I', self.indata[index + 20: index + 24])[0],
+			'common_path_suffix_offset': struct.unpack('<I', self.indata[index + 24: index + 28])[0],
 		}
 
 		if self.loc_information['link_info_flags'] & 0x0001:
