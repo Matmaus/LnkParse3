@@ -815,6 +815,7 @@ class lnk_file(object):
 		|         <u_int16> FillAttributes             |        <u_int16> PopupFillAttributes            |
 		--------------------------------------------------------------------------------------------------
 		|         <int16> ScreenBufferSizeX            |             <int16> ScreenBufferSizeY           |
+		--------------------------------------------------------------------------------------------------
 		|             <int16> WindowSizeX              |               <int16> WindowSizeY               |
 		--------------------------------------------------------------------------------------------------
 		|            <int16> WindowOriginX             |              <int16> WindowOriginY              |
