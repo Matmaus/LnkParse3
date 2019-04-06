@@ -538,14 +538,21 @@ class lnk_file(object):
 			--------------------------------------------------------------------------------------------------
 			"""
 			if self.loc_information['link_info_header_size'] >= 36:
-				self.loc_information['o_local_base_path_offset_unicode'] = \
-						struct.unpack('<i', self.indata[index + 28: index + 32])[0]
-				local_index = index + self.loc_information['o_local_base_path_offset_unicode']
-				self.loc_information['o_local_base_path_offset_unicode'] = \
-						struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+				self.loc_information['local_base_path_offset_unicode'] = \
+						struct.unpack('<I', self.indata[index + 28: index + 32])[0]
+				local_index = index + self.loc_information['local_base_path_offset_unicode']
+				self.loc_information['local_base_path_offset_unicode'] = self.read_unicode_string(local_index)
+
+				self.loc_information['common_path_suffix_offset_unicode'] = \
+						struct.unpack('<I', self.indata[index + 32: index + 36])[0]
+				local_index = index + self.loc_information['common_path_suffix_offset_unicode']
+				self.loc_information['common_path_suffix_unicode'] = self.read_unicode_string(local_index)
 			else:
 				local_index = index + self.loc_information['local_base_path_offset']
 				self.loc_information['local_base_path'] = self.read_string(local_index)
+
+				local_index = index + self.loc_information['common_path_suffix_offset']
+				self.loc_information['common_path_suffix'] = self.read_string(local_index)
 
 			local_index = index + self.loc_information['volume_id_offset']
 			self.loc_information['location'] = 'Local'
@@ -564,13 +571,12 @@ class lnk_file(object):
 				self.loc_information['location_info']['drive_type'] = self.DRIVE_TYPES[self.loc_information['location_info']['r_drive_type']]
 
 			if self.loc_information['location_info']['volume_label_offset'] != 20:
-				length = self.loc_information['location_info']['volume_id_size'] - self.loc_information['location_info']['volume_label_offset']
 				local_index = index + self.loc_information['volume_id_offset'] + self.loc_information['location_info']['volume_label_offset']
-				self.loc_information['location_info']['volume_label'] = self.clean_line(self.indata[local_index: local_index + length].replace(b'\x00', b''))
+				self.loc_information['location_info']['volume_label'] = self.read_string(local_index)
 			else:
-				self.loc_information['location_info']['o_volume_label_offset_unicode'] = struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0]
-				local_index = index + self.loc_information['volume_id_offset'] + self.loc_information['location_info']['o_volume_label_offset_unicode']
-				self.loc_information['location_info']['o_volume_label_unicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+				self.loc_information['location_info']['volume_label_offset_unicode'] = struct.unpack('<I', self.indata[local_index + 16: local_index + 20])[0]
+				local_index = index + self.loc_information['volume_id_offset'] + self.loc_information['location_info']['volume_label_offset_unicode']
+				self.loc_information['location_info']['volume_label_unicode'] = self.read_unicode_string(local_index)
 
 		elif self.loc_information['link_info_flags'] & 0x0002:
 			"""
@@ -604,52 +610,41 @@ class lnk_file(object):
 			|                                            ? B                                                 |
 			--------------------------------------------------------------------------------------------------
 			"""
-			if self.loc_information['link_info_header_size'] >= 36:
-				self.loc_information['o_common_path_suffix_offset_unicode'] = \
-						struct.unpack('<i', self.indata[index + 28: index + 32])[0]
-				local_index = index + self.loc_information['o_common_path_suffix_offset_unicode']
-				self.loc_information['o_common_path_suffix_unicode'] = struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-			else:
-				local_index = index + self.loc_information['common_path_suffix_offset']
-				self.loc_information['common_path_suffix'] = \
-						struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-
 			local_index = index + self.loc_information['common_network_relative_link_offset']
 			self.loc_information['location'] = 'Network'
 			self.loc_information['location_info'] = {
 				'common_network_relative_link_size':
-					struct.unpack('<i', self.indata[local_index + 0: local_index + 4])[0],
+					struct.unpack('<I', self.indata[local_index + 0: local_index + 4])[0],
 				'common_retwork_relative_link_flags':
-					struct.unpack('<i', self.indata[local_index + 4: local_index + 8])[0],
+					struct.unpack('<I', self.indata[local_index + 4: local_index + 8])[0],
 				'net_name_offset':
-					struct.unpack('<i', self.indata[local_index + 8: local_index + 12])[0],
+					struct.unpack('<I', self.indata[local_index + 8: local_index + 12])[0],
 				'device_name_offset':
-					struct.unpack('<i', self.indata[local_index + 12: local_index + 16])[0],
-				'network_provider_type':
-					struct.unpack('<i', self.indata[local_index + 16: local_index + 20])[0],
+					struct.unpack('<I', self.indata[local_index + 12: local_index + 16])[0],
+				'r_network_provider_type': hex(
+					struct.unpack('<I', self.indata[local_index + 16: local_index + 20])[0]),
 			}
 
-			if self.loc_information['location_info']['o_net_name_offset'] > 20:
-				self.loc_information['location_info']['o_net_name_offset_unicode'] = \
-				struct.unpack('<i', self.indata[local_index + 20: index + 24])[0]
-				local_index = index + self.loc_information['location_info']['o_net_name_offset_unicode']
-				self.loc_information['location_info']['o_net_name_offset_unicode'] = \
-					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+			if self.loc_information['location_info']['common_retwork_relative_link_flags'] & 0x0002:
+				if self.loc_information['location_info']['r_network_provider_type'] in self.NETWORK_PROVIDER_TYPES:
+					self.loc_information['location_info']['network_provider_type'] = self.NETWORK_PROVIDER_TYPES[self.loc_information['location_info']['r_network_provider_type']]
 
-				self.loc_information['location_info']['o_device_name_offset_unicode'] = \
-				struct.unpack('<i', self.indata[local_index + 24: index + 28])[0]
-				local_index = self.loc_information['location_info']['o_device_name_offset_unicode']
-				self.loc_information['location_info']['o_device_name_offset_unicode'] = \
-					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+			if self.loc_information['location_info']['net_name_offset'] > 20:
+				self.loc_information['location_info']['net_name_offset_unicode'] = \
+				struct.unpack('<I', self.indata[local_index + 20: index + 24])[0]
+				local_index = index + self.loc_information['location_info']['common_network_relative_link_offset'] + self.loc_information['location_info']['net_name_offset_unicode']
+				self.loc_information['location_info']['net_name_unicode'] = self.read_unicode_string(local_index)
+
+				self.loc_information['location_info']['device_name_offset_unicode'] = \
+				struct.unpack('<I', self.indata[local_index + 24: index + 28])[0]
+				local_index = index + self.loc_information['location_info']['common_network_relative_link_offset'] + self.loc_information['location_info']['device_name_offset_unicode']
+				self.loc_information['location_info']['device_name_unicode'] = self.read_unicode_string(local_index)
 			else:
-				local_index = index + self.loc_information['location_info']['o_net_name_offset']
-				self.loc_information['location_info']['o_net_name_offset'] = \
-					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
+				local_index = index + self.loc_information['common_network_relative_link_offset'] + self.loc_information['location_info']['net_name_offset']
+				self.loc_information['location_info']['net_name'] = self.read_string(local_index)
 
-				local_index = self.loc_information['location_info']['o_device_name_offset']
-				self.loc_information['location_info']['o_device_name_offset'] = \
-					struct.unpack('<i', self.indata[local_index: local_index + 4])[0]
-
+				local_index = index + self.loc_information['common_network_relative_link_offset'] + self.loc_information['location_info']['device_name_offset']
+				self.loc_information['location_info']['device_name'] = self.read_string(local_index)
 
 	# Still in development // repair
 # 	def parse_targets(self, index):
