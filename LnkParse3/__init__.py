@@ -935,7 +935,7 @@ class lnk_file(object):
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK']['version'] = \
 			struct.unpack('<I', self.indata[index + 12: index + 16])[0]
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
-			'machine_identifier'] = self.clean_line(self.indata[index + 16: index + 32])
+			'machine_identifier'] = self.read_string(index + 16)
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
 			'droid_volume_identifier'] = self.indata[index + 32: index + 48].hex()
 		self.extraBlocks['DISTRIBUTED_LINK_TRACKER_BLOCK'][
