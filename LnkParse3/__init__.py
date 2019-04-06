@@ -2,7 +2,7 @@
 
 __description__ = 'Windows Shortcut file (LNK) parser'
 __author__ = 'Matúš Jasnický'
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 
 import json
 import struct
