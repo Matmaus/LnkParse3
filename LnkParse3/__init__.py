@@ -1261,11 +1261,11 @@ class lnk_file(object):
 			res['header']['modified_time'] = self.ms_time_to_unix_time(res['header']['modified_time'])
 
 		if not get_all:
+			res.pop('target', None)
 			res['header'].pop('header_size', None)
 			res['header'].pop('reserved0', None)
 			res['header'].pop('reserved1', None)
 			res['header'].pop('reserved2', None)
-			res['target'].pop('size', None)
 			res['link_info'].pop('link_info_size', None)
 			res['link_info'].pop('link_info_header_size', None)
 			res['link_info'].pop('volume_id_offset', None)
