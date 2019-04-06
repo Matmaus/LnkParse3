@@ -1065,12 +1065,12 @@ class lnk_file(object):
 		|                                             ? B                                                |
 		--------------------------------------------------------------------------------------------------
 		"""
-		self.extraBlocks['METADATA_PRPERTIES_BLOCK'] = {}
-		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['size'] = size
-		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['storage_size'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
-		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['version'] = hex(struct.unpack('<I', self.indata[index + 12: index + 16])[0])
-		self.extraBlocks['METADATA_PRPERTIES_BLOCK']['format_id'] = self.indata[index + 16: index + 32].hex()
-		if self.extraBlocks['METADATA_PRPERTIES_BLOCK']['format_id'].upper() == 'D5CDD5052E9C101B939708002B2CF9AE':
+		self.extraBlocks['METADATA_PROPERTIES_BLOCK'] = {}
+		self.extraBlocks['METADATA_PROPERTIES_BLOCK']['size'] = size
+		self.extraBlocks['METADATA_PROPERTIES_BLOCK']['storage_size'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
+		self.extraBlocks['METADATA_PROPERTIES_BLOCK']['version'] = hex(struct.unpack('<I', self.indata[index + 12: index + 16])[0])
+		self.extraBlocks['METADATA_PROPERTIES_BLOCK']['format_id'] = self.indata[index + 16: index + 32].hex()
+		if self.extraBlocks['METADATA_PROPERTIES_BLOCK']['format_id'].upper() == 'D5CDD5052E9C101B939708002B2CF9AE':
 			# Serialized Property Value (String Name)
 			index += 32
 			result = []
@@ -1086,7 +1086,7 @@ class lnk_file(object):
 				result.append(value)
 				index += 4 + 4 + 2 + value['name_size'] + value['value_size']
 
-			self.extraBlocks['METADATA_PRPERTIES_BLOCK']['serialized_property_value_string'] = result
+			self.extraBlocks['METADATA_PROPERTIES_BLOCK']['serialized_property_value_string'] = result
 		else:
 			# Serialized Property Value (Integer Name)
 			try:
@@ -1103,7 +1103,7 @@ class lnk_file(object):
 					result.append(value)
 					index += value['value_size']
 
-				self.extraBlocks['METADATA_PRPERTIES_BLOCK']['serialized_property_value_integer'] = result
+				self.extraBlocks['METADATA_PROPERTIES_BLOCK']['serialized_property_value_integer'] = result
 			except Exception as e:
 				print(e)
 
