@@ -764,6 +764,8 @@ class lnk_file(object):
 					self.EXTRA_SIGS[sig](index, size)
 
 					index += (size)
+					if size == 0:
+						break
 				except Exception as e:
 					if self.debug:
 						print('Exception in EXTRABLOCK Parsing: %s ' % e)
