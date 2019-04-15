@@ -793,8 +793,8 @@ class lnk_file(object):
 		"""
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK'] = {}
 		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['size'] = size
-		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['TargetAnsi'] = self.read_string(index + 8)
-		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['TargetUnicode'] = self.read_unicode_string(index + 268)
+		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['target_ansi'] = self.read_string(index + 8)
+		self.extraBlocks['ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK']['target_unicode'] = self.read_unicode_string(index + 268)
 
 
 	def parse_console_block(self, index, size):
