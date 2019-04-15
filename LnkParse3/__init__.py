@@ -718,7 +718,7 @@ class lnk_file(object):
 		index = 0
 
 		# Parse header
-		if not self.parse_lnk_header():
+		if not self.parse_lnk_header() and self.debug:
 			print('Failed Header Check')
 		self.parse_link_flags()
 		self.parse_file_flags()
@@ -1069,6 +1069,10 @@ class lnk_file(object):
 		self.extraBlocks['METADATA_PROPERTIES_BLOCK']['storage_size'] = struct.unpack('<I', self.indata[index + 8: index + 12])[0]
 		self.extraBlocks['METADATA_PROPERTIES_BLOCK']['version'] = hex(struct.unpack('<I', self.indata[index + 12: index + 16])[0])
 		self.extraBlocks['METADATA_PROPERTIES_BLOCK']['format_id'] = self.indata[index + 16: index + 32].hex()
+
+		if not self.debug:
+			return
+
 		if self.extraBlocks['METADATA_PROPERTIES_BLOCK']['format_id'].upper() == 'D5CDD5052E9C101B939708002B2CF9AE':
 			# Serialized Property Value (String Name)
 			index += 32
@@ -1104,7 +1108,8 @@ class lnk_file(object):
 
 				self.extraBlocks['METADATA_PROPERTIES_BLOCK']['serialized_property_value_integer'] = result
 			except Exception as e:
-				print(e)
+				if self.debug:
+					print(e)
 
 
 	def parse_knownFolder_block(self, index, size):
