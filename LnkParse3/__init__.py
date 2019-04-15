@@ -351,7 +351,6 @@ class lnk_file(object):
 			except Exception as e:
 				if self.debug:
 					print('Exception parsing HOTKEY part of header: %s' % e)
-					print(lnk_header[65:66].hex())
 				self.lnk_header['hotkey'] = hex(struct.unpack('<H', lnk_header[64:66])[0])
 				self.lnk_header['r_hotkey'] = struct.unpack('<H', lnk_header[64:66])[0]
 
