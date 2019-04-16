@@ -2,7 +2,7 @@
 
 __description__ = 'Windows Shortcut file (LNK) parser'
 __author__ = 'Matúš Jasnický'
-__version__ = '0.3.2'
+__version__ = '0.3.3'
 
 import sys
 import LnkParse3
