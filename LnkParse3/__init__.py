@@ -164,6 +164,14 @@ class lnk_file(object):
 			0x80: 'My Games'
 		}
 
+		self.SHELL_ITEM_SHEL_FS_FOLDER = {
+			0x01: 'Is directory',
+			0x02: 'Is file',
+			0x04: 'Has Unicode strings',
+			0x08: 'Unknown',
+			0x80: 'Has CLSID'
+		}
+
 		self.NETWORK_PROVIDER_TYPES = {
 			'0x1A000': 'WNNC_NET_AVID',
 			'0x1B000': 'WNNC_NET_DOCUSPACE',
@@ -1229,8 +1237,43 @@ class lnk_file(object):
 
 
 	def parse_clsid_shell_fs_folder(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|                     0-7b                     |                      8-15b                      |
+		--------------------------------------------------------------------------------------------------
+		|       ClassTypeIndicator == 0x30-0x3F        |                   UnknownValue                  |
+		--------------------------------------------------------------------------------------------------
+		|                                      <u_int16> FileSize                                        |
+		|                                            4 B                                                 |
+		--------------------------------------------------------------------------------------------------
+		|                         <dos_timestamp> LastModificationDateAndTime                            |
+		|                                            4 B                                                 |
+		--------------------------------------------------------------------------------------------------
+		|                                     FileAttributeFlags                                         |
+		--------------------------------------------------------------------------------------------------
+		|                               <str/unicode_str> PrimaryName                                    |
+		|                                            ? B                                                 |
+		--------------------------------------------------------------------------------------------------
+		|                                         UnknownData                                            |
+		|                                            ? B                                                 |
+		--------------------------------------------------------------------------------------------------
+		"""
 		if self.debug:
 			print('parse_clsid_shell_fs_folder')
+
+		item = {}
+		item['class'] = 'File entry'
+		item['flags'] = self.SHELL_ITEM_SHEL_FS_FOLDER[struct.unpack('<B', self.indata[index: index + 1])[0] & 0x0F]
+		# item['unknown'] = struct.unpack('<B', self.indata[index + 1: index + 2])[0]
+		item['file_size'] = struct.unpack('<I', self.indata[index + 2: index + 6])[0]
+		item['modification_time'] = self.dos_time_to_unix_time(struct.unpack('<I', self.indata[index + 6: index + 10])[0])
+		item['file_attribute_flags'] = struct.unpack('<H', self.indata[index + 10: index + 12])[0]
+		if item['flags'] == 'Has Unicode strings':
+			item['primary_name'] = self.read_unicode_string(index + 12)
+		else:
+			item['primary_name'] = self.read_string(index + 12)
+
+		return item
 
 
 	def parse_clsid_network_location(self, index, size):
@@ -1300,6 +1343,38 @@ class lnk_file(object):
 			return ''
 		try:
 			return datetime.datetime.fromtimestamp(time / 10000000.0 - 11644473600).strftime('%Y-%m-%d %H:%M:%S')
+		except Exception:
+			return 'Invalid time'
+
+
+	@staticmethod
+	def dos_time_to_unix_time(time):
+		"""
+		The DOS date/time format is a bitmask:
+
+               24                16                 8                 0
+		+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
+		|Y|Y|Y|Y|Y|Y|Y|M| |M|M|M|D|D|D|D|D| |h|h|h|h|h|m|m|m| |m|m|m|s|s|s|s|s|
+		+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
+		 \___________/\________/\_________/ \________/\____________/\_________/
+		    year        month       day      hour       minute        second
+
+		The year is stored as an offset from 1980.
+		Seconds are stored in two-second increments.
+		(So if the "second" value is 15, it actually represents 30 seconds.)
+		Source: https://stackoverflow.com/questions/15763259/unix-timestamp-to-fat-timestamp
+		https://docs.microsoft.com/pl-pl/windows/desktop/api/winbase/nf-winbase-dosdatetimetofiletime
+		https://github.com/log2timeline/dfdatetime/wiki/Date-and-time-values
+		"""
+		if time == 0:
+			return ''
+		try:
+			year = ((time & 0xFE000000) >> 25) + 1980
+			month = ((time & 0x01E00000) >> 21)
+			day = ((time & 0x001F0000) >> 16)
+			date = str(day) + '.' + str(month) + '.' + str(year)
+
+			return date
 		except Exception:
 			return 'Invalid time'
 
