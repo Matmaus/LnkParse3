@@ -1157,19 +1157,14 @@ class lnk_file(object):
 		print('\tLink Flags: %s - (%s)' % (self.format_linkFlags(), self.lnk_header['r_link_flags']))
 		print('\tFile Flags: %s - (%s)' % (self.format_fileFlags(), self.lnk_header['r_file_flags']))
 		print('')
-		try:
-			print('\tCreation Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['creation_time'])))
-			print('\tModified Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['modified_time'])))
-			print('\tAccessed Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['accessed_time'])))
-			print('')
-		except:
-			print('\tProblem Parsing Timestamps')
-		print(
-			'\tFile Size: %s (r: %s)' % (str(self.lnk_header['file_size']), str(len(self.indata))))
+		print('\tCreation Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['creation_time'])))
+		print('\tModified Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['modified_time'])))
+		print('\tAccessed Timestamp: %s' % (self.ms_time_to_unix_time(self.lnk_header['accessed_time'])))
+		print('')
+		print('\tFile Size: %s (r: %s)' % (str(self.lnk_header['file_size']), str(len(self.indata))))
 		print('\tIcon Index: %s ' % (str(self.lnk_header['icon_index'])))
 		print('\tWindow Style: %s ' % (str(self.lnk_header['windowstyle'])))
 		print('\tHotKey: %s ' % (str(self.lnk_header['hotkey'])))
-
 		print('')
 
 		for rline in self.data:
