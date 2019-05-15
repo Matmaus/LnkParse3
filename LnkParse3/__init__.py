@@ -1208,8 +1208,24 @@ class lnk_file(object):
 
 
 	def parse_clsid_my_computer(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|                     0-7b                     |                      8-15b                      |
+		--------------------------------------------------------------------------------------------------
+		|       ClassTypeIndicator == 0x20-0x2F        |                   UnknownData                   |
+		------------------------------------------------                                                 |
+		|                                             ? B                                                |
+		--------------------------------------------------------------------------------------------------
+		"""
 		if self.debug:
 			print('parse_clsid_my_computer')
+
+		item = {}
+		item['class'] = 'Volume Item'
+		item['flags'] = hex(struct.unpack('<B', self.indata[index: index + 1])[0] & 0x0F)
+		item['data'] = self.read_string(index + 1)
+
+		return item
 
 
 	def parse_clsid_shell_fs_folder(self, index, size):
