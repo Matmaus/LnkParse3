@@ -131,6 +131,27 @@ class lnk_file(object):
 			'a000000c': self.parse_shellItem_block,
 		}
 
+		self.SHELL_ITEM_CLASSESS = {
+			0x00: self.parse_clsid_unknown,
+			0x01: self.parse_clsid_unknown,
+			0x17: self.parse_clsid_unknown,
+			0x1e: self.parse_clsid_root_folder,
+			0x1f: self.parse_clsid_root_folder,
+			0x20: self.parse_clsid_my_computer,
+			0x30: self.parse_clsid_shell_fs_folder,
+			0x40: self.parse_clsid_network_location,
+			0x52: self.parse_clsid_compressed_folder,
+			0x61: self.parse_clsid_internet,
+			0x70: self.parse_clsid_control_panel,
+			0x71: self.parse_clsid_control_panel,
+			0x72: self.parse_clsid_printers,
+			0x73: self.parse_clsid_common_places_folder,
+			0x74: self.parse_clsid_users_files_folder,
+			0x76: self.parse_clsid_unknown,
+			0x80: self.parse_clsid_unknown,
+			0xff: self.parse_clsid_unknown,
+		}
+
 		self.NETWORK_PROVIDER_TYPES = {
 			'0x1A000': 'WNNC_NET_AVID',
 			'0x1B000': 'WNNC_NET_DOCUSPACE',
@@ -645,50 +666,39 @@ class lnk_file(object):
 				local_index = index + self.loc_information['common_network_relative_link_offset'] + self.loc_information['location_info']['device_name_offset']
 				self.loc_information['location_info']['device_name'] = self.read_string(local_index)
 
-	# Still in development // repair
-# 	def parse_targets(self, index):
-# 		max_size = self.targets['size'] + index
 
-# 		while ( index  < max_size ):
-# 			ItemID = {
-# 				"size": struct.unpack('<H', self.indata[index : index + 2])[0] ,
-# 				"type": struct.unpack('<B', self.indata[index + 2 : index + 3])[0] ,
-# 					}
-# 			index += 3
-
-# #			self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
-# #			print "[%s] %s" % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') )
-# #			print self.indata[ index: index + ItemID['size'] ].encode('hex')[:50]
-# 			index += ItemID['size']
-# #			print self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00','')
-
-	# Still in development // repair
 	def parse_targets(self, index):
-		return
+		# Source: https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc
+		# https://github.com/libyal/liblnk
+		self.targets['index'] = index
 		max_size = self.targets['size'] + index - 2
 
 		while (index < max_size):
 			size = struct.unpack('<H', self.indata[index: index + 2])[0]
 			if size:
-				print('index1: ' + hex(index + 2))
-				print('size: ' + str(size - 2))
 				item_type = struct.unpack('<B', self.indata[index + 2 : index + 3])[0]
-				print('type' + str(item_type))
-				item = self.clean_line(self.indata[index + 3: index + size].replace(b'\x00', b''))
-				print('item: ' + item)
-				# i = 2
-				# while i < size:
-				# 	print(chr(self.indata[index + i]))
-				# 	i += 1
-				self.targets['items'].append(item)
+
+				if self.debug:
+					item = self.clean_line(self.indata[index + 3: index + size].replace(b'\x00', b''))
+					print()
+					print('index: ' + hex(index + 2))
+					print('size: ' + str(size - 2))
+					print('type:' + hex(item_type))
+					print('item: ' + item)
+
+				try:
+					target = self.SHELL_ITEM_CLASSESS[item_type](index + 2, size)
+				except:
+					try:
+						target = self.SHELL_ITEM_CLASSESS[item_type & 0x70](index + 2, size)
+					except:
+						pass
+					else:
+						self.targets['items'].append(target)
+				else:
+					self.targets['items'].append(target)
+
 				index += size
-				print('index2: ' + hex(index))
-				print()
-			#           self.targets['items'].append( self.indata[index: index + ItemID['size']].replace('\x00','') )
-			#           print('[%s] %s' % (ItemID['size'], hex(ItemID['type']) )#, self.indata[index: index + ItemID['size']].replace('\x00','') ))
-			#           print(self.indata[ index: index + ItemID['size'] ].hex()[:50])
-			#           print(self.indata[index + 2: index + 2 + ItemID['size']].replace('\x00',''))
-		# print(self.targets)
 
 
 	def parse_string_data(self, index):
@@ -1150,6 +1160,61 @@ class lnk_file(object):
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK'] = {}
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['size'] = size
 		self.extraBlocks['SHELL_ITEM_IDENTIFIER_BLOCK']['id_list'] = '' # TODO
+
+
+	def parse_clsid_unknown(self, index, size):
+		if self.debug:
+			print('parse_clsid_unknown')
+
+
+	def parse_clsid_root_folder(self, index, size):
+		if self.debug:
+			print('parse_clsid_root_folder')
+
+
+	def parse_clsid_my_computer(self, index, size):
+		if self.debug:
+			print('parse_clsid_my_computer')
+
+
+	def parse_clsid_shell_fs_folder(self, index, size):
+		if self.debug:
+			print('parse_clsid_shell_fs_folder')
+
+
+	def parse_clsid_network_location(self, index, size):
+		if self.debug:
+			print('parse_clsid_network_location')
+
+
+	def parse_clsid_compressed_folder(self, index, size):
+		if self.debug:
+			print('parse_clsid_compressed_folder')
+
+
+	def parse_clsid_internet(self, index, size):
+		if self.debug:
+			print('parse_clsid_internet')
+
+
+	def parse_clsid_control_panel(self, index, size):
+		if self.debug:
+			print('parse_clsid_control_panel')
+
+
+	def parse_clsid_printers(self, index, size):
+		if self.debug:
+			print('parse_clsid_printers')
+
+
+	def parse_clsid_common_places_folder(self, index, size):
+		if self.debug:
+			print('parse_clsid_common_places_folder')
+
+
+	def parse_clsid_users_files_folder(self, index, size):
+		if self.debug:
+			print('parse_clsid_users_files_folder')
 
 
 	def print_lnk_file(self):
