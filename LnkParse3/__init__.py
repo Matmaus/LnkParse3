@@ -759,8 +759,7 @@ class lnk_file(object):
 			try:
 				self.targets['size'] = struct.unpack('<H', self.indata[index: index + 2])[0]
 				index += 2
-				if self.debug:
-					self.parse_targets(index)
+				self.parse_targets(index)
 				index += self.targets['size']
 			except Exception as e:
 				if self.debug:
@@ -1484,7 +1483,6 @@ class lnk_file(object):
 			res['header']['modified_time'] = self.ms_time_to_unix_time(res['header']['modified_time'])
 
 		if not get_all:
-			res.pop('target', None)
 			res['header'].pop('header_size', None)
 			res['header'].pop('reserved0', None)
 			res['header'].pop('reserved1', None)
@@ -1502,6 +1500,10 @@ class lnk_file(object):
 				res['link_info']['location_info'].pop('common_network_relative_link_size', None)
 				res['link_info']['location_info'].pop('net_name_offset', None)
 				res['link_info']['location_info'].pop('device_name_offset', None)
+			res['target'].pop('index', None)
+			if 'items' in res['target']:
+				for item in res['target']['items']:
+					item.pop('modification_time', None)
 
 		return res
 
