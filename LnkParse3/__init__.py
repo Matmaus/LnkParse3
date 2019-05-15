@@ -152,6 +152,18 @@ class lnk_file(object):
 			0xff: self.parse_clsid_unknown,
 		}
 
+		self.SHELL_ITEM_ROOT_FOLDER_SORT_INDEX = {
+			0x00: 'Internet Explorer',
+			0x42: 'Libraries',
+			0x44: 'Users',
+			0x48: 'My Documents',
+			0x50: 'My Computer',
+			0x58: 'My Networs Places/Network',
+			0x60: 'Recycle Bin',
+			0x70: 'Internet Explorer',
+			0x80: 'My Games'
+		}
+
 		self.NETWORK_PROVIDER_TYPES = {
 			'0x1A000': 'WNNC_NET_AVID',
 			'0x1B000': 'WNNC_NET_DOCUSPACE',
@@ -1168,8 +1180,31 @@ class lnk_file(object):
 
 
 	def parse_clsid_root_folder(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|                     0-7b                     |                      8-15b                      |
+		--------------------------------------------------------------------------------------------------
+		|           ClassTypeIndicator == 0x1F         |       SortIndex == (0x00, 0x42, ... 0x80)       |
+		--------------------------------------------------------------------------------------------------
+		|                                    <GUID> ShellFolderID                                        |
+		|                                            16 B                                                |
+		--------------------------------------------------------------------------------------------------
+		|                                        ExtensionBLock                                          |
+		|                                             ? B                                                |
+		--------------------------------------------------------------------------------------------------
+		"""
 		if self.debug:
 			print('parse_clsid_root_folder')
+
+		item = {}
+		item['class'] = 'Root Folder'
+		sort_index = struct.unpack('<B', self.indata[index + 1 : index + 2])[0]
+		item['sort_index'] = self.SHELL_ITEM_ROOT_FOLDER_SORT_INDEX[sort_index]
+		item['guid'] = self.indata[index + 2: index + 18].hex()
+		if size > 20:
+			pass # extension block
+
+		return item
 
 
 	def parse_clsid_my_computer(self, index, size):
