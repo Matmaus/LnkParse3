@@ -1277,8 +1277,42 @@ class lnk_file(object):
 
 
 	def parse_clsid_network_location(self, index, size):
+		"""
+		--------------------------------------------------------------------------------------------------
+		|                     0-7b                     |                      8-15b                      |
+		--------------------------------------------------------------------------------------------------
+		|       ClassTypeIndicator == 0x40-0x4F        |                   UnknownValue                  |
+		--------------------------------------------------------------------------------------------------
+		|                                        ContentFlags                                            |
+		--------------------------------------------------------------------------------------------------
+		|                                       <str> Location                                           |
+		|                                            ? B                                                 |
+		--------------------------------------------------------------------------------------------------
+		|                                      <str> Description                                         |
+		|                                            ? B                                                 |
+		--------------------------------------------------------------------------------------------------
+		|                                       <str> Comments                                           |
+		|                                            ? B                                                 |
+		--------------------------------------------------------------------------------------------------
+		|                                       <str> Unknown                                            |
+		|                                            ? B                                                 |
+		--------------------------------------------------------------------------------------------------
+		"""
 		if self.debug:
 			print('parse_clsid_network_location')
+
+		item = {}
+		item['class'] = 'Network location'
+		item['flags'] = self.SHELL_ITEM_SHEL_FS_FOLDER[struct.unpack('<B', self.indata[index: index + 1])[0] & 0x0F]
+		# item['unknown'] = struct.unpack('<B', self.indata[index + 1: index + 2])[0]
+		item['content_flags'] = struct.unpack('<I', self.indata[index + 2: index + 6])[0]
+		item['location'] = self.read_string(index + 6)
+		# if item['content_flags'] & 0x80:
+		# 	item['description'] = self.read_string(index + 6)
+		# if item['content_flags'] & 0x40:
+		# 	item['comments'] = self.read_string(index + 6)
+
+		return item
 
 
 	def parse_clsid_compressed_folder(self, index, size):
