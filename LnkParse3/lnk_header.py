@@ -188,7 +188,7 @@ class LnkHeader:
         0x00008000: "NoPidlAlias",
         # TODO: Unused2
         # A bit that is undefined and MUST be ignored.
-        0x000100000: "Reserved1",  # FIXME: trailing 0
+        0x00010000: "Reserved1",
         # The shell link is saved with a ShimDataBlock (section 2.5.8).
         0x00020000: "RunWithShimLayer",
         # The TrackerDataBlock (section 2.5.10) is ignored.
