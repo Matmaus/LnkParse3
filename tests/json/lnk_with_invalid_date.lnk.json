@@ -1,0 +1,104 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 524427,
+        "r_file_flags": 18,
+        "creation_time": "2020-07-26 17:51:06",
+        "accessed_time": "2020-07-27 01:14:03",
+        "modified_time": "2020-07-26 17:51:09",
+        "file_size": 4096,
+        "icon_index": 0,
+        "windowstyle": "SW_NORMAL",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "IsUnicode",
+            "EnableTargetMetadata"
+        ],
+        "file_flags": [
+            "FILE_ATTRIBUTE_HIDDEN",
+            "FILE_ATTRIBUTE_DIRECTORY"
+        ]
+    },
+    "data": {
+        "relative_path": ".\\.git"
+    },
+    "target": {
+        "size": 473,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xf",
+                "data": "E:\\"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "Razwan Ali"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "REACT NATIVE"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "React-Navigation-with-drawer"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 18,
+                "primary_name": ".git"
+            }
+        ]
+    },
+    "link_info": {
+        "link_info_flags": 1,
+        "local_base_path": "E:\\Razwan Ali\\REACT NATIVE\\React-Navigation-with-drawer\\.git",
+        "common_path_suffix": "",
+        "location": "Local",
+        "location_info": {
+            "volume_id_size": 27,
+            "r_drive_type": 3,
+            "drive_serial_number": "0x16a22e4e",
+            "volume_label_offset": 16,
+            "drive_type": "DRIVE_FIXED",
+            "volume_label": "New Volume"
+        }
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "size": 96,
+            "length": 88,
+            "version": 0,
+            "machine_identifier": "r4pc5",
+            "droid_volume_identifier": "44f84655bbda9644a6540c6775d519cb",
+            "droid_file_identifier": "81a3fc4755cfea11a768a0d3c124012a",
+            "birth_droid_volume_identifier": "44f84655bbda9644a6540c6775d519cb",
+            "birth_droid_file_identifier": "81a3fc4755cfea11a768a0d3c124012a"
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 539,
+            "storage_size": 161,
+            "version": "0x53505331",
+            "format_id": "ed30bdda43008947a7f8d013a4736622"
+        }
+    }
+}

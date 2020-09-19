@@ -1,0 +1,83 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 153,
+        "r_file_flags": 32,
+        "creation_time": "2017-03-22 14:59:50",
+        "accessed_time": "2020-09-16 00:58:43",
+        "modified_time": "2016-06-28 17:39:33",
+        "file_size": 40960,
+        "icon_index": 0,
+        "windowstyle": "SW_NORMAL",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasRelativePath",
+            "HasWorkingDir",
+            "IsUnicode"
+        ],
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ]
+    },
+    "data": {
+        "relative_path": "..\\..\\..\\..\\..\\..\\Program Files\\xt\\xt.exe",
+        "working_directory": "C:\\Program Files\\xt"
+    },
+    "target": {
+        "size": 343,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xf",
+                "data": "C:\\"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 17,
+                "primary_name": "PROGRA~1"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "xt"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is file",
+                "file_size": 40960,
+                "file_attribute_flags": 32,
+                "primary_name": "xt.exe"
+            }
+        ]
+    },
+    "link_info": {},
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "size": 96,
+            "length": 88,
+            "version": 0,
+            "machine_identifier": "minwinpc",
+            "droid_volume_identifier": "182a76f68e337448b4d806de16586e7a",
+            "droid_file_identifier": "fde6604d6cf7ea119d939a6cb2227e78",
+            "birth_droid_volume_identifier": "182a76f68e337448b4d806de16586e7a",
+            "birth_droid_file_identifier": "fde6604d6cf7ea119d939a6cb2227e78"
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 69,
+            "storage_size": 57,
+            "version": "0x53505331",
+            "format_id": "b1166d44ad8d7048a748402ea43d788c"
+        }
+    }
+}

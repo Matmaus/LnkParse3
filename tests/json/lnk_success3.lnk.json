@@ -1,0 +1,107 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 155,
+        "r_file_flags": 32,
+        "creation_time": "2020-08-05 15:33:04",
+        "accessed_time": "2020-08-24 06:02:13",
+        "modified_time": "2020-08-05 15:33:04",
+        "file_size": 558080,
+        "icon_index": 0,
+        "windowstyle": "SW_NORMAL",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "HasWorkingDir",
+            "IsUnicode"
+        ],
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ]
+    },
+    "data": {
+        "relative_path": "..\\..\\..\\Program Files (x86)\\HDZB_USBKEY_NEW1G\\HDZB_USBKEY_NEW1G.exe",
+        "working_directory": "C:\\Program Files (x86)\\Mozilla Firefox"
+    },
+    "target": {
+        "size": 415,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xf",
+                "data": "C:\\"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 17,
+                "primary_name": "PROGRA~2"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "HDZB_U~1"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is file",
+                "file_size": 558080,
+                "file_attribute_flags": 32,
+                "primary_name": "HDZB_U~1.EXE"
+            }
+        ]
+    },
+    "link_info": {
+        "link_info_flags": 1,
+        "local_base_path": "C:\\Program Files (x86)\\HDZB_USBKEY_NEW1G\\HDZB_USBKEY_NEW1G.exe",
+        "common_path_suffix": "",
+        "location": "Local",
+        "location_info": {
+            "volume_id_size": 24,
+            "r_drive_type": 3,
+            "drive_serial_number": "0xa4685e10",
+            "volume_label_offset": 16,
+            "drive_type": "DRIVE_FIXED",
+            "volume_label": "Windows"
+        }
+    },
+    "extra": {
+        "SPECIAL_FOLDER_LOCATION_BLOCK": {
+            "size": 16,
+            "special_folder_id": 42,
+            "offset": 193
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "size": 28,
+            "known_folder_id": "ef405a7cfba0fc4b874ac0f2e0b9fa8e",
+            "offset": 193
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 153,
+            "storage_size": 141,
+            "version": "0x53505331",
+            "format_id": "e28a5846bc4c3843bbfc139326986dce"
+        },
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "size": 96,
+            "length": 88,
+            "version": 0,
+            "machine_identifier": "officepc01",
+            "droid_volume_identifier": "96c86bde486d594588f3cb1f7258f3bb",
+            "droid_file_identifier": "06eac9a3847aea11affc9bbabfbed054",
+            "birth_droid_volume_identifier": "96c86bde486d594588f3cb1f7258f3bb",
+            "birth_droid_file_identifier": "06eac9a3847aea11affc9bbabfbed054"
+        }
+    }
+}
