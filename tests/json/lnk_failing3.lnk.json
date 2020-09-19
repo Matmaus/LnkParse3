@@ -1,0 +1,47 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 129,
+        "r_file_flags": 0,
+        "creation_time": "",
+        "accessed_time": "",
+        "modified_time": "",
+        "file_size": 0,
+        "icon_index": 0,
+        "windowstyle": "SW_NORMAL",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "IsUnicode"
+        ],
+        "file_flags": []
+    },
+    "data": {},
+    "target": {
+        "size": 2556,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xe",
+                "data": ""
+            },
+            null,
+            null
+        ]
+    },
+    "link_info": {},
+    "extra": {
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 483,
+            "storage_size": 471,
+            "version": "0x53505331",
+            "format_id": "55284c9f799f394ba8d0e1d42de1d5f3"
+        }
+    }
+}

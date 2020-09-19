@@ -1,0 +1,85 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 524443,
+        "r_file_flags": 32,
+        "creation_time": "2008-09-13 05:27:17",
+        "accessed_time": "2008-09-13 05:27:17",
+        "modified_time": "2008-09-13 05:27:17",
+        "file_size": 0,
+        "icon_index": 0,
+        "windowstyle": "SW_NORMAL",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "HasWorkingDir",
+            "IsUnicode",
+            "EnableTargetMetadata"
+        ],
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ]
+    },
+    "data": {
+        "relative_path": ".\\a.txt",
+        "working_directory": "C:\\test"
+    },
+    "target": {
+        "size": 189,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xf",
+                "data": "C:\\"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "test"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is file",
+                "file_size": 0,
+                "file_attribute_flags": 32,
+                "primary_name": "a.txt"
+            }
+        ]
+    },
+    "link_info": {
+        "link_info_flags": 1,
+        "local_base_path": "C:\\test\\a.txt",
+        "common_path_suffix": "",
+        "location": "Local",
+        "location_info": {
+            "volume_id_size": 17,
+            "r_drive_type": 3,
+            "drive_serial_number": "0x307a8a81",
+            "volume_label_offset": 16,
+            "drive_type": "DRIVE_FIXED",
+            "volume_label": ""
+        }
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "size": 96,
+            "length": 88,
+            "version": 0,
+            "machine_identifier": "chris-xps",
+            "droid_volume_identifier": "4078c79447fac746b3565c2dc6b6d115",
+            "droid_file_identifier": "ec46cd7b227fdd11949900137216874a",
+            "birth_droid_volume_identifier": "4078c79447fac746b3565c2dc6b6d115",
+            "birth_droid_file_identifier": "ec46cd7b227fdd11949900137216874a"
+        }
+    }
+}

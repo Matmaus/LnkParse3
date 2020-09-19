@@ -1,0 +1,117 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 524427,
+        "r_file_flags": 16,
+        "creation_time": "2020-09-02 19:30:21",
+        "accessed_time": "2020-09-02 19:46:37",
+        "modified_time": "2020-09-02 19:46:37",
+        "file_size": 4096,
+        "icon_index": 0,
+        "windowstyle": "SW_NORMAL",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "IsUnicode",
+            "EnableTargetMetadata"
+        ],
+        "file_flags": [
+            "FILE_ATTRIBUTE_DIRECTORY"
+        ]
+    },
+    "data": {
+        "relative_path": ".\\.CSV file"
+    },
+    "target": {
+        "size": 654,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xe",
+                "data": "\u0080:\u00cc\u00bf\u00b4,\u00dbLB\u00b0)\u007f\u00e9\u009a\u0087\u00c6AV"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "PostDoc"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "201901~1"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "PUBLIC~1"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "02_Majd"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "MAJDPY~1"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "CSVFIL~1"
+            }
+        ]
+    },
+    "link_info": {
+        "link_info_flags": 1,
+        "local_base_path": "C:\\Users\\Ibrahim\\Desktop\\PostDoc\\20190101 - 20191231 KU Leuven MD SPICY\\publications\\02_Majd\\Majd Py FT-IR\\.CSV file",
+        "common_path_suffix": "",
+        "location": "Local",
+        "location_info": {
+            "volume_id_size": 17,
+            "r_drive_type": 3,
+            "drive_serial_number": "0xc684b7e0",
+            "volume_label_offset": 16,
+            "drive_type": "DRIVE_FIXED",
+            "volume_label": ""
+        }
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "size": 96,
+            "length": 88,
+            "version": 0,
+            "machine_identifier": "desktop-crtgl03",
+            "droid_volume_identifier": "bcba12567b8d2a4fa17aa2996cd50b5d",
+            "droid_file_identifier": "64fab6945aecea119a2e30e1717a583b",
+            "birth_droid_volume_identifier": "bcba12567b8d2a4fa17aa2996cd50b5d",
+            "birth_droid_file_identifier": "64fab6945aecea119a2e30e1717a583b"
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 791,
+            "storage_size": 277,
+            "version": "0x53505331",
+            "format_id": "ed30bdda43008947a7f8d013a4736622"
+        }
+    }
+}
