@@ -1503,7 +1503,8 @@ class lnk_file(object):
 			res['target'].pop('index', None)
 			if 'items' in res['target']:
 				for item in res['target']['items']:
-					item.pop('modification_time', None)
+					if item:
+						item.pop('modification_time', None)
 
 		return res
 
