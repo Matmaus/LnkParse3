@@ -1,0 +1,85 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 524427,
+        "r_file_flags": 16,
+        "creation_time": "2020-08-11T21:18:01.637866+00:00",
+        "accessed_time": "2020-08-11T23:05:58.474459+00:00",
+        "modified_time": "2020-08-11T23:05:58.369451+00:00",
+        "file_size": 4096,
+        "icon_index": 0,
+        "windowstyle": "SW_NORMAL",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "IsUnicode",
+            "EnableTargetMetadata"
+        ],
+        "file_flags": [
+            "FILE_ATTRIBUTE_DIRECTORY"
+        ]
+    },
+    "data": {
+        "relative_path": "..\\.."
+    },
+    "target": {
+        "size": 372,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "Users",
+                "guid": "471a0359723fa74489c55595fe6b30ee"
+            },
+            null,
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "Roaming"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": ".minecraft"
+            }
+        ]
+    },
+    "link_info": {
+        "link_info_flags": 1,
+        "local_base_path": "C:\\Users\\TEMP\\AppData\\Roaming\\.minecraft",
+        "common_path_suffix": "",
+        "location": "Local",
+        "location_info": {
+            "volume_id_size": 24,
+            "r_drive_type": 3,
+            "drive_serial_number": "0x26a45a57",
+            "volume_label_offset": 16,
+            "drive_type": "DRIVE_FIXED",
+            "volume_label": "Windows"
+        }
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "size": 96,
+            "length": 88,
+            "version": 0,
+            "machine_identifier": "desktop-1dic5tp",
+            "droid_volume_identifier": "d626515ea77d3048a4ed3551991d2d5c",
+            "droid_file_identifier": "33ea6cf917dcea1181b984a93e87eae5",
+            "birth_droid_volume_identifier": "d626515ea77d3048a4ed3551991d2d5c",
+            "birth_droid_file_identifier": "33ea6cf917dcea1181b984a93e87eae5"
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 417,
+            "storage_size": 109,
+            "version": "0x53505331",
+            "format_id": "ed30bdda43008947a7f8d013a4736622"
+        }
+    }
+}

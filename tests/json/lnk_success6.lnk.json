@@ -1,0 +1,115 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 755,
+        "r_file_flags": 32,
+        "creation_time": "2018-12-28T13:06:00.442131+00:00",
+        "accessed_time": "2018-12-28T13:06:00.442131+00:00",
+        "modified_time": "2010-11-20T01:17:02+00:00",
+        "file_size": 302592,
+        "icon_index": 9,
+        "windowstyle": "SW_SHOWMINNOACTIVE",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasWorkingDir",
+            "HasArguments",
+            "HasIconLocation",
+            "IsUnicode",
+            "HasExpString"
+        ],
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ]
+    },
+    "data": {
+        "working_directory": "B:\\",
+        "command_line_arguments": "/c start _ & _\\DeviceManager.exe & exit",
+        "icon_location": "shell32.dll"
+    },
+    "target": {
+        "size": 297,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xf",
+                "data": "C:\\"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "Windows"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "System32"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is file",
+                "file_size": 302592,
+                "file_attribute_flags": 32,
+                "primary_name": "cmd.exe"
+            }
+        ]
+    },
+    "link_info": {
+        "link_info_flags": 1,
+        "local_base_path": "C:\\Windows\\System32\\cmd.exe",
+        "common_path_suffix": "",
+        "location": "Local",
+        "location_info": {
+            "volume_id_size": 23,
+            "r_drive_type": 3,
+            "drive_serial_number": "0x9606dc0f",
+            "volume_label_offset": 16,
+            "drive_type": "DRIVE_FIXED",
+            "volume_label": "Disk-C"
+        }
+    },
+    "extra": {
+        "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+            "size": 788,
+            "target_ansi": "%windir%\\system32\\cmd.exe",
+            "target_unicode": "%"
+        },
+        "SPECIAL_FOLDER_LOCATION_BLOCK": {
+            "size": 16,
+            "special_folder_id": 37,
+            "offset": 213
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "size": 28,
+            "known_folder_id": "774ec11ae7025d4eb7442eb1ae5198b7",
+            "offset": 213
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 153,
+            "storage_size": 141,
+            "version": "0x53505331",
+            "format_id": "e28a5846bc4c3843bbfc139326986dce"
+        },
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "size": 96,
+            "length": 88,
+            "version": 0,
+            "machine_identifier": "w-51511",
+            "droid_volume_identifier": "2a3dc1e9b0b69f4396b8480f5acbca8c",
+            "droid_file_identifier": "d3d3853cc9e5ea11abb04c72b91387bc",
+            "birth_droid_volume_identifier": "2a3dc1e9b0b69f4396b8480f5acbca8c",
+            "birth_droid_file_identifier": "d3d3853cc9e5ea11abb04c72b91387bc"
+        }
+    }
+}

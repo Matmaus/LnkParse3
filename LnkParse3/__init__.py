@@ -1375,7 +1375,13 @@ class lnk_file(object):
 		if time == 0:
 			return ''
 		try:
-			return datetime.datetime.fromtimestamp(time / 10000000.0 - 11644473600).strftime('%Y-%m-%d %H:%M:%S')
+			EPOCH_AS_FILETIME = 116444736000000000
+			HUNDREDS_OF_NANOSECONDS = 10000000
+			timestamp = (time - EPOCH_AS_FILETIME) / HUNDREDS_OF_NANOSECONDS
+			return datetime.datetime.fromtimestamp(
+				timestamp,
+				tz=datetime.timezone.utc,
+			)
 		except Exception:
 			return 'Invalid time'
 
@@ -1402,12 +1408,16 @@ class lnk_file(object):
 		if time == 0:
 			return ''
 		try:
-			year = ((time & 0xFE000000) >> 25) + 1980
-			month = ((time & 0x01E00000) >> 21)
-			day = ((time & 0x001F0000) >> 16)
-			date = str(day) + '.' + str(month) + '.' + str(year)
+			ymdhms = (
+				((time & 0xFE000000) >> 25) + 1980,
+				((time & 0x01E00000) >> 21),
+				((time & 0x001F0000) >> 16),
+				((time & 0x0000F800) >> 11),
+				((time & 0x000007E0) >> 5),
+				((time & 0x0000001F) >> 0) * 2,
+			)
 
-			return date
+			return datetime.datetime(*ymdhms, tzinfo=datetime.timezone.utc)
 		except Exception:
 			return 'Invalid time'
 
@@ -1469,7 +1479,14 @@ class lnk_file(object):
 
 	def print_json(self, print_all=False):
 		res = self.get_json(print_all)
-		print(json.dumps(res, indent=4, separators=(',', ': ')))
+
+		def _datetime_to_str(obj):
+			if isinstance(obj, datetime.datetime):
+				return obj.isoformat()
+			return obj
+
+		print(json.dumps(res, indent=4, separators=(',', ': '),
+			default=_datetime_to_str))
 
 
 	def get_json(self, get_all=False):
@@ -1503,7 +1520,8 @@ class lnk_file(object):
 			res['target'].pop('index', None)
 			if 'items' in res['target']:
 				for item in res['target']['items']:
-					item.pop('modification_time', None)
+					if item:
+						item.pop('modification_time', None)
 
 		return res
 

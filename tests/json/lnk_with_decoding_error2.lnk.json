@@ -1,0 +1,113 @@
+{
+    "header": {
+        "guid": "0114020000000000c000000000000046",
+        "r_link_flags": 739,
+        "r_file_flags": 32,
+        "creation_time": "2010-11-21T03:23:55.516901+00:00",
+        "accessed_time": "2010-11-21T03:23:55.516901+00:00",
+        "modified_time": "2010-11-21T03:23:55.532502+00:00",
+        "file_size": 345088,
+        "icon_index": 7,
+        "windowstyle": "SW_SHOWMINNOACTIVE",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "r_hotkey": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasArguments",
+            "HasIconLocation",
+            "IsUnicode",
+            "HasExpString"
+        ],
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ]
+    },
+    "data": {
+        "command_line_arguments": "/C .\\WindowsServices\\movemenoreg.vbs",
+        "icon_location": "%windir%\\system32\\SHELL32.dll"
+    },
+    "target": {
+        "size": 297,
+        "items": [
+            {
+                "class": "Root Folder",
+                "sort_index": "My Computer",
+                "guid": "e04fd020ea3a6910a2d808002b30309d"
+            },
+            {
+                "class": "Volume Item",
+                "flags": "0xf",
+                "data": "C:\\"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "Windows"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is directory",
+                "file_size": 0,
+                "file_attribute_flags": 16,
+                "primary_name": "System32"
+            },
+            {
+                "class": "File entry",
+                "flags": "Is file",
+                "file_size": 345088,
+                "file_attribute_flags": 32,
+                "primary_name": "cmd.exe"
+            }
+        ]
+    },
+    "link_info": {
+        "link_info_flags": 1,
+        "local_base_path": "C:\\Windows\\System32\\cmd.exe",
+        "common_path_suffix": "",
+        "location": "Local",
+        "location_info": {
+            "volume_id_size": 17,
+            "r_drive_type": 3,
+            "drive_serial_number": "0x42b6ef87",
+            "volume_label_offset": 16,
+            "drive_type": "DRIVE_FIXED",
+            "volume_label": ""
+        }
+    },
+    "extra": {
+        "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+            "size": 788,
+            "target_ansi": "%COMSPEC%",
+            "target_unicode": "%"
+        },
+        "SPECIAL_FOLDER_LOCATION_BLOCK": {
+            "size": 16,
+            "special_folder_id": 37,
+            "offset": 213
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "size": 28,
+            "known_folder_id": "774ec11ae7025d4eb7442eb1ae5198b7",
+            "offset": 213
+        },
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "size": 96,
+            "length": 88,
+            "version": 0,
+            "machine_identifier": "dubay-\u00af\u00aa",
+            "droid_volume_identifier": "067c1e0cf5e7c34ca6eefb36391163ac",
+            "droid_file_identifier": "f9ac30eaccb9e0118806bc5ff4204af6",
+            "birth_droid_volume_identifier": "067c1e0cf5e7c34ca6eefb36391163ac",
+            "birth_droid_file_identifier": "f9ac30eaccb9e0118806bc5ff4204af6"
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "size": 153,
+            "storage_size": 141,
+            "version": "0x53505331",
+            "format_id": "e28a5846bc4c3843bbfc139326986dce"
+        }
+    }
+}
