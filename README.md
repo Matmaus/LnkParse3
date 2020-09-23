@@ -17,7 +17,7 @@ Install:
 # Example:
 CLI tool
 ```
-$ python lnkparser.py -f tests/microsoft_example.lnk
+$ lnkparse -f tests/microsoft_example.lnk
 Windows Shortcut Information:
 	Link Flags: HasLinkInfo | EnableTargetMetadata | HasWorkingDir | IsUnicode | HasTargetIDList | HasRelativePath - (524443)
 	File Flags: FILE_ATTRIBUTE_ARCHIVE - (32)
