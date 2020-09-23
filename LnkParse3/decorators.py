@@ -63,3 +63,49 @@ def filetime(func):
         return datetime.fromtimestamp(timestamp, tz=timezone.utc)
 
     return inner
+
+
+def dostime(func):
+    r"""
+    The DOS date/time format is a bitmask:
+    24                16                 8                 0
+     +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
+     |Y|Y|Y|Y|Y|Y|Y|M| |M|M|M|D|D|D|D|D| |h|h|h|h|h|m|m|m| |m|m|m|s|s|s|s|s|
+     +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
+      \___________/\________/\_________/ \________/\____________/\_________/
+         year        month       day      hour       minute        second
+    The year is stored as an offset from 1980.
+    Seconds are stored in two-second increments.
+    (So if the "second" value is 15, it actually represents 30 seconds.)
+    """
+    #
+    # Source:
+    #   https://stackoverflow.com/questions/15763259/unix-timestamp-to-fat-timestamp
+    #   https://docs.microsoft.com/pl-pl/windows/desktop/api/winbase/nf-winbase-dosdatetimetofiletime
+    #   https://github.com/log2timeline/dfdatetime/wiki/Date-and-time-values
+    #
+    @functools.wraps(func)
+    def inner(self, *args, **kwargs):
+        binary = func(self, *args, **kwargs)
+        dos = unpack("<I", binary)[0]
+
+        # FIXME: zero width string?
+        if dos == 0:
+            return ""
+
+        ymdhms = (
+            ((dos & 0xFE000000) >> 25) + 1980,
+            ((dos & 0x01E00000) >> 21),
+            ((dos & 0x001F0000) >> 16),
+            ((dos & 0x0000F800) >> 11),
+            ((dos & 0x000007E0) >> 5),
+            ((dos & 0x0000001F) >> 0) * 2,
+        )
+
+        try:
+            return datetime(*ymdhms, tzinfo=timezone.utc)
+        except ValueError:
+            # FIXME: error string?
+            return "Invalid time"
+
+    return inner
