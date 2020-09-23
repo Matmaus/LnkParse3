@@ -9,6 +9,8 @@ import struct
 import datetime
 import argparse
 
+from LnkParse3.lnk_header import lnk_header
+
 
 class lnk_file(object):
     def __init__(self, fhandle=None, indata=None, debug=False):
@@ -20,56 +22,6 @@ class lnk_file(object):
             self.indata = indata
 
         self.debug = debug
-        self.lnk_header = {}
-
-        self.linkFlag = {
-            "HasTargetIDList": False,
-            "HasLinkInfo": False,
-            "HasName": False,
-            "HasRelativePath": False,
-            "HasWorkingDir": False,
-            "HasArguments": False,
-            "HasIconLocation": False,
-            "IsUnicode": False,
-            "ForceNoLinkInfo": False,
-            "HasExpString": False,
-            "RunInSeparateProcess": False,
-            "Reserved0": False,
-            "HasDarwinID": False,
-            "RunAsUser": False,
-            "HasExpIcon": False,
-            "NoPidlAlias": False,
-            "Reserved1": False,
-            "RunWithShimLayer": False,
-            "ForceNoLinkTrack": False,
-            "EnableTargetMetadata": False,
-            "DisableLinkPathTracking": False,
-            "DisableKnownFolderTracking": False,
-            "DisableKnownFolderAlias": False,
-            "AllowLinkToLink": False,
-            "UnaliasOnSave": False,
-            "PreferEnvironmentPath": False,
-            "KeepLocalIDListForUNCTarget": False,
-        }
-        self.fileFlag = {
-            "FILE_ATTRIBUTE_READONLY": False,
-            "FILE_ATTRIBUTE_HIDDEN": False,
-            "FILE_ATTRIBUTE_SYSTEM": False,
-            "Reserved, not used by the LNK format": False,
-            "FILE_ATTRIBUTE_DIRECTORY": False,
-            "FILE_ATTRIBUTE_ARCHIVE": False,
-            "FILE_ATTRIBUTE_DEVICE": False,
-            "FILE_ATTRIBUTE_NORMAL": False,
-            "FILE_ATTRIBUTE_TEMPORARY": False,
-            "FILE_ATTRIBUTE_SPARSE_FILE": False,
-            "FILE_ATTRIBUTE_REPARSE_POINT": False,
-            "FILE_ATTRIBUTE_COMPRESSED": False,
-            "FILE_ATTRIBUTE_OFFLINE": False,
-            "FILE_ATTRIBUTE_NOT_CONTENT_INDEXED": False,
-            "FILE_ATTRIBUTE_ENCRYPTED": False,
-            "Unknown (seen on Windows 95 FAT)": False,
-            "FILE_ATTRIBUTE_VIRTUAL": False,
-        }
 
         self.targets = {
             "size": 0,
@@ -83,12 +35,39 @@ class lnk_file(object):
         self.process()
         self.define_common()
 
+    def has_relative_path(self):
+        return bool("HasRelativePath" in self.header.link_flags())
+
+    def has_arguments(self):
+        return bool("HasArguments" in self.header.link_flags())
+
+    def is_unicode(self):
+        return bool("IsUnicode" in self.header.link_flags())
+
+    def has_name(self):
+        return bool("HasName" in self.header.link_flags())
+
+    def has_working_dir(self):
+        return bool("HasWorkingDir" in self.header.link_flags())
+
+    def has_icon_location(self):
+        return bool("HasIconLocation" in self.header.link_flags())
+
+    def has_target_id_list(self):
+        return bool("HasTargetIDList" in self.header.link_flags())
+
+    def has_link_info(self):
+        return bool("HasLinkInfo" in self.header.link_flags())
+
+    def force_no_link_info(self):
+        return bool("ForceNoLinkInfo" in self.header.link_flags())
+
     def define_common(self):
         try:
             out = ""
-            if self.linkFlag["HasRelativePath"]:
+            if self.has_relative_path():
                 out += self.data["relative_path"]
-            if self.linkFlag["HasArguments"]:
+            if self.has_arguments():
                 out += " " + self.data["command_line_arguments"]
 
             self.lnk_command = out
@@ -99,9 +78,9 @@ class lnk_file(object):
     def get_command(self):
         try:
             out = ""
-            if self.linkFlag["HasRelativePath"]:
+            if self.has_relative_path():
                 out += self.data["relative_path"]
-            if self.linkFlag["HasArguments"]:
+            if self.has_arguments():
                 out += " " + self.data["command_line_arguments"]
 
             return out
@@ -221,293 +200,10 @@ class lnk_file(object):
             "DRIVE_CDROM",
             "DRIVE_RAMDISK",
         ]
-        self.HOTKEY_VALUES_HIGH = {
-            "\x00": "UNSET",
-            "\x01": "SHIFT",
-            "\x02": "CONTROL",
-            "\x03": "ALT",
-        }
-        self.HOTKEY_VALUES_LOW = {
-            "\x00": "UNSET",
-            "\x30": "0",
-            "\x31": "1",
-            "\x32": "2",
-            "\x33": "3",
-            "\x34": "4",
-            "\x35": "5",
-            "\x36": "6",
-            "\x37": "7",
-            "\x38": "8",
-            "\x39": "9",
-            "\x41": "A",
-            "\x42": "B",
-            "\x43": "C",
-            "\x44": "D",
-            "\x45": "E",
-            "\x46": "F",
-            "\x47": "G",
-            "\x48": "H",
-            "\x49": "I",
-            "\x4A": "J",
-            "\x4B": "K",
-            "\x4C": "L",
-            "\x4D": "M",
-            "\x4E": "N",
-            "\x4F": "O",
-            "\x50": "P",
-            "\x51": "Q",
-            "\x52": "R",
-            "\x53": "S",
-            "\x54": "T",
-            "\x55": "U",
-            "\x56": "V",
-            "\x57": "W",
-            "\x58": "X",
-            "\x59": "Y",
-            "\x5A": "Z",
-            "\x70": "F1",
-            "\x71": "F2",
-            "\x72": "F3",
-            "\x73": "F4",
-            "\x74": "F5",
-            "\x75": "F6",
-            "\x76": "F7",
-            "\x77": "F8",
-            "\x78": "F9",
-            "\x79": "F10",
-            "\x7A": "F11",
-            "\x7B": "F12",
-            "\x7C": "F13",
-            "\x7D": "F14",
-            "\x7E": "F15",
-            "\x7F": "F16",
-            "\x80": "F17",
-            "\x81": "F18",
-            "\x82": "F19",
-            "\x83": "F20",
-            "\x84": "F21",
-            "\x85": "F22",
-            "\x86": "F23",
-            "\x87": "F24",
-            "\x90": "NUM_LOCK",
-            "\x91": "SCROLL_LOCK",
-        }
-        self.WINDOWSTYLES = [
-            "SW_HIDE",
-            "SW_NORMAL",
-            "SW_SHOWMINIMIZED",
-            "SW_MAXIMIZE ",
-            "SW_SHOWNOACTIVATE",
-            "SW_SHOW",
-            "SW_MINIMIZE",
-            "SW_SHOWMINNOACTIVE",
-            "SW_SHOWNA",
-            "SW_RESTORE",
-            "SW_SHOWDEFAULT",
-        ]
 
     @staticmethod
     def clean_line(rstring):
         return "".join(chr(i) for i in rstring if 128 > i > 20)
-
-    def parse_lnk_header(self):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                             <u_int32> HeaderSize == 0x0000004C                                 |
-        --------------------------------------------------------------------------------------------------
-        |                   <CSID> LinkCLSID == 00021401-0000-0000-C000-000000000046                     |
-        |                                            16 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                     <flags> LinkFlags                                          |
-        --------------------------------------------------------------------------------------------------
-        |                                   <flags> FileAttributes                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                  <FILETIME> CreationTime                                       |
-        |                                            16 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                   <FILETIME> AccessTime                                        |
-        |                                            16 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                   <FILETIME> WriteTime                                         |
-        |                                            16 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                   <u_int32> FileSize                                           |
-        --------------------------------------------------------------------------------------------------
-        |                                   <int32> IconIndex                                            |
-        --------------------------------------------------------------------------------------------------
-        |                                 <u_int32> ShowCommand                                          |
-        --------------------------------------------------------------------------------------------------
-        |           <HotKeyFlags> HotKey              |                    Reserved1                     |
-        --------------------------------------------------------------------------------------------------
-        |                                        Reserved2                                               |
-        --------------------------------------------------------------------------------------------------
-        |                                        Reserved3                                               |
-        --------------------------------------------------------------------------------------------------
-        """
-        # Parse the LNK file header
-        try:
-            # Header always starts with { 4c 00 00 00 } and is the size of the header
-            self.lnk_header["header_size"] = struct.unpack("<I", self.indata[:4])[0]
-
-            lnk_header = self.indata[: self.lnk_header["header_size"]]
-
-            self.lnk_header["guid"] = lnk_header[4:20].hex()
-
-            self.lnk_header["r_link_flags"] = struct.unpack("<I", lnk_header[20:24])[0]
-            self.lnk_header["r_file_flags"] = struct.unpack("<I", lnk_header[24:28])[0]
-
-            self.lnk_header["creation_time"] = struct.unpack("<q", lnk_header[28:36])[0]
-            self.lnk_header["accessed_time"] = struct.unpack("<q", lnk_header[36:44])[0]
-            self.lnk_header["modified_time"] = struct.unpack("<q", lnk_header[44:52])[0]
-
-            self.lnk_header["file_size"] = struct.unpack("<I", lnk_header[52:56])[0]
-
-            self.lnk_header["icon_index"] = struct.unpack("<i", lnk_header[56:60])[0]
-            try:
-                if struct.unpack("<i", lnk_header[60:64])[0] < len(self.WINDOWSTYLES):
-                    self.lnk_header["windowstyle"] = self.WINDOWSTYLES[
-                        struct.unpack("<i", lnk_header[60:64])[0]
-                    ]
-                else:
-                    self.lnk_header["windowstyle"] = struct.unpack(
-                        "<i", lnk_header[60:64]
-                    )[0]
-            except Exception as e:
-                if self.debug:
-                    print("Error Parsing WindowStyle in Header: %s" % e)
-                self.lnk_header["windowstyle"] = struct.unpack("<i", lnk_header[60:64])[
-                    0
-                ]
-
-            try:
-                self.lnk_header["hotkey"] = "%s - %s {0x%s}" % (
-                    self.HOTKEY_VALUES_HIGH[
-                        chr(struct.unpack("<B", lnk_header[65:66])[0])
-                    ],
-                    self.HOTKEY_VALUES_LOW[
-                        chr(struct.unpack("<B", lnk_header[64:65])[0])
-                    ],
-                    lnk_header[64:66].hex(),
-                )
-
-                self.lnk_header["r_hotkey"] = struct.unpack("<H", lnk_header[64:66])[0]
-            except Exception as e:
-                if self.debug:
-                    print("Exception parsing HOTKEY part of header: %s" % e)
-                self.lnk_header["hotkey"] = hex(
-                    struct.unpack("<H", lnk_header[64:66])[0]
-                )
-                self.lnk_header["r_hotkey"] = struct.unpack("<H", lnk_header[64:66])[0]
-
-            self.lnk_header["reserved0"] = struct.unpack("<H", lnk_header[66:68])[0]
-            self.lnk_header["reserved1"] = struct.unpack("<I", lnk_header[68:72])[0]
-            self.lnk_header["reserved2"] = struct.unpack("<I", lnk_header[72:76])[0]
-        except Exception as e:
-            if self.debug:
-                print("Exception parsing LNK Header: %s" % e)
-            return False
-
-        if self.lnk_header["header_size"] == 76:
-            return True
-
-    def parse_link_flags(self):
-        if self.lnk_header["r_link_flags"] & 0x00000001:
-            self.linkFlag["HasTargetIDList"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000002:
-            self.linkFlag["HasLinkInfo"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000004:
-            self.linkFlag["HasName"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000008:
-            self.linkFlag["HasRelativePath"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000010:
-            self.linkFlag["HasWorkingDir"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000020:
-            self.linkFlag["HasArguments"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000040:
-            self.linkFlag["HasIconLocation"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000080:
-            self.linkFlag["IsUnicode"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000100:
-            self.linkFlag["ForceNoLinkInfo"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000200:
-            self.linkFlag["HasExpString"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000400:
-            self.linkFlag["RunInSeparateProcess"] = True
-        if self.lnk_header["r_link_flags"] & 0x00000800:
-            self.linkFlag["Reserved0"] = True
-        if self.lnk_header["r_link_flags"] & 0x00001000:
-            self.linkFlag["HasDarwinID"] = True
-        if self.lnk_header["r_link_flags"] & 0x00002000:
-            self.linkFlag["RunAsUser"] = True
-        if self.lnk_header["r_link_flags"] & 0x00004000:
-            self.linkFlag["HasExpIcon"] = True
-        if self.lnk_header["r_link_flags"] & 0x00008000:
-            self.linkFlag["NoPidlAlias"] = True
-        if self.lnk_header["r_link_flags"] & 0x000100000:
-            self.linkFlag["Reserved1"] = True
-
-        if self.lnk_header["r_link_flags"] & 0x00020000:
-            self.linkFlag["RunWithShimLayer"] = True
-        if self.lnk_header["r_link_flags"] & 0x00040000:
-            self.linkFlag["ForceNoLinkTrack"] = True
-        if self.lnk_header["r_link_flags"] & 0x00080000:
-            self.linkFlag["EnableTargetMetadata"] = True
-        if self.lnk_header["r_link_flags"] & 0x00100000:
-            self.linkFlag["DisableLinkPathTracking"] = True
-        if self.lnk_header["r_link_flags"] & 0x00200000:
-            self.linkFlag["DisableKnownFolderTracking"] = True
-        if self.lnk_header["r_link_flags"] & 0x00400000:
-            self.linkFlag["DisableKnownFolderAlias"] = True
-        if self.lnk_header["r_link_flags"] & 0x00800000:
-            self.linkFlag["AllowLinkToLink"] = True
-        if self.lnk_header["r_link_flags"] & 0x01000000:
-            self.linkFlag["UnaliasOnSave"] = True
-        if self.lnk_header["r_link_flags"] & 0x02000000:
-            self.linkFlag["PreferEnvironmentPath"] = True
-        if self.lnk_header["r_link_flags"] & 0x04000000:
-            self.linkFlag["KeepLocalIDListForUNCTarget"] = True
-
-        self.lnk_header["link_flags"] = self.enabled_flags_to_list(self.linkFlag)
-
-    def parse_file_flags(self):
-        if self.lnk_header["r_file_flags"] & 0x00000001:
-            self.fileFlag["FILE_ATTRIBUTE_READONLY"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000002:
-            self.fileFlag["FILE_ATTRIBUTE_HIDDEN"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000004:
-            self.fileFlag["FILE_ATTRIBUTE_SYSTEM"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000008:
-            self.fileFlag["Reserved, not used by the LNK format"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000010:
-            self.fileFlag["FILE_ATTRIBUTE_DIRECTORY"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000020:
-            self.fileFlag["FILE_ATTRIBUTE_ARCHIVE"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000040:
-            self.fileFlag["FILE_ATTRIBUTE_DEVICE"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000080:
-            self.fileFlag["FILE_ATTRIBUTE_NORMAL"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000100:
-            self.fileFlag["FILE_ATTRIBUTE_TEMPORARY"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000200:
-            self.fileFlag["FILE_ATTRIBUTE_SPARSE_FILE"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000400:
-            self.fileFlag["FILE_ATTRIBUTE_REPARSE_POINT"] = True
-        if self.lnk_header["r_file_flags"] & 0x00000800:
-            self.fileFlag["FILE_ATTRIBUTE_COMPRESSED"] = True
-        if self.lnk_header["r_file_flags"] & 0x00001000:
-            self.fileFlag["FILE_ATTRIBUTE_OFFLINE"] = True
-        if self.lnk_header["r_file_flags"] & 0x00002000:
-            self.fileFlag["FILE_ATTRIBUTE_NOT_CONTENT_INDEXED"] = True
-        if self.lnk_header["r_file_flags"] & 0x00004000:
-            self.fileFlag["FILE_ATTRIBUTE_ENCRYPTED"] = True
-        if self.lnk_header["r_file_flags"] & 0x00008000:
-            self.fileFlag["Unknown (seen on Windows 95 FAT)"] = True
-        if self.lnk_header["r_file_flags"] & 0x00010000:
-            self.fileFlag["FILE_ATTRIBUTE_VIRTUAL"] = True
-
-        self.lnk_header["file_flags"] = self.enabled_flags_to_list(self.fileFlag)
 
     def parse_link_information(self, index):
         """
@@ -835,24 +531,24 @@ class lnk_file(object):
 
     def parse_string_data(self, index):
         u_mult = 1
-        if self.linkFlag["IsUnicode"]:
+        if self.is_unicode():
             u_mult = 2
 
-        if self.linkFlag["HasName"]:
+        if self.has_name():
             index, self.data["description"] = self.read_stringData(index, u_mult)
 
-        if self.linkFlag["HasRelativePath"]:
+        if self.has_relative_path():
             index, self.data["relative_path"] = self.read_stringData(index, u_mult)
 
-        if self.linkFlag["HasWorkingDir"]:
+        if self.has_working_dir():
             index, self.data["working_directory"] = self.read_stringData(index, u_mult)
 
-        if self.linkFlag["HasArguments"]:
+        if self.has_arguments():
             index, self.data["command_line_arguments"] = self.read_stringData(
                 index, u_mult
             )
 
-        if self.linkFlag["HasIconLocation"]:
+        if self.has_icon_location():
             index, self.data["icon_location"] = self.read_stringData(index, u_mult)
 
         return index
@@ -861,14 +557,11 @@ class lnk_file(object):
         index = 0
 
         # Parse header
-        if not self.parse_lnk_header() and self.debug:
-            print("Failed Header Check")
-        self.parse_link_flags()
-        self.parse_file_flags()
-        index += self.lnk_header["header_size"]
+        self.header = lnk_header(indata=self.indata)
+        index += self.header.size()
 
         # Parse ID List
-        if self.linkFlag["HasTargetIDList"]:
+        if self.has_target_id_list():
             try:
                 self.targets["size"] = struct.unpack(
                     "<H", self.indata[index : index + 2]
@@ -882,7 +575,7 @@ class lnk_file(object):
                 return False
 
         # Parse Link Info
-        if self.linkFlag["HasLinkInfo"] and self.linkFlag["ForceNoLinkInfo"] == False:
+        if self.has_link_info() and self.force_no_link_info() == False:
             try:
                 self.parse_link_information(index)
                 index += self.loc_information["link_info_size"]
@@ -1444,9 +1137,11 @@ class lnk_file(object):
         ]
         # item['unknown'] = struct.unpack('<B', self.indata[index + 1: index + 2])[0]
         item["file_size"] = struct.unpack("<I", self.indata[index + 2 : index + 6])[0]
+
         item["modification_time"] = self.dos_time_to_unix_time(
             struct.unpack("<I", self.indata[index + 6 : index + 10])[0]
         )
+
         item["file_attribute_flags"] = struct.unpack(
             "<H", self.indata[index + 10 : index + 12]
         )[0]
@@ -1527,33 +1222,24 @@ class lnk_file(object):
         print("Windows Shortcut Information:")
         print(
             "\tLink Flags: %s - (%s)"
-            % (self.format_linkFlags(), self.lnk_header["r_link_flags"])
+            % (self.format_linkFlags(), self.header.r_link_flags())
         )
         print(
             "\tFile Flags: %s - (%s)"
-            % (self.format_fileFlags(), self.lnk_header["r_file_flags"])
+            % (self.format_fileFlags(), self.header.r_file_flags())
         )
         print("")
-        print(
-            "\tCreation Timestamp: %s"
-            % (self.ms_time_to_unix_time(self.lnk_header["creation_time"]))
-        )
-        print(
-            "\tModified Timestamp: %s"
-            % (self.ms_time_to_unix_time(self.lnk_header["modified_time"]))
-        )
-        print(
-            "\tAccessed Timestamp: %s"
-            % (self.ms_time_to_unix_time(self.lnk_header["accessed_time"]))
-        )
+        print("\tCreation Timestamp: %s" % (self.header.creation_time()))
+        print("\tModified Timestamp: %s" % (self.header.write_time()))
+        print("\tAccessed Timestamp: %s" % (self.header.access_time()))
         print("")
         print(
             "\tFile Size: %s (r: %s)"
-            % (str(self.lnk_header["file_size"]), str(len(self.indata)))
+            % (str(self.header.file_size()), str(len(self.indata)))
         )
-        print("\tIcon Index: %s " % (str(self.lnk_header["icon_index"])))
-        print("\tWindow Style: %s " % (str(self.lnk_header["windowstyle"])))
-        print("\tHotKey: %s " % (str(self.lnk_header["hotkey"])))
+        print("\tIcon Index: %s " % (str(self.header.icon_index())))
+        print("\tWindow Style: %s " % (str(self.header.window_style())))
+        print("\tHotKey: %s " % (str(self.header.hot_key())))
         print("")
 
         for rline in self.data:
@@ -1565,21 +1251,6 @@ class lnk_file(object):
             print("\t\t%s" % enabled)
             for block in self.extraBlocks[enabled]:
                 print("\t\t\t[%s] %s" % (block, self.extraBlocks[enabled][block]))
-
-    @staticmethod
-    def ms_time_to_unix_time(time):
-        if time == 0:
-            return ""
-        try:
-            EPOCH_AS_FILETIME = 116444736000000000
-            HUNDREDS_OF_NANOSECONDS = 10000000
-            timestamp = (time - EPOCH_AS_FILETIME) / HUNDREDS_OF_NANOSECONDS
-            return datetime.datetime.fromtimestamp(
-                timestamp,
-                tz=datetime.timezone.utc,
-            )
-        except Exception:
-            return "Invalid time"
 
     @staticmethod
     def dos_time_to_unix_time(time):
@@ -1638,27 +1309,17 @@ class lnk_file(object):
         new_index = index + string_size + 2
         return new_index, string
 
-    @staticmethod
-    def enabled_flags_to_list(flags):
-        enabled = []
-        for flag in flags:
-            if flags[flag]:
-                enabled.append(flag)
-        return enabled
-
     def format_linkFlags(self):
-        enabled = self.enabled_flags_to_list(self.linkFlag)
-        return " | ".join(enabled)
+        return " | ".join(self.header.link_flags())
 
     def format_fileFlags(self):
-        enabled = self.enabled_flags_to_list(self.fileFlag)
-        return " | ".join(enabled)
+        return " | ".join(self.header.file_flags())
 
     def print_short(self, pjson=False):
         out = ""
-        if self.linkFlag["HasRelativePath"]:
+        if self.has_relative_path():
             out += self.data["relative_path"]
-        if self.linkFlag["HasArguments"]:
+        if self.has_arguments():
             out += " " + self.data["command_line_arguments"]
 
         if pjson:
@@ -1680,25 +1341,30 @@ class lnk_file(object):
 
     def get_json(self, get_all=False):
         res = {
-            "header": self.lnk_header,
+            "header": {
+                "guid": self.header.link_cls_id(),
+                "r_link_flags": self.header.r_link_flags(),
+                "r_file_flags": self.header.r_file_flags(),
+                "creation_time": self.header.creation_time(),
+                "accessed_time": self.header.access_time(),
+                "modified_time": self.header.write_time(),
+                "file_size": self.header.file_size(),
+                "icon_index": self.header.icon_index(),
+                "windowstyle": self.header.window_style(),
+                "hotkey": self.header.hot_key(),
+                "r_hotkey": self.header.raw_hot_key(),
+                "link_flags": self.header.link_flags(),
+                "file_flags": self.header.file_flags(),
+                "header_size": self.header.size(),
+                "reserved0": self.header.reserved0(),
+                "reserved1": self.header.reserved1(),
+                "reserved2": self.header.reserved2(),
+            },
             "data": self.data,
             "target": self.targets,
             "link_info": self.loc_information,
             "extra": self.extraBlocks,
         }
-
-        if "creation_time" in res["header"]:
-            res["header"]["creation_time"] = self.ms_time_to_unix_time(
-                res["header"]["creation_time"]
-            )
-        if "accessed_time" in res["header"]:
-            res["header"]["accessed_time"] = self.ms_time_to_unix_time(
-                res["header"]["accessed_time"]
-            )
-        if "modified_time" in res["header"]:
-            res["header"]["modified_time"] = self.ms_time_to_unix_time(
-                res["header"]["modified_time"]
-            )
 
         if not get_all:
             res["header"].pop("header_size", None)
