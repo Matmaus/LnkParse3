@@ -1,11 +1,12 @@
 from setuptools import setup
+from setuptools import find_packages
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
 setup(
-	name='LnkParse3',
+    name='LnkParse3',
     version='0.3.3',
     description='Windows Shortcut file (LNK) parser',
     long_description=long_description,
@@ -14,10 +15,15 @@ setup(
     author='Matúš Jasnický',
     author_email='matusjas.work@gmail.com',
     license='MIT',
-    packages=['LnkParse3'],
+    packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    entry_points={
+        'console_scripts': [
+            'lnkparse=LnkParse3.lnk_file:main',
+        ],
+    },
 )
