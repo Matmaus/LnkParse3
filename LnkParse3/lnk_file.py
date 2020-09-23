@@ -10,6 +10,7 @@ import datetime
 import argparse
 
 from LnkParse3.lnk_header import lnk_header
+from LnkParse3.lnk_targets import lnk_targets
 
 
 class lnk_file(object):
@@ -22,11 +23,6 @@ class lnk_file(object):
             self.indata = indata
 
         self.debug = debug
-
-        self.targets = {
-            "size": 0,
-            "items": [],
-        }
 
         self.loc_information = {}
         self.data = {}
@@ -105,47 +101,6 @@ class lnk_file(object):
             "a0000009": self.parse_metadata_block,
             "a000000b": self.parse_knownFolder_block,
             "a000000c": self.parse_shellItem_block,
-        }
-
-        self.SHELL_ITEM_CLASSESS = {
-            0x00: self.parse_clsid_unknown,
-            0x01: self.parse_clsid_unknown,
-            0x17: self.parse_clsid_unknown,
-            0x1E: self.parse_clsid_root_folder,
-            0x1F: self.parse_clsid_root_folder,
-            0x20: self.parse_clsid_my_computer,
-            0x30: self.parse_clsid_shell_fs_folder,
-            0x40: self.parse_clsid_network_location,
-            0x52: self.parse_clsid_compressed_folder,
-            0x61: self.parse_clsid_internet,
-            0x70: self.parse_clsid_control_panel,
-            0x71: self.parse_clsid_control_panel,
-            0x72: self.parse_clsid_printers,
-            0x73: self.parse_clsid_common_places_folder,
-            0x74: self.parse_clsid_users_files_folder,
-            0x76: self.parse_clsid_unknown,
-            0x80: self.parse_clsid_unknown,
-            0xFF: self.parse_clsid_unknown,
-        }
-
-        self.SHELL_ITEM_ROOT_FOLDER_SORT_INDEX = {
-            0x00: "Internet Explorer",
-            0x42: "Libraries",
-            0x44: "Users",
-            0x48: "My Documents",
-            0x50: "My Computer",
-            0x58: "My Networs Places/Network",
-            0x60: "Recycle Bin",
-            0x70: "Internet Explorer",
-            0x80: "My Games",
-        }
-
-        self.SHELL_ITEM_SHEL_FS_FOLDER = {
-            0x01: "Is directory",
-            0x02: "Is file",
-            0x04: "Has Unicode strings",
-            0x08: "Unknown",
-            0x80: "Has CLSID",
         }
 
         self.NETWORK_PROVIDER_TYPES = {
@@ -492,43 +447,6 @@ class lnk_file(object):
                     local_index
                 )
 
-    def parse_targets(self, index):
-        # Source: https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc
-        # https://github.com/libyal/liblnk
-        self.targets["index"] = index
-        max_size = self.targets["size"] + index - 2
-
-        while index < max_size:
-            size = struct.unpack("<H", self.indata[index : index + 2])[0]
-            if size:
-                item_type = struct.unpack("<B", self.indata[index + 2 : index + 3])[0]
-
-                if self.debug:
-                    item = self.clean_line(
-                        self.indata[index + 3 : index + size].replace(b"\x00", b"")
-                    )
-                    print()
-                    print("index: " + hex(index + 2))
-                    print("size: " + str(size - 2))
-                    print("type:" + hex(item_type))
-                    print("item: " + item)
-
-                try:
-                    target = self.SHELL_ITEM_CLASSESS[item_type](index + 2, size)
-                except:
-                    try:
-                        target = self.SHELL_ITEM_CLASSESS[item_type & 0x70](
-                            index + 2, size
-                        )
-                    except:
-                        pass
-                    else:
-                        self.targets["items"].append(target)
-                else:
-                    self.targets["items"].append(target)
-
-                index += size
-
     def parse_string_data(self, index):
         u_mult = 1
         if self.is_unicode():
@@ -560,19 +478,14 @@ class lnk_file(object):
         self.header = lnk_header(indata=self.indata)
         index += self.header.size()
 
+        # XXX: json
+        self._target_index = index + 2
+
         # Parse ID List
+        self.targets = None
         if self.has_target_id_list():
-            try:
-                self.targets["size"] = struct.unpack(
-                    "<H", self.indata[index : index + 2]
-                )[0]
-                index += 2
-                self.parse_targets(index)
-                index += self.targets["size"]
-            except Exception as e:
-                if self.debug:
-                    print("Exception parsing TargetIDList: %s" % e)
-                return False
+            self.targets = lnk_targets(indata=self.indata[index:])
+            index += self.targets.size()
 
         # Parse Link Info
         if self.has_link_info() and self.force_no_link_info() == False:
@@ -1052,172 +965,6 @@ class lnk_file(object):
         self.extraBlocks["SHELL_ITEM_IDENTIFIER_BLOCK"]["size"] = size
         self.extraBlocks["SHELL_ITEM_IDENTIFIER_BLOCK"]["id_list"] = ""  # TODO
 
-    def parse_clsid_unknown(self, index, size):
-        if self.debug:
-            print("parse_clsid_unknown")
-
-    def parse_clsid_root_folder(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |                     0-7b                     |                      8-15b                      |
-        --------------------------------------------------------------------------------------------------
-        |           ClassTypeIndicator == 0x1F         |       SortIndex == (0x00, 0x42, ... 0x80)       |
-        --------------------------------------------------------------------------------------------------
-        |                                    <GUID> ShellFolderID                                        |
-        |                                            16 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                        ExtensionBLock                                          |
-        |                                             ? B                                                |
-        --------------------------------------------------------------------------------------------------
-        """
-        if self.debug:
-            print("parse_clsid_root_folder")
-
-        item = {}
-        item["class"] = "Root Folder"
-        sort_index = struct.unpack("<B", self.indata[index + 1 : index + 2])[0]
-        item["sort_index"] = self.SHELL_ITEM_ROOT_FOLDER_SORT_INDEX[sort_index]
-        item["guid"] = self.indata[index + 2 : index + 18].hex()
-        if size > 20:
-            pass  # extension block
-
-        return item
-
-    def parse_clsid_my_computer(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |                     0-7b                     |                      8-15b                      |
-        --------------------------------------------------------------------------------------------------
-        |       ClassTypeIndicator == 0x20-0x2F        |                   UnknownData                   |
-        ------------------------------------------------                                                 |
-        |                                             ? B                                                |
-        --------------------------------------------------------------------------------------------------
-        """
-        if self.debug:
-            print("parse_clsid_my_computer")
-
-        item = {}
-        item["class"] = "Volume Item"
-        item["flags"] = hex(
-            struct.unpack("<B", self.indata[index : index + 1])[0] & 0x0F
-        )
-        item["data"] = self.read_string(index + 1)
-
-        return item
-
-    def parse_clsid_shell_fs_folder(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |                     0-7b                     |                      8-15b                      |
-        --------------------------------------------------------------------------------------------------
-        |       ClassTypeIndicator == 0x30-0x3F        |                   UnknownValue                  |
-        --------------------------------------------------------------------------------------------------
-        |                                      <u_int16> FileSize                                        |
-        |                                            4 B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                         <dos_timestamp> LastModificationDateAndTime                            |
-        |                                            4 B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                                     FileAttributeFlags                                         |
-        --------------------------------------------------------------------------------------------------
-        |                               <str/unicode_str> PrimaryName                                    |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                                         UnknownData                                            |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        """
-        if self.debug:
-            print("parse_clsid_shell_fs_folder")
-
-        item = {}
-        item["class"] = "File entry"
-        item["flags"] = self.SHELL_ITEM_SHEL_FS_FOLDER[
-            struct.unpack("<B", self.indata[index : index + 1])[0] & 0x0F
-        ]
-        # item['unknown'] = struct.unpack('<B', self.indata[index + 1: index + 2])[0]
-        item["file_size"] = struct.unpack("<I", self.indata[index + 2 : index + 6])[0]
-
-        item["modification_time"] = self.dos_time_to_unix_time(
-            struct.unpack("<I", self.indata[index + 6 : index + 10])[0]
-        )
-
-        item["file_attribute_flags"] = struct.unpack(
-            "<H", self.indata[index + 10 : index + 12]
-        )[0]
-        if item["flags"] == "Has Unicode strings":
-            item["primary_name"] = self.read_unicode_string(index + 12)
-        else:
-            item["primary_name"] = self.read_string(index + 12)
-
-        return item
-
-    def parse_clsid_network_location(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |                     0-7b                     |                      8-15b                      |
-        --------------------------------------------------------------------------------------------------
-        |       ClassTypeIndicator == 0x40-0x4F        |                   UnknownValue                  |
-        --------------------------------------------------------------------------------------------------
-        |                                        ContentFlags                                            |
-        --------------------------------------------------------------------------------------------------
-        |                                       <str> Location                                           |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                                      <str> Description                                         |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                                       <str> Comments                                           |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                                       <str> Unknown                                            |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        """
-        if self.debug:
-            print("parse_clsid_network_location")
-
-        item = {}
-        item["class"] = "Network location"
-        item["flags"] = self.SHELL_ITEM_SHEL_FS_FOLDER[
-            struct.unpack("<B", self.indata[index : index + 1])[0] & 0x0F
-        ]
-        # item['unknown'] = struct.unpack('<B', self.indata[index + 1: index + 2])[0]
-        item["content_flags"] = struct.unpack("<I", self.indata[index + 2 : index + 6])[
-            0
-        ]
-        item["location"] = self.read_string(index + 6)
-        # if item['content_flags'] & 0x80:
-        # 	item['description'] = self.read_string(index + 6)
-        # if item['content_flags'] & 0x40:
-        # 	item['comments'] = self.read_string(index + 6)
-
-        return item
-
-    def parse_clsid_compressed_folder(self, index, size):
-        if self.debug:
-            print("parse_clsid_compressed_folder")
-
-    def parse_clsid_internet(self, index, size):
-        if self.debug:
-            print("parse_clsid_internet")
-
-    def parse_clsid_control_panel(self, index, size):
-        if self.debug:
-            print("parse_clsid_control_panel")
-
-    def parse_clsid_printers(self, index, size):
-        if self.debug:
-            print("parse_clsid_printers")
-
-    def parse_clsid_common_places_folder(self, index, size):
-        if self.debug:
-            print("parse_clsid_common_places_folder")
-
-    def parse_clsid_users_files_folder(self, index, size):
-        if self.debug:
-            print("parse_clsid_users_files_folder")
-
     def print_lnk_file(self):
         print("Windows Shortcut Information:")
         print(
@@ -1361,10 +1108,16 @@ class lnk_file(object):
                 "reserved2": self.header.reserved2(),
             },
             "data": self.data,
-            "target": self.targets,
             "link_info": self.loc_information,
             "extra": self.extraBlocks,
         }
+
+        if self.targets:
+            res["target"] = {
+                "size": self.targets.id_list_size(),
+                "items": [x.as_item() for x in self.targets],
+                "index": self._target_index,
+            }
 
         if not get_all:
             res["header"].pop("header_size", None)
