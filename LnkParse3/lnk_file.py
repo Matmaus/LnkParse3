@@ -13,6 +13,7 @@ from LnkParse3.lnk_header import lnk_header
 from LnkParse3.lnk_targets import lnk_targets
 from LnkParse3.lnk_info import lnk_info
 from LnkParse3.info_factory import info_factory
+from LnkParse3.string_data import string_data
 
 
 class lnk_file(object):
@@ -108,30 +109,6 @@ class lnk_file(object):
     def clean_line(rstring):
         return "".join(chr(i) for i in rstring if 128 > i > 20)
 
-    def parse_string_data(self, index):
-        u_mult = 1
-        if self.is_unicode():
-            u_mult = 2
-
-        if self.has_name():
-            index, self.data["description"] = self.read_stringData(index, u_mult)
-
-        if self.has_relative_path():
-            index, self.data["relative_path"] = self.read_stringData(index, u_mult)
-
-        if self.has_working_dir():
-            index, self.data["working_directory"] = self.read_stringData(index, u_mult)
-
-        if self.has_arguments():
-            index, self.data["command_line_arguments"] = self.read_stringData(
-                index, u_mult
-            )
-
-        if self.has_icon_location():
-            index, self.data["icon_location"] = self.read_stringData(index, u_mult)
-
-        return index
-
     def process(self):
         index = 0
 
@@ -158,12 +135,8 @@ class lnk_file(object):
                 index += self.info.size()
 
         # Parse String Data
-        try:
-            index = self.parse_string_data(index)
-        except Exception as e:
-            if self.debug:
-                print("Exception in parsing data: %s" % e)
-            return False
+        self.string_data = string_data(self, indata=self.indata[index:])
+        index += self.string_data.size()
 
         # Parse Extra Data
         try:
@@ -649,8 +622,8 @@ class lnk_file(object):
         print("\tHotKey: %s " % (str(self.header.hot_key())))
         print("")
 
-        for rline in self.data:
-            print("\t%s: %s" % (rline, self.data[rline]))
+        for key, value in self.string_data.as_dict().items():
+            print("\t%s: %s" % (key, value))
 
         print("")
         print("\tEXTRA BLOCKS:")
@@ -708,14 +681,6 @@ class lnk_file(object):
             index += 1
         return self.clean_line(self.indata[begin:end].replace(b"\x00", b""))
 
-    def read_stringData(self, index, u_mult):
-        string_size = struct.unpack("<H", self.indata[index : index + 2])[0] * u_mult
-        string = self.clean_line(
-            self.indata[index + 2 : index + 2 + string_size].replace(b"\x00", b"")
-        )
-        new_index = index + string_size + 2
-        return new_index, string
-
     def format_linkFlags(self):
         return " | ".join(self.header.link_flags())
 
@@ -767,7 +732,7 @@ class lnk_file(object):
                 "reserved1": self.header.reserved1(),
                 "reserved2": self.header.reserved2(),
             },
-            "data": self.data,
+            "data": self.string_data.as_dict(),
             "extra": self.extraBlocks,
         }
 
