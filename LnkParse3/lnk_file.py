@@ -5,7 +5,6 @@ __author__ = "Matúš Jasnický"
 __version__ = "0.3.3"
 
 import json
-import struct
 import datetime
 import argparse
 
@@ -14,12 +13,11 @@ from LnkParse3.lnk_targets import lnk_targets
 from LnkParse3.lnk_info import lnk_info
 from LnkParse3.info_factory import info_factory
 from LnkParse3.string_data import string_data
+from LnkParse3.extra_data import extra_data
 
 
 class lnk_file(object):
     def __init__(self, fhandle=None, indata=None, debug=False):
-        self.define_static()
-
         if fhandle:
             self.indata = fhandle.read()
         elif indata:
@@ -28,7 +26,6 @@ class lnk_file(object):
         self.debug = debug
 
         self.data = {}
-        self.extraBlocks = {}
 
         self.process()
         self.define_common()
@@ -87,24 +84,6 @@ class lnk_file(object):
                 print("Exception get_command: %s" % (e))
             return ""
 
-    def define_static(self):
-        # Define static constents used within the LNK format
-
-        # Each MAGIC string refernces a function for processing
-        self.EXTRA_SIGS = {
-            "a0000001": self.parse_environment_block,
-            "a0000002": self.parse_console_block,
-            "a0000003": self.parse_distributedTracker_block,
-            "a0000004": self.parse_codepage_block,
-            "a0000005": self.parse_specialFolder_block,
-            "a0000006": self.parse_darwin_block,
-            "a0000007": self.parse_icon_block,
-            "a0000008": self.parse_shimLayer_block,
-            "a0000009": self.parse_metadata_block,
-            "a000000b": self.parse_knownFolder_block,
-            "a000000c": self.parse_shellItem_block,
-        }
-
     @staticmethod
     def clean_line(rstring):
         return "".join(chr(i) for i in rstring if 128 > i > 20)
@@ -139,464 +118,7 @@ class lnk_file(object):
         index += self.string_data.size()
 
         # Parse Extra Data
-        try:
-            while index <= len(self.indata) - 10:
-                try:
-                    size = struct.unpack("<I", self.indata[index : index + 4])[0]
-                    sig = str(
-                        hex(struct.unpack("<I", self.indata[index + 4 : index + 8])[0])
-                    )[2:]
-                    self.EXTRA_SIGS[sig](index, size)
-
-                    index += size
-                    if size == 0:
-                        break
-                except Exception as e:
-                    if self.debug:
-                        print("Exception in EXTRABLOCK Parsing: %s " % e)
-                    index = len(self.data)
-                    break
-        except Exception as e:
-            if self.debug:
-                print("Exception in EXTRABLOCK: %s" % e)
-
-    def parse_environment_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize == 0x00000314                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000001                              |
-        --------------------------------------------------------------------------------------------------
-        |                                      <str> TargetAnsi                                          |
-        |                                           260 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                <unicode_str> TargetUnicode                                     |
-        |                                           520 B                                                |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK"] = {}
-        self.extraBlocks["ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK"]["size"] = size
-        self.extraBlocks["ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK"][
-            "target_ansi"
-        ] = self.read_string(index + 8)
-        self.extraBlocks["ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK"][
-            "target_unicode"
-        ] = self.read_unicode_string(index + 268)
-
-    def parse_console_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize == 0x000000CC                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000002                              |
-        --------------------------------------------------------------------------------------------------
-        |         <u_int16> FillAttributes             |        <u_int16> PopupFillAttributes            |
-        --------------------------------------------------------------------------------------------------
-        |         <int16> ScreenBufferSizeX            |             <int16> ScreenBufferSizeY           |
-        --------------------------------------------------------------------------------------------------
-        |             <int16> WindowSizeX              |               <int16> WindowSizeY               |
-        --------------------------------------------------------------------------------------------------
-        |            <int16> WindowOriginX             |              <int16> WindowOriginY              |
-        --------------------------------------------------------------------------------------------------
-        |                                           Unused1                                              |
-        --------------------------------------------------------------------------------------------------
-        |                                           Unused2                                              |
-        --------------------------------------------------------------------------------------------------
-        |                                      <u_int32> FontSize                                        |
-        --------------------------------------------------------------------------------------------------
-        |                                     <u_int32> FontFamily                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                     <u_int32> FontWeight                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                    <unicode_str> Face Name                                     |
-        |                                            64 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                     <u_int32> CursorSize                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                     <u_int32> FullScreen                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                      <u_int32> QuickEdit                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                     <u_int32> InsertMode                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                    <u_int32> AutoPosition                                      |
-        --------------------------------------------------------------------------------------------------
-        |                                 <u_int32> HistoryBufferSize                                    |
-        --------------------------------------------------------------------------------------------------
-        |                               <u_int32> NumberOfHistoryBuffers                                 |
-        --------------------------------------------------------------------------------------------------
-        |                                   <u_int32> HistoryNoDup                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                <vector<u_int32>> ColorTable                                    |
-        |                                            64 B                                                |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"] = {}
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["size"] = size
-        # 16b
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["fill_attributes"] = struct.unpack(
-            "<I", self.indata[index + 8 : index + 10]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"][
-            "popup_fill_attributes"
-        ] = struct.unpack("<I", self.indata[index + 10 : index + 12])[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"][
-            "screen_buffer_size_x"
-        ] = struct.unpack("<i", self.indata[index + 12 : index + 14])[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"][
-            "screen_buffer_size_y"
-        ] = struct.unpack("<i", self.indata[index + 14 : index + 16])[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["window_size_x"] = struct.unpack(
-            "<i", self.indata[index + 16 : index + 18]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["window_size_y"] = struct.unpack(
-            "<i", self.indata[index + 18 : index + 20]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["window_origin_x"] = struct.unpack(
-            "<i", self.indata[index + 20 : index + 22]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["window_origin_y"] = struct.unpack(
-            "<i", self.indata[index + 22 : index + 24]
-        )[0]
-        # Bytes 24-28 & 28-32 are unused
-        # 32b
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["font_size"] = struct.unpack(
-            "<I", self.indata[index + 32 : index + 36]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["font_family"] = struct.unpack(
-            "<I", self.indata[index + 36 : index + 40]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["font_weight"] = struct.unpack(
-            "<I", self.indata[index + 40 : index + 44]
-        )[0]
-        # 64b
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["face_name"] = self.clean_line(
-            self.indata[index + 44 : index + 108]
-        )
-        # 32b
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["cursor_size"] = struct.unpack(
-            "<I", self.indata[index + 108 : index + 112]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["full_screen"] = struct.unpack(
-            "<I", self.indata[index + 112 : index + 116]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["quick_edit"] = struct.unpack(
-            "<I", self.indata[index + 116 : index + 120]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["insert_mode"] = struct.unpack(
-            "<I", self.indata[index + 120 : index + 124]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["auto_position"] = struct.unpack(
-            "<I", self.indata[index + 124 : index + 128]
-        )[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"][
-            "history_buffer_size"
-        ] = struct.unpack("<I", self.indata[index + 128 : index + 132])[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"][
-            "number_of_history_buffers"
-        ] = struct.unpack("<I", self.indata[index + 132 : index + 136])[0]
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["history_no_dup"] = struct.unpack(
-            "<I", self.indata[index + 136 : index + 140]
-        )[0]
-        # 64b
-        self.extraBlocks["CONSOLE_PROPERTIES_BLOCK"]["color_table"] = struct.unpack(
-            "<I", self.indata[index + 140 : index + 144]
-        )[0]
-
-    def parse_distributedTracker_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize == 0x00000060                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000003                              |
-        --------------------------------------------------------------------------------------------------
-        |                                      <u_int32> Length                                          |
-        --------------------------------------------------------------------------------------------------
-        |                                      <u_int32> Version                                         |
-        --------------------------------------------------------------------------------------------------
-        |                                       <str> MachineID                                          |
-        |                                             16 B                                               |
-        --------------------------------------------------------------------------------------------------
-        |                                    <GUID> DroidVolumeId                                        |
-        |                                             16 B                                               |
-        --------------------------------------------------------------------------------------------------
-        |                                     <GUID> DroidFileId                                         |
-        |                                             16 B                                               |
-        --------------------------------------------------------------------------------------------------
-        |                                  <GUID> DroidBirthVolumeId                                     |
-        |                                             16 B                                               |
-        --------------------------------------------------------------------------------------------------
-        |                                   <GUID> DroidBirthFileId                                      |
-        |                                             16 B                                               |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"] = {}
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"]["size"] = size
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"]["length"] = struct.unpack(
-            "<I", self.indata[index + 8 : index + 12]
-        )[0]
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"]["version"] = struct.unpack(
-            "<I", self.indata[index + 12 : index + 16]
-        )[0]
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"][
-            "machine_identifier"
-        ] = self.read_string(index + 16)
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"][
-            "droid_volume_identifier"
-        ] = self.indata[index + 32 : index + 48].hex()
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"][
-            "droid_file_identifier"
-        ] = self.indata[index + 48 : index + 64].hex()
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"][
-            "birth_droid_volume_identifier"
-        ] = self.indata[index + 64 : index + 80].hex()
-        self.extraBlocks["DISTRIBUTED_LINK_TRACKER_BLOCK"][
-            "birth_droid_file_identifier"
-        ] = self.indata[index + 80 : index + 96].hex()
-
-    def parse_codepage_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize == 0x0000000C                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000004                              |
-        --------------------------------------------------------------------------------------------------
-        |                                     <u_int32> CodePage                                         |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["CONSOLE_CODEPAGE_BLOCK"] = {}
-        self.extraBlocks["CONSOLE_CODEPAGE_BLOCK"]["size"] = size
-        self.extraBlocks["CONSOLE_CODEPAGE_BLOCK"]["code_page"] = struct.unpack(
-            "<I", self.indata[index + 8 : index + 12]
-        )[0]
-
-    def parse_specialFolder_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize == 0x00000010                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000005                              |
-        --------------------------------------------------------------------------------------------------
-        |                                   <u_int32> SpecialFolderID                                    |
-        --------------------------------------------------------------------------------------------------
-        |                                         <u_int32> Offset                                       |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["SPECIAL_FOLDER_LOCATION_BLOCK"] = {}
-        self.extraBlocks["SPECIAL_FOLDER_LOCATION_BLOCK"]["size"] = size
-        self.extraBlocks["SPECIAL_FOLDER_LOCATION_BLOCK"][
-            "special_folder_id"
-        ] = struct.unpack("<I", self.indata[index + 8 : index + 12])[0]
-        self.extraBlocks["SPECIAL_FOLDER_LOCATION_BLOCK"]["offset"] = struct.unpack(
-            "<I", self.indata[index + 12 : index + 16]
-        )[0]
-
-    def parse_darwin_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize == 0x00000314                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000006                              |
-        --------------------------------------------------------------------------------------------------
-        |                                    <str> DarwinDataAnsi                                        |
-        |                                           260 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                               <unicode_str> DarwinDataUnicode                                  |
-        |                                           520 B                                                |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["DARWIN_BLOCK"] = {}
-        self.extraBlocks["DARWIN_BLOCK"]["size"] = size
-        self.extraBlocks["DARWIN_BLOCK"]["darwin_data_ansi"] = self.read_string(
-            index + 8
-        )
-        self.extraBlocks["DARWIN_BLOCK"][
-            "darwin_data_unicode"
-        ] = self.read_unicode_string(index + 268)
-
-    def parse_icon_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize == 0x00000314                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000007                              |
-        --------------------------------------------------------------------------------------------------
-        |                                      <str> TargetAnsi                                          |
-        |                                           260 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                <unicode_str> TargetUnicode                                     |
-        |                                           520 B                                                |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["ICON_LOCATION_BLOCK"] = {}
-        self.extraBlocks["ICON_LOCATION_BLOCK"]["size"] = size
-        self.extraBlocks["ICON_LOCATION_BLOCK"]["target_ansi"] = self.read_string(
-            index + 8
-        )
-        self.extraBlocks["ICON_LOCATION_BLOCK"][
-            "target_unicode"
-        ] = self.read_unicode_string(index + 268)
-
-    def parse_shimLayer_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize >= 0x00000088                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000008                              |
-        --------------------------------------------------------------------------------------------------
-        |                                    <unicode_str> LayerName                                     |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["SHIM_LAYER_BLOCK"] = {}
-        self.extraBlocks["SHIM_LAYER_BLOCK"]["size"] = size
-        self.extraBlocks["SHIM_LAYER_BLOCK"]["layer_name"] = self.read_unicode_string(
-            index + 8
-        )
-
-    def parse_metadata_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize >= 0x0000000C                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA0000009                              |
-        --------------------------------------------------------------------------------------------------
-        |                                    <u_int32> StorageSize                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                    Version == 0x53505331                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                      <GUID> FormatID                                           |
-        |                                            16 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                   <vector<MS_OLEPS>> SerializedPropertyValue (see MS-OLEPS)                    |
-        |                                             ? B                                                |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["METADATA_PROPERTIES_BLOCK"] = {}
-        self.extraBlocks["METADATA_PROPERTIES_BLOCK"]["size"] = size
-        self.extraBlocks["METADATA_PROPERTIES_BLOCK"]["storage_size"] = struct.unpack(
-            "<I", self.indata[index + 8 : index + 12]
-        )[0]
-        self.extraBlocks["METADATA_PROPERTIES_BLOCK"]["version"] = hex(
-            struct.unpack("<I", self.indata[index + 12 : index + 16])[0]
-        )
-        self.extraBlocks["METADATA_PROPERTIES_BLOCK"]["format_id"] = self.indata[
-            index + 16 : index + 32
-        ].hex()
-
-        if not self.debug:
-            return
-
-        if (
-            self.extraBlocks["METADATA_PROPERTIES_BLOCK"]["format_id"].upper()
-            == "D5CDD5052E9C101B939708002B2CF9AE"
-        ):
-            # Serialized Property Value (String Name)
-            index += 32
-            result = []
-            while True:
-                value = {}
-                value["value_size"] = struct.unpack(
-                    "<I", self.indata[index : index + 4]
-                )[0]
-                if hex(value["value_size"]) == hex(0x0):
-                    break
-                value["name_size"] = struct.unpack(
-                    "<I", self.indata[index + 4 : index + 8]
-                )[0]
-                value["name"] = self.read_unicode_string(index + 8)
-                value["value"] = ""  # TODO MS-OLEPS
-
-                result.append(value)
-                index += 4 + 4 + 2 + value["name_size"] + value["value_size"]
-
-            self.extraBlocks["METADATA_PROPERTIES_BLOCK"][
-                "serialized_property_value_string"
-            ] = result
-        else:
-            # Serialized Property Value (Integer Name)
-            try:
-                index += 32
-                result = []
-                while True:
-                    value = {}
-                    value["value_size"] = struct.unpack(
-                        "<I", self.indata[index : index + 4]
-                    )[0]
-                    if hex(value["value_size"]) == hex(0x0):
-                        break
-                    value["id"] = struct.unpack(
-                        "<I", self.indata[index + 4 : index + 8]
-                    )[0]
-                    value["value"] = ""  # TODO MS-OLEPS
-
-                    result.append(value)
-                    index += value["value_size"]
-
-                self.extraBlocks["METADATA_PROPERTIES_BLOCK"][
-                    "serialized_property_value_integer"
-                ] = result
-            except Exception as e:
-                if self.debug:
-                    print(e)
-
-    def parse_knownFolder_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize == 0x0000001C                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA000000B                              |
-        --------------------------------------------------------------------------------------------------
-        |                                     <GUID> KnownFolderID                                       |
-        |                                            16 B                                                |
-        --------------------------------------------------------------------------------------------------
-        |                                       <u_int32> Offset                                         |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["KNOWN_FOLDER_LOCATION_BLOCK"] = {}
-        self.extraBlocks["KNOWN_FOLDER_LOCATION_BLOCK"]["size"] = size
-        self.extraBlocks["KNOWN_FOLDER_LOCATION_BLOCK"][
-            "known_folder_id"
-        ] = self.indata[index + 8 : index + 24].hex()
-        self.extraBlocks["KNOWN_FOLDER_LOCATION_BLOCK"]["offset"] = struct.unpack(
-            "<I", self.indata[index + 24 : index + 28]
-        )[0]
-
-    def parse_shellItem_block(self, index, size):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> BlockSize >= 0x0000000A                                 |
-        --------------------------------------------------------------------------------------------------
-        |                            <u_int32> BlockSignature == 0xA000000C                              |
-        --------------------------------------------------------------------------------------------------
-        |                                       <IDList> IDList                                          |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.extraBlocks["SHELL_ITEM_IDENTIFIER_BLOCK"] = {}
-        self.extraBlocks["SHELL_ITEM_IDENTIFIER_BLOCK"]["size"] = size
-        self.extraBlocks["SHELL_ITEM_IDENTIFIER_BLOCK"]["id_list"] = ""  # TODO
+        self.extras = extra_data(indata=self.indata[index:])
 
     def print_lnk_file(self):
         print("Windows Shortcut Information:")
@@ -627,59 +149,11 @@ class lnk_file(object):
 
         print("")
         print("\tEXTRA BLOCKS:")
-        for enabled in self.extraBlocks:
-            print("\t\t%s" % enabled)
-            for block in self.extraBlocks[enabled]:
-                print("\t\t\t[%s] %s" % (block, self.extraBlocks[enabled][block]))
 
-    @staticmethod
-    def dos_time_to_unix_time(time):
-        """
-         The DOS date/time format is a bitmask:
-
-        24                16                 8                 0
-         +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
-         |Y|Y|Y|Y|Y|Y|Y|M| |M|M|M|D|D|D|D|D| |h|h|h|h|h|m|m|m| |m|m|m|s|s|s|s|s|
-         +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
-          \___________/\________/\_________/ \________/\____________/\_________/
-             year        month       day      hour       minute        second
-
-         The year is stored as an offset from 1980.
-         Seconds are stored in two-second increments.
-         (So if the "second" value is 15, it actually represents 30 seconds.)
-         Source: https://stackoverflow.com/questions/15763259/unix-timestamp-to-fat-timestamp
-         https://docs.microsoft.com/pl-pl/windows/desktop/api/winbase/nf-winbase-dosdatetimetofiletime
-         https://github.com/log2timeline/dfdatetime/wiki/Date-and-time-values
-        """
-        if time == 0:
-            return ""
-        try:
-            ymdhms = (
-                ((time & 0xFE000000) >> 25) + 1980,
-                ((time & 0x01E00000) >> 21),
-                ((time & 0x001F0000) >> 16),
-                ((time & 0x0000F800) >> 11),
-                ((time & 0x000007E0) >> 5),
-                ((time & 0x0000001F) >> 0) * 2,
-            )
-
-            return datetime.datetime(*ymdhms, tzinfo=datetime.timezone.utc)
-        except Exception:
-            return "Invalid time"
-
-    def read_string(self, index):
-        result = ""
-        while self.indata[index] != 0x00:
-            result += chr(self.indata[index])
-            index += 1
-        return result
-
-    def read_unicode_string(self, index):
-        begin = end = index
-        while self.indata[index] != 0x00:
-            end += 1
-            index += 1
-        return self.clean_line(self.indata[begin:end].replace(b"\x00", b""))
+        for extra in self.extras:
+            print(f"\t\t{extra.name()}")
+            for key, value in extra.as_dict().items():
+                print(f"\t\t\t[{key}] {value}")
 
     def format_linkFlags(self):
         return " | ".join(self.header.link_flags())
@@ -733,7 +207,7 @@ class lnk_file(object):
                 "reserved2": self.header.reserved2(),
             },
             "data": self.string_data.as_dict(),
-            "extra": self.extraBlocks,
+            "extra": {extra.name(): extra.as_dict() for extra in self.extras},
         }
 
         if self.targets:
