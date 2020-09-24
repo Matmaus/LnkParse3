@@ -22,7 +22,7 @@ class TestSamples(unittest.TestCase):
 
                 mock_stdout = StringIO()
                 with redirect_stdout(mock_stdout):
-                    lnk.print_json()
+                    lnk.print_json(print_all=True)
 
                 our = json.loads(mock_stdout.getvalue())
 

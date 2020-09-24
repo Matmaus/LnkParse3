@@ -1,5 +1,6 @@
 {
     "header": {
+        "header_size": 76,
         "guid": "0114020000000000c000000000000046",
         "r_link_flags": 129,
         "r_file_flags": 0,
@@ -11,6 +12,9 @@
         "windowstyle": "SW_NORMAL",
         "hotkey": "UNSET - UNSET {0x0000}",
         "r_hotkey": 0,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
         "link_flags": [
             "HasTargetIDList",
             "IsUnicode"
@@ -33,7 +37,8 @@
             },
             null,
             null
-        ]
+        ],
+        "index": 78
     },
     "link_info": {},
     "extra": {
