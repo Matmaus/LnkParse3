@@ -11,6 +11,8 @@ import argparse
 
 from LnkParse3.lnk_header import lnk_header
 from LnkParse3.lnk_targets import lnk_targets
+from LnkParse3.lnk_info import lnk_info
+from LnkParse3.info_factory import info_factory
 
 
 class lnk_file(object):
@@ -24,7 +26,6 @@ class lnk_file(object):
 
         self.debug = debug
 
-        self.loc_information = {}
         self.data = {}
         self.extraBlocks = {}
 
@@ -103,349 +104,9 @@ class lnk_file(object):
             "a000000c": self.parse_shellItem_block,
         }
 
-        self.NETWORK_PROVIDER_TYPES = {
-            "0x1A000": "WNNC_NET_AVID",
-            "0x1B000": "WNNC_NET_DOCUSPACE",
-            "0x1C000": "WNNC_NET_MANGOSOFT",
-            "0x1D000": "WNNC_NET_SERNET",
-            "0X1E000": "WNNC_NET_RIVERFRONT1",
-            "0x1F000": "WNNC_NET_RIVERFRONT2",
-            "0x20000": "WNNC_NET_DECORB",
-            "0x21000": "WNNC_NET_PROTSTOR",
-            "0x22000": "WNNC_NET_FJ_REDIR",
-            "0x23000": "WNNC_NET_DISTINCT",
-            "0x24000": "WNNC_NET_TWINS",
-            "0x25000": "WNNC_NET_RDR2SAMPLE",
-            "0x26000": "WNNC_NET_CSC",
-            "0x27000": "WNNC_NET_3IN1",
-            "0x29000": "WNNC_NET_EXTENDNET",
-            "0x2A000": "WNNC_NET_STAC",
-            "0x2B000": "WNNC_NET_FOXBAT",
-            "0x2C000": "WNNC_NET_YAHOO",
-            "0x2D000": "WNNC_NET_EXIFS",
-            "0x2E000": "WNNC_NET_DAV",
-            "0x2F000": "WNNC_NET_KNOWARE",
-            "0x30000": "WNNC_NET_OBJECT_DIRE",
-            "0x31000": "WNNC_NET_MASFAX",
-            "0x32000": "WNNC_NET_HOB_NFS",
-            "0x33000": "WNNC_NET_SHIVA",
-            "0x34000": "WNNC_NET_IBMAL",
-            "0x35000": "WNNC_NET_LOCK",
-            "0x36000": "WNNC_NET_TERMSRV",
-            "0x37000": "WNNC_NET_SRT",
-            "0x38000": "WNNC_NET_QUINCY",
-            "0x39000": "WNNC_NET_OPENAFS",
-            "0X3A000": "WNNC_NET_AVID1",
-            "0x3B000": "WNNC_NET_DFS",
-            "0x3C000": "WNNC_NET_KWNP",
-            "0x3D000": "WNNC_NET_ZENWORKS",
-            "0x3E000": "WNNC_NET_DRIVEONWEB",
-            "0x3F000": "WNNC_NET_VMWARE",
-            "0x40000": "WNNC_NET_RSFX",
-            "0x41000": "WNNC_NET_MFILES",
-            "0x42000": "WNNC_NET_MS_NFS",
-            "0x43000": "WNNC_NET_GOOGLE",
-        }
-        self.DRIVE_TYPES = [
-            "DRIVE_UNKNOWN",
-            "DRIVE_NO_ROOT_DIR",
-            "DRIVE_REMOVABLE",
-            "DRIVE_FIXED",
-            "DRIVE_REMOTE",
-            "DRIVE_CDROM",
-            "DRIVE_RAMDISK",
-        ]
-
     @staticmethod
     def clean_line(rstring):
         return "".join(chr(i) for i in rstring if 128 > i > 20)
-
-    def parse_link_information(self, index):
-        """
-        --------------------------------------------------------------------------------------------------
-        |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-        --------------------------------------------------------------------------------------------------
-        |                                   <u_int32> LinkInfoSize                                       |
-        --------------------------------------------------------------------------------------------------
-        |                                <u_int32> LinkInfoHeaderSize                                    |
-        --------------------------------------------------------------------------------------------------
-        |                                   <flags> LinkInfoFlags                                        |
-        --------------------------------------------------------------------------------------------------
-        |                                  <u_int32> VolumeIDOffset                                      |
-        --------------------------------------------------------------------------------------------------
-        |                               <u_int32> LocalBasePathOffset                                    |
-        --------------------------------------------------------------------------------------------------
-        |                           <u_int32> CommonNetworkRelativeLinkOffset                            |
-        --------------------------------------------------------------------------------------------------
-        |                              <u_int32> CommonPathSuffixOffset                                  |
-        --------------------------------------------------------------------------------------------------
-        |                        <u_int32> LocalBasePathOffsetUnicode (optional)                         |
-        --------------------------------------------------------------------------------------------------
-        |                       <u_int32> CommonPathSuffixOffsetUnicode (optional)                       |
-        --------------------------------------------------------------------------------------------------
-        |                                 <VolumeID> VolumeID (optional)                                 |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                                 <str> LocalBasePath (optional)                                 |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |              <CommonNetworkRelativeLink> CommonNetworkRelativeLink (optional)                  |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                               <str> CommonPathSuffix (optional)                                |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                        <unicode_str> LocalBasePathUnicode (optional)                           |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        |                      <unicode_str> CommonPathSuffixUnicode (optional)                          |
-        |                                            ? B                                                 |
-        --------------------------------------------------------------------------------------------------
-        """
-        self.loc_information = {
-            "link_info_size": struct.unpack("<I", self.indata[index : index + 4])[0],
-            "link_info_header_size": struct.unpack(
-                "<I", self.indata[index + 4 : index + 8]
-            )[0],
-            "link_info_flags": struct.unpack("<I", self.indata[index + 8 : index + 12])[
-                0
-            ],
-            "volume_id_offset": struct.unpack(
-                "<I", self.indata[index + 12 : index + 16]
-            )[0],
-            "local_base_path_offset": struct.unpack(
-                "<I", self.indata[index + 16 : index + 20]
-            )[0],
-            "common_network_relative_link_offset": struct.unpack(
-                "<I", self.indata[index + 20 : index + 24]
-            )[0],
-            "common_path_suffix_offset": struct.unpack(
-                "<I", self.indata[index + 24 : index + 28]
-            )[0],
-        }
-
-        if self.loc_information["link_info_flags"] & 0x0001:
-            """
-            --------------------------------------------------------------------------------------------------
-            |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-            --------------------------------------------------------------------------------------------------
-            |                                   <u_int32> VolumeIDSize                                       |
-            --------------------------------------------------------------------------------------------------
-            |                                    <u_int32> DriveType                                         |
-            --------------------------------------------------------------------------------------------------
-            |                                 <u_int32> DriveSerialNumber                                    |
-            --------------------------------------------------------------------------------------------------
-            |                                 <u_int32> VolumeLabelOffset                                    |
-            --------------------------------------------------------------------------------------------------
-            |                        <u_int32> VolumeLabelOffsetUnicode (optional)                           |
-            --------------------------------------------------------------------------------------------------
-            |                                       <u_int32> Data                                           |
-            |                                            ? B                                                 |
-            --------------------------------------------------------------------------------------------------
-            """
-            if self.loc_information["link_info_header_size"] >= 36:
-                self.loc_information["local_base_path_offset_unicode"] = struct.unpack(
-                    "<I", self.indata[index + 28 : index + 32]
-                )[0]
-                local_index = (
-                    index + self.loc_information["local_base_path_offset_unicode"]
-                )
-                self.loc_information[
-                    "local_base_path_offset_unicode"
-                ] = self.read_unicode_string(local_index)
-
-                self.loc_information[
-                    "common_path_suffix_offset_unicode"
-                ] = struct.unpack("<I", self.indata[index + 32 : index + 36])[0]
-                local_index = (
-                    index + self.loc_information["common_path_suffix_offset_unicode"]
-                )
-                self.loc_information[
-                    "common_path_suffix_unicode"
-                ] = self.read_unicode_string(local_index)
-            else:
-                local_index = index + self.loc_information["local_base_path_offset"]
-                self.loc_information["local_base_path"] = self.read_string(local_index)
-
-                local_index = index + self.loc_information["common_path_suffix_offset"]
-                self.loc_information["common_path_suffix"] = self.read_string(
-                    local_index
-                )
-
-            local_index = index + self.loc_information["volume_id_offset"]
-            self.loc_information["location"] = "Local"
-            self.loc_information["location_info"] = {
-                "volume_id_size": struct.unpack(
-                    "<I", self.indata[local_index + 0 : local_index + 4]
-                )[0],
-                "r_drive_type": struct.unpack(
-                    "<I", self.indata[local_index + 4 : local_index + 8]
-                )[0],
-                "drive_serial_number": hex(
-                    struct.unpack(
-                        "<I", self.indata[local_index + 8 : local_index + 12]
-                    )[0]
-                ),
-                "volume_label_offset": struct.unpack(
-                    "<I", self.indata[local_index + 12 : local_index + 16]
-                )[0],
-            }
-
-            if self.loc_information["location_info"]["r_drive_type"] < len(
-                self.DRIVE_TYPES
-            ):
-                self.loc_information["location_info"]["drive_type"] = self.DRIVE_TYPES[
-                    self.loc_information["location_info"]["r_drive_type"]
-                ]
-
-            if self.loc_information["location_info"]["volume_label_offset"] != 20:
-                local_index = (
-                    index
-                    + self.loc_information["volume_id_offset"]
-                    + self.loc_information["location_info"]["volume_label_offset"]
-                )
-                self.loc_information["location_info"][
-                    "volume_label"
-                ] = self.read_string(local_index)
-            else:
-                self.loc_information["location_info"][
-                    "volume_label_offset_unicode"
-                ] = struct.unpack(
-                    "<I", self.indata[local_index + 16 : local_index + 20]
-                )[
-                    0
-                ]
-                local_index = (
-                    index
-                    + self.loc_information["volume_id_offset"]
-                    + self.loc_information["location_info"][
-                        "volume_label_offset_unicode"
-                    ]
-                )
-                self.loc_information["location_info"][
-                    "volume_label_unicode"
-                ] = self.read_unicode_string(local_index)
-
-        elif self.loc_information["link_info_flags"] & 0x0002:
-            """
-            --------------------------------------------------------------------------------------------------
-            |         0-7b         |         8-15b         |         16-23b         |         24-31b         |
-            --------------------------------------------------------------------------------------------------
-            |                           <u_int32> CommonNetworkRelativeLinkSize                              |
-            --------------------------------------------------------------------------------------------------
-            |                           <flags> CommonNetworkRelativeLinkFlags                               |
-            --------------------------------------------------------------------------------------------------
-            |                                   <u_int32> NetNameOffset                                      |
-            --------------------------------------------------------------------------------------------------
-            |                                  <u_int32> DeviceNameOffset                                    |
-            --------------------------------------------------------------------------------------------------
-            |                                <u_int32> NetworkProviderType                                   |
-            --------------------------------------------------------------------------------------------------
-            |                          <u_int32> NetNameOffsetUnicode (optional)                             |
-            --------------------------------------------------------------------------------------------------
-            |                         <u_int32> DeviceNameOffsetUnicode (optional)                           |
-            --------------------------------------------------------------------------------------------------
-            |                                       <str> NetName                                            |
-            |                                            ? B                                                 |
-            --------------------------------------------------------------------------------------------------
-            |                                     <str> DeviceName                                           |
-            |                                            ? B                                                 |
-            --------------------------------------------------------------------------------------------------
-            |                          <unicode_str> NetNameUnicode (optional)                               |
-            |                                            ? B                                                 |
-            --------------------------------------------------------------------------------------------------
-            |                         <unicode_str> DeviceNameUnicode (optional)                             |
-            |                                            ? B                                                 |
-            --------------------------------------------------------------------------------------------------
-            """
-            local_index = (
-                index + self.loc_information["common_network_relative_link_offset"]
-            )
-            self.loc_information["location"] = "Network"
-            self.loc_information["location_info"] = {
-                "common_network_relative_link_size": struct.unpack(
-                    "<I", self.indata[local_index + 0 : local_index + 4]
-                )[0],
-                "common_retwork_relative_link_flags": struct.unpack(
-                    "<I", self.indata[local_index + 4 : local_index + 8]
-                )[0],
-                "net_name_offset": struct.unpack(
-                    "<I", self.indata[local_index + 8 : local_index + 12]
-                )[0],
-                "device_name_offset": struct.unpack(
-                    "<I", self.indata[local_index + 12 : local_index + 16]
-                )[0],
-                "r_network_provider_type": hex(
-                    struct.unpack(
-                        "<I", self.indata[local_index + 16 : local_index + 20]
-                    )[0]
-                ),
-            }
-
-            if (
-                self.loc_information["location_info"][
-                    "common_retwork_relative_link_flags"
-                ]
-                & 0x0002
-            ):
-                if (
-                    self.loc_information["location_info"]["r_network_provider_type"]
-                    in self.NETWORK_PROVIDER_TYPES
-                ):
-                    self.loc_information["location_info"][
-                        "network_provider_type"
-                    ] = self.NETWORK_PROVIDER_TYPES[
-                        self.loc_information["location_info"]["r_network_provider_type"]
-                    ]
-
-            if self.loc_information["location_info"]["net_name_offset"] > 20:
-                self.loc_information["location_info"][
-                    "net_name_offset_unicode"
-                ] = struct.unpack("<I", self.indata[local_index + 20 : index + 24])[0]
-                local_index = (
-                    index
-                    + self.loc_information["location_info"][
-                        "common_network_relative_link_offset"
-                    ]
-                    + self.loc_information["location_info"]["net_name_offset_unicode"]
-                )
-                self.loc_information["location_info"][
-                    "net_name_unicode"
-                ] = self.read_unicode_string(local_index)
-
-                self.loc_information["location_info"][
-                    "device_name_offset_unicode"
-                ] = struct.unpack("<I", self.indata[local_index + 24 : index + 28])[0]
-                local_index = (
-                    index
-                    + self.loc_information["location_info"][
-                        "common_network_relative_link_offset"
-                    ]
-                    + self.loc_information["location_info"][
-                        "device_name_offset_unicode"
-                    ]
-                )
-                self.loc_information["location_info"][
-                    "device_name_unicode"
-                ] = self.read_unicode_string(local_index)
-            else:
-                local_index = (
-                    index
-                    + self.loc_information["common_network_relative_link_offset"]
-                    + self.loc_information["location_info"]["net_name_offset"]
-                )
-                self.loc_information["location_info"]["net_name"] = self.read_string(
-                    local_index
-                )
-
-                local_index = (
-                    index
-                    + self.loc_information["common_network_relative_link_offset"]
-                    + self.loc_information["location_info"]["device_name_offset"]
-                )
-                self.loc_information["location_info"]["device_name"] = self.read_string(
-                    local_index
-                )
 
     def parse_string_data(self, index):
         u_mult = 1
@@ -488,14 +149,13 @@ class lnk_file(object):
             index += self.targets.size()
 
         # Parse Link Info
-        if self.has_link_info() and self.force_no_link_info() == False:
-            try:
-                self.parse_link_information(index)
-                index += self.loc_information["link_info_size"]
-            except Exception as e:
-                if self.debug:
-                    print("Exception parsing Location information: %s" % e)
-                return False
+        self.info = None
+        if self.has_link_info() and not self.force_no_link_info():
+            info = lnk_info(indata=self.indata[index:])
+            info_class = info_factory(info).info_class()
+            if info_class:
+                self.info = info_class(indata=self.indata[index:])
+                index += self.info.size()
 
         # Parse String Data
         try:
@@ -1108,7 +768,6 @@ class lnk_file(object):
                 "reserved2": self.header.reserved2(),
             },
             "data": self.data,
-            "link_info": self.loc_information,
             "extra": self.extraBlocks,
         }
 
@@ -1118,6 +777,89 @@ class lnk_file(object):
                 "items": [x.as_item() for x in self.targets],
                 "index": self._target_index,
             }
+
+        res["link_info"] = {}
+        if self.info:
+            res["link_info"] = {
+                "link_info_size": self.info.size(),
+                "link_info_header_size": self.info.header_size(),
+                "link_info_flags": self.info.flags(),
+                "volume_id_offset": self.info.volume_id_offset(),
+                "local_base_path_offset": self.info.local_base_path_offset(),
+                "common_network_relative_link_offset": self.info.common_network_relative_link_offset(),
+                "common_path_suffix_offset": self.info.common_path_suffix_offset(),
+            }
+
+            res["link_info"]["location_info"] = {}
+            if type(self.info).__name__ == "local":
+                res["link_info"]["local_base_path"] = self.info.local_base_path()
+                res["link_info"]["common_path_suffix"] = self.info.common_path_suffix()
+                res["link_info"]["location"] = self.info.location()
+                res["link_info"]["location_info"] = {
+                    "volume_id_size": self.info.volume_id_size(),
+                    "r_drive_type": self.info.r_drive_type(),
+                    "volume_label_offset": self.info.volume_label_offset(),
+                    "drive_serial_number": self.info.drive_serial_number(),
+                    "drive_type": self.info.drive_type(),
+                    "volume_label": self.info.volume_label(),
+                }
+
+                if self.info.local_base_path_offset_unicode():
+                    res["link_info"][
+                        "local_base_path_offset_unicode"
+                    ] = self.info.local_base_path_offset_unicode()
+                if self.info.common_path_suffix_unicode():
+                    res["link_info"][
+                        "common_path_suffix_unicode"
+                    ] = self.info.common_path_suffix_unicode()
+                if self.info.volume_id():
+                    res["link_info"]["volume_id"] = self.info.volume_id()
+                if self.info.common_network_relative_link():
+                    res["link_info"][
+                        "common_network_relative_link"
+                    ] = self.info.common_network_relative_link()
+                if self.info.volume_label_unicode_offset():
+                    res["link_info"][
+                        "volume_label_unicode_offset"
+                    ] = self.info.volume_label_unicode_offset()
+                if self.info.volume_label_unicode():
+                    res["link_info"][
+                        "volume_label_unicode"
+                    ] = self.info.volume_label_unicode()
+                if self.info.local_base_unicode():
+                    res["link_info"][
+                        "local_base_unicode"
+                    ] = self.info.local_base_unicode()
+            elif type(self.info).__name__ == "network":
+                res["link_info"][
+                    "common_network_relative_link_size"
+                ] = self.info.common_network_relative_link_size()
+                res["link_info"][
+                    "common_network_relative_link_flags"
+                ] = self.info.common_network_relative_link_flags()
+                res["link_info"]["net_name_offset"] = self.info.net_name_offset()
+                res["link_info"]["drive_name_offset"] = self.info.drive_name_offset()
+                res["link_info"][
+                    "r_network_provider_type"
+                ] = self.info.r_network_provider_type()
+                if self.info.network_provider_type():
+                    res["link_info"][
+                        "network_provider_type"
+                    ] = self.info.network_provider_type()
+                if self.info.net_name_offset_unicode():
+                    res["link_info"][
+                        "net_name_offset_unicode"
+                    ] = self.info.net_name_offset_unicode()
+                if self.info.net_name_unicode():
+                    res["link_info"]["net_name_unicode"] = self.info.net_name_unicode()
+                if self.info.device_name_offset_unicode():
+                    res["link_info"][
+                        "device_name_offset_unicode"
+                    ] = self.info.device_name_offset_unicode()
+                if self.info.net_name():
+                    res["link_info"]["net_name"] = self.info.net_name()
+                if self.info.device_name():
+                    res["link_info"]["device_name"] = self.info.device_name()
 
         if not get_all:
             res["header"].pop("header_size", None)
