@@ -1,5 +1,6 @@
 {
     "header": {
+        "header_size": 76,
         "guid": "0114020000000000c000000000000046",
         "r_link_flags": 524427,
         "r_file_flags": 16,
@@ -11,6 +12,9 @@
         "windowstyle": "SW_NORMAL",
         "hotkey": "UNSET - UNSET {0x0000}",
         "r_hotkey": 0,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -42,6 +46,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "2023-07-17T09:50:10+00:00",
                 "file_attribute_flags": 16,
                 "primary_name": "PostDoc"
             },
@@ -49,6 +54,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "2025-03-27T10:07:14+00:00",
                 "file_attribute_flags": 16,
                 "primary_name": "201901~1"
             },
@@ -56,6 +62,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "Invalid time",
                 "file_attribute_flags": 16,
                 "primary_name": "PUBLIC~1"
             },
@@ -63,6 +70,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "Invalid time",
                 "file_attribute_flags": 16,
                 "primary_name": "02_Majd"
             },
@@ -70,6 +78,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "2063-09-05T10:09:02+00:00",
                 "file_attribute_flags": 16,
                 "primary_name": "MAJDPY~1"
             },
@@ -77,13 +86,21 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "Invalid time",
                 "file_attribute_flags": 16,
                 "primary_name": "CSVFIL~1"
             }
-        ]
+        ],
+        "index": 78
     },
     "link_info": {
+        "link_info_size": 163,
+        "link_info_header_size": 28,
         "link_info_flags": 1,
+        "volume_id_offset": 28,
+        "local_base_path_offset": 45,
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix_offset": 162,
         "local_base_path": "C:\\Users\\Ibrahim\\Desktop\\PostDoc\\20190101 - 20191231 KU Leuven MD SPICY\\publications\\02_Majd\\Majd Py FT-IR\\.CSV file",
         "common_path_suffix": "",
         "location": "Local",

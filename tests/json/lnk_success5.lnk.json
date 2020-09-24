@@ -1,5 +1,6 @@
 {
     "header": {
+        "header_size": 76,
         "guid": "0114020000000000c000000000000046",
         "r_link_flags": 524475,
         "r_file_flags": 32,
@@ -11,6 +12,9 @@
         "windowstyle": "SW_NORMAL",
         "hotkey": "UNSET - UNSET {0x0000}",
         "r_hotkey": 0,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -46,6 +50,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "1997-10-07T10:07:12+00:00",
                 "file_attribute_flags": 16,
                 "primary_name": "ANONYM~1.0"
             },
@@ -53,13 +58,21 @@
                 "class": "File entry",
                 "flags": "Is file",
                 "file_size": 1490944,
+                "modification_time": "1997-02-25T10:07:12+00:00",
                 "file_attribute_flags": 32,
                 "primary_name": "ANONYM~1.EXE"
             }
-        ]
+        ],
+        "index": 78
     },
     "link_info": {
+        "link_info_size": 90,
+        "link_info_header_size": 28,
         "link_info_flags": 1,
+        "volume_id_offset": 28,
+        "local_base_path_offset": 45,
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix_offset": 89,
         "local_base_path": "C:\\AnonymusBrowser-v2.0\\AnonymusBrowser.exe",
         "common_path_suffix": "",
         "location": "Local",

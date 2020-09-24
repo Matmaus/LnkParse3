@@ -1,5 +1,6 @@
 {
     "header": {
+        "header_size": 76,
         "guid": "0114020000000000c000000000000046",
         "r_link_flags": 524507,
         "r_file_flags": 2080,
@@ -11,6 +12,9 @@
         "windowstyle": "SW_NORMAL",
         "hotkey": "UNSET - UNSET {0x0000}",
         "r_hotkey": 0,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -47,6 +51,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "Invalid time",
                 "file_attribute_flags": 2064,
                 "primary_name": "PixelMod"
             },
@@ -54,6 +59,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "2039-11-26T10:09:06+00:00",
                 "file_attribute_flags": 2064,
                 "primary_name": "MODFOR~1"
             },
@@ -61,13 +67,21 @@
                 "class": "File entry",
                 "flags": "Is file",
                 "file_size": 135,
+                "modification_time": "2045-11-13T10:09:04+00:00",
                 "file_attribute_flags": 2080,
                 "primary_name": "ERRORF~1.BAT"
             }
-        ]
+        ],
+        "index": 78
     },
     "link_info": {
+        "link_info_size": 161,
+        "link_info_header_size": 28,
         "link_info_flags": 3,
+        "volume_id_offset": 28,
+        "local_base_path_offset": 52,
+        "common_network_relative_link_offset": 64,
+        "common_path_suffix_offset": 108,
         "local_base_path": "C:\\Users\\",
         "common_path_suffix": "\u00c4\u00e8\u00ec\u00e0\\Desktop\\PixelMod\\Mod for Pixelmon\\Error Fix.bat",
         "location": "Local",
