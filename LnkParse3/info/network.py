@@ -97,7 +97,7 @@ class network(lnk_info):
         end = start + 4
         return unpack("<I", self._raw[start:end])[0]
 
-    def drive_name_offset(self):
+    def device_name_offset(self):
         start = self.common_network_relative_link_offset() + 12
         end = start + 4
         return unpack("<I", self._raw[start:end])[0]
