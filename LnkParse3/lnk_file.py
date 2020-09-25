@@ -277,7 +277,7 @@ class lnk_file(object):
                     "common_network_relative_link_size": self.info.common_network_relative_link_size(),
                     "common_network_relative_link_flags": self.info.common_network_relative_link_flags(),
                     "net_name_offset": self.info.net_name_offset(),
-                    "drive_name_offset": self.info.drive_name_offset(),
+                    "device_name_offset": self.info.device_name_offset(),
                     "r_network_provider_type": self.info.r_network_provider_type(),
                 }
                 if self.info.network_provider_type():
