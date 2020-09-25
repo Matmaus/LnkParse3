@@ -1,38 +1,38 @@
 from struct import unpack
-from LnkParse3.target.unknown import unknown
-from LnkParse3.target.root_folder import root_folder
-from LnkParse3.target.my_computer import my_computer
-from LnkParse3.target.shell_fs_folder import shell_fs_folder
-from LnkParse3.target.network_location import network_location
-from LnkParse3.target.compressed_folder import compressed_folder
-from LnkParse3.target.internet import internet
-from LnkParse3.target.control_panel import control_panel
-from LnkParse3.target.printers import printers
-from LnkParse3.target.common_places_folder import common_places_folder
-from LnkParse3.target.users_files_folder import users_files_folder
+from LnkParse3.target.unknown import Unknown
+from LnkParse3.target.root_folder import RootFolder
+from LnkParse3.target.my_computer import MyComputer
+from LnkParse3.target.shell_fs_folder import ShellFSFolder
+from LnkParse3.target.network_location import NetworkLocation
+from LnkParse3.target.compressed_folder import CompressedFolder
+from LnkParse3.target.internet import Internet
+from LnkParse3.target.control_panel import ControlPanel
+from LnkParse3.target.printers import Printers
+from LnkParse3.target.common_places_folder import CommonPlacesFolder
+from LnkParse3.target.users_files_folder import UsersFilesFolder
 
 
-class target_factory:
+class TargetFactory:
     # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#3-type-indicator-based-shell-items
     SHELL_ITEM_CLASSES = {
-        0x00: unknown,
-        0x01: unknown,
-        0x17: unknown,
-        0x1E: root_folder,
-        0x1F: root_folder,
-        0x20: my_computer,
-        0x30: shell_fs_folder,
-        0x40: network_location,
-        0x52: compressed_folder,
-        0x61: internet,
-        0x70: control_panel,
-        0x71: control_panel,
-        0x72: printers,
-        0x73: common_places_folder,
-        0x74: users_files_folder,
-        0x76: unknown,
-        0x80: unknown,
-        0xFF: unknown,
+        0x00: Unknown,
+        0x01: Unknown,
+        0x17: Unknown,
+        0x1E: RootFolder,
+        0x1F: RootFolder,
+        0x20: MyComputer,
+        0x30: ShellFSFolder,
+        0x40: NetworkLocation,
+        0x52: CompressedFolder,
+        0x61: Internet,
+        0x70: ControlPanel,
+        0x71: ControlPanel,
+        0x72: Printers,
+        0x73: CommonPlacesFolder,
+        0x74: UsersFilesFolder,
+        0x76: Unknown,
+        0x80: Unknown,
+        0xFF: Unknown,
     }
 
     def __init__(self, indata):

@@ -1,4 +1,4 @@
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 
 """
 ------------------------------------------------------------------
@@ -14,7 +14,7 @@ from LnkParse3.extra.lnk_extra_base import lnk_extra_base
 """
 
 
-class shim_layer(lnk_extra_base):
+class ShimLayer(LnkExtraBase):
     def name(self):
         return "SHIM_LAYER_BLOCK"
 

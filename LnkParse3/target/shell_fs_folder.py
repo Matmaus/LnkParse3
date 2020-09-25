@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.target.lnk_target_base import lnk_target_base
+from LnkParse3.target.lnk_target_base import LnkTargetBase
 from LnkParse3.decorators import dostime
 
 """
@@ -27,7 +27,7 @@ from LnkParse3.decorators import dostime
 
 # TODO: rename to file_entry
 # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#34-file-entry-shell-item
-class shell_fs_folder(lnk_target_base):
+class ShellFSFolder(LnkTargetBase):
     def __init__(self, *args, **kwargs):
         self.name = "File entry"
         super().__init__(*args, **kwargs)

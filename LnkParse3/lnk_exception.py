@@ -1,2 +1,2 @@
-class lnk_exception(Exception):
+class LnkException(Exception):
     pass

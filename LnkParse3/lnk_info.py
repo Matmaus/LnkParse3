@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.text_processor import text_processor
+from LnkParse3.text_processor import TextProcessor
 
 """
 LINKINFO:
@@ -50,10 +50,10 @@ ShellLinkHeader.
 """
 
 
-class lnk_info:
+class LnkInfo:
     def __init__(self, indata=None, cp=None):
         self._raw = indata
-        self.text_processor = text_processor(cp=cp)
+        self.text_processor = TextProcessor(cp=cp)
 
     def size(self):
         """LinkInfoSize (4 bytes):

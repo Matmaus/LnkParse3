@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 from LnkParse3.decorators import uuid
 
 """
@@ -23,7 +23,7 @@ from LnkParse3.decorators import uuid
 """
 
 
-class metadata(lnk_extra_base):
+class Metadata(LnkExtraBase):
     def name(self):
         return "METADATA_PROPERTIES_BLOCK"
 

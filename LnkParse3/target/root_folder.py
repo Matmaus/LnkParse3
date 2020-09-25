@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.target.lnk_target_base import lnk_target_base
+from LnkParse3.target.lnk_target_base import LnkTargetBase
 from LnkParse3.decorators import uuid
 
 """
@@ -17,7 +17,7 @@ from LnkParse3.decorators import uuid
 """
 
 
-class root_folder(lnk_target_base):
+class RootFolder(LnkTargetBase):
     # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#321-sort-index
     SORT_INDEX = {
         0x00: "Internet Explorer",

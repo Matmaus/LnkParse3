@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.target_factory import target_factory
+from LnkParse3.target_factory import TargetFactory
 
 """
 LINKTARGET_IDLIST:
@@ -17,7 +17,7 @@ HasLinkTargetIDList bit (LinkFlags section 2.1.1) in the ShellLinkHeader.
 """
 
 
-class lnk_targets:
+class LnkTargets:
     SIZE_OF_ID_LIST_SIZE = 2
 
     def __init__(self, indata=None, cp=None):
@@ -66,7 +66,7 @@ class lnk_targets:
         """
         rest = self._raw_targets
         while rest:
-            factory = target_factory(indata=rest)
+            factory = TargetFactory(indata=rest)
             target_class = factory.target_class()
 
             if not target_class:

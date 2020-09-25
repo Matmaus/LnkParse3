@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 
 """
 ------------------------------------------------------------------
@@ -16,7 +16,7 @@ from LnkParse3.extra.lnk_extra_base import lnk_extra_base
 """
 
 
-class special_folder(lnk_extra_base):
+class SpecialFolder(LnkExtraBase):
     def name(self):
         return "SPECIAL_FOLDER_LOCATION_BLOCK"
 

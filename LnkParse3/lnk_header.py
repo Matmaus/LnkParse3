@@ -45,7 +45,7 @@ structures.
 """
 
 
-class lnk_header:
+class LnkHeader:
     # https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
     WINDOW_STYLES = {
         1: "SW_NORMAL",  # FIXME: SW_SHOWNORMAL

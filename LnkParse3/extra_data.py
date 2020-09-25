@@ -1,4 +1,4 @@
-from LnkParse3.extra_factory import extra_factory
+from LnkParse3.extra_factory import ExtraFactory
 
 """
 EXTRA_DATA:
@@ -6,7 +6,7 @@ Zero or more ExtraData structures (section 2.5).
 """
 
 
-class extra_data:
+class ExtraData:
     def __init__(self, indata=None, cp=None):
         self.cp = cp
         self._raw = indata
@@ -17,7 +17,7 @@ class extra_data:
     def _iter(self):
         rest = self._raw
         while rest:
-            factory = extra_factory(indata=rest)
+            factory = ExtraFactory(indata=rest)
             size = factory.item_size()
 
             if not size:
