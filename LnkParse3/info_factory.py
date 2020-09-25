@@ -1,8 +1,8 @@
-from LnkParse3.info.local import local
-from LnkParse3.info.network import network
+from LnkParse3.info.local import Local
+from LnkParse3.info.network import Network
 
 
-class info_factory:
+class InfoFactory:
     def __init__(self, lnk_info):
         self._lnk_info = lnk_info
 
@@ -34,8 +34,8 @@ class info_factory:
 
     def info_class(self):
         if self._volume_id_and_local_base_path():
-            return local
+            return Local
         elif self._common_network_relative_link_and_path_suffix():
-            return network
+            return Network
         else:
             return None

@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.text_processor import text_processor
+from LnkParse3.text_processor import TextProcessor
 
 """
 ------------------------------------------------------------------
@@ -10,10 +10,10 @@ from LnkParse3.text_processor import text_processor
 """
 
 
-class lnk_extra_base:
+class LnkExtraBase:
     def __init__(self, indata=None, cp=None):
         self._raw = indata
-        self.text_processor = text_processor(cp=cp)
+        self.text_processor = TextProcessor(cp=cp)
 
         # FIXME: delete
         def _dummy(binary):

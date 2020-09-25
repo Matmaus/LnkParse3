@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.text_processor import text_processor
+from LnkParse3.text_processor import TextProcessor
 
 """
 STRING_DATA:
@@ -10,13 +10,13 @@ ShellLinkHeader.
 """
 
 
-class string_data:
+class StringData:
     def __init__(self, lnk_file, indata=None, cp=None):
         self._raw = indata
         self._data = {}
 
         self._lnk_file = lnk_file
-        self.text_processor = text_processor(cp=cp)
+        self.text_processor = TextProcessor(cp=cp)
 
         start = 0
         if self._lnk_file.has_name():

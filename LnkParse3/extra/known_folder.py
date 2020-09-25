@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 from LnkParse3.decorators import uuid
 
 """
@@ -18,7 +18,7 @@ from LnkParse3.decorators import uuid
 """
 
 
-class known_folder(lnk_extra_base):
+class KnownFolder(LnkExtraBase):
     def name(self):
         return "KNOWN_FOLDER_LOCATION_BLOCK"
 

@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.text_processor import text_processor
+from LnkParse3.text_processor import TextProcessor
 
 """
 An ItemID is an element in an IDList structure (section 2.2.1). The data stored
@@ -17,7 +17,7 @@ the items in that part of the namespace.
 """
 
 
-class lnk_target_base:
+class LnkTargetBase:
     SHELL_ITEM_SHEL_FS_FOLDER = {
         0x01: "Is directory",
         0x02: "Is file",
@@ -33,7 +33,7 @@ class lnk_target_base:
         self.cp = cp
         self._raw = indata
 
-        self.text_processor = text_processor(cp=self.cp)
+        self.text_processor = TextProcessor(cp=self.cp)
 
         start = self.SIZE_OF_TARGET_SIZE
         end = start + self.size()

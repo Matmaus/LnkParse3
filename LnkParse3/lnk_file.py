@@ -8,15 +8,15 @@ import json
 import datetime
 import argparse
 
-from LnkParse3.lnk_header import lnk_header
-from LnkParse3.lnk_targets import lnk_targets
-from LnkParse3.lnk_info import lnk_info
-from LnkParse3.info_factory import info_factory
-from LnkParse3.string_data import string_data
-from LnkParse3.extra_data import extra_data
+from LnkParse3.lnk_header import LnkHeader
+from LnkParse3.lnk_targets import LnkTargets
+from LnkParse3.lnk_info import LnkInfo
+from LnkParse3.info_factory import InfoFactory
+from LnkParse3.string_data import StringData
+from LnkParse3.extra_data import ExtraData
 
 
-class lnk_file(object):
+class LnkFile(object):
     def __init__(self, fhandle=None, indata=None, debug=False):
         if fhandle:
             self.indata = fhandle.read()
@@ -92,7 +92,7 @@ class lnk_file(object):
         index = 0
 
         # Parse header
-        self.header = lnk_header(indata=self.indata)
+        self.header = LnkHeader(indata=self.indata)
         index += self.header.size()
 
         # XXX: json
@@ -101,24 +101,24 @@ class lnk_file(object):
         # Parse ID List
         self.targets = None
         if self.has_target_id_list():
-            self.targets = lnk_targets(indata=self.indata[index:])
+            self.targets = LnkTargets(indata=self.indata[index:])
             index += self.targets.size()
 
         # Parse Link Info
         self.info = None
         if self.has_link_info() and not self.force_no_link_info():
-            info = lnk_info(indata=self.indata[index:])
-            info_class = info_factory(info).info_class()
+            info = LnkInfo(indata=self.indata[index:])
+            info_class = InfoFactory(info).info_class()
             if info_class:
                 self.info = info_class(indata=self.indata[index:])
                 index += self.info.size()
 
         # Parse String Data
-        self.string_data = string_data(self, indata=self.indata[index:])
+        self.string_data = StringData(self, indata=self.indata[index:])
         index += self.string_data.size()
 
         # Parse Extra Data
-        self.extras = extra_data(indata=self.indata[index:])
+        self.extras = ExtraData(indata=self.indata[index:])
 
     def print_lnk_file(self):
         print("Windows Shortcut Information:")
@@ -230,7 +230,7 @@ class lnk_file(object):
             }
 
             res["link_info"]["location_info"] = {}
-            if type(self.info).__name__ == "local":
+            if type(self.info).__name__ == "Local":
                 res["link_info"]["local_base_path"] = self.info.local_base_path()
                 res["link_info"]["common_path_suffix"] = self.info.common_path_suffix()
                 res["link_info"]["location"] = self.info.location()
@@ -272,7 +272,7 @@ class lnk_file(object):
                     res["link_info"]["location_info"][
                         "local_base_unicode"
                     ] = self.info.local_base_unicode()
-            elif type(self.info).__name__ == "network":
+            elif type(self.info).__name__ == "Network":
                 res["link_info"]["location_info"] = {
                     "common_network_relative_link_size": self.info.common_network_relative_link_size(),
                     "common_network_relative_link_flags": self.info.common_network_relative_link_flags(),

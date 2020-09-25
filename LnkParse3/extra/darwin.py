@@ -1,4 +1,4 @@
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 
 """
 ------------------------------------------------------------------
@@ -17,7 +17,7 @@ from LnkParse3.extra.lnk_extra_base import lnk_extra_base
 """
 
 
-class darwin(lnk_extra_base):
+class Darwin(LnkExtraBase):
     def name(self):
         return "DARWIN_BLOCK"
 

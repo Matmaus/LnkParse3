@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.lnk_info import lnk_info
+from LnkParse3.lnk_info import LnkInfo
 
 """
 ------------------------------------------------------------------
@@ -34,7 +34,7 @@ from LnkParse3.lnk_info import lnk_info
 """
 
 
-class network(lnk_info):
+class Network(LnkInfo):
     NETWORK_PROVIDER_TYPES = {
         "0x1A000": "WNNC_NET_AVID",
         "0x1B000": "WNNC_NET_DOCUSPACE",

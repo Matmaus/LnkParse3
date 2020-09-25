@@ -1,4 +1,4 @@
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 
 """
 ------------------------------------------------------------------
@@ -17,7 +17,7 @@ from LnkParse3.extra.lnk_extra_base import lnk_extra_base
 """
 
 
-class icon(lnk_extra_base):
+class Icon(LnkExtraBase):
     def name(self):
         return "ICON_LOCATION_BLOCK"
 

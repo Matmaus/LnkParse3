@@ -7,7 +7,7 @@ undefined bytes MUST NOT be used.
 """
 
 
-class text_processor:
+class TextProcessor:
     def __init__(self, cp=None):
         self.cp = cp if cp else "cp1252"
 

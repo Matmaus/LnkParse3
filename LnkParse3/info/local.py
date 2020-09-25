@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.lnk_info import lnk_info
+from LnkParse3.lnk_info import LnkInfo
 
 """
 ------------------------------------------------------------------
@@ -21,7 +21,7 @@ from LnkParse3.lnk_info import lnk_info
 """
 
 
-class local(lnk_info):
+class Local(LnkInfo):
     DRIVE_TYPES = [
         "DRIVE_UNKNOWN",
         "DRIVE_NO_ROOT_DIR",

@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 from LnkParse3.decorators import must_be
 from LnkParse3.decorators import uuid
 
@@ -33,7 +33,7 @@ from LnkParse3.decorators import uuid
 """
 
 
-class distributed_tracker(lnk_extra_base):
+class DistributedTracker(LnkExtraBase):
     def name(self):
         return "DISTRIBUTED_LINK_TRACKER_BLOCK"
 

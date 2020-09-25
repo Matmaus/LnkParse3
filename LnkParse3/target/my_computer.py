@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.target.lnk_target_base import lnk_target_base
+from LnkParse3.target.lnk_target_base import LnkTargetBase
 
 """
 ----------------------------------------------------------------------
@@ -13,7 +13,7 @@ from LnkParse3.target.lnk_target_base import lnk_target_base
 
 
 # TODO: rename to volume_shell_item
-class my_computer(lnk_target_base):
+class MyComputer(LnkTargetBase):
     def __init__(self, *args, **kwargs):
         self.name = "Volume Item"
         super().__init__(*args, **kwargs)

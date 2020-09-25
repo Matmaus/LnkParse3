@@ -1,4 +1,4 @@
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 
 """
 ------------------------------------------------------------------
@@ -13,7 +13,7 @@ from LnkParse3.extra.lnk_extra_base import lnk_extra_base
 """
 
 
-class shell_item(lnk_extra_base):
+class ShellItem(LnkExtraBase):
     def name(self):
         return "SHELL_ITEM_IDENTIFIER_BLOCK"
 

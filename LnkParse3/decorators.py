@@ -2,7 +2,7 @@ from datetime import datetime
 from datetime import timezone
 from struct import unpack
 import functools
-from LnkParse3.lnk_exception import lnk_exception
+from LnkParse3.lnk_exception import LnkException
 
 
 def must_be(expected):
@@ -16,7 +16,7 @@ def must_be(expected):
 
             if result != expected:
                 error = "%s must be %s: %s" % (func.__name__, expected, result)
-                raise lnk_exception(error)
+                raise LnkException(error)
 
             return result
 

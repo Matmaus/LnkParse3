@@ -1,5 +1,5 @@
 from struct import unpack
-from LnkParse3.extra.lnk_extra_base import lnk_extra_base
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 
 """
 ------------------------------------------------------------------
@@ -52,7 +52,7 @@ from LnkParse3.extra.lnk_extra_base import lnk_extra_base
 """
 
 
-class console(lnk_extra_base):
+class Console(LnkExtraBase):
     def name(self):
         return "CONSOLE_PROPERTIES_BLOCK"
 
