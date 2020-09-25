@@ -56,11 +56,14 @@ def filetime(func):
         if nanosec == 0:
             return ""
 
-        epoch_as_filetime = 116444736000000000
-        hundreds_of_nanoseconds = 10000000
+        try:
+            epoch_as_filetime = 116444736000000000
+            hundreds_of_nanoseconds = 10000000
 
-        timestamp = (nanosec - epoch_as_filetime) / hundreds_of_nanoseconds
-        return datetime.fromtimestamp(timestamp, tz=timezone.utc)
+            timestamp = (nanosec - epoch_as_filetime) / hundreds_of_nanoseconds
+            return datetime.fromtimestamp(timestamp, tz=timezone.utc)
+        except ValueError:
+            return "Invalid time"
 
     return inner
 
