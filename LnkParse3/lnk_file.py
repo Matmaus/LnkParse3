@@ -234,6 +234,7 @@ class lnk_file(object):
                 res["link_info"]["local_base_path"] = self.info.local_base_path()
                 res["link_info"]["common_path_suffix"] = self.info.common_path_suffix()
                 res["link_info"]["location"] = self.info.location()
+
                 res["link_info"]["location_info"] = {
                     "volume_id_size": self.info.volume_id_size(),
                     "r_drive_type": self.info.r_drive_type(),
@@ -244,61 +245,63 @@ class lnk_file(object):
                 }
 
                 if self.info.local_base_path_offset_unicode():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "local_base_path_offset_unicode"
                     ] = self.info.local_base_path_offset_unicode()
                 if self.info.common_path_suffix_unicode():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "common_path_suffix_unicode"
                     ] = self.info.common_path_suffix_unicode()
                 if self.info.volume_id():
-                    res["link_info"]["volume_id"] = self.info.volume_id()
+                    res["link_info"]["location_info"][
+                        "volume_id"
+                    ] = self.info.volume_id()
                 if self.info.common_network_relative_link():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "common_network_relative_link"
                     ] = self.info.common_network_relative_link()
                 if self.info.volume_label_unicode_offset():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "volume_label_unicode_offset"
                     ] = self.info.volume_label_unicode_offset()
                 if self.info.volume_label_unicode():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "volume_label_unicode"
                     ] = self.info.volume_label_unicode()
                 if self.info.local_base_unicode():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "local_base_unicode"
                     ] = self.info.local_base_unicode()
             elif type(self.info).__name__ == "network":
-                res["link_info"][
-                    "common_network_relative_link_size"
-                ] = self.info.common_network_relative_link_size()
-                res["link_info"][
-                    "common_network_relative_link_flags"
-                ] = self.info.common_network_relative_link_flags()
-                res["link_info"]["net_name_offset"] = self.info.net_name_offset()
-                res["link_info"]["drive_name_offset"] = self.info.drive_name_offset()
-                res["link_info"][
-                    "r_network_provider_type"
-                ] = self.info.r_network_provider_type()
+                res["link_info"]["location_info"] = {
+                    "common_network_relative_link_size": self.info.common_network_relative_link_size(),
+                    "common_network_relative_link_flags": self.info.common_network_relative_link_flags(),
+                    "net_name_offset": self.info.net_name_offset(),
+                    "drive_name_offset": self.info.drive_name_offset(),
+                    "r_network_provider_type": self.info.r_network_provider_type(),
+                }
                 if self.info.network_provider_type():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "network_provider_type"
                     ] = self.info.network_provider_type()
                 if self.info.net_name_offset_unicode():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "net_name_offset_unicode"
                     ] = self.info.net_name_offset_unicode()
                 if self.info.net_name_unicode():
-                    res["link_info"]["net_name_unicode"] = self.info.net_name_unicode()
+                    res["link_info"]["location_info"][
+                        "net_name_unicode"
+                    ] = self.info.net_name_unicode()
                 if self.info.device_name_offset_unicode():
-                    res["link_info"][
+                    res["link_info"]["location_info"][
                         "device_name_offset_unicode"
                     ] = self.info.device_name_offset_unicode()
                 if self.info.net_name():
-                    res["link_info"]["net_name"] = self.info.net_name()
+                    res["link_info"]["location_info"]["net_name"] = self.info.net_name()
                 if self.info.device_name():
-                    res["link_info"]["device_name"] = self.info.device_name()
+                    res["link_info"]["location_info"][
+                        "device_name"
+                    ] = self.info.device_name()
 
         if not get_all:
             res["header"].pop("header_size", None)
