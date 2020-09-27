@@ -356,7 +356,7 @@ def main():
     args = arg_parser.parse_args()
 
     with open(args.file, "rb") as file:
-        lnk = lnk_file(fhandle=file, debug=args.debug)
+        lnk = LnkFile(fhandle=file, debug=args.debug)
         if args.json:
             lnk.print_json(args.json_debug)
         else:
