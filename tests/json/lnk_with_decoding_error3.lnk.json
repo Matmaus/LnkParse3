@@ -1,20 +1,39 @@
 {
+    "data": {
+        "icon_location": "%SystemRoot%\\System32\\SHELL32.dll",
+        "relative_path": ".\\Mod for Pixelmon\\Error Fix.bat",
+        "working_directory": "C:\\Users\\8<0\\Desktop\\PixelMod\\Mod for Pixelmon"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "0cbffc392eedea11aef6b0fc36c1f116",
+            "birth_droid_volume_identifier": "f2189efe52d7a04b92a3382c109743b5",
+            "droid_file_identifier": "0cbffc392eedea11aef6b0fc36c1f116",
+            "droid_volume_identifier": "f2189efe52d7a04b92a3382c109743b5",
+            "length": 88,
+            "machine_identifier": "desktop-9ai08qd",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "ed30bdda43008947a7f8d013a4736622",
+            "size": 592,
+            "storage_size": 157,
+            "version": "0x53505331"
+        }
+    },
     "header": {
-        "header_size": 76,
-        "guid": "0114020000000000c000000000000046",
-        "r_link_flags": 524507,
-        "r_file_flags": 2080,
-        "creation_time": "2020-09-02T16:27:18.171371+00:00",
         "accessed_time": "2020-09-03T14:59:20.482872+00:00",
-        "modified_time": "2020-09-02T16:27:24.678487+00:00",
+        "creation_time": "2020-09-02T16:27:18.171371+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE",
+            "FILE_ATTRIBUTE_COMPRESSED"
+        ],
         "file_size": 135,
-        "icon_index": 29,
-        "windowstyle": "SW_NORMAL",
+        "guid": "0114020000000000c000000000000046",
+        "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
-        "r_hotkey": 0,
-        "reserved0": 0,
-        "reserved1": 0,
-        "reserved2": 0,
+        "icon_index": 29,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -24,92 +43,73 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "file_flags": [
-            "FILE_ATTRIBUTE_ARCHIVE",
-            "FILE_ATTRIBUTE_COMPRESSED"
-        ]
+        "modified_time": "2020-09-02T16:27:24.678487+00:00",
+        "r_file_flags": 2080,
+        "r_hotkey": 0,
+        "r_link_flags": 524507,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
     },
-    "data": {
-        "relative_path": ".\\Mod for Pixelmon\\Error Fix.bat",
-        "working_directory": "C:\\Users\\8<0\\Desktop\\PixelMod\\Mod for Pixelmon",
-        "icon_location": "%SystemRoot%\\System32\\SHELL32.dll"
+    "link_info": {
+        "common_network_relative_link_offset": 64,
+        "common_path_suffix": "\u00c4\u00e8\u00ec\u00e0\\Desktop\\PixelMod\\Mod for Pixelmon\\Error Fix.bat",
+        "common_path_suffix_offset": 108,
+        "link_info_flags": 3,
+        "link_info_header_size": 28,
+        "link_info_size": 161,
+        "local_base_path": "C:\\Users\\",
+        "local_base_path_offset": 52,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0xe60d92cf",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 24,
+            "volume_label": "Windows",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
     },
     "target": {
-        "size": 380,
+        "index": 78,
         "items": [
             {
                 "class": "Root Folder",
-                "sort_index": "My Computer",
-                "guid": "e04fd020ea3a6910a2d808002b30309d"
+                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "sort_index": "My Computer"
             },
             {
                 "class": "Volume Item",
-                "flags": "0xe",
-                "data": "\u0080:\u00cc\u00bf\u00b4,\u00dbLB\u00b0)\u007f\u00e9\u009a\u0087\u00c6A&"
+                "data": "\u0080:\u00cc\u00bf\u00b4,\u00dbLB\u00b0)\u007f\u00e9\u009a\u0087\u00c6A&",
+                "flags": "0xe"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "Invalid time",
                 "file_attribute_flags": 2064,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "Invalid time",
                 "primary_name": "PixelMod"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "2039-11-26T10:09:06+00:00",
                 "file_attribute_flags": 2064,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2039-11-26T10:09:06+00:00",
                 "primary_name": "MODFOR~1"
             },
             {
                 "class": "File entry",
-                "flags": "Is file",
-                "file_size": 135,
-                "modification_time": "2045-11-13T10:09:04+00:00",
                 "file_attribute_flags": 2080,
+                "file_size": 135,
+                "flags": "Is file",
+                "modification_time": "2045-11-13T10:09:04+00:00",
                 "primary_name": "ERRORF~1.BAT"
             }
         ],
-        "index": 78
-    },
-    "link_info": {
-        "link_info_size": 161,
-        "link_info_header_size": 28,
-        "link_info_flags": 3,
-        "volume_id_offset": 28,
-        "local_base_path_offset": 52,
-        "common_network_relative_link_offset": 64,
-        "common_path_suffix_offset": 108,
-        "local_base_path": "C:\\Users\\",
-        "common_path_suffix": "\u00c4\u00e8\u00ec\u00e0\\Desktop\\PixelMod\\Mod for Pixelmon\\Error Fix.bat",
-        "location": "Local",
-        "location_info": {
-            "volume_id_size": 24,
-            "r_drive_type": 3,
-            "drive_serial_number": "0xe60d92cf",
-            "volume_label_offset": 16,
-            "drive_type": "DRIVE_FIXED",
-            "volume_label": "Windows"
-        }
-    },
-    "extra": {
-        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "size": 96,
-            "length": 88,
-            "version": 0,
-            "machine_identifier": "desktop-9ai08qd",
-            "droid_volume_identifier": "f2189efe52d7a04b92a3382c109743b5",
-            "droid_file_identifier": "0cbffc392eedea11aef6b0fc36c1f116",
-            "birth_droid_volume_identifier": "f2189efe52d7a04b92a3382c109743b5",
-            "birth_droid_file_identifier": "0cbffc392eedea11aef6b0fc36c1f116"
-        },
-        "METADATA_PROPERTIES_BLOCK": {
-            "size": 592,
-            "storage_size": 157,
-            "version": "0x53505331",
-            "format_id": "ed30bdda43008947a7f8d013a4736622"
-        }
+        "size": 380
     }
 }

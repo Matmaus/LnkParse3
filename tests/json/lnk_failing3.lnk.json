@@ -1,52 +1,52 @@
 {
+    "data": {},
+    "extra": {
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "55284c9f799f394ba8d0e1d42de1d5f3",
+            "size": 483,
+            "storage_size": 471,
+            "version": "0x53505331"
+        }
+    },
     "header": {
-        "header_size": 76,
-        "guid": "0114020000000000c000000000000046",
-        "r_link_flags": 129,
-        "r_file_flags": 0,
-        "creation_time": "",
         "accessed_time": "",
-        "modified_time": "",
+        "creation_time": "",
+        "file_flags": [],
         "file_size": 0,
-        "icon_index": 0,
-        "windowstyle": "SW_NORMAL",
+        "guid": "0114020000000000c000000000000046",
+        "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
-        "r_hotkey": 0,
-        "reserved0": 0,
-        "reserved1": 0,
-        "reserved2": 0,
+        "icon_index": 0,
         "link_flags": [
             "HasTargetIDList",
             "IsUnicode"
         ],
-        "file_flags": []
+        "modified_time": "",
+        "r_file_flags": 0,
+        "r_hotkey": 0,
+        "r_link_flags": 129,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
     },
-    "data": {},
+    "link_info": {},
     "target": {
-        "size": 2556,
+        "index": 78,
         "items": [
             {
                 "class": "Root Folder",
-                "sort_index": "My Computer",
-                "guid": "e04fd020ea3a6910a2d808002b30309d"
+                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "sort_index": "My Computer"
             },
             {
                 "class": "Volume Item",
-                "flags": "0xe",
-                "data": ""
+                "data": "",
+                "flags": "0xe"
             },
             null,
             null
         ],
-        "index": 78
-    },
-    "link_info": {},
-    "extra": {
-        "METADATA_PROPERTIES_BLOCK": {
-            "size": 483,
-            "storage_size": 471,
-            "version": "0x53505331",
-            "format_id": "55284c9f799f394ba8d0e1d42de1d5f3"
-        }
+        "size": 2556
     }
 }

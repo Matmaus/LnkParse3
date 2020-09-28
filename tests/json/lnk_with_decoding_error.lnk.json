@@ -1,20 +1,36 @@
 {
+    "data": {
+        "relative_path": ".\\.CSV file"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "64fab6945aecea119a2e30e1717a583b",
+            "birth_droid_volume_identifier": "bcba12567b8d2a4fa17aa2996cd50b5d",
+            "droid_file_identifier": "64fab6945aecea119a2e30e1717a583b",
+            "droid_volume_identifier": "bcba12567b8d2a4fa17aa2996cd50b5d",
+            "length": 88,
+            "machine_identifier": "desktop-crtgl03",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "ed30bdda43008947a7f8d013a4736622",
+            "size": 791,
+            "storage_size": 277,
+            "version": "0x53505331"
+        }
+    },
     "header": {
-        "header_size": 76,
-        "guid": "0114020000000000c000000000000046",
-        "r_link_flags": 524427,
-        "r_file_flags": 16,
-        "creation_time": "2020-09-02T10:30:21.373716+00:00",
         "accessed_time": "2020-09-02T10:46:37.463456+00:00",
-        "modified_time": "2020-09-02T10:46:37.463456+00:00",
+        "creation_time": "2020-09-02T10:30:21.373716+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_DIRECTORY"
+        ],
         "file_size": 4096,
-        "icon_index": 0,
-        "windowstyle": "SW_NORMAL",
+        "guid": "0114020000000000c000000000000046",
+        "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
-        "r_hotkey": 0,
-        "reserved0": 0,
-        "reserved1": 0,
-        "reserved2": 0,
+        "icon_index": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -22,113 +38,97 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "file_flags": [
-            "FILE_ATTRIBUTE_DIRECTORY"
-        ]
+        "modified_time": "2020-09-02T10:46:37.463456+00:00",
+        "r_file_flags": 16,
+        "r_hotkey": 0,
+        "r_link_flags": 524427,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
     },
-    "data": {
-        "relative_path": ".\\.CSV file"
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 162,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 163,
+        "local_base_path": "C:\\Users\\Ibrahim\\Desktop\\PostDoc\\20190101 - 20191231 KU Leuven MD SPICY\\publications\\02_Majd\\Majd Py FT-IR\\.CSV file",
+        "local_base_path_offset": 45,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0xc684b7e0",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 17,
+            "volume_label": "",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
     },
     "target": {
-        "size": 654,
+        "index": 78,
         "items": [
             {
                 "class": "Root Folder",
-                "sort_index": "My Computer",
-                "guid": "e04fd020ea3a6910a2d808002b30309d"
+                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "sort_index": "My Computer"
             },
             {
                 "class": "Volume Item",
-                "flags": "0xe",
-                "data": "\u0080:\u00cc\u00bf\u00b4,\u00dbLB\u00b0)\u007f\u00e9\u009a\u0087\u00c6AV"
+                "data": "\u0080:\u00cc\u00bf\u00b4,\u00dbLB\u00b0)\u007f\u00e9\u009a\u0087\u00c6AV",
+                "flags": "0xe"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "2023-07-17T09:50:10+00:00",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2023-07-17T09:50:10+00:00",
                 "primary_name": "PostDoc"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "2025-03-27T10:07:14+00:00",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2025-03-27T10:07:14+00:00",
                 "primary_name": "201901~1"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "Invalid time",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "Invalid time",
                 "primary_name": "PUBLIC~1"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "Invalid time",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "Invalid time",
                 "primary_name": "02_Majd"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "2063-09-05T10:09:02+00:00",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2063-09-05T10:09:02+00:00",
                 "primary_name": "MAJDPY~1"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "Invalid time",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "Invalid time",
                 "primary_name": "CSVFIL~1"
             }
         ],
-        "index": 78
-    },
-    "link_info": {
-        "link_info_size": 163,
-        "link_info_header_size": 28,
-        "link_info_flags": 1,
-        "volume_id_offset": 28,
-        "local_base_path_offset": 45,
-        "common_network_relative_link_offset": 0,
-        "common_path_suffix_offset": 162,
-        "local_base_path": "C:\\Users\\Ibrahim\\Desktop\\PostDoc\\20190101 - 20191231 KU Leuven MD SPICY\\publications\\02_Majd\\Majd Py FT-IR\\.CSV file",
-        "common_path_suffix": "",
-        "location": "Local",
-        "location_info": {
-            "volume_id_size": 17,
-            "r_drive_type": 3,
-            "drive_serial_number": "0xc684b7e0",
-            "volume_label_offset": 16,
-            "drive_type": "DRIVE_FIXED",
-            "volume_label": ""
-        }
-    },
-    "extra": {
-        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "size": 96,
-            "length": 88,
-            "version": 0,
-            "machine_identifier": "desktop-crtgl03",
-            "droid_volume_identifier": "bcba12567b8d2a4fa17aa2996cd50b5d",
-            "droid_file_identifier": "64fab6945aecea119a2e30e1717a583b",
-            "birth_droid_volume_identifier": "bcba12567b8d2a4fa17aa2996cd50b5d",
-            "birth_droid_file_identifier": "64fab6945aecea119a2e30e1717a583b"
-        },
-        "METADATA_PROPERTIES_BLOCK": {
-            "size": 791,
-            "storage_size": 277,
-            "version": "0x53505331",
-            "format_id": "ed30bdda43008947a7f8d013a4736622"
-        }
+        "size": 654
     }
 }
