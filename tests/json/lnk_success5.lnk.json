@@ -1,20 +1,38 @@
 {
+    "data": {
+        "command_line_arguments": "no_resize",
+        "relative_path": ".\\AnonymusBrowser.exe",
+        "working_directory": "C:\\AnonymusBrowser-v2.0"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "06CC9568-BF32-11EA-ABA1-0000FAAD700E",
+            "birth_droid_volume_identifier": "2EBF7902-EDAA-43D6-A855-0000F7BABFF2",
+            "droid_file_identifier": "06CC9568-BF32-11EA-ABA1-0000FAAD700E",
+            "droid_volume_identifier": "2EBF7902-EDAA-43D6-A855-0000F7BABFF2",
+            "length": 88,
+            "machine_identifier": "desktop-73cl5qt",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "DABD30ED-0043-4789-A7F8-0000F4736622",
+            "size": 484,
+            "storage_size": 97,
+            "version": "0x53505331"
+        }
+    },
     "header": {
-        "header_size": 76,
-        "guid": "0114020000000000c000000000000046",
-        "r_link_flags": 524475,
-        "r_file_flags": 32,
-        "creation_time": "2020-07-03T22:51:57.966124+00:00",
         "accessed_time": "2020-07-06T04:18:49.803554+00:00",
-        "modified_time": "2020-07-06T04:18:49.576528+00:00",
+        "creation_time": "2020-07-03T22:51:57.966124+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
         "file_size": 1490944,
-        "icon_index": 0,
-        "windowstyle": "SW_NORMAL",
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
-        "r_hotkey": 0,
-        "reserved0": 0,
-        "reserved1": 0,
-        "reserved2": 0,
+        "icon_index": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -24,83 +42,65 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "file_flags": [
-            "FILE_ATTRIBUTE_ARCHIVE"
-        ]
+        "modified_time": "2020-07-06T04:18:49.576528+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 524475,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
     },
-    "data": {
-        "relative_path": ".\\AnonymusBrowser.exe",
-        "working_directory": "C:\\AnonymusBrowser-v2.0",
-        "command_line_arguments": "no_resize"
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 89,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 90,
+        "local_base_path": "C:\\AnonymusBrowser-v2.0\\AnonymusBrowser.exe",
+        "local_base_path_offset": 45,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0xd215cbdb",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 17,
+            "volume_label": "",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
     },
     "target": {
-        "size": 279,
+        "index": 78,
         "items": [
             {
                 "class": "Root Folder",
-                "sort_index": "My Computer",
-                "guid": "e04fd020ea3a6910a2d808002b30309d"
+                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
+                "sort_index": "My Computer"
             },
             {
                 "class": "Volume Item",
-                "flags": "0xf",
-                "data": "C:\\"
+                "data": "C:\\",
+                "flags": "0xf"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "1997-10-07T10:07:12+00:00",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "1997-10-07T10:07:12+00:00",
                 "primary_name": "ANONYM~1.0"
             },
             {
                 "class": "File entry",
-                "flags": "Is file",
-                "file_size": 1490944,
-                "modification_time": "1997-02-25T10:07:12+00:00",
                 "file_attribute_flags": 32,
+                "file_size": 1490944,
+                "flags": "Is file",
+                "modification_time": "1997-02-25T10:07:12+00:00",
                 "primary_name": "ANONYM~1.EXE"
             }
         ],
-        "index": 78
-    },
-    "link_info": {
-        "link_info_size": 90,
-        "link_info_header_size": 28,
-        "link_info_flags": 1,
-        "volume_id_offset": 28,
-        "local_base_path_offset": 45,
-        "common_network_relative_link_offset": 0,
-        "common_path_suffix_offset": 89,
-        "local_base_path": "C:\\AnonymusBrowser-v2.0\\AnonymusBrowser.exe",
-        "common_path_suffix": "",
-        "location": "Local",
-        "location_info": {
-            "volume_id_size": 17,
-            "r_drive_type": 3,
-            "drive_serial_number": "0xd215cbdb",
-            "volume_label_offset": 16,
-            "drive_type": "DRIVE_FIXED",
-            "volume_label": ""
-        }
-    },
-    "extra": {
-        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "size": 96,
-            "length": 88,
-            "version": 0,
-            "machine_identifier": "desktop-73cl5qt",
-            "droid_volume_identifier": "0279bf2eaaedd643a8551512e2babff2",
-            "droid_file_identifier": "6895cc0632bfea11aba1008cfaad700e",
-            "birth_droid_volume_identifier": "0279bf2eaaedd643a8551512e2babff2",
-            "birth_droid_file_identifier": "6895cc0632bfea11aba1008cfaad700e"
-        },
-        "METADATA_PROPERTIES_BLOCK": {
-            "size": 484,
-            "storage_size": 97,
-            "version": "0x53505331",
-            "format_id": "ed30bdda43008947a7f8d013a4736622"
-        }
+        "size": 279
     }
 }

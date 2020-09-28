@@ -1,20 +1,36 @@
 {
+    "data": {
+        "relative_path": "..\\.."
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "F96CEA33-DC17-11EA-81B9-0000BEAFEAE5",
+            "birth_droid_volume_identifier": "5E5126D6-7DA7-4830-A4ED-0000BD5D2D5C",
+            "droid_file_identifier": "F96CEA33-DC17-11EA-81B9-0000BEAFEAE5",
+            "droid_volume_identifier": "5E5126D6-7DA7-4830-A4ED-0000BD5D2D5C",
+            "length": 88,
+            "machine_identifier": "desktop-1dic5tp",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "DABD30ED-0043-4789-A7F8-0000F4736622",
+            "size": 417,
+            "storage_size": 109,
+            "version": "0x53505331"
+        }
+    },
     "header": {
-        "header_size": 76,
-        "guid": "0114020000000000c000000000000046",
-        "r_link_flags": 524427,
-        "r_file_flags": 16,
-        "creation_time": "2020-08-11T21:18:01.637866+00:00",
         "accessed_time": "2020-08-11T23:05:58.474459+00:00",
-        "modified_time": "2020-08-11T23:05:58.369451+00:00",
+        "creation_time": "2020-08-11T21:18:01.637866+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_DIRECTORY"
+        ],
         "file_size": 4096,
-        "icon_index": 0,
-        "windowstyle": "SW_NORMAL",
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
-        "r_hotkey": 0,
-        "reserved0": 0,
-        "reserved1": 0,
-        "reserved2": 0,
+        "icon_index": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -22,77 +38,61 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "file_flags": [
-            "FILE_ATTRIBUTE_DIRECTORY"
-        ]
+        "modified_time": "2020-08-11T23:05:58.369451+00:00",
+        "r_file_flags": 16,
+        "r_hotkey": 0,
+        "r_link_flags": 524427,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
     },
-    "data": {
-        "relative_path": "..\\.."
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 93,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 94,
+        "local_base_path": "C:\\Users\\TEMP\\AppData\\Roaming\\.minecraft",
+        "local_base_path_offset": 52,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x26a45a57",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 24,
+            "volume_label": "Windows",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
     },
     "target": {
-        "size": 372,
+        "index": 78,
         "items": [
             {
                 "class": "Root Folder",
-                "sort_index": "Users",
-                "guid": "471a0359723fa74489c55595fe6b30ee"
+                "guid": "59031A47-3F72-44A7-89C5-0000FFFF30EE",
+                "sort_index": "Users"
             },
             null,
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "",
                 "primary_name": "Roaming"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "",
                 "primary_name": ".minecraft"
             }
         ],
-        "index": 78
-    },
-    "link_info": {
-        "link_info_size": 94,
-        "link_info_header_size": 28,
-        "link_info_flags": 1,
-        "volume_id_offset": 28,
-        "local_base_path_offset": 52,
-        "common_network_relative_link_offset": 0,
-        "common_path_suffix_offset": 93,
-        "local_base_path": "C:\\Users\\TEMP\\AppData\\Roaming\\.minecraft",
-        "common_path_suffix": "",
-        "location": "Local",
-        "location_info": {
-            "volume_id_size": 24,
-            "r_drive_type": 3,
-            "drive_serial_number": "0x26a45a57",
-            "volume_label_offset": 16,
-            "drive_type": "DRIVE_FIXED",
-            "volume_label": "Windows"
-        }
-    },
-    "extra": {
-        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "size": 96,
-            "length": 88,
-            "version": 0,
-            "machine_identifier": "desktop-1dic5tp",
-            "droid_volume_identifier": "d626515ea77d3048a4ed3551991d2d5c",
-            "droid_file_identifier": "33ea6cf917dcea1181b984a93e87eae5",
-            "birth_droid_volume_identifier": "d626515ea77d3048a4ed3551991d2d5c",
-            "birth_droid_file_identifier": "33ea6cf917dcea1181b984a93e87eae5"
-        },
-        "METADATA_PROPERTIES_BLOCK": {
-            "size": 417,
-            "storage_size": 109,
-            "version": "0x53505331",
-            "format_id": "ed30bdda43008947a7f8d013a4736622"
-        }
+        "size": 372
     }
 }

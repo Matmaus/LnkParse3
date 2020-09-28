@@ -2,6 +2,7 @@ from datetime import datetime
 from datetime import timezone
 from struct import unpack
 import functools
+import warnings
 from LnkParse3.lnk_exception import LnkException
 
 
@@ -11,12 +12,9 @@ def must_be(expected):
         def inner(self, *args, **kwargs):
             result = func(self, *args, **kwargs)
 
-            # FIXME: delete
-            return result
-
             if result != expected:
-                error = "%s must be %s: %s" % (func.__name__, expected, result)
-                raise LnkException(error)
+                msg = "%s must be %s: %s" % (func.__name__, expected, result)
+                warnings.warn(msg)
 
             return result
 
@@ -29,9 +27,6 @@ def uuid(func):
     @functools.wraps(func)
     def inner(self, *args, **kwargs):
         binary = func(self, *args, **kwargs)
-
-        # FIXME: delete
-        return binary.hex()
 
         # UUID variants
         # https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97

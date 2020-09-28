@@ -1,20 +1,37 @@
 {
+    "data": {
+        "relative_path": ".\\"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "16F6CD2D-E6F1-11EA-A184-000075E7C7F0",
+            "birth_droid_volume_identifier": "00000000-0000-0000-0000-000000000000",
+            "droid_file_identifier": "16F6CD2D-E6F1-11EA-A184-000075E7C7F0",
+            "droid_volume_identifier": "00000000-0000-0000-0000-000000000000",
+            "length": 88,
+            "machine_identifier": "desktop-o6lerhr",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "DABD30ED-0043-4789-A7F8-0000F4736622",
+            "size": 430,
+            "storage_size": 133,
+            "version": "0x53505331"
+        }
+    },
     "header": {
-        "header_size": 76,
-        "guid": "0114020000000000c000000000000046",
-        "r_link_flags": 524427,
-        "r_file_flags": 17,
-        "creation_time": "2020-08-25T18:03:29.341795+00:00",
         "accessed_time": "2020-09-12T15:35:19.733303+00:00",
-        "modified_time": "2020-09-11T11:46:36.453813+00:00",
+        "creation_time": "2020-08-25T18:03:29.341795+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_READONLY",
+            "FILE_ATTRIBUTE_DIRECTORY"
+        ],
         "file_size": 4096,
-        "icon_index": 0,
-        "windowstyle": "SW_NORMAL",
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
-        "r_hotkey": 0,
-        "reserved0": 0,
-        "reserved1": 0,
-        "reserved2": 0,
+        "icon_index": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -22,64 +39,47 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "file_flags": [
-            "FILE_ATTRIBUTE_READONLY",
-            "FILE_ATTRIBUTE_DIRECTORY"
-        ]
+        "modified_time": "2020-09-11T11:46:36.453813+00:00",
+        "r_file_flags": 17,
+        "r_hotkey": 0,
+        "r_link_flags": 524427,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
     },
-    "data": {
-        "relative_path": ".\\"
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 77,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 78,
+        "local_base_path": "C:\\Users\\\u00cf\u00ee\u00eb\u00fc\u00e7\u00ee\u00e2\u00e0\u00f2\u00e5\u00eb\u00fc\\Desktop\\\u00a0",
+        "local_base_path_offset": 45,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x6f2abee",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 17,
+            "volume_label": "",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
     },
     "target": {
-        "size": 76,
+        "index": 78,
         "items": [
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "Invalid time",
                 "file_attribute_flags": 17,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "Invalid time",
                 "primary_name": "9DEC~1"
             }
         ],
-        "index": 78
-    },
-    "link_info": {
-        "link_info_size": 78,
-        "link_info_header_size": 28,
-        "link_info_flags": 1,
-        "volume_id_offset": 28,
-        "local_base_path_offset": 45,
-        "common_network_relative_link_offset": 0,
-        "common_path_suffix_offset": 77,
-        "local_base_path": "C:\\Users\\\u00cf\u00ee\u00eb\u00fc\u00e7\u00ee\u00e2\u00e0\u00f2\u00e5\u00eb\u00fc\\Desktop\\\u00a0",
-        "common_path_suffix": "",
-        "location": "Local",
-        "location_info": {
-            "volume_id_size": 17,
-            "r_drive_type": 3,
-            "drive_serial_number": "0x6f2abee",
-            "volume_label_offset": 16,
-            "drive_type": "DRIVE_FIXED",
-            "volume_label": ""
-        }
-    },
-    "extra": {
-        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "size": 96,
-            "length": 88,
-            "version": 0,
-            "machine_identifier": "desktop-o6lerhr",
-            "droid_volume_identifier": "00000000000000000000000000000000",
-            "droid_file_identifier": "2dcdf616f1e6ea11a184706655a5c7f0",
-            "birth_droid_volume_identifier": "00000000000000000000000000000000",
-            "birth_droid_file_identifier": "2dcdf616f1e6ea11a184706655a5c7f0"
-        },
-        "METADATA_PROPERTIES_BLOCK": {
-            "size": 430,
-            "storage_size": 133,
-            "version": "0x53505331",
-            "format_id": "ed30bdda43008947a7f8d013a4736622"
-        }
+        "size": 76
     }
 }

@@ -182,7 +182,13 @@ class LnkFile(object):
             return obj
 
         print(
-            json.dumps(res, indent=4, separators=(",", ": "), default=_datetime_to_str)
+            json.dumps(
+                res,
+                indent=4,
+                separators=(",", ": "),
+                default=_datetime_to_str,
+                sort_keys=True,
+            )
         )
 
     def get_json(self, get_all=False):
