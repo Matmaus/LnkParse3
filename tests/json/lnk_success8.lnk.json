@@ -6,17 +6,17 @@
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "birth_droid_file_identifier": "6895cc0632bfea11aba1008cfaad700e",
-            "birth_droid_volume_identifier": "0279bf2eaaedd643a8551512e2babff2",
-            "droid_file_identifier": "6895cc0632bfea11aba1008cfaad700e",
-            "droid_volume_identifier": "0279bf2eaaedd643a8551512e2babff2",
+            "birth_droid_file_identifier": "06CC9568-BF32-11EA-ABA1-0000FAAD700E",
+            "birth_droid_volume_identifier": "2EBF7902-EDAA-43D6-A855-0000F7BABFF2",
+            "droid_file_identifier": "06CC9568-BF32-11EA-ABA1-0000FAAD700E",
+            "droid_volume_identifier": "2EBF7902-EDAA-43D6-A855-0000F7BABFF2",
             "length": 88,
             "machine_identifier": "desktop-73cl5qt",
             "size": 96,
             "version": 0
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "ed30bdda43008947a7f8d013a4736622",
+            "format_id": "DABD30ED-0043-4789-A7F8-0000F4736622",
             "size": 484,
             "storage_size": 97,
             "version": "0x53505331"
@@ -29,7 +29,7 @@
             "FILE_ATTRIBUTE_ARCHIVE"
         ],
         "file_size": 1490944,
-        "guid": "0114020000000000c000000000000046",
+        "guid": "00021401-0000-0000-C000-000000000046",
         "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
         "icon_index": 0,
@@ -76,7 +76,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
                 "sort_index": "My Computer"
             },
             {

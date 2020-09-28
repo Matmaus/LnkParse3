@@ -4,17 +4,17 @@
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "birth_droid_file_identifier": "2dcdf616f1e6ea11a184706655a5c7f0",
-            "birth_droid_volume_identifier": "00000000000000000000000000000000",
-            "droid_file_identifier": "2dcdf616f1e6ea11a184706655a5c7f0",
-            "droid_volume_identifier": "00000000000000000000000000000000",
+            "birth_droid_file_identifier": "16F6CD2D-E6F1-11EA-A184-000075E7C7F0",
+            "birth_droid_volume_identifier": "00000000-0000-0000-0000-000000000000",
+            "droid_file_identifier": "16F6CD2D-E6F1-11EA-A184-000075E7C7F0",
+            "droid_volume_identifier": "00000000-0000-0000-0000-000000000000",
             "length": 88,
             "machine_identifier": "desktop-o6lerhr",
             "size": 96,
             "version": 0
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "ed30bdda43008947a7f8d013a4736622",
+            "format_id": "DABD30ED-0043-4789-A7F8-0000F4736622",
             "size": 430,
             "storage_size": 133,
             "version": "0x53505331"
@@ -28,7 +28,7 @@
             "FILE_ATTRIBUTE_DIRECTORY"
         ],
         "file_size": 4096,
-        "guid": "0114020000000000c000000000000046",
+        "guid": "00021401-0000-0000-C000-000000000046",
         "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
         "icon_index": 0,
