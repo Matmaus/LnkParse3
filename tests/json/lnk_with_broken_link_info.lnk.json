@@ -1,5 +1,6 @@
 {
     "header": {
+        "header_size": 76,
         "guid": "0114020000000000c000000000000046",
         "r_link_flags": 153,
         "r_file_flags": 32,
@@ -11,6 +12,9 @@
         "windowstyle": "SW_NORMAL",
         "hotkey": "UNSET - UNSET {0x0000}",
         "r_hotkey": 0,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasRelativePath",
@@ -42,6 +46,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "2043-10-22T10:09:30+00:00",
                 "file_attribute_flags": 17,
                 "primary_name": "PROGRA~1"
             },
@@ -49,6 +54,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "2043-10-22T10:09:30+00:00",
                 "file_attribute_flags": 16,
                 "primary_name": "xt"
             },
@@ -56,10 +62,12 @@
                 "class": "File entry",
                 "flags": "Is file",
                 "file_size": 40960,
+                "modification_time": "2014-07-17T09:06:56+00:00",
                 "file_attribute_flags": 32,
                 "primary_name": "xt.exe"
             }
-        ]
+        ],
+        "index": 78
     },
     "link_info": {},
     "extra": {

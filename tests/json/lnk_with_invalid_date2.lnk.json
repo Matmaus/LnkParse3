@@ -1,5 +1,6 @@
 {
     "header": {
+        "header_size": 76,
         "guid": "0114020000000000c000000000000046",
         "r_link_flags": 225,
         "r_file_flags": 0,
@@ -11,6 +12,9 @@
         "windowstyle": "SW_SHOWMINNOACTIVE",
         "hotkey": "UNSET - UNSET {0x0000}",
         "r_hotkey": 0,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasArguments",
@@ -40,6 +44,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "",
                 "file_attribute_flags": 16,
                 "primary_name": "Windows"
             },
@@ -47,6 +52,7 @@
                 "class": "File entry",
                 "flags": "Is directory",
                 "file_size": 0,
+                "modification_time": "",
                 "file_attribute_flags": 16,
                 "primary_name": "system32"
             },
@@ -54,10 +60,12 @@
                 "class": "File entry",
                 "flags": "Is file",
                 "file_size": 0,
+                "modification_time": "",
                 "file_attribute_flags": 0,
                 "primary_name": "cmd.exe"
             }
-        ]
+        ],
+        "index": 78
     },
     "link_info": {},
     "extra": {

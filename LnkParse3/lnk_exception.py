@@ -1,0 +1,2 @@
+class LnkException(Exception):
+    pass
