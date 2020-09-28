@@ -5,10 +5,10 @@
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "birth_droid_file_identifier": "ec46cd7b227fdd11949900137216874a",
-            "birth_droid_volume_identifier": "4078c79447fac746b3565c2dc6b6d115",
-            "droid_file_identifier": "ec46cd7b227fdd11949900137216874a",
-            "droid_volume_identifier": "4078c79447fac746b3565c2dc6b6d115",
+            "birth_droid_file_identifier": "7BCD46EC-7F22-11DD-9499-00007217874A",
+            "birth_droid_volume_identifier": "94C77840-FA47-46C7-B356-0000DEBFD115",
+            "droid_file_identifier": "7BCD46EC-7F22-11DD-9499-00007217874A",
+            "droid_volume_identifier": "94C77840-FA47-46C7-B356-0000DEBFD115",
             "length": 88,
             "machine_identifier": "chris-xps",
             "size": 96,
@@ -22,7 +22,7 @@
             "FILE_ATTRIBUTE_ARCHIVE"
         ],
         "file_size": 0,
-        "guid": "0114020000000000c000000000000046",
+        "guid": "00021401-0000-0000-C000-000000000046",
         "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
         "icon_index": 0,
@@ -68,7 +68,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
                 "sort_index": "My Computer"
             },
             {

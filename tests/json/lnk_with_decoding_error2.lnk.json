@@ -5,10 +5,10 @@
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "birth_droid_file_identifier": "f9ac30eaccb9e0118806bc5ff4204af6",
-            "birth_droid_volume_identifier": "067c1e0cf5e7c34ca6eefb36391163ac",
-            "droid_file_identifier": "f9ac30eaccb9e0118806bc5ff4204af6",
-            "droid_volume_identifier": "067c1e0cf5e7c34ca6eefb36391163ac",
+            "birth_droid_file_identifier": "EA30ACF9-B9CC-11E0-8806-0000FC7F4AF6",
+            "birth_droid_volume_identifier": "0C1E7C06-E7F5-4CC3-A6EE-0000FB3763AC",
+            "droid_file_identifier": "EA30ACF9-B9CC-11E0-8806-0000FC7F4AF6",
+            "droid_volume_identifier": "0C1E7C06-E7F5-4CC3-A6EE-0000FB3763AC",
             "length": 88,
             "machine_identifier": "dubay-\u00af\u00aa",
             "size": 96,
@@ -20,12 +20,12 @@
             "target_unicode": "%"
         },
         "KNOWN_FOLDER_LOCATION_BLOCK": {
-            "known_folder_id": "774ec11ae7025d4eb7442eb1ae5198b7",
+            "known_folder_id": "1AC14E77-02E7-4E5D-B744-0000AEF198B7",
             "offset": 213,
             "size": 28
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "e28a5846bc4c3843bbfc139326986dce",
+            "format_id": "46588AE2-4CBC-4338-BBFC-0000379B6DCE",
             "size": 153,
             "storage_size": 141,
             "version": "0x53505331"
@@ -43,7 +43,7 @@
             "FILE_ATTRIBUTE_ARCHIVE"
         ],
         "file_size": 345088,
-        "guid": "0114020000000000c000000000000046",
+        "guid": "00021401-0000-0000-C000-000000000046",
         "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
         "icon_index": 7,
@@ -89,7 +89,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
                 "sort_index": "My Computer"
             },
             {

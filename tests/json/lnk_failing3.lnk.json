@@ -2,7 +2,7 @@
     "data": {},
     "extra": {
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "55284c9f799f394ba8d0e1d42de1d5f3",
+            "format_id": "9F4C2855-9F79-4B39-A8D0-0000EDF5D5F3",
             "size": 483,
             "storage_size": 471,
             "version": "0x53505331"
@@ -13,7 +13,7 @@
         "creation_time": "",
         "file_flags": [],
         "file_size": 0,
-        "guid": "0114020000000000c000000000000046",
+        "guid": "00021401-0000-0000-C000-000000000046",
         "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
         "icon_index": 0,
@@ -36,7 +36,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
                 "sort_index": "My Computer"
             },
             {
