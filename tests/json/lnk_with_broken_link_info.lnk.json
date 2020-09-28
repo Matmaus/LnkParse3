@@ -1,91 +1,91 @@
 {
+    "data": {
+        "relative_path": "..\\..\\..\\..\\..\\..\\Program Files\\xt\\xt.exe",
+        "working_directory": "C:\\Program Files\\xt"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "fde6604d6cf7ea119d939a6cb2227e78",
+            "birth_droid_volume_identifier": "182a76f68e337448b4d806de16586e7a",
+            "droid_file_identifier": "fde6604d6cf7ea119d939a6cb2227e78",
+            "droid_volume_identifier": "182a76f68e337448b4d806de16586e7a",
+            "length": 88,
+            "machine_identifier": "minwinpc",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "b1166d44ad8d7048a748402ea43d788c",
+            "size": 69,
+            "storage_size": 57,
+            "version": "0x53505331"
+        }
+    },
     "header": {
-        "header_size": 76,
-        "guid": "0114020000000000c000000000000046",
-        "r_link_flags": 153,
-        "r_file_flags": 32,
-        "creation_time": "2017-03-22T05:59:50.209159+00:00",
         "accessed_time": "2020-09-15T15:58:43.317769+00:00",
-        "modified_time": "2016-06-28T08:39:33.829000+00:00",
+        "creation_time": "2017-03-22T05:59:50.209159+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
         "file_size": 40960,
-        "icon_index": 0,
-        "windowstyle": "SW_NORMAL",
+        "guid": "0114020000000000c000000000000046",
+        "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
-        "r_hotkey": 0,
-        "reserved0": 0,
-        "reserved1": 0,
-        "reserved2": 0,
+        "icon_index": 0,
         "link_flags": [
             "HasTargetIDList",
             "HasRelativePath",
             "HasWorkingDir",
             "IsUnicode"
         ],
-        "file_flags": [
-            "FILE_ATTRIBUTE_ARCHIVE"
-        ]
+        "modified_time": "2016-06-28T08:39:33.829000+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 153,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
     },
-    "data": {
-        "relative_path": "..\\..\\..\\..\\..\\..\\Program Files\\xt\\xt.exe",
-        "working_directory": "C:\\Program Files\\xt"
-    },
+    "link_info": {},
     "target": {
-        "size": 343,
+        "index": 78,
         "items": [
             {
                 "class": "Root Folder",
-                "sort_index": "My Computer",
-                "guid": "e04fd020ea3a6910a2d808002b30309d"
+                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "sort_index": "My Computer"
             },
             {
                 "class": "Volume Item",
-                "flags": "0xf",
-                "data": "C:\\"
+                "data": "C:\\",
+                "flags": "0xf"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "2043-10-22T10:09:30+00:00",
                 "file_attribute_flags": 17,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2043-10-22T10:09:30+00:00",
                 "primary_name": "PROGRA~1"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "2043-10-22T10:09:30+00:00",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2043-10-22T10:09:30+00:00",
                 "primary_name": "xt"
             },
             {
                 "class": "File entry",
-                "flags": "Is file",
-                "file_size": 40960,
-                "modification_time": "2014-07-17T09:06:56+00:00",
                 "file_attribute_flags": 32,
+                "file_size": 40960,
+                "flags": "Is file",
+                "modification_time": "2014-07-17T09:06:56+00:00",
                 "primary_name": "xt.exe"
             }
         ],
-        "index": 78
-    },
-    "link_info": {},
-    "extra": {
-        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "size": 96,
-            "length": 88,
-            "version": 0,
-            "machine_identifier": "minwinpc",
-            "droid_volume_identifier": "182a76f68e337448b4d806de16586e7a",
-            "droid_file_identifier": "fde6604d6cf7ea119d939a6cb2227e78",
-            "birth_droid_volume_identifier": "182a76f68e337448b4d806de16586e7a",
-            "birth_droid_file_identifier": "fde6604d6cf7ea119d939a6cb2227e78"
-        },
-        "METADATA_PROPERTIES_BLOCK": {
-            "size": 69,
-            "storage_size": 57,
-            "version": "0x53505331",
-            "format_id": "b1166d44ad8d7048a748402ea43d788c"
-        }
+        "size": 343
     }
 }

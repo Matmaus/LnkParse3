@@ -1,20 +1,52 @@
 {
+    "data": {
+        "command_line_arguments": "/C .\\WindowsServices\\movemenoreg.vbs",
+        "icon_location": "%windir%\\system32\\SHELL32.dll"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "f9ac30eaccb9e0118806bc5ff4204af6",
+            "birth_droid_volume_identifier": "067c1e0cf5e7c34ca6eefb36391163ac",
+            "droid_file_identifier": "f9ac30eaccb9e0118806bc5ff4204af6",
+            "droid_volume_identifier": "067c1e0cf5e7c34ca6eefb36391163ac",
+            "length": 88,
+            "machine_identifier": "dubay-\u00af\u00aa",
+            "size": 96,
+            "version": 0
+        },
+        "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+            "size": 788,
+            "target_ansi": "%COMSPEC%",
+            "target_unicode": "%"
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "known_folder_id": "774ec11ae7025d4eb7442eb1ae5198b7",
+            "offset": 213,
+            "size": 28
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "e28a5846bc4c3843bbfc139326986dce",
+            "size": 153,
+            "storage_size": 141,
+            "version": "0x53505331"
+        },
+        "SPECIAL_FOLDER_LOCATION_BLOCK": {
+            "offset": 213,
+            "size": 16,
+            "special_folder_id": 37
+        }
+    },
     "header": {
-        "header_size": 76,
-        "guid": "0114020000000000c000000000000046",
-        "r_link_flags": 739,
-        "r_file_flags": 32,
-        "creation_time": "2010-11-21T03:23:55.516901+00:00",
         "accessed_time": "2010-11-21T03:23:55.516901+00:00",
-        "modified_time": "2010-11-21T03:23:55.532502+00:00",
+        "creation_time": "2010-11-21T03:23:55.516901+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
         "file_size": 345088,
-        "icon_index": 7,
-        "windowstyle": "SW_SHOWMINNOACTIVE",
+        "guid": "0114020000000000c000000000000046",
+        "header_size": 76,
         "hotkey": "UNSET - UNSET {0x0000}",
-        "r_hotkey": 0,
-        "reserved0": 0,
-        "reserved1": 0,
-        "reserved2": 0,
+        "icon_index": 7,
         "link_flags": [
             "HasTargetIDList",
             "HasLinkInfo",
@@ -23,105 +55,73 @@
             "IsUnicode",
             "HasExpString"
         ],
-        "file_flags": [
-            "FILE_ATTRIBUTE_ARCHIVE"
-        ]
+        "modified_time": "2010-11-21T03:23:55.532502+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 739,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWMINNOACTIVE"
     },
-    "data": {
-        "command_line_arguments": "/C .\\WindowsServices\\movemenoreg.vbs",
-        "icon_location": "%windir%\\system32\\SHELL32.dll"
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 73,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 74,
+        "local_base_path": "C:\\Windows\\System32\\cmd.exe",
+        "local_base_path_offset": 45,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x42b6ef87",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 17,
+            "volume_label": "",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
     },
     "target": {
-        "size": 297,
+        "index": 78,
         "items": [
             {
                 "class": "Root Folder",
-                "sort_index": "My Computer",
-                "guid": "e04fd020ea3a6910a2d808002b30309d"
+                "guid": "e04fd020ea3a6910a2d808002b30309d",
+                "sort_index": "My Computer"
             },
             {
                 "class": "Volume Item",
-                "flags": "0xf",
-                "data": "C:\\"
+                "data": "C:\\",
+                "flags": "0xf"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "2060-11-27T07:55:56+00:00",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2060-11-27T07:55:56+00:00",
                 "primary_name": "Windows"
             },
             {
                 "class": "File entry",
-                "flags": "Is directory",
-                "file_size": 0,
-                "modification_time": "2060-06-04T07:55:56+00:00",
                 "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2060-06-04T07:55:56+00:00",
                 "primary_name": "System32"
             },
             {
                 "class": "File entry",
-                "flags": "Is file",
-                "file_size": 345088,
-                "modification_time": "1993-07-28T07:43:42+00:00",
                 "file_attribute_flags": 32,
+                "file_size": 345088,
+                "flags": "Is file",
+                "modification_time": "1993-07-28T07:43:42+00:00",
                 "primary_name": "cmd.exe"
             }
         ],
-        "index": 78
-    },
-    "link_info": {
-        "link_info_size": 74,
-        "link_info_header_size": 28,
-        "link_info_flags": 1,
-        "volume_id_offset": 28,
-        "local_base_path_offset": 45,
-        "common_network_relative_link_offset": 0,
-        "common_path_suffix_offset": 73,
-        "local_base_path": "C:\\Windows\\System32\\cmd.exe",
-        "common_path_suffix": "",
-        "location": "Local",
-        "location_info": {
-            "volume_id_size": 17,
-            "r_drive_type": 3,
-            "drive_serial_number": "0x42b6ef87",
-            "volume_label_offset": 16,
-            "drive_type": "DRIVE_FIXED",
-            "volume_label": ""
-        }
-    },
-    "extra": {
-        "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
-            "size": 788,
-            "target_ansi": "%COMSPEC%",
-            "target_unicode": "%"
-        },
-        "SPECIAL_FOLDER_LOCATION_BLOCK": {
-            "size": 16,
-            "special_folder_id": 37,
-            "offset": 213
-        },
-        "KNOWN_FOLDER_LOCATION_BLOCK": {
-            "size": 28,
-            "known_folder_id": "774ec11ae7025d4eb7442eb1ae5198b7",
-            "offset": 213
-        },
-        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "size": 96,
-            "length": 88,
-            "version": 0,
-            "machine_identifier": "dubay-\u00af\u00aa",
-            "droid_volume_identifier": "067c1e0cf5e7c34ca6eefb36391163ac",
-            "droid_file_identifier": "f9ac30eaccb9e0118806bc5ff4204af6",
-            "birth_droid_volume_identifier": "067c1e0cf5e7c34ca6eefb36391163ac",
-            "birth_droid_file_identifier": "f9ac30eaccb9e0118806bc5ff4204af6"
-        },
-        "METADATA_PROPERTIES_BLOCK": {
-            "size": 153,
-            "storage_size": 141,
-            "version": "0x53505331",
-            "format_id": "e28a5846bc4c3843bbfc139326986dce"
-        }
+        "size": 297
     }
 }
