@@ -22,8 +22,8 @@
         }
     },
     "header": {
-        "accessed_time": "",
-        "creation_time": "",
+        "accessed_time": null,
+        "creation_time": null,
         "file_flags": [],
         "file_size": 0,
         "guid": "00021401-0000-0000-C000-000000000046",
@@ -36,7 +36,7 @@
             "HasIconLocation",
             "IsUnicode"
         ],
-        "modified_time": "",
+        "modified_time": null,
         "r_file_flags": 0,
         "r_hotkey": 0,
         "r_link_flags": 225,
@@ -64,7 +64,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "",
+                "modification_time": null,
                 "primary_name": "Windows"
             },
             {
@@ -72,7 +72,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "",
+                "modification_time": null,
                 "primary_name": "system32"
             },
             {
@@ -80,7 +80,7 @@
                 "file_attribute_flags": 0,
                 "file_size": 0,
                 "flags": "Is file",
-                "modification_time": "",
+                "modification_time": null,
                 "primary_name": "cmd.exe"
             }
         ],

@@ -76,7 +76,7 @@
                 "file_attribute_flags": 17,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "Invalid time",
+                "modification_time": null,
                 "primary_name": "9DEC~1"
             }
         ],

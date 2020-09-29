@@ -89,7 +89,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "Invalid time",
+                "modification_time": null,
                 "primary_name": ".minecraft"
             }
         ],
