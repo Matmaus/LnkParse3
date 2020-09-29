@@ -1,0 +1,81 @@
+{
+    "data": {
+        "command_line_arguments": "/b",
+        "icon_location": "%systemroot%\\system32\\shell32.dll"
+    },
+    "extra": {
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "46588AE2-4CBC-4338-BBFC-0000379B6DCE",
+            "size": 40,
+            "storage_size": 28,
+            "version": "0x53505331"
+        }
+    },
+    "header": {
+        "accessed_time": "2018-05-01T17:00:00+00:00",
+        "creation_time": "2018-04-19T07:31:59+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_READONLY",
+            "FILE_ATTRIBUTE_HIDDEN",
+            "FILE_ATTRIBUTE_SYSTEM"
+        ],
+        "file_size": 155648,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 156,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasArguments",
+            "HasIconLocation",
+            "IsUnicode"
+        ],
+        "modified_time": "2014-09-15T07:38:26+00:00",
+        "r_file_flags": 7,
+        "r_hotkey": 0,
+        "r_link_flags": 227,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 56,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 57,
+        "local_base_path": "E:\\\u00a0\\\u00a0.exe",
+        "local_base_path_offset": 45,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x16add728",
+            "drive_type": "DRIVE_REMOVABLE",
+            "r_drive_type": 2,
+            "volume_id_size": 17,
+            "volume_label": "",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": "E:\\",
+                "flags": "0xf"
+            },
+            null,
+            null
+        ],
+        "size": 195
+    }
+}

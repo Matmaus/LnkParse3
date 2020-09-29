@@ -33,12 +33,17 @@ class ShellFSFolder(LnkTargetBase):
         super().__init__(*args, **kwargs)
 
     def as_item(self):
-        item = super().as_item()
-        item["flags"] = self.flags()
-        item["file_size"] = self.file_size()
-        item["modification_time"] = self.modification_time()
-        item["file_attribute_flags"] = self.file_attribute_flags()
-        item["primary_name"] = self.primary_name()
+        # FIXME This try-catch is just a hot-fix.
+        # We should probably solve failing attributes in a better way.
+        try:
+            item = super().as_item()
+            item["flags"] = self.flags()
+            item["file_size"] = self.file_size()
+            item["modification_time"] = self.modification_time()
+            item["file_attribute_flags"] = self.file_attribute_flags()
+            item["primary_name"] = self.primary_name()
+        except KeyError:
+            return None
         return item
 
     # TODO: rename to class_type_indicator

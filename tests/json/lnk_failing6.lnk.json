@@ -1,0 +1,129 @@
+{
+    "data": {
+        "command_line_arguments": "/vendor:youdao%20/P%20%22C:/Youdao/ShoppingAssistant/ie/4.4",
+        "icon_location": "C:\\b5tcj\\e25d12f380_96.ico",
+        "working_directory": "C:\\Youdao\\ShoppingAssistant\\ie\\4.4"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "E397F6C7-7601-11E5-95A1-0000FFEF846D",
+            "birth_droid_volume_identifier": "08562B6A-355D-4AFF-8B67-000066F5E12B",
+            "droid_file_identifier": "E397F6C7-7601-11E5-95A1-0000FFEF846D",
+            "droid_volume_identifier": "08562B6A-355D-4AFF-8B67-000066F5E12B",
+            "length": 88,
+            "machine_identifier": "2013-20140209ru",
+            "size": 96,
+            "version": 0
+        },
+        "ICON_LOCATION_BLOCK": {
+            "size": 788,
+            "target_ansi": "%SystemDrive%\\b5tcj\\e25d12f380_96.ico",
+            "target_unicode": "%"
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "46588AE2-4CBC-4338-BBFC-0000379B6DCE",
+            "size": 149,
+            "storage_size": 137,
+            "version": "0x53505331"
+        }
+    },
+    "header": {
+        "accessed_time": "2015-10-19T07:41:48+00:00",
+        "creation_time": "2015-10-19T07:41:48+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
+        "file_size": 756160,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasWorkingDir",
+            "HasArguments",
+            "HasIconLocation",
+            "IsUnicode",
+            "HasExpIcon",
+            "EnableTargetMetadata"
+        ],
+        "modified_time": "2015-07-13T10:59:48+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 540915,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWMINNOACTIVE"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 117,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 118,
+        "local_base_path": "C:\\Youdao\\ShoppingAssistant\\ie\\4.4\\\u00b2\u00a5\u00b7\u00c5\u00c6\u00f7\u00d5\u00fd\u00d4\u00da\u00bc\u00d3\u00d4\u00d8\u00a3\u00a8\u00c0\u00b9\u00bd\u00d8\u00c7\u00eb\u00d4\u00ca\u00d0\u00ed\u00a3\u00a9.exe",
+        "local_base_path_offset": 49,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x489e5fb3",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 21,
+            "volume_label": "WIN7",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": "C:\\",
+                "flags": "0xf"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2038-01-29T08:58:10+00:00",
+                "primary_name": "Youdao"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2038-01-29T08:58:10+00:00",
+                "primary_name": "SHOPPI~1"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2038-01-29T08:58:10+00:00",
+                "primary_name": "ie"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2010-09-25T08:58:38+00:00",
+                "primary_name": "4.4"
+            },
+            null
+        ],
+        "size": 485
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "data": {
+        "relative_path": "..\\..\\..\\..\\..\\..\\..\\ProgramData\\V\u001a_DJ\\V\u001a_DJ.exe",
+        "working_directory": "C:\\ProgramData\\V\u001a_DJ"
+    },
+    "extra": {
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "46588AE2-4CBC-4338-BBFC-0000379B6DCE",
+            "size": 40,
+            "storage_size": 28,
+            "version": "0x53505331"
+        }
+    },
+    "header": {
+        "accessed_time": null,
+        "creation_time": null,
+        "file_flags": [],
+        "file_size": 0,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasRelativePath",
+            "HasWorkingDir",
+            "IsUnicode"
+        ],
+        "modified_time": null,
+        "r_file_flags": 0,
+        "r_hotkey": 0,
+        "r_link_flags": 153,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_NORMAL"
+    },
+    "link_info": {},
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": "C:\\",
+                "flags": "0xf"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": null,
+                "primary_name": "ProgramData"
+            },
+            null,
+            null
+        ],
+        "size": 321
+    }
+}
