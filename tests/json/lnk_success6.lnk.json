@@ -38,8 +38,8 @@
         }
     },
     "header": {
-        "accessed_time": "2018-12-28T13:06:00.442131+00:00",
-        "creation_time": "2018-12-28T13:06:00.442131+00:00",
+        "accessed_time": "2018-12-28T13:06:00+00:00",
+        "creation_time": "2018-12-28T13:06:00+00:00",
         "file_flags": [
             "FILE_ATTRIBUTE_ARCHIVE"
         ],
