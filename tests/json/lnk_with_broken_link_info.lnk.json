@@ -22,8 +22,8 @@
         }
     },
     "header": {
-        "accessed_time": "2020-09-15T15:58:43.317769+00:00",
-        "creation_time": "2017-03-22T05:59:50.209159+00:00",
+        "accessed_time": "2020-09-15T15:58:43+00:00",
+        "creation_time": "2017-03-22T05:59:50+00:00",
         "file_flags": [
             "FILE_ATTRIBUTE_ARCHIVE"
         ],
@@ -38,7 +38,7 @@
             "HasWorkingDir",
             "IsUnicode"
         ],
-        "modified_time": "2016-06-28T08:39:33.829000+00:00",
+        "modified_time": "2016-06-28T08:39:33+00:00",
         "r_file_flags": 32,
         "r_hotkey": 0,
         "r_link_flags": 153,

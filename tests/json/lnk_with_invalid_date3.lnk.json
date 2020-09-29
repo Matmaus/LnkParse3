@@ -21,8 +21,8 @@
         }
     },
     "header": {
-        "accessed_time": "2020-09-12T15:35:19.733303+00:00",
-        "creation_time": "2020-08-25T18:03:29.341795+00:00",
+        "accessed_time": "2020-09-12T15:35:19+00:00",
+        "creation_time": "2020-08-25T18:03:29+00:00",
         "file_flags": [
             "FILE_ATTRIBUTE_READONLY",
             "FILE_ATTRIBUTE_DIRECTORY"
@@ -39,7 +39,7 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "modified_time": "2020-09-11T11:46:36.453813+00:00",
+        "modified_time": "2020-09-11T11:46:36+00:00",
         "r_file_flags": 17,
         "r_hotkey": 0,
         "r_link_flags": 524427,
@@ -76,7 +76,7 @@
                 "file_attribute_flags": 17,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "Invalid time",
+                "modification_time": null,
                 "primary_name": "9DEC~1"
             }
         ],

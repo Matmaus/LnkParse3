@@ -23,8 +23,8 @@
         }
     },
     "header": {
-        "accessed_time": "2020-07-06T04:18:49.803554+00:00",
-        "creation_time": "2020-07-03T22:51:57.966124+00:00",
+        "accessed_time": "2020-07-06T04:18:49+00:00",
+        "creation_time": "2020-07-03T22:51:57+00:00",
         "file_flags": [
             "FILE_ATTRIBUTE_ARCHIVE"
         ],
@@ -42,7 +42,7 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "modified_time": "2020-07-06T04:18:49.576528+00:00",
+        "modified_time": "2020-07-06T04:18:49+00:00",
         "r_file_flags": 32,
         "r_hotkey": 0,
         "r_link_flags": 524475,

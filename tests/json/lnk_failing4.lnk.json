@@ -21,8 +21,8 @@
         }
     },
     "header": {
-        "accessed_time": "2020-09-10T19:48:38.715254+00:00",
-        "creation_time": "2020-08-23T13:59:17.313516+00:00",
+        "accessed_time": "2020-09-10T19:48:38+00:00",
+        "creation_time": "2020-08-23T13:59:17+00:00",
         "file_flags": [
             "FILE_ATTRIBUTE_DIRECTORY"
         ],
@@ -38,7 +38,7 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "modified_time": "2020-09-10T19:48:38.715254+00:00",
+        "modified_time": "2020-09-10T19:48:38+00:00",
         "r_file_flags": 16,
         "r_hotkey": 0,
         "r_link_flags": 524427,
@@ -89,7 +89,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "Invalid time",
+                "modification_time": null,
                 "primary_name": ".minecraft"
             }
         ],

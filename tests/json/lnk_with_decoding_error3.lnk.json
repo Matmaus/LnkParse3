@@ -23,8 +23,8 @@
         }
     },
     "header": {
-        "accessed_time": "2020-09-03T14:59:20.482872+00:00",
-        "creation_time": "2020-09-02T16:27:18.171371+00:00",
+        "accessed_time": "2020-09-03T14:59:20+00:00",
+        "creation_time": "2020-09-02T16:27:18+00:00",
         "file_flags": [
             "FILE_ATTRIBUTE_ARCHIVE",
             "FILE_ATTRIBUTE_COMPRESSED"
@@ -43,7 +43,7 @@
             "IsUnicode",
             "EnableTargetMetadata"
         ],
-        "modified_time": "2020-09-02T16:27:24.678487+00:00",
+        "modified_time": "2020-09-02T16:27:24+00:00",
         "r_file_flags": 2080,
         "r_hotkey": 0,
         "r_link_flags": 524507,
@@ -90,7 +90,7 @@
                 "file_attribute_flags": 2064,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "Invalid time",
+                "modification_time": null,
                 "primary_name": "PixelMod"
             },
             {
