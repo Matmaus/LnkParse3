@@ -37,8 +37,8 @@
         }
     },
     "header": {
-        "accessed_time": "2010-11-21T03:23:55.516901+00:00",
-        "creation_time": "2010-11-21T03:23:55.516901+00:00",
+        "accessed_time": "2010-11-21T03:23:55+00:00",
+        "creation_time": "2010-11-21T03:23:55+00:00",
         "file_flags": [
             "FILE_ATTRIBUTE_ARCHIVE"
         ],
@@ -55,7 +55,7 @@
             "IsUnicode",
             "HasExpString"
         ],
-        "modified_time": "2010-11-21T03:23:55.532502+00:00",
+        "modified_time": "2010-11-21T03:23:55+00:00",
         "r_file_flags": 32,
         "r_hotkey": 0,
         "r_link_flags": 739,

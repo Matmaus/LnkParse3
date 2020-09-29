@@ -178,7 +178,7 @@ class LnkFile(object):
 
         def _datetime_to_str(obj):
             if isinstance(obj, datetime.datetime):
-                return obj.isoformat()
+                return obj.replace(microsecond=0).isoformat()
             return obj
 
         print(
