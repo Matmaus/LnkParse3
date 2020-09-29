@@ -45,20 +45,22 @@ def filetime(func):
     @functools.wraps(func)
     def inner(self, *args, **kwargs):
         binary = func(self, *args, **kwargs)
-        nanosec = unpack("<q", binary)[0]
-
-        # FIXME: zero width string?
-        if nanosec == 0:
-            return ""
 
         try:
+            nanosec = unpack("<q", binary)[0]
+
+            if nanosec == 0:
+                raise ValueError
+
             epoch_as_filetime = 116444736000000000
             hundreds_of_nanoseconds = 10000000
 
             timestamp = (nanosec - epoch_as_filetime) / hundreds_of_nanoseconds
             return datetime.fromtimestamp(timestamp, tz=timezone.utc)
         except ValueError:
-            return "Invalid time"
+            msg = "Invalid filetime: %s" % binary.hex(" ")
+            warnings.warn(msg)
+            return None
 
     return inner
 
@@ -85,25 +87,25 @@ def dostime(func):
     @functools.wraps(func)
     def inner(self, *args, **kwargs):
         binary = func(self, *args, **kwargs)
-        dos = unpack("<I", binary)[0]
-
-        # FIXME: zero width string?
-        if dos == 0:
-            return ""
-
-        ymdhms = (
-            ((dos & 0xFE000000) >> 25) + 1980,
-            ((dos & 0x01E00000) >> 21),
-            ((dos & 0x001F0000) >> 16),
-            ((dos & 0x0000F800) >> 11),
-            ((dos & 0x000007E0) >> 5),
-            ((dos & 0x0000001F) >> 0) * 2,
-        )
 
         try:
+            dos = unpack("<I", binary)[0]
+
+            if dos == 0:
+                raise ValueError
+            ymdhms = (
+                ((dos & 0xFE000000) >> 25) + 1980,
+                ((dos & 0x01E00000) >> 21),
+                ((dos & 0x001F0000) >> 16),
+                ((dos & 0x0000F800) >> 11),
+                ((dos & 0x000007E0) >> 5),
+                ((dos & 0x0000001F) >> 0) * 2,
+            )
+
             return datetime(*ymdhms, tzinfo=timezone.utc)
         except ValueError:
-            # FIXME: error string?
-            return "Invalid time"
+            msg = "Invalid dostime: %s" % binary.hex(" ")
+            warnings.warn(msg)
+            return None
 
     return inner

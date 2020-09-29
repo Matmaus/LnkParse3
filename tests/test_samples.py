@@ -1,6 +1,7 @@
 import json
 import os
 import unittest
+import warnings
 from contextlib import redirect_stdout
 from io import StringIO
 
@@ -13,6 +14,7 @@ JSON_DIR = os.path.join(os.path.dirname(__file__), 'json')
 class TestSamples(unittest.TestCase):
     def setUp(self):
         self.maxDiff = None
+        warnings.simplefilter('ignore', category=UserWarning)
 
     def test_json(self):
         for entry in os.scandir(TARGET_DIR):
