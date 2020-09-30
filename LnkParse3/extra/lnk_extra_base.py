@@ -15,17 +15,6 @@ class LnkExtraBase:
         self._raw = indata
         self.text_processor = TextProcessor(cp=cp)
 
-        # FIXME: delete
-        def _dummy(binary):
-            def clean_line(rstring):
-                return "".join(chr(i) for i in rstring if 128 > i > 20)
-            index = begin = end = 0
-            while binary[index] != 0x00:
-                end += 1
-                index += 1
-            return clean_line(binary[begin:end].replace(b"\x00", b""))
-        self.text_processor.read_unicode_string = _dummy
-
     def size(self):
         start, end = 0, 4
         size = unpack("<I", self._raw[start:end])[0]

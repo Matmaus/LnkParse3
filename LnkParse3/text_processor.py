@@ -29,14 +29,6 @@ class TextProcessor:
         yield from _chars_to_string(chars)
 
     def read_string(self, binary):
-        # FIXME: wrong
-        result = ""
-        for c in binary:
-            if c == 0x00:
-                break
-            result += chr(c)
-        return result
-
         it = self.read_strings(binary)
         return next(it)
 

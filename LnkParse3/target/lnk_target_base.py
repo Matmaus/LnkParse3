@@ -52,3 +52,13 @@ class LnkTargetBase:
         start, end = 0, 2
         size = unpack("<H", self._raw[start:end])[0]
         return size
+
+    def class_type_indicator(self):
+        start, end = 0, 1
+        flags = unpack("<B", self._raw_target[start:end])[0]
+        return flags
+
+    def has_unicode_strings(self):
+        inv = {v: k for k, v in self.SHELL_ITEM_SHEL_FS_FOLDER.items()}
+        mask = inv["Has Unicode strings"]
+        return bool(self.class_type_indicator() & mask)

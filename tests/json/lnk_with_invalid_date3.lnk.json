@@ -1,6 +1,6 @@
 {
     "data": {
-        "relative_path": ".\\"
+        "relative_path": ".\\\u00a0"
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {

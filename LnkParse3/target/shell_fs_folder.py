@@ -46,10 +46,12 @@ class ShellFSFolder(LnkTargetBase):
             return None
         return item
 
-    # TODO: rename to class_type_indicator
+    # dup: ./my_computer.py flags()
+    # dup: ../target_factory.py item_type()
     def flags(self):
-        start, end = 0, 1
-        flags = unpack("<B", self._raw_target[start:end])[0]
+        flags = self.class_type_indicator()
+
+        # FIXME: delete masking
         return self.SHELL_ITEM_SHEL_FS_FOLDER[flags & 0x0F]
 
     def file_size(self):
@@ -70,11 +72,12 @@ class ShellFSFolder(LnkTargetBase):
     def primary_name(self):
         start = 12
         binary = self._raw_target[start:]
-        # FIXME: flags may contain multiple values
-        if self.flags() == "Has Unicode strings":
+
+        if self.has_unicode_strings():
             text = self.text_processor.read_unicode_string(binary)
         else:
             text = self.text_processor.read_string(binary)
+
         return text
 
     # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#341-file-entry-shell-item--pre-windows-xp

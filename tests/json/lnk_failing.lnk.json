@@ -16,7 +16,7 @@
         "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
             "size": 788,
             "target_ansi": "C:\\Users\\%USERNAME%\\AppData\\Roaming\\.minecraft",
-            "target_unicode": "C"
+            "target_unicode": "C:\\Users\\%USERNAME%\\AppData\\Roaming\\.minecraft"
         },
         "METADATA_PROPERTIES_BLOCK": {
             "format_id": "DABD30ED-0043-4789-A7F8-0000F4736622",

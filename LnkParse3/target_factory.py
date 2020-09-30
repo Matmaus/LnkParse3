@@ -48,6 +48,8 @@ class TargetFactory:
         size = unpack("<H", self._raw[start:end])[0]
         return size
 
+    # dup: ./targets/shell_fs_folder.py flags()
+    # dup: ./targets/my_computer.py flags()
     def item_type(self):
         """
         Peek item type before creating objects
