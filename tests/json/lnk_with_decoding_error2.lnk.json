@@ -17,7 +17,7 @@
         "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
             "size": 788,
             "target_ansi": "%COMSPEC%",
-            "target_unicode": "%"
+            "target_unicode": "%COMSPEC%"
         },
         "KNOWN_FOLDER_LOCATION_BLOCK": {
             "known_folder_id": "1AC14E77-02E7-4E5D-B744-0000AEF198B7",

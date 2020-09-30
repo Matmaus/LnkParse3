@@ -65,9 +65,6 @@ class StringData:
         return self._data.get("icon_location")
 
     def read(self, binary):
-        # FIXME: WRONG
-        return self._read_orig(binary)
-
         offset = 2
         char_count = unpack("<H", binary[0:offset])[0]
         length = char_count
@@ -80,21 +77,6 @@ class StringData:
 
         text = self._read(binary[offset : offset + length])
         return text, offset + length
-
-    def _read_orig(self, binary):
-        offset = 2
-
-        u_mult = 1
-        if self._lnk_file.is_unicode():
-            u_mult = 2
-
-        def clean_line(rstring):
-            return "".join(chr(i) for i in rstring if 128 > i > 20)
-
-        string_size = unpack("<H", binary[0:offset])[0] * u_mult
-        string = clean_line(binary[offset : offset + string_size].replace(b"\x00", b""))
-
-        return string, string_size + offset
 
     def as_dict(self):
         return {k: v for k, v in self._data.items() if v is not None}

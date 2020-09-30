@@ -17,13 +17,14 @@ from LnkParse3.extra_data import ExtraData
 
 
 class LnkFile(object):
-    def __init__(self, fhandle=None, indata=None, debug=False):
+    def __init__(self, fhandle=None, indata=None, debug=False, cp=None):
         if fhandle:
             self.indata = fhandle.read()
         elif indata:
             self.indata = indata
 
         self.debug = debug
+        self.cp = cp
 
         self.data = {}
 
@@ -84,10 +85,6 @@ class LnkFile(object):
                 print("Exception get_command: %s" % (e))
             return ""
 
-    @staticmethod
-    def clean_line(rstring):
-        return "".join(chr(i) for i in rstring if 128 > i > 20)
-
     def process(self):
         index = 0
 
@@ -101,24 +98,24 @@ class LnkFile(object):
         # Parse ID List
         self.targets = None
         if self.has_target_id_list():
-            self.targets = LnkTargets(indata=self.indata[index:])
+            self.targets = LnkTargets(indata=self.indata[index:], cp=self.cp)
             index += self.targets.size()
 
         # Parse Link Info
         self.info = None
         if self.has_link_info() and not self.force_no_link_info():
-            info = LnkInfo(indata=self.indata[index:])
+            info = LnkInfo(indata=self.indata[index:], cp=self.cp)
             info_class = InfoFactory(info).info_class()
             if info_class:
-                self.info = info_class(indata=self.indata[index:])
+                self.info = info_class(indata=self.indata[index:], cp=self.cp)
                 index += self.info.size()
 
         # Parse String Data
-        self.string_data = StringData(self, indata=self.indata[index:])
+        self.string_data = StringData(self, indata=self.indata[index:], cp=self.cp)
         index += self.string_data.size()
 
         # Parse Extra Data
-        self.extras = ExtraData(indata=self.indata[index:])
+        self.extras = ExtraData(indata=self.indata[index:], cp=self.cp)
 
     def print_lnk_file(self):
         print("Windows Shortcut Information:")
@@ -351,6 +348,13 @@ def main():
         "-j", "--json", action="store_true", help="print output in JSON"
     )
     arg_parser.add_argument(
+        "-c",
+        "--codepage",
+        dest="cp",
+        default="cp1252",
+        help="codepage of ASCII strings",
+    )
+    arg_parser.add_argument(
         "-d",
         "--json_debug",
         action="store_true",
@@ -362,7 +366,7 @@ def main():
     args = arg_parser.parse_args()
 
     with open(args.file, "rb") as file:
-        lnk = LnkFile(fhandle=file, debug=args.debug)
+        lnk = LnkFile(fhandle=file, debug=args.debug, cp=args.cp)
         if args.json:
             lnk.print_json(args.json_debug)
         else:
