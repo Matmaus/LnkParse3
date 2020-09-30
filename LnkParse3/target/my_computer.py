@@ -9,6 +9,8 @@ from LnkParse3.target.lnk_target_base import LnkTargetBase
 ----------------------------------                                   |
 |                                             ? B                    |
 ----------------------------------------------------------------------
+
+https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#33-volume-shell-item
 """
 
 
@@ -24,15 +26,20 @@ class MyComputer(LnkTargetBase):
         item["data"] = self.data()
         return item
 
-    # TODO: same as item_type in TargetFactory
-    # TODO: rename to class_type_indicator
+    # dup: ./shell_fs_folder.py flags()
+    # dup: ../target_factory.py item_type()
     def flags(self):
-        start, end = 0, 1
-        flags = unpack("<B", self._raw_target[start:end])[0]
-        return hex(flags & 0x0F)  # FIXME: delete masking
+        flags = self.class_type_indicator()
+
+        # FIXME: delete masking
+        # FIXME: hex() is only used here
+        return hex(flags & 0x0F)
 
     def data(self):
         start = 1
         binary = self._raw_target[start:]
+
+        # FIXME: Not text data
         text = self.text_processor.read_string(binary)
+
         return text

@@ -2,7 +2,7 @@
     "data": {
         "icon_location": "%SystemRoot%\\System32\\SHELL32.dll",
         "relative_path": ".\\Mod for Pixelmon\\Error Fix.bat",
-        "working_directory": "C:\\Users\\8<0\\Desktop\\PixelMod\\Mod for Pixelmon"
+        "working_directory": "C:\\Users\\\u0414\u0438\u043c\u0430\\Desktop\\PixelMod\\Mod for Pixelmon"
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
@@ -82,7 +82,7 @@
             },
             {
                 "class": "Volume Item",
-                "data": "\u0080:\u00cc\u00bf\u00b4,\u00dbLB\u00b0)\u007f\u00e9\u009a\u0087\u00c6A&",
+                "data": "\u20ac:\u00cc\u00bf\u00b4,\u00dbLB\u00b0)\u007f\u00e9\u0161\u2021\u00c6A&",
                 "flags": "0xe"
             },
             {
