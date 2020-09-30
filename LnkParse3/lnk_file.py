@@ -326,11 +326,13 @@ class LnkFile(object):
                 )
                 res["link_info"]["location_info"].pop("net_name_offset", None)
                 res["link_info"]["location_info"].pop("device_name_offset", None)
-            res["target"].pop("index", None)
-            if "items" in res["target"]:
-                for item in res["target"]["items"]:
-                    if item:
-                        item.pop("modification_time", None)
+
+            if "target" in res:
+                res["target"].pop("index", None)
+                if "items" in res["target"]:
+                    for item in res["target"]["items"]:
+                        if item:
+                            item.pop("modification_time", None)
 
         return res
 
