@@ -48,7 +48,7 @@ structures.
 class LnkHeader:
     # https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
     WINDOW_STYLES = {
-        1: "SW_NORMAL",  # FIXME: SW_SHOWNORMAL
+        1: "SW_SHOWNORMAL",
         3: "SW_SHOWMAXIMIZED",
         7: "SW_SHOWMINNOACTIVE",
     }

@@ -45,7 +45,7 @@
         "reserved0": 0,
         "reserved1": 0,
         "reserved2": 0,
-        "windowstyle": "SW_NORMAL"
+        "windowstyle": "SW_SHOWNORMAL"
     },
     "link_info": {
         "common_network_relative_link_offset": 0,
