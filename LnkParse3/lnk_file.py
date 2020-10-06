@@ -326,6 +326,9 @@ def main():
         help="absolute or relative path to the file",
     )
     arg_parser.add_argument(
+        "-s", "--short", action="store_true", help="print target only"
+    )
+    arg_parser.add_argument(
         "-j", "--json", action="store_true", help="print output in JSON"
     )
     arg_parser.add_argument(
@@ -348,7 +351,9 @@ def main():
 
     with open(args.file, "rb") as file:
         lnk = LnkFile(fhandle=file, debug=args.debug, cp=args.cp)
-        if args.json:
+        if args.short:
+            lnk.print_short(pjson=args.json)
+        elif args.json:
             lnk.print_json(args.json_debug)
         else:
             lnk.print_lnk_file()
