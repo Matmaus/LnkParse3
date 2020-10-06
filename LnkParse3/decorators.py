@@ -3,7 +3,6 @@ from datetime import timezone
 from struct import unpack
 import functools
 import warnings
-from LnkParse3.lnk_exception import LnkException
 
 
 def must_be(expected):
