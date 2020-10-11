@@ -7,6 +7,7 @@ __version__ = "0.3.3"
 import json
 import datetime
 import argparse
+from subprocess import list2cmdline
 
 from LnkParse3.lnk_header import LnkHeader
 from LnkParse3.lnk_targets import LnkTargets
@@ -134,7 +135,8 @@ class LnkFile(object):
         out = []
 
         if self.has_relative_path():
-            out.append(self.string_data.relative_path())
+            relative_path = self.string_data.relative_path()
+            out.append(list2cmdline([relative_path]))
 
         if self.has_arguments():
             out.append(self.string_data.command_line_arguments())
