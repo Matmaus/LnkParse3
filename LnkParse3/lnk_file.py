@@ -7,6 +7,7 @@ __version__ = "0.3.3"
 import json
 import datetime
 import argparse
+from subprocess import list2cmdline
 
 from LnkParse3.lnk_header import LnkHeader
 from LnkParse3.lnk_targets import LnkTargets
@@ -26,10 +27,7 @@ class LnkFile(object):
         self.debug = debug
         self.cp = cp
 
-        self.data = {}
-
         self.process()
-        self.define_common()
 
     def has_relative_path(self):
         return bool("HasRelativePath" in self.header.link_flags())
@@ -57,33 +55,6 @@ class LnkFile(object):
 
     def force_no_link_info(self):
         return bool("ForceNoLinkInfo" in self.header.link_flags())
-
-    def define_common(self):
-        try:
-            out = ""
-            if self.has_relative_path():
-                out += self.data["relative_path"]
-            if self.has_arguments():
-                out += " " + self.data["command_line_arguments"]
-
-            self.lnk_command = out
-        except Exception as e:
-            if self.debug:
-                print("Exception define_common: %s" % e)
-
-    def get_command(self):
-        try:
-            out = ""
-            if self.has_relative_path():
-                out += self.data["relative_path"]
-            if self.has_arguments():
-                out += " " + self.data["command_line_arguments"]
-
-            return out
-        except Exception as e:
-            if self.debug:
-                print("Exception get_command: %s" % (e))
-            return ""
 
     def process(self):
         index = 0
@@ -158,12 +129,22 @@ class LnkFile(object):
     def format_fileFlags(self):
         return " | ".join(self.header.file_flags())
 
-    def print_short(self, pjson=False):
-        out = ""
+    # FIXME: Simple concat of path and arguments
+    @property
+    def lnk_command(self):
+        out = []
+
         if self.has_relative_path():
-            out += self.data["relative_path"]
+            relative_path = self.string_data.relative_path()
+            out.append(list2cmdline([relative_path]))
+
         if self.has_arguments():
-            out += " " + self.data["command_line_arguments"]
+            out.append(self.string_data.command_line_arguments())
+
+        return " ".join(out)
+
+    def print_short(self, pjson=False):
+        out = self.lnk_command
 
         if pjson:
             print(json.dumps({"command": out}))
@@ -347,6 +328,9 @@ def main():
         help="absolute or relative path to the file",
     )
     arg_parser.add_argument(
+        "-t", "--target", action="store_true", help="print target only"
+    )
+    arg_parser.add_argument(
         "-j", "--json", action="store_true", help="print output in JSON"
     )
     arg_parser.add_argument(
@@ -369,7 +353,9 @@ def main():
 
     with open(args.file, "rb") as file:
         lnk = LnkFile(fhandle=file, debug=args.debug, cp=args.cp)
-        if args.json:
+        if args.target:
+            lnk.print_short(pjson=args.json)
+        elif args.json:
             lnk.print_json(args.json_debug)
         else:
             lnk.print_lnk_file()
