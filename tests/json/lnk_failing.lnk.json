@@ -4,10 +4,10 @@
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "birth_droid_file_identifier": "43633D26-86A9-11EA-9C2D-0000FDAE1A7A",
-            "birth_droid_volume_identifier": "F12D3570-03C2-43E3-86FC-0000EF5F51B6",
-            "droid_file_identifier": "43633D26-86A9-11EA-9C2D-0000FDAE1A7A",
-            "droid_volume_identifier": "F12D3570-03C2-43E3-86FC-0000EF5F51B6",
+            "birth_droid_file_identifier": "43633D26-86A9-11EA-9C2D-B8AEED8E1A7A",
+            "birth_droid_volume_identifier": "F12D3570-03C2-43E3-86FC-C75D680751B6",
+            "droid_file_identifier": "43633D26-86A9-11EA-9C2D-B8AEED8E1A7A",
+            "droid_volume_identifier": "F12D3570-03C2-43E3-86FC-C75D680751B6",
             "length": 88,
             "machine_identifier": "desktop-eie2fiq",
             "size": 96,
@@ -19,7 +19,7 @@
             "target_unicode": "C:\\Users\\%USERNAME%\\AppData\\Roaming\\.minecraft"
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "DABD30ED-0043-4789-A7F8-0000F4736622",
+            "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
             "size": 495,
             "storage_size": 125,
             "version": "0x53505331"
@@ -78,7 +78,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "59031A47-3F72-44A7-89C5-0000FFFF30EE",
+                "guid": "59031A47-3F72-44A7-89C5-5595FE6B30EE",
                 "sort_index": "Users"
             },
             null,

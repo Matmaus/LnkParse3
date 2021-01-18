@@ -6,17 +6,17 @@
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "birth_droid_file_identifier": "39FCBF0C-ED2E-11EA-AEF6-0000B6FDF116",
-            "birth_droid_volume_identifier": "FE9E18F2-D752-4BA0-92A3-000038BF43B5",
-            "droid_file_identifier": "39FCBF0C-ED2E-11EA-AEF6-0000B6FDF116",
-            "droid_volume_identifier": "FE9E18F2-D752-4BA0-92A3-000038BF43B5",
+            "birth_droid_file_identifier": "39FCBF0C-ED2E-11EA-AEF6-B0FC36C1F116",
+            "birth_droid_volume_identifier": "FE9E18F2-D752-4BA0-92A3-382C109743B5",
+            "droid_file_identifier": "39FCBF0C-ED2E-11EA-AEF6-B0FC36C1F116",
+            "droid_volume_identifier": "FE9E18F2-D752-4BA0-92A3-382C109743B5",
             "length": 88,
             "machine_identifier": "desktop-9ai08qd",
             "size": 96,
             "version": 0
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "DABD30ED-0043-4789-A7F8-0000F4736622",
+            "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
             "size": 592,
             "storage_size": 157,
             "version": "0x53505331"
@@ -77,7 +77,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
                 "sort_index": "My Computer"
             },
             {

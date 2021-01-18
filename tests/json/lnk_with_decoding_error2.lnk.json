@@ -5,10 +5,10 @@
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "birth_droid_file_identifier": "EA30ACF9-B9CC-11E0-8806-0000FC7F4AF6",
-            "birth_droid_volume_identifier": "0C1E7C06-E7F5-4CC3-A6EE-0000FB3763AC",
-            "droid_file_identifier": "EA30ACF9-B9CC-11E0-8806-0000FC7F4AF6",
-            "droid_volume_identifier": "0C1E7C06-E7F5-4CC3-A6EE-0000FB3763AC",
+            "birth_droid_file_identifier": "EA30ACF9-B9CC-11E0-8806-BC5FF4204AF6",
+            "birth_droid_volume_identifier": "0C1E7C06-E7F5-4CC3-A6EE-FB36391163AC",
+            "droid_file_identifier": "EA30ACF9-B9CC-11E0-8806-BC5FF4204AF6",
+            "droid_volume_identifier": "0C1E7C06-E7F5-4CC3-A6EE-FB36391163AC",
             "length": 88,
             "machine_identifier": "dubay-\u00af\u00aa",
             "size": 96,
@@ -20,12 +20,12 @@
             "target_unicode": "%COMSPEC%"
         },
         "KNOWN_FOLDER_LOCATION_BLOCK": {
-            "known_folder_id": "1AC14E77-02E7-4E5D-B744-0000AEF198B7",
+            "known_folder_id": "1AC14E77-02E7-4E5D-B744-2EB1AE5198B7",
             "offset": 213,
             "size": 28
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "46588AE2-4CBC-4338-BBFC-0000379B6DCE",
+            "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
             "size": 153,
             "storage_size": 141,
             "version": "0x53505331"
@@ -89,7 +89,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
                 "sort_index": "My Computer"
             },
             {
