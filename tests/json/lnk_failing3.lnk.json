@@ -2,7 +2,7 @@
     "data": {},
     "extra": {
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "9F4C2855-9F79-4B39-A8D0-0000EDF5D5F3",
+            "format_id": "9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3",
             "size": 483,
             "storage_size": 471,
             "version": "0x53505331"
@@ -36,7 +36,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
                 "sort_index": "My Computer"
             },
             {

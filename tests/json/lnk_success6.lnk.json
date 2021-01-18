@@ -6,10 +6,10 @@
     },
     "extra": {
         "DISTRIBUTED_LINK_TRACKER_BLOCK": {
-            "birth_droid_file_identifier": "3C85D3D3-E5C9-11EA-ABB0-0000FD7387BC",
-            "birth_droid_volume_identifier": "E9C13D2A-B6B0-439F-96B8-00005ACFCA8C",
-            "droid_file_identifier": "3C85D3D3-E5C9-11EA-ABB0-0000FD7387BC",
-            "droid_volume_identifier": "E9C13D2A-B6B0-439F-96B8-00005ACFCA8C",
+            "birth_droid_file_identifier": "3C85D3D3-E5C9-11EA-ABB0-4C72B91387BC",
+            "birth_droid_volume_identifier": "E9C13D2A-B6B0-439F-96B8-480F5ACBCA8C",
+            "droid_file_identifier": "3C85D3D3-E5C9-11EA-ABB0-4C72B91387BC",
+            "droid_volume_identifier": "E9C13D2A-B6B0-439F-96B8-480F5ACBCA8C",
             "length": 88,
             "machine_identifier": "w-51511",
             "size": 96,
@@ -21,12 +21,12 @@
             "target_unicode": "%windir%\\system32\\cmd.exe"
         },
         "KNOWN_FOLDER_LOCATION_BLOCK": {
-            "known_folder_id": "1AC14E77-02E7-4E5D-B744-0000AEF198B7",
+            "known_folder_id": "1AC14E77-02E7-4E5D-B744-2EB1AE5198B7",
             "offset": 213,
             "size": 28
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "46588AE2-4CBC-4338-BBFC-0000379B6DCE",
+            "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
             "size": 153,
             "storage_size": 141,
             "version": "0x53505331"
@@ -91,7 +91,7 @@
         "items": [
             {
                 "class": "Root Folder",
-                "guid": "20D04FE0-3AEA-1069-A2D8-00002B30309D",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
                 "sort_index": "My Computer"
             },
             {

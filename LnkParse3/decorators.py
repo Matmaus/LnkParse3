@@ -29,11 +29,12 @@ def uuid(func):
 
         # UUID variants
         # https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97
+        # Also see Java implementation (mslinks)
+        # https://github.com/DmitriiShamrikov/mslinks/blob/master/src/mslinks/data/GUID.java#L51
         d1, d2, d3 = unpack("<LHH", binary[0:8])
         d4, d51, d52 = unpack(">HHI", binary[8:16])
-        d5 = (d51 << 16) | d52
 
-        uuid = "%08X-%04X-%04X-%04X-%012X" % (d1, d2, d3, d4, d5)
+        uuid = "%08X-%04X-%04X-%04X-%04X%08X" % (d1, d2, d3, d4, d51, d52)
 
         return uuid
 
