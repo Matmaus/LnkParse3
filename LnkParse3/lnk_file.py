@@ -191,7 +191,7 @@ class LnkFile(object):
                 "reserved2": self.header.reserved2(),
             },
             "data": self.string_data.as_dict(),
-            "extra": {extra.name(): extra.as_dict() for extra in self.extras},
+            "extra": self.extras.as_dict(),
         }
 
         if self.targets:
