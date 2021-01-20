@@ -118,9 +118,9 @@ class LnkFile(object):
         print("")
         print("\tEXTRA BLOCKS:")
 
-        for extra in self.extras:
-            print(f"\t\t{extra.name()}")
-            for key, value in extra.as_dict().items():
+        for extra_key, extra_value in self.extras.as_dict().items():
+            print(f"\t\t{extra_key}")
+            for key, value in extra_value.items():
                 print(f"\t\t\t[{key}] {value}")
 
     def format_linkFlags(self):
