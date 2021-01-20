@@ -321,10 +321,8 @@ class LnkFile(object):
 def main():
     arg_parser = argparse.ArgumentParser(description=__description__)
     arg_parser.add_argument(
-        "-f",
-        "--file",
         dest="file",
-        required=True,
+        metavar="FILE",
         help="absolute or relative path to the file",
     )
     arg_parser.add_argument(
