@@ -1,3 +1,4 @@
+import warnings
 from struct import error as StructError
 
 from LnkParse3.extra_factory import ExtraFactory
@@ -36,6 +37,8 @@ class ExtraData:
         for extra in self:
             try:
                 res[extra.name()] = extra.as_dict()
-            except StructError:
+            except StructError as e:
+                msg = "Error while parsing `%s` (%s)" % (extra.name(), e)
+                warnings.warn(msg)
                 continue
         return res
