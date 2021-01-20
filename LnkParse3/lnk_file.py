@@ -471,10 +471,11 @@ def main():
         help="set codepage of ASCII strings",
     )
     arg_parser.add_argument(
-        "-d",
-        "--json_debug",
+        "-a",
+        "--all",
+        dest="print_all",
         action="store_true",
-        help="print all extracted data in JSON (i.e. offsets and sizes)",
+        help="print all extracted data (i.e. offsets and sizes)",
     )
     arg_parser.add_argument(
         "-D", "--debug", action="store_true", help="print debug info"
@@ -486,9 +487,9 @@ def main():
         if args.target:
             lnk.print_short(pjson=args.json)
         elif args.json:
-            lnk.print_json(args.json_debug)
+            lnk.print_json(args.print_all)
         else:
-            lnk.print_lnk_file(args.json_debug)
+            lnk.print_lnk_file(args.print_all)
 
 
 if __name__ == "__main__":
