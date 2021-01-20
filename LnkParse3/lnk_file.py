@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 __description__ = "Windows Shortcut file (LNK) parser"
-__author__ = "Matúš Jasnický"
+__author__ = "Matmaus"
 __version__ = "0.3.3"
 
 import json

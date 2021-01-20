@@ -12,7 +12,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/Matmaus/LnkParse',
-    author='Matúš Jasnický',
+    author='Matmaus',
     author_email='matusjas.work@gmail.com',
     license='MIT',
     packages=find_packages(),
