@@ -336,7 +336,7 @@ def main():
         "--codepage",
         dest="cp",
         default="cp1252",
-        help="codepage of ASCII strings",
+        help="set codepage of ASCII strings",
     )
     arg_parser.add_argument(
         "-d",
