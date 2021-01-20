@@ -389,6 +389,7 @@ class LnkFile(object):
                         "local_base_unicode"
                     ] = self.info.local_base_unicode()
             elif type(self.info).__name__ == "Network":
+                res["link_info"]["location"] = self.info.location()
                 res["link_info"]["location_info"] = {
                     "common_network_relative_link_size": self.info.common_network_relative_link_size(),
                     "common_network_relative_link_flags": self.info.common_network_relative_link_flags(),
