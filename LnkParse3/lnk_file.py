@@ -99,6 +99,7 @@ class LnkFile(object):
         def nice_id(identifier):
             return identifier.capitalize().replace("_", " ")
 
+        # TODO recursive nice print
         cprint("Windows Shortcut Information:")
         cprint("Header Size: %s" % self.header.size(), 1)
         cprint("Link CLSID: %s" % self.header.link_cls_id(), 1)
