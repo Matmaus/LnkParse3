@@ -88,40 +88,172 @@ class LnkFile(object):
         # Parse Extra Data
         self.extras = ExtraData(indata=self.indata[index:], cp=self.cp)
 
-    def print_lnk_file(self):
-        print("Windows Shortcut Information:")
-        print(
-            "\tLink Flags: %s - (%s)"
-            % (self.format_linkFlags(), self.header.r_link_flags())
-        )
-        print(
-            "\tFile Flags: %s - (%s)"
-            % (self.format_fileFlags(), self.header.r_file_flags())
-        )
-        print("")
-        print("\tCreation Timestamp: %s" % (self.header.creation_time()))
-        print("\tModified Timestamp: %s" % (self.header.write_time()))
-        print("\tAccessed Timestamp: %s" % (self.header.access_time()))
-        print("")
-        print(
-            "\tFile Size: %s (r: %s)"
-            % (str(self.header.file_size()), str(len(self.indata)))
-        )
-        print("\tIcon Index: %s " % (str(self.header.icon_index())))
-        print("\tWindow Style: %s " % (str(self.header.window_style())))
-        print("\tHotKey: %s " % (str(self.header.hot_key())))
-        print("")
+    def print_lnk_file(self, print_all=False):
+        def cprint(text, level=0):
+            SPACING = 3
+            UNWANTED_TRAITS = ["offset", "reserved", "size"]
+            text = str(text)
+            if print_all or all(x not in text.lower() for x in UNWANTED_TRAITS):
+                print(" " * (level * SPACING) + text)  # add leading spaces
 
+        def nice_id(identifier):
+            return identifier.capitalize().replace("_", " ")
+
+        cprint("Windows Shortcut Information:")
+        cprint("Header Size: %s" % self.header.size(), 1)
+        cprint("Link CLSID: %s" % self.header.link_cls_id(), 1)
+        cprint(
+            "Link Flags: %s - (%s)"
+            % (self.format_linkFlags(), self.header.r_link_flags()),
+            1,
+        )
+        cprint(
+            "File Flags: %s - (%s)"
+            % (self.format_fileFlags(), self.header.r_file_flags()),
+            1,
+        )
+        cprint("")
+        cprint("Creation Timestamp: %s" % (self.header.creation_time()), 1)
+        cprint("Modified Timestamp: %s" % (self.header.write_time()), 1)
+        cprint("Accessed Timestamp: %s" % (self.header.access_time()), 1)
+        cprint("")
+        cprint(
+            "File Size: %s (r: %s)"
+            % (str(self.header.file_size()), str(len(self.indata))),
+            1,
+        )
+        cprint("Icon Index: %s " % (str(self.header.icon_index())), 1)
+        cprint("Window Style: %s " % (str(self.header.window_style())), 1)
+        cprint("HotKey: %s " % (str(self.header.hot_key())), 1)
+        cprint("Reserved0: %s" % self.header.reserved0(), 1)
+        cprint("Reserved1: %s" % self.header.reserved1(), 1)
+        cprint("Reserved2: %s" % self.header.reserved2(), 1)
+        cprint("")
+
+        cprint("TARGETS:", 1)
+        cprint("Size: %s" % self.targets.id_list_size(), 2)
+        cprint("Index: %s" % self._target_index, 2)
+        cprint("ITEMS:", 2)
+        for target in self.targets:
+            target_item = target.as_item()
+            if target_item is None:
+                continue
+            cprint(target_item["class"], 3)
+            for key, value in target_item.items():
+                if key != "class":
+                    cprint(f"{nice_id(key)}: {value}", 4)
+        cprint("")
+
+        if self.info:
+            cprint("LINK INFO:", 1)
+            cprint("Link info size: %s" % self.info.size(), 2)
+            cprint("Link info header size: %s" % self.info.header_size(), 2)
+            cprint("Link info flags: %s" % self.info.flags(), 2)
+            cprint("Volume ID offset: %s" % self.info.volume_id_offset(), 2)
+            cprint("Local base path offset: %s" % self.info.local_base_path_offset(), 2)
+            cprint(
+                "Common network relative link offset: %s"
+                % self.info.common_network_relative_link_offset(),
+                2,
+            )
+            cprint(
+                "Common path suffix offset: %s" % self.info.common_path_suffix_offset(),
+                2,
+            )
+            if type(self.info).__name__ == "Local":
+                cprint("Local_base_path: %s" % self.info.local_base_path(), 2)
+                cprint("Common path suffix: %s" % self.info.common_path_suffix(), 2)
+
+                cprint("LOCAL:", 2)
+                cprint("Volume ID size: %s" % self.info.volume_id_size(), 3)
+                cprint("Drive type: %s" % self.info.r_drive_type(), 3)
+                cprint("Volume label offset: %s" % self.info.volume_label_offset(), 3)
+                cprint("Drive serial number: %s" % self.info.drive_serial_number(), 3)
+                cprint("Drive type: %s" % self.info.drive_type(), 3)
+                cprint("Volume label: %s" % self.info.volume_label(), 3)
+                if self.info.local_base_path_offset_unicode():
+                    cprint(
+                        "Local base path offset unicode: %s"
+                        % self.info.local_base_path_offset_unicode(),
+                        3,
+                    )
+                if self.info.common_path_suffix_unicode():
+                    cprint(
+                        "Common path suffix unicode: %s"
+                        % self.info.common_path_suffix_unicode(),
+                        3,
+                    )
+                if self.info.volume_id():
+                    cprint("Volume id: %s" % self.info.volume_id(), 3)
+                if self.info.common_network_relative_link():
+                    cprint(
+                        "Common network relative link: %s"
+                        % self.info.common_network_relative_link(),
+                        3,
+                    )
+                if self.info.volume_label_unicode_offset():
+                    cprint(
+                        "Volume label unicode offset: %s"
+                        % self.info.volume_label_unicode_offset(),
+                        3,
+                    )
+                if self.info.volume_label_unicode():
+                    cprint(
+                        "Volume label unicode: %s" % self.info.volume_label_unicode(), 3
+                    )
+                if self.info.local_base_unicode():
+                    cprint("Local base unicode: %s" % self.info.local_base_unicode(), 3)
+            elif type(self.info).__name__ == "Network":
+                cprint(
+                    "Common network relative link size: %s"
+                    % self.info.common_network_relative_link_size(),
+                    3,
+                )
+                cprint(
+                    "Common network relative link flags: %s"
+                    % self.info.common_network_relative_link_flags(),
+                    3,
+                )
+                cprint("Net name offset: %s" % self.info.net_name_offset(), 3)
+                cprint("Device name offset: %s" % self.info.device_name_offset(), 3)
+                cprint(
+                    "Network provider type: %s" % self.info.r_network_provider_type(), 3
+                )
+                if self.info.network_provider_type():
+                    cprint(
+                        "Network provider type: %s" % self.info.network_provider_type(),
+                        3,
+                    )
+                if self.info.net_name_offset_unicode():
+                    cprint(
+                        "net_name_offset_unicode: %s"
+                        % self.info.net_name_offset_unicode(),
+                        3,
+                    )
+                if self.info.net_name_unicode():
+                    cprint("net_name_unicode: %s" % self.info.net_name_unicode(), 3)
+                if self.info.device_name_offset_unicode():
+                    cprint(
+                        "device_name_offset_unicode: %s"
+                        % self.info.device_name_offset_unicode(),
+                        3,
+                    )
+                if self.info.net_name():
+                    cprint("net_name: %s" % self.info.net_name(), 3)
+                if self.info.device_name():
+                    cprint("device_name: %s" % self.info.device_name(), 3)
+            cprint("")
+
+        cprint("DATA", 1)
         for key, value in self.string_data.as_dict().items():
-            print("\t%s: %s" % (key, value))
+            cprint("%s: %s" % (nice_id(key), value), 2)
+        cprint("")
 
-        print("")
-        print("\tEXTRA BLOCKS:")
-
+        cprint("EXTRA BLOCKS:", 1)
         for extra_key, extra_value in self.extras.as_dict().items():
-            print(f"\t\t{extra_key}")
+            cprint(f"{extra_key}", 2)
             for key, value in extra_value.items():
-                print(f"\t\t\t[{key}] {value}")
+                cprint(f"{nice_id(key)}: {value}", 3)
 
     def format_linkFlags(self):
         return " | ".join(self.header.link_flags())
@@ -356,7 +488,7 @@ def main():
         elif args.json:
             lnk.print_json(args.json_debug)
         else:
-            lnk.print_lnk_file()
+            lnk.print_lnk_file(args.json_debug)
 
 
 if __name__ == "__main__":
