@@ -18,13 +18,12 @@ from LnkParse3.extra_data import ExtraData
 
 
 class LnkFile(object):
-    def __init__(self, fhandle=None, indata=None, debug=False, cp=None):
+    def __init__(self, fhandle=None, indata=None, cp=None):
         if fhandle:
             self.indata = fhandle.read()
         elif indata:
             self.indata = indata
 
-        self.debug = debug
         self.cp = cp
 
         self.process()
@@ -478,13 +477,10 @@ def main():
         action="store_true",
         help="print all extracted data (i.e. offsets and sizes)",
     )
-    arg_parser.add_argument(
-        "-D", "--debug", action="store_true", help="print debug info"
-    )
     args = arg_parser.parse_args()
 
     with open(args.file, "rb") as file:
-        lnk = LnkFile(fhandle=file, debug=args.debug, cp=args.cp)
+        lnk = LnkFile(fhandle=file, cp=args.cp)
         if args.target:
             lnk.print_short(pjson=args.json)
         elif args.json:
