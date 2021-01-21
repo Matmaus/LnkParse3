@@ -36,4 +36,4 @@ jobs:
         python -m pip install pytest
         python -m pip install pytest-cov
         export PYTHONPATH=src
-        pytest --cache-clear --exitfirst --verbose --cov=. tests/ --cov-fail-under=85 --no-cov-on-fail
+        pytest --cache-clear --exitfirst --verbose --cov=LnkParse3 tests/ --cov-fail-under=85 --no-cov-on-fail
