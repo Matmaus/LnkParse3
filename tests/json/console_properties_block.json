@@ -1,0 +1,169 @@
+{
+    "data": {
+        "description": "Performs object-based (command-line) functions",
+        "icon_location": "%SystemRoot%\\syswow64\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "working_directory": "%HOMEDRIVE%%HOMEPATH%"
+    },
+    "extra": {
+        "CONSOLE_PROPERTIES_BLOCK": {
+            "auto_position": 0,
+            "color_table": 0,
+            "cursor_size": 25,
+            "face_name": "Lucida Console",
+            "fill_attributes": 86,
+            "font_family": 54,
+            "font_size": 0,
+            "font_weight": 400,
+            "full_screen": 0,
+            "history_buffer_size": 50,
+            "history_no_dup": 0,
+            "insert_mode": 1,
+            "number_of_history_buffers": 4,
+            "popup_fill_attributes": 243,
+            "quick_edit": 1,
+            "screen_buffer_size_x": 120,
+            "screen_buffer_size_y": 3000,
+            "size": 204,
+            "window_origin_x": 0,
+            "window_origin_y": 0,
+            "window_size_x": 120,
+            "window_size_y": 50
+        },
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "5C2307D9-3369-11E2-BE70-001CC42DF40B",
+            "birth_droid_volume_identifier": "BBB29A9A-55B6-4A2D-88EB-32EAD77C6740",
+            "droid_file_identifier": "5C2307D9-3369-11E2-BE70-001CC42DF40B",
+            "droid_volume_identifier": "BBB29A9A-55B6-4A2D-88EB-32EAD77C6740",
+            "length": 88,
+            "machine_identifier": "leeholm16",
+            "size": 96,
+            "version": 0
+        },
+        "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+            "size": 788,
+            "target_ansi": "%SystemRoot%\\syswow64\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "target_unicode": "%SystemRoot%\\syswow64\\WindowsPowerShell\\v1.0\\powershell.exe"
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "known_folder_id": "D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27",
+            "offset": 213,
+            "size": 28
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+            "size": 157,
+            "storage_size": 145,
+            "version": "0x53505331"
+        },
+        "SPECIAL_FOLDER_LOCATION_BLOCK": {
+            "offset": 213,
+            "size": 16,
+            "special_folder_id": 41
+        }
+    },
+    "header": {
+        "accessed_time": "2012-07-26T01:26:44+00:00",
+        "creation_time": "2012-07-26T01:26:44+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
+        "file_size": 454656,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasName",
+            "HasWorkingDir",
+            "HasIconLocation",
+            "IsUnicode",
+            "HasExpString"
+        ],
+        "modified_time": "2012-07-26T03:20:50+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 727,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 109,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 110,
+        "local_base_path": "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "local_base_path_offset": 51,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x74ee2d73",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 23,
+            "volume_label": "OSDisk",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": "C:\\",
+                "flags": "0xf"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 48,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": null,
+                "primary_name": "Windows"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": null,
+                "primary_name": "SysWOW64"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": null,
+                "primary_name": "WINDOW~1"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 20,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": null,
+                "primary_name": "v1.0"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 32,
+                "file_size": 454656,
+                "flags": "Is file",
+                "modification_time": "1993-04-26T08:07:52+00:00",
+                "primary_name": "powershell.exe"
+            }
+        ],
+        "size": 497
+    }
+}
