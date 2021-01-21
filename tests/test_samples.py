@@ -34,6 +34,22 @@ class TestSamples(unittest.TestCase):
 
                 self.assertDictEqual(our, their)
 
+    def test_unwanted_attributes_are_not_printed_if_not_specified(self):
+        with open('tests/samples/microsoft_example', 'rb') as indata:
+            lnk = LnkParse3.lnk_file(indata)
+
+        mock_stdout = StringIO()
+        with redirect_stdout(mock_stdout):
+            lnk.print_json(print_all=False)
+
+        our = json.loads(mock_stdout.getvalue())
+
+        json_path = os.path.join(JSON_DIR, f"microsoft_example_not_all_attributes.json")
+        with open(json_path, 'rb') as fp:
+            their = json.load(fp)
+
+        self.assertDictEqual(our, their)
+
     def test_readable_with_network_info(self):
         with open('tests/samples/network_info', 'rb') as indata:
             lnk = LnkParse3.lnk_file(indata)
