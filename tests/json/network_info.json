@@ -1,0 +1,142 @@
+{
+    "data": {
+        "working_directory": "Z:\\A - LM METAL LIFT\\01.OBCHOD - BRO\u017dURY - Prodejn\u00ed a technick\u00e9 informace o produktech\\ETN\\ETN-Katalog-ENG\\Katalog ETN 10_2017\\Lift-programme"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "00000024-0000-0000-6A6D-060000000000",
+            "birth_droid_volume_identifier": "4D67303E-2DA7-16FB-F8AC-285508486733",
+            "droid_file_identifier": "00000024-0000-0000-6A6D-060000000000",
+            "droid_volume_identifier": "4D67303F-2DA7-16FB-F8AC-285508486733",
+            "length": 88,
+            "machine_identifier": "",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "B725F130-47EF-101A-A5F1-02608C9EEBAC",
+            "size": 955,
+            "storage_size": 229,
+            "version": "0x53505331"
+        }
+    },
+    "header": {
+        "accessed_time": "2020-08-24T07:45:46+00:00",
+        "creation_time": "2018-11-23T11:31:09+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
+        "file_size": 21895266,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasWorkingDir",
+            "IsUnicode",
+            "EnableTargetMetadata"
+        ],
+        "modified_time": "2017-10-05T10:29:28+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 524435,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 28,
+        "common_path_suffix_offset": 72,
+        "link_info_flags": 2,
+        "link_info_header_size": 28,
+        "link_info_size": 239,
+        "local_base_path_offset": 0,
+        "location": "Network",
+        "location_info": {
+            "common_network_relative_link_flags": 3,
+            "common_network_relative_link_size": 44,
+            "device_name": "Z:",
+            "device_name_offset": 41,
+            "net_name": "\\\\10.0.0.150\\LMmetal",
+            "net_name_offset": 20,
+            "network_provider_type": "WNNC_NET_DECORB",
+            "r_network_provider_type": "0x20000"
+        },
+        "volume_id_offset": 0
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": "Z:\\",
+                "flags": "0xf"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 48,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2003-09-02T10:07:56+00:00",
+                "primary_name": "AML24F~C"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 48,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2014-09-21T10:03:50+00:00",
+                "primary_name": "0AQ2M9~8"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 48,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2027-04-17T09:59:22+00:00",
+                "primary_name": "ETN"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2008-12-08T09:59:44+00:00",
+                "primary_name": "EAH18X~X"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": null,
+                "primary_name": "KFACY0~T"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": null,
+                "primary_name": "LS87NY~7"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 32,
+                "file_size": 21895266,
+                "flags": "Is file",
+                "modification_time": null,
+                "primary_name": "EWYM7F~E.PDF"
+            }
+        ],
+        "size": 883
+    }
+}
