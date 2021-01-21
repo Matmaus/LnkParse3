@@ -16,7 +16,7 @@ class TestSamples(unittest.TestCase):
         self.maxDiff = None
         warnings.simplefilter('ignore', category=UserWarning)
 
-    def test_json(self):
+    def test_json_print_for_all_samples(self):
         for entry in os.scandir(TARGET_DIR):
             with self.subTest(msg=entry.name):
                 with open(entry.path, 'rb') as indata:
