@@ -276,11 +276,11 @@ class LnkFile(object):
 
         return " ".join(out)
 
-    def print_short(self, pjson=False):
+    def print_shortcut_target(self, pjson=False):
         out = self.lnk_command
 
         if pjson:
-            print(json.dumps({"command": out}))
+            print(json.dumps({"shortcut_target": out}))
         else:
             print(out)
 
@@ -467,7 +467,7 @@ def main():
         help="absolute or relative path to the file",
     )
     arg_parser.add_argument(
-        "-t", "--target", action="store_true", help="print target only"
+        "-t", "--target", action="store_true", help="print shortcut target only"
     )
     arg_parser.add_argument(
         "-j", "--json", action="store_true", help="print output in JSON"
@@ -491,7 +491,7 @@ def main():
     with open(args.file, "rb") as file:
         lnk = LnkFile(fhandle=file, cp=args.cp)
         if args.target:
-            lnk.print_short(pjson=args.json)
+            lnk.print_shortcut_target(pjson=args.json)
         elif args.json:
             lnk.print_json(args.print_all)
         else:
