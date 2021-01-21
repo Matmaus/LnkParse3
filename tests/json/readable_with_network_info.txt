@@ -1,0 +1,106 @@
+Windows Shortcut Information:
+   Header Size: 76
+   Link CLSID: 00021401-0000-0000-C000-000000000046
+   Link Flags: HasTargetIDList | HasLinkInfo | HasWorkingDir | IsUnicode | EnableTargetMetadata - (524435)
+   File Flags: FILE_ATTRIBUTE_ARCHIVE - (32)
+
+   Creation Timestamp: 2018-11-23 11:31:09.534439+00:00
+   Modified Timestamp: 2017-10-05 10:29:28+00:00
+   Accessed Timestamp: 2020-08-24 07:45:46.320528+00:00
+
+   File Size: 21895266 (r: 2539)
+   Icon Index: 0 
+   Window Style: SW_SHOWNORMAL 
+   HotKey: UNSET - UNSET {0x0000} 
+   Reserved0: 0
+   Reserved1: 0
+   Reserved2: 0
+
+   TARGETS:
+      Size: 883
+      Index: 78
+      ITEMS:
+         Root Folder
+            Sort index: My Computer
+            Guid: 20D04FE0-3AEA-1069-A2D8-08002B30309D
+         Volume Item
+            Flags: 0xf
+            Data: Z:\
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: 2003-09-02 10:07:56+00:00
+            File attribute flags: 48
+            Primary name: AML24F~C
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: 2014-09-21 10:03:50+00:00
+            File attribute flags: 48
+            Primary name: 0AQ2M9~8
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: 2027-04-17 09:59:22+00:00
+            File attribute flags: 48
+            Primary name: ETN
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: 2008-12-08 09:59:44+00:00
+            File attribute flags: 16
+            Primary name: EAH18X~X
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: None
+            File attribute flags: 16
+            Primary name: KFACY0~T
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: None
+            File attribute flags: 16
+            Primary name: LS87NY~7
+         File entry
+            Flags: Is file
+            File size: 21895266
+            Modification time: None
+            File attribute flags: 32
+            Primary name: EWYM7F~E.PDF
+
+   LINK INFO:
+      Link info size: 239
+      Link info header size: 28
+      Link info flags: 2
+      Volume ID offset: 0
+      Local base path offset: 0
+      Common network relative link offset: 28
+      Common path suffix offset: 72
+         Common network relative link size: 44
+         Common network relative link flags: 3
+         Net name offset: 20
+         Device name offset: 41
+         Network provider type: 0x20000
+         Network provider type: WNNC_NET_DECORB
+         net_name: \\10.0.0.150\LMmetal
+         device_name: Z:
+
+   DATA
+      Working directory: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme
+
+   EXTRA BLOCKS:
+      DISTRIBUTED_LINK_TRACKER_BLOCK
+         Size: 96
+         Length: 88
+         Version: 0
+         Machine identifier: 
+         Droid volume identifier: 4D67303F-2DA7-16FB-F8AC-285508486733
+         Droid file identifier: 00000024-0000-0000-6A6D-060000000000
+         Birth droid volume identifier: 4D67303E-2DA7-16FB-F8AC-285508486733
+         Birth droid file identifier: 00000024-0000-0000-6A6D-060000000000
+      METADATA_PROPERTIES_BLOCK
+         Size: 955
+         Storage size: 229
+         Version: 0x53505331
+         Format id: B725F130-47EF-101A-A5F1-02608C9EEBAC

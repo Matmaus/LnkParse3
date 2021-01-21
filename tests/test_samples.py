@@ -34,6 +34,38 @@ class TestSamples(unittest.TestCase):
 
                 self.assertDictEqual(our, their)
 
+    def test_readable_with_network_info(self):
+        with open('tests/samples/network_info', 'rb') as indata:
+            lnk = LnkParse3.lnk_file(indata)
+
+        mock_stdout = StringIO()
+        with redirect_stdout(mock_stdout):
+            lnk.print_lnk_file(print_all=True)
+
+        our = mock_stdout.getvalue()
+
+        txt_path = os.path.join(JSON_DIR, f"readable_with_network_info.txt")
+        with open(txt_path, 'r') as fp:
+            their = fp.read()
+
+        self.assertEqual(our, their)
+
+    def test_readable_with_local_info(self):
+        with open('tests/samples/sample', 'rb') as indata:
+            lnk = LnkParse3.lnk_file(indata)
+
+        mock_stdout = StringIO()
+        with redirect_stdout(mock_stdout):
+            lnk.print_lnk_file(print_all=True)
+
+        our = mock_stdout.getvalue()
+
+        txt_path = os.path.join(JSON_DIR, f"readable_with_local_info.txt")
+        with open(txt_path, 'r') as fp:
+            their = fp.read()
+
+        self.assertEqual(our, their)
+
 
 if __name__ == '__main__':
     unittest.main()
