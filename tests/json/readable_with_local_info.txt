@@ -1,0 +1,78 @@
+Windows Shortcut Information:
+   Header Size: 76
+   Link CLSID: 00021401-0000-0000-C000-000000000046
+   Link Flags: HasTargetIDList | HasLinkInfo | HasRelativePath | IsUnicode | HasExpString | EnableTargetMetadata - (524939)
+   File Flags: FILE_ATTRIBUTE_DIRECTORY - (16)
+
+   Creation Timestamp: 2018-08-30 23:42:23.464049+00:00
+   Modified Timestamp: 2020-04-26 10:29:23.293963+00:00
+   Accessed Timestamp: 2020-04-26 10:29:23.293963+00:00
+
+   File Size: 12288 (r: 1984)
+   Icon Index: 0 
+   Window Style: SW_SHOWNORMAL 
+   HotKey: UNSET - UNSET {0x0000} 
+   Reserved0: 0
+   Reserved1: 0
+   Reserved2: 0
+
+   TARGETS:
+      Size: 372
+      Index: 78
+      ITEMS:
+         Root Folder
+            Sort index: Users
+            Guid: 59031A47-3F72-44A7-89C5-5595FE6B30EE
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: 2001-06-04 10:04:32+00:00
+            File attribute flags: 48
+            Primary name: Roaming
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: None
+            File attribute flags: 16
+            Primary name: .minecraft
+
+   LINK INFO:
+      Link info size: 91
+      Link info header size: 28
+      Link info flags: 1
+      Volume ID offset: 28
+      Local base path offset: 45
+      Common network relative link offset: 0
+      Common path suffix offset: 90
+      Local_base_path: C:\Users\Jonathan\AppData\Roaming\.minecraft
+      Common path suffix: 
+      LOCAL:
+         Volume ID size: 17
+         Drive type: 3
+         Volume label offset: 16
+         Drive serial number: 0x9e31fc72
+         Drive type: DRIVE_FIXED
+         Volume label: 
+
+   DATA
+      Relative path: ..\AppData\Roaming\.minecraft
+
+   EXTRA BLOCKS:
+      ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK
+         Size: 788
+         Target ansi: C:\Users\%USERNAME%\AppData\Roaming\.minecraft
+         Target unicode: C:\Users\%USERNAME%\AppData\Roaming\.minecraft
+      DISTRIBUTED_LINK_TRACKER_BLOCK
+         Size: 96
+         Length: 88
+         Version: 0
+         Machine identifier: desktop-eie2fiq
+         Droid volume identifier: F12D3570-03C2-43E3-86FC-C75D680751B6
+         Droid file identifier: 43633D26-86A9-11EA-9C2D-B8AEED8E1A7A
+         Birth droid volume identifier: F12D3570-03C2-43E3-86FC-C75D680751B6
+         Birth droid file identifier: 43633D26-86A9-11EA-9C2D-B8AEED8E1A7A
+      METADATA_PROPERTIES_BLOCK
+         Size: 495
+         Storage size: 125
+         Version: 0x53505331
+         Format id: DABD30ED-0043-4789-A7F8-D013A4736622
