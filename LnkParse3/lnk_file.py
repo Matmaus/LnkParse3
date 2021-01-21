@@ -130,19 +130,20 @@ class LnkFile(object):
         cprint("Reserved2: %s" % self.header.reserved2(), 1)
         cprint("")
 
-        cprint("TARGETS:", 1)
-        cprint("Size: %s" % self.targets.id_list_size(), 2)
-        cprint("Index: %s" % self._target_index, 2)
-        cprint("ITEMS:", 2)
-        for target in self.targets:
-            target_item = target.as_item()
-            if target_item is None:
-                continue
-            cprint(target_item["class"], 3)
-            for key, value in target_item.items():
-                if key != "class":
-                    cprint(f"{nice_id(key)}: {value}", 4)
-        cprint("")
+        if self.targets:
+            cprint("TARGETS:", 1)
+            cprint("Size: %s" % self.targets.id_list_size(), 2)
+            cprint("Index: %s" % self._target_index, 2)
+            cprint("ITEMS:", 2)
+            for target in self.targets:
+                target_item = target.as_item()
+                if target_item is None:
+                    continue
+                cprint(target_item["class"], 3)
+                for key, value in target_item.items():
+                    if key != "class":
+                        cprint(f"{nice_id(key)}: {value}", 4)
+            cprint("")
 
         if self.info:
             cprint("LINK INFO:", 1)
