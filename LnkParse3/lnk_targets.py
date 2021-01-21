@@ -15,6 +15,7 @@ HasLinkTargetIDList bit (LinkFlags section 2.1.1) in the ShellLinkHeader.
 |                             ...                                |
 ------------------------------------------------------------------
 """
+import warnings
 
 
 class LnkTargets:
@@ -77,3 +78,14 @@ class LnkTargets:
             size = factory.item_size()
             rest = rest[size:]
             yield target
+
+    def as_list(self):
+        res = []
+        for target in self:
+            try:
+                res.append(target.as_item())
+            except KeyError as e:
+                msg = "Error while target `%s` (KeyError %s)" % (target.name, e)
+                warnings.warn(msg)
+                continue
+        return res
