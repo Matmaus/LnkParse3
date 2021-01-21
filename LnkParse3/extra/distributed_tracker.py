@@ -68,19 +68,11 @@ class DistributedTracker(LnkExtraBase):
         text = self.text_processor.read_string(binary)
         return text
 
-    # for backward compatibility
-    def machine_identifier(self):
-        return self.machine_id()
-
     @uuid
     def droid_volume_id(self):
         start, end = 32, 48
         binary = self._raw[start:end]
         return binary
-
-    # for backward compatibility
-    def droid_volume_identifier(self):
-        return self.droid_volume_id()
 
     @uuid
     def droid_file_id(self):
@@ -88,29 +80,17 @@ class DistributedTracker(LnkExtraBase):
         binary = self._raw[start:end]
         return binary
 
-    # for backward compatibility
-    def droid_file_identifier(self):
-        return self.droid_file_id()
-
     @uuid
     def droid_birth_volume_id(self):
         start, end = 64, 80
         binary = self._raw[start:end]
         return binary
 
-    # for backward compatibility
-    def birth_droid_volume_identifier(self):
-        return self.droid_birth_volume_id()
-
     @uuid
     def droid_birth_file_id(self):
         start, end = 80, 96
         binary = self._raw[start:end]
         return binary
-
-    # for backward compatibility
-    def birth_droid_file_identifier(self):
-        return self.droid_birth_file_id()
 
     def as_dict(self):
         tmp = super().as_dict()
