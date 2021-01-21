@@ -432,10 +432,16 @@ class LnkFile(object):
             res["link_info"].pop("local_base_path_offset", None)
             res["link_info"].pop("common_network_relative_link_offset", None)
             res["link_info"].pop("common_path_suffix_offset", None)
-            if "Local" in res["link_info"]:
+            if (
+                "location" in res["link_info"]
+                and "Local" in res["link_info"]["location"]
+            ):
                 res["link_info"]["location_info"].pop("volume_id_size", None)
                 res["link_info"]["location_info"].pop("volume_label_offset", None)
-            if "Network" in res["link_info"]:
+            if (
+                "location" in res["link_info"]
+                and "Network" in res["link_info"]["location"]
+            ):
                 res["link_info"]["location_info"].pop(
                     "common_network_relative_link_size", None
                 )
@@ -444,6 +450,7 @@ class LnkFile(object):
 
             if "target" in res:
                 res["target"].pop("index", None)
+                res["target"].pop("size", None)
                 if "items" in res["target"]:
                     for item in res["target"]["items"]:
                         if item:
