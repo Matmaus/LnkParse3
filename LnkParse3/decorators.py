@@ -2,6 +2,7 @@ from datetime import datetime
 from datetime import timezone
 from struct import unpack
 import functools
+import sys
 import warnings
 
 
@@ -58,7 +59,14 @@ def filetime(func):
             timestamp = (nanosec - epoch_as_filetime) / hundreds_of_nanoseconds
             return datetime.fromtimestamp(timestamp, tz=timezone.utc)
         except ValueError:
-            msg = "Invalid filetime: %s" % binary.hex(" ")
+            if sys.version_info < (3, 8, 0):
+                # HACK for older versions for bytes.hex()
+                # https://docs.python.org/3.9/library/stdtypes.html?highlight=hex#bytes.hex
+                iterator = iter(binary.hex())
+                invalid_date = " ".join(a + b for a, b in zip(iterator, iterator))
+            else:
+                invalid_date = binary.hex(" ")
+            msg = "Invalid filetime: %s" % invalid_date
             warnings.warn(msg)
             return None
 
@@ -104,7 +112,14 @@ def dostime(func):
 
             return datetime(*ymdhms, tzinfo=timezone.utc)
         except ValueError:
-            msg = "Invalid dostime: %s" % binary.hex(" ")
+            if sys.version_info < (3, 8, 0):
+                # HACK for older versions for bytes.hex()
+                # https://docs.python.org/3.9/library/stdtypes.html?highlight=hex#bytes.hex
+                iterator = iter(binary.hex())
+                invalid_date = " ".join(a + b for a, b in zip(iterator, iterator))
+            else:
+                invalid_date = binary.hex(" ")
+            msg = "Invalid dostime: %s" % invalid_date
             warnings.warn(msg)
             return None
 
