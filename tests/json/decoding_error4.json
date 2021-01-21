@@ -1,0 +1,115 @@
+{
+    "data": {
+        "description": "Stone,I hate you!",
+        "relative_path": "..\\..\\..\\..\\..\\..\\Local\\Temp\\MZ\u0090",
+        "working_directory": "C:\\Users\\admin\\AppData\\Local\\Temp\\"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "495C1ED6-5B7A-11EB-A5DF-42010A8E0011",
+            "birth_droid_volume_identifier": "92ACE2AA-5433-420A-9A82-F00E244DF3CD",
+            "droid_file_identifier": "495C1ED6-5B7A-11EB-A5DF-42010A8E0011",
+            "droid_volume_identifier": "92ACE2AA-5433-420A-9A82-F00E244DF3CD",
+            "length": 88,
+            "machine_identifier": "work",
+            "size": 96,
+            "version": 0
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "known_folder_id": "F3CE0F7C-4901-4ACC-8648-D5D44B04EF8F",
+            "offset": 20,
+            "size": 28
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+            "size": 149,
+            "storage_size": 137,
+            "version": "0x53505331"
+        }
+    },
+    "header": {
+        "accessed_time": "2021-01-20T23:53:23+00:00",
+        "creation_time": "2021-01-20T23:53:23+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE",
+            "FILE_ATTRIBUTE_NOT_CONTENT_INDEXED"
+        ],
+        "file_size": 2379344,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasName",
+            "HasRelativePath",
+            "HasWorkingDir",
+            "IsUnicode"
+        ],
+        "modified_time": "2021-01-20T23:53:23+00:00",
+        "r_file_flags": 8224,
+        "r_hotkey": 0,
+        "r_link_flags": 159,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 56,
+        "common_path_suffix": "admin\\AppData\\Local\\Temp\\MZ\ufffd",
+        "common_path_suffix_offset": 89,
+        "link_info_flags": 3,
+        "link_info_header_size": 28,
+        "link_info_size": 118,
+        "local_base_path": "C:\\Users\\",
+        "local_base_path_offset": 45,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x30bc8771",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 17,
+            "volume_label": "",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "59031A47-3F72-44A7-89C5-5595FE6B30EE",
+                "sort_index": "Users"
+            },
+            null,
+            {
+                "class": "File entry",
+                "file_attribute_flags": 8208,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2054-02-21T10:06:52+00:00",
+                "primary_name": "Local"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 8208,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2075-05-12T10:17:40+00:00",
+                "primary_name": "Temp"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 8224,
+                "file_size": 2379344,
+                "flags": "Is file",
+                "modification_time": "2075-05-12T10:17:40+00:00",
+                "primary_name": "MZDEA0~1"
+            }
+        ],
+        "size": 374
+    }
+}
