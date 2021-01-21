@@ -1,0 +1,39 @@
+{
+    "data": {},
+    "extra": {},
+    "header": {
+        "accessed_time": "2012-08-06T11:51:14+00:00",
+        "creation_time": "2012-08-06T11:51:14+00:00",
+        "file_flags": [],
+        "file_size": 0,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "IsUnicode"
+        ],
+        "modified_time": "2012-08-06T11:51:14+00:00",
+        "r_file_flags": 0,
+        "r_hotkey": 0,
+        "r_link_flags": 129,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {},
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Volume Item",
+                "data": "h  \u00ec!\u00ea:i\u0010\u00a2\u00dd\b",
+                "flags": "0xe"
+            },
+            null
+        ],
+        "size": 877
+    }
+}

@@ -330,7 +330,7 @@ class LnkFile(object):
         if self.targets:
             res["target"] = {
                 "size": self.targets.id_list_size(),
-                "items": [x.as_item() for x in self.targets],
+                "items": self.targets.as_list(),
                 "index": self._target_index,
             }
 
