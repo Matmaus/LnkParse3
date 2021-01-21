@@ -33,5 +33,5 @@ jobs:
         black --check LnkParse3
     - name: Test with pytest
       run: |
-        pythom -m pip install pytest
+        python -m pip install pytest
         pytest --cov=LnkParse3 tests --cov-fail-under=85 --cov-report=html --no-cov-on-fail
