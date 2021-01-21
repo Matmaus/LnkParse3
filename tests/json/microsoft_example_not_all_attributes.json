@@ -1,0 +1,82 @@
+{
+    "data": {
+        "relative_path": ".\\a.txt",
+        "working_directory": "C:\\test"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "7BCD46EC-7F22-11DD-9499-00137216874A",
+            "birth_droid_volume_identifier": "94C77840-FA47-46C7-B356-5C2DC6B6D115",
+            "droid_file_identifier": "7BCD46EC-7F22-11DD-9499-00137216874A",
+            "droid_volume_identifier": "94C77840-FA47-46C7-B356-5C2DC6B6D115",
+            "length": 88,
+            "machine_identifier": "chris-xps",
+            "size": 96,
+            "version": 0
+        }
+    },
+    "header": {
+        "accessed_time": "2008-09-12T20:27:17+00:00",
+        "creation_time": "2008-09-12T20:27:17+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
+        "file_size": 0,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "HasWorkingDir",
+            "IsUnicode",
+            "EnableTargetMetadata"
+        ],
+        "modified_time": "2008-09-12T20:27:17+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 524443,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {
+        "common_path_suffix": "",
+        "link_info_flags": 1,
+        "local_base_path": "C:\\test\\a.txt",
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x307a8a81",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_label": ""
+        }
+    },
+    "target": {
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": "C:\\",
+                "flags": "0xf"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "primary_name": "test"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 32,
+                "file_size": 0,
+                "flags": "Is file",
+                "primary_name": "a.txt"
+            }
+        ]
+    }
+}
