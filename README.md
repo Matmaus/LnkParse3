@@ -3,10 +3,10 @@
 Windows Shortcut file (LNK) parser
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
-[![PyPI license](https://img.shields.io/pypi/l/LnkParse3.svg?style=for-the-badge)](https://pypi.python.org/pypi/LnkParse3/blob/master/LICENSE)
+[![PyPI license](https://img.shields.io/pypi/l/LnkParse3.svg?style=for-the-badge)](https://github.com/Matmaus/LnkParse3/blob/master/LICENSE)
 [![PyPi Version](https://img.shields.io/pypi/v/LnkParse3.svg?style=for-the-badge)](https://pypi.python.org/pypi/LnkParse3/)
 [![PyPi Python Versions](https://img.shields.io/pypi/pyversions/LnkParse3.svg?style=for-the-badge)](https://pypi.python.org/pypi/LnkParse3/)
-[![GitHub last commit](https://img.shields.io/github/last-commit/Matmaus/LnkParse3.svg?style=for-the-badge)]()
+[![GitHub last commit](https://img.shields.io/github/last-commit/Matmaus/LnkParse3.svg?style=for-the-badge)](https://github.com/Matmaus/LnkParse3/commits/master)
 
 LnkParse3 is a minimalistic python package for **forensics** of a binary file with [LNK](https://fileinfo.com/extension/lnk) extension aka [Microsoft Shell Link](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-shllink/16cb4ca1-9339-4d0c-a68d-bf1d6cc0f943) aka Windows shortcut. It is aimed to dig up as much data as possible and to process even **malformed files**. It is not able to create or modify files.
 
@@ -25,6 +25,8 @@ Improvements:
 - much more extracted data
 - many bug fixes
 - made to not fail on malformed files
+
+NOTE: `master` branch history was rewritten and has different commits metadata than the upstream `master`.
 
 # Installation
 
