@@ -66,6 +66,38 @@ class TestSamples(unittest.TestCase):
 
         self.assertEqual(our, their)
 
+    def test_print_short_json(self):
+        with open('tests/samples/microsoft_example', 'rb') as indata:
+            lnk = LnkParse3.lnk_file(indata)
+
+        mock_stdout = StringIO()
+        with redirect_stdout(mock_stdout):
+            lnk.print_short(pjson=True)
+
+        our = json.loads(mock_stdout.getvalue())
+
+        json_path = os.path.join(JSON_DIR, f"target_only.json")
+        with open(json_path, 'rb') as fp:
+            their = json.load(fp)
+
+        self.assertDictEqual(our, their)
+
+    def test_print_short_readable(self):
+        with open('tests/samples/microsoft_example', 'rb') as indata:
+            lnk = LnkParse3.lnk_file(indata)
+
+        mock_stdout = StringIO()
+        with redirect_stdout(mock_stdout):
+            lnk.print_short(pjson=False)
+
+        our = mock_stdout.getvalue()
+
+        json_path = os.path.join(JSON_DIR, f"target_only.txt")
+        with open(json_path, 'r') as fp:
+            their = fp.read()
+
+        self.assertEqual(our, their)
+
 
 if __name__ == '__main__':
     unittest.main()
