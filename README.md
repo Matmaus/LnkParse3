@@ -113,6 +113,40 @@ nableTargetMetadata - (524443)
 }
 ```
 
+# Extracted data
+
+List of data in LNK structure and their current status of implementation.
+For more information about each data, see [Microsoft LNK documentation](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-shllink/16cb4ca1-9339-4d0c-a68d-bf1d6cc0f943) and [Shell item format specification](https://github.com/libyal/libfwsi/blob/main/documentation/Windows%20Shell%20Item%20format.asciidoc).
+
+- [x] **ShellLinkHeader** [`lnk_header.py`]
+- [ ] **LinkTargetIDList** [`lnk_targets.py`]
+  - [ ] **RootFolder** [`root_folder.py`] (incomplete)
+  - [ ] **CommonPlacesFolder** [`common_places_folder.py`]
+  - [ ] **CompressedFolder** [`compressed_folder.py`]
+  - [ ] **ControlPanel** [`control_panel.py`]
+  - [ ] **Internet** [`internet.py`]
+  - [ ] **MyComputer** [`my_computer.py`]
+  - [x] **NetworkLocation** [`network_location.py`]
+  - [ ] **Printers** [`printers.py`]
+  - [ ] **ShellFSFolder** [`shell_fs_folder.py`] (incomplete)
+  - [ ] **UsersFilesFolder** [`users_files_folder.py`]
+- [x] **LinkInfo** [`lnk_info.py`]
+  - [x] **Local** [`local.py`]
+  - [x] **Network** [`network.py`]
+- [x] **StringData** [`string_data.py`]
+- [ ] **ExtraData** [`extra_data.py`]
+  - [x] **ConsoleDataBlock** [`console.py`]
+  - [x] **ConsoleFEDataBlock** [`code_page.py`]
+  - [x] **DarwinDataBlock** [`darwin.py`]
+  - [x] **EnvironmentVariableDataBlock** [`environment.py`]
+  - [x] **IconEnvironmentDataBlock** [`icon.py`]
+  - [x] **KnownFolderDataBlock** [`known_folder.py`]
+  - [ ] **PropertyStoreDataBlock** [`shell_item.py`]
+  - [x] **ShimDataBlock** [`shim_layer.py`]
+  - [x] **SpecialFolderDataBlock** [`special_folder.py`]
+  - [x] **TrackerDataBlock** [`distributed_tracker.py`]
+  - [x] **MetadataPropertiesBlock** [`metadata.py`]
+
 # Contributing
 
 Any contribution is welcome. There are still several uncovered parts of LNK Structure. Just fork the project and open a new PR.
