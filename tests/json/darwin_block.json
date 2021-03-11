@@ -1,0 +1,98 @@
+{
+    "data": {
+        "description": "This is the shortcut description",
+        "icon_location": "C:\\WINDOWS\\Installer\\{DB8757A3-1B62-4136-8D95-D2CB9F00E36C}\\test_icon.ico",
+        "relative_path": "..\\..\\..\\Windows\\Installer\\{DB8757A3-1B62-4136-8D95-D2CB9F00E36C}\\test_icon.ico"
+    },
+    "extra": {
+        "DARWIN_BLOCK": {
+            "component_id": "DB8757A3-1B62-4136-8D95-D2CB9F00E36C",
+            "darwin_data_ansi": ",s?WosbRz8?b5SjnTa~J<",
+            "darwin_data_unicode": ",s?WosbRz8?b5SjnTa~J<",
+            "feature_name": "",
+            "product_code_id": "DB8757A3-1B62-4136-8D95-D2CB9F00E36C",
+            "size": 788
+        },
+        "ICON_LOCATION_BLOCK": {
+            "size": 788,
+            "target_ansi": "%SystemRoot%\\Installer\\{DB8757A3-1B62-4136-8D95-D2CB9F00E36C}\\test_icon.ico",
+            "target_unicode": "%SystemRoot%\\Installer\\{DB8757A3-1B62-4136-8D95-D2CB9F00E36C}\\test_icon.ico"
+        }
+    },
+    "header": {
+        "accessed_time": null,
+        "creation_time": null,
+        "file_flags": [],
+        "file_size": 0,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasName",
+            "HasRelativePath",
+            "HasIconLocation",
+            "IsUnicode",
+            "HasDarwinID",
+            "HasExpIcon"
+        ],
+        "modified_time": null,
+        "r_file_flags": 0,
+        "r_hotkey": 0,
+        "r_link_flags": 20685,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {},
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": "C:\\",
+                "flags": "0xf"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "1990-12-10T10:19:20+00:00",
+                "primary_name": "Windows"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 22,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2048-02-26T10:19:26+00:00",
+                "primary_name": "Installer"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2048-02-26T10:19:26+00:00",
+                "primary_name": "{DB8757A3-1B62-4136-8D95-D2CB9F00E36C}"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 33,
+                "file_size": 15406,
+                "flags": "Is file",
+                "modification_time": "2048-02-26T10:19:26+00:00",
+                "primary_name": "test_icon.ico"
+            }
+        ],
+        "size": 509
+    }
+}
