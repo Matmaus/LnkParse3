@@ -6,10 +6,10 @@
     },
     "extra": {
         "DARWIN_BLOCK": {
-            "component_id": "DB8757A3-1B62-4136-8D95-D2CB9F00E36C",
+            "component_id": null,
             "darwin_data_ansi": ",s?WosbRz8?b5SjnTa~J<",
             "darwin_data_unicode": ",s?WosbRz8?b5SjnTa~J<",
-            "feature_name": "",
+            "feature_name": null,
             "product_code_id": "DB8757A3-1B62-4136-8D95-D2CB9F00E36C",
             "size": 788
         },

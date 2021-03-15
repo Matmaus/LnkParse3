@@ -64,6 +64,9 @@ def packed_uuid(func):
     def inner(self, *args, **kwargs):
         text = func(self, *args, **kwargs)
 
+        if text is None:
+            return None
+
         # An implemetation is based on
         # https://metadataconsulting.blogspot.com/2019/12/CSharp-Convert-a-GUID-to-a-Darwin-Descriptor-and-back.html
         quad1 = _quad_to_hex(text[0:5])
