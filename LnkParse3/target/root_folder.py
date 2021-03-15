@@ -11,7 +11,7 @@ from LnkParse3.decorators import uuid
 |                     <GUID> ShellFolderID                           |
 |                             16 B                                   |
 ----------------------------------------------------------------------
-|                         ExtensionBLock                             |
+|                         ExtensionBlock                             |
 |                              ? B                                   |
 ----------------------------------------------------------------------
 """

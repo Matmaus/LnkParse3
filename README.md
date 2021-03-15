@@ -154,16 +154,20 @@ Any contribution is welcome. There are still several uncovered parts of LNK Stru
 ## Tests
 
 To run tests without installing any dependencies, just run:
-``` sh
+
+```sh
 python -m unittest discover tests
 ```
+
 If you want to use `pytest`, install it via `pip` and run:
 
-``` sh
+```sh
 pytest tests
 ```
+
 Also, to see code coverage in HTML output, run:
-``` sh
+
+```sh
 pytest --cov=LnkParse3 tests --cov-fail-under=85 --cov-report=html --no-cov-on-fail
 ```
 
