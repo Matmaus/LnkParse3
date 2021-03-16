@@ -42,6 +42,70 @@ def uuid(func):
     return inner
 
 
+def _quad_to_hex(quad):
+    # An implemetation is based on
+    # https://metadataconsulting.blogspot.com/2019/12/CSharp-Convert-a-GUID-to-a-Darwin-Descriptor-and-back.html
+    base_85 = "!$%&'()*+,-.0123456789=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{}~"
+    i = 5
+    ddec = 0
+    while i >= 1:
+        char = quad[i - 1]
+        b85 = base_85.find(char)
+        ddec = ddec + b85
+        if i > 1:
+            ddec = ddec * 85
+        i -= 1
+
+    return f"{ddec:08X}"
+
+
+def packed_uuid(func):
+    @functools.wraps(func)
+    def inner(self, *args, **kwargs):
+        text = func(self, *args, **kwargs)
+
+        if text is None:
+            return None
+
+        # An implemetation is based on
+        # https://metadataconsulting.blogspot.com/2019/12/CSharp-Convert-a-GUID-to-a-Darwin-Descriptor-and-back.html
+        quad1 = _quad_to_hex(text[0:5])
+        quad2 = _quad_to_hex(text[5:10])
+        quad3 = _quad_to_hex(text[10:15])
+        quad4 = _quad_to_hex(text[15:20])
+        quads = quad1 + quad2 + quad3 + quad4
+
+        d1 = quads[:8]
+        d2 = quads[12:16]
+        d3 = quads[8:12]
+        d41 = quads[22:24]
+        d42 = quads[20:22]
+        d51 = quads[18:20]
+        d52 = quads[16:18]
+        d53 = quads[30:32]
+        d54 = quads[28:30]
+        d55 = quads[26:28]
+        d56 = quads[24:26]
+
+        uuid = "%s-%s-%s-%s%s-%s%s%s%s%s%s" % (
+            d1,
+            d2,
+            d3,
+            d41,
+            d42,
+            d51,
+            d52,
+            d53,
+            d54,
+            d55,
+            d56,
+        )
+
+        return uuid
+
+    return inner
+
+
 def filetime(func):
     @functools.wraps(func)
     def inner(self, *args, **kwargs):
