@@ -81,7 +81,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "2061-11-09T07:09:24+00:00",
+                "modification_time": "2008-09-12T20:27:18+00:00",
                 "primary_name": "test"
             },
             {
@@ -89,7 +89,7 @@
                 "file_attribute_flags": 32,
                 "file_size": 0,
                 "flags": "Is file",
-                "modification_time": "2061-11-09T07:09:24+00:00",
+                "modification_time": "2008-09-12T20:27:18+00:00",
                 "primary_name": "a.txt"
             }
         ],

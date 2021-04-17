@@ -90,7 +90,7 @@
                 "file_attribute_flags": 2064,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": null,
+                "modification_time": "2020-09-03T15:00:40+00:00",
                 "primary_name": "PixelMod"
             },
             {
@@ -98,7 +98,7 @@
                 "file_attribute_flags": 2064,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "2039-11-26T10:09:06+00:00",
+                "modification_time": "2020-09-03T14:59:52+00:00",
                 "primary_name": "MODFOR~1"
             },
             {
@@ -106,7 +106,7 @@
                 "file_attribute_flags": 2080,
                 "file_size": 135,
                 "flags": "Is file",
-                "modification_time": "2045-11-13T10:09:04+00:00",
+                "modification_time": "2020-09-02T16:27:26+00:00",
                 "primary_name": "ERRORF~1.BAT"
             }
         ],

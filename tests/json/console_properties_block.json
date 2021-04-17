@@ -128,7 +128,7 @@
                 "file_attribute_flags": 48,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": null,
+                "modification_time": "2013-06-07T22:00:04+00:00",
                 "primary_name": "Windows"
             },
             {
@@ -136,7 +136,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": null,
+                "modification_time": "2013-05-24T21:47:12+00:00",
                 "primary_name": "SysWOW64"
             },
             {
@@ -144,7 +144,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": null,
+                "modification_time": "2012-07-26T08:13:00+00:00",
                 "primary_name": "WINDOW~1"
             },
             {
@@ -152,7 +152,7 @@
                 "file_attribute_flags": 20,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": null,
+                "modification_time": "2013-05-24T21:47:22+00:00",
                 "primary_name": "v1.0"
             },
             {
@@ -160,7 +160,7 @@
                 "file_attribute_flags": 32,
                 "file_size": 454656,
                 "flags": "Is file",
-                "modification_time": "1993-04-26T08:07:52+00:00",
+                "modification_time": "2012-07-26T03:20:52+00:00",
                 "primary_name": "powershell.exe"
             }
         ],

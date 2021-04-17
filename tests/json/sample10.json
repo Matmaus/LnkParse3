@@ -96,7 +96,7 @@
                 "file_attribute_flags": 17,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "2064-02-07T10:08:46+00:00",
+                "modification_time": "2020-08-23T21:02:14+00:00",
                 "primary_name": "PROGRA~2"
             },
             {
@@ -104,7 +104,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "2064-02-08T10:08:46+00:00",
+                "modification_time": "2020-08-23T21:02:16+00:00",
                 "primary_name": "HDZB_U~1"
             },
             {
@@ -112,7 +112,7 @@
                 "file_attribute_flags": 32,
                 "file_size": 558080,
                 "flags": "Is file",
-                "modification_time": "2006-01-02T10:08:10+00:00",
+                "modification_time": "2020-08-05T06:33:04+00:00",
                 "primary_name": "HDZB_U~1.EXE"
             }
         ],
