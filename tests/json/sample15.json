@@ -89,7 +89,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "1997-10-07T10:07:12+00:00",
+                "modification_time": "2020-07-06T04:26:14+00:00",
                 "primary_name": "ANONYM~1.0"
             },
             {
@@ -97,7 +97,7 @@
                 "file_attribute_flags": 32,
                 "file_size": 1490944,
                 "flags": "Is file",
-                "modification_time": "1997-02-25T10:07:12+00:00",
+                "modification_time": "2020-07-06T04:18:50+00:00",
                 "primary_name": "ANONYM~1.EXE"
             }
         ],

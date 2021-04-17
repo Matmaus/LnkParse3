@@ -29,43 +29,43 @@ Windows Shortcut Information:
          File entry
             Flags: Is directory
             File size: 0
-            Modification time: 2003-09-02 10:07:56+00:00
+            Modification time: 2020-07-28 05:57:04+00:00
             File attribute flags: 48
             Primary name: AML24F~C
          File entry
             Flags: Is directory
             File size: 0
-            Modification time: 2014-09-21 10:03:50+00:00
+            Modification time: 2020-03-25 08:41:42+00:00
             File attribute flags: 48
             Primary name: 0AQ2M9~8
          File entry
             Flags: Is directory
             File size: 0
-            Modification time: 2027-04-17 09:59:22+00:00
+            Modification time: 2019-11-11 11:52:34+00:00
             File attribute flags: 48
             Primary name: ETN
          File entry
             Flags: Is directory
             File size: 0
-            Modification time: 2008-12-08 09:59:44+00:00
+            Modification time: 2019-11-22 07:12:16+00:00
             File attribute flags: 16
             Primary name: EAH18X~X
          File entry
             Flags: Is directory
             File size: 0
-            Modification time: None
+            Modification time: 2018-11-23 11:31:10+00:00
             File attribute flags: 16
             Primary name: KFACY0~T
          File entry
             Flags: Is directory
             File size: 0
-            Modification time: None
+            Modification time: 2018-11-23 11:31:10+00:00
             File attribute flags: 16
             Primary name: LS87NY~7
          File entry
             Flags: Is file
             File size: 21895266
-            Modification time: None
+            Modification time: 2017-10-05 10:29:28+00:00
             File attribute flags: 32
             Primary name: EWYM7F~E.PDF
 

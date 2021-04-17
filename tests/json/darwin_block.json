@@ -65,7 +65,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "1990-12-10T10:19:20+00:00",
+                "modification_time": "2021-03-10T02:44:20+00:00",
                 "primary_name": "Windows"
             },
             {
@@ -73,7 +73,7 @@
                 "file_attribute_flags": 22,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "2048-02-26T10:19:26+00:00",
+                "modification_time": "2021-03-13T17:02:52+00:00",
                 "primary_name": "Installer"
             },
             {
@@ -81,7 +81,7 @@
                 "file_attribute_flags": 16,
                 "file_size": 0,
                 "flags": "Is directory",
-                "modification_time": "2048-02-26T10:19:26+00:00",
+                "modification_time": "2021-03-13T17:02:52+00:00",
                 "primary_name": "{DB8757A3-1B62-4136-8D95-D2CB9F00E36C}"
             },
             {
@@ -89,7 +89,7 @@
                 "file_attribute_flags": 33,
                 "file_size": 15406,
                 "flags": "Is file",
-                "modification_time": "2048-02-26T10:19:26+00:00",
+                "modification_time": "2021-03-13T17:02:52+00:00",
                 "primary_name": "test_icon.ico"
             }
         ],

@@ -26,13 +26,13 @@ Windows Shortcut Information:
          File entry
             Flags: Is directory
             File size: 0
-            Modification time: 2001-06-04 10:04:32+00:00
+            Modification time: 2020-04-16 05:22:08+00:00
             File attribute flags: 48
             Primary name: Roaming
          File entry
             Flags: Is directory
             File size: 0
-            Modification time: None
+            Modification time: 2020-04-26 10:29:24+00:00
             File attribute flags: 16
             Primary name: .minecraft
 
