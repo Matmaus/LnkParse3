@@ -23,6 +23,7 @@ Windows Shortcut Information:
          Root Folder
             Sort index: Users
             Guid: 59031A47-3F72-44A7-89C5-5595FE6B30EE
+         Users files folder
          File entry
             Flags: Is directory
             File size: 0

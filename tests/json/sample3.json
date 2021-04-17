@@ -44,8 +44,12 @@
                 "data": "",
                 "flags": "0xe"
             },
-            null,
-            null
+            {
+                "class": "Unknown"
+            },
+            {
+                "class": "Unknown"
+            }
         ],
         "size": 2556
     }

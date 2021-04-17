@@ -32,7 +32,9 @@
                 "data": "h  \u00ec!\u00ea:i\u0010\u00a2\u00dd\b",
                 "flags": "0xe"
             },
-            null
+            {
+                "class": "Unknown"
+            }
         ],
         "size": 877
     }
