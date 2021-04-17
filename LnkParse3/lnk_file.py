@@ -2,7 +2,7 @@
 
 __description__ = "Windows Shortcut file (LNK) parser"
 __author__ = "Matmaus"
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 import json
 import datetime
