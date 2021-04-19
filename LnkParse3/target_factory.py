@@ -1,4 +1,6 @@
 from struct import unpack
+import warnings
+
 from LnkParse3.target.unknown import Unknown
 from LnkParse3.target.root_folder import RootFolder
 from LnkParse3.target.my_computer import MyComputer
@@ -71,13 +73,18 @@ class TargetFactory:
         # if item_type == 0x00:
 
         # XXX: Move to table
-        if 0x20 < item_type <= 0x2F:
-            target = classes[0x20]
-        elif 0x30 < item_type <= 0x3F:
-            target = classes[0x30]
-        elif 0x40 < item_type <= 0x4F:
-            target = classes[0x40]
-        else:
-            target = classes[item_type]
+        try:
+            if 0x20 < item_type <= 0x2F:
+                target = classes[0x20]
+            elif 0x30 < item_type <= 0x3F:
+                target = classes[0x30]
+            elif 0x40 < item_type <= 0x4F:
+                target = classes[0x40]
+            else:
+                target = classes[item_type]
+        except KeyError as e:
+            msg = f"Unknown TargetID `{item_type}`"
+            warnings.warn(msg)
+            return None
 
         return target
