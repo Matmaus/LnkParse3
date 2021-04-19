@@ -122,7 +122,7 @@ def filetime(func):
 
             timestamp = (nanosec - epoch_as_filetime) / hundreds_of_nanoseconds
             return datetime.fromtimestamp(timestamp, tz=timezone.utc)
-        except ValueError:
+        except (OSError, OverflowError, ValueError):
             if sys.version_info < (3, 8, 0):
                 # HACK for older versions for bytes.hex()
                 # https://docs.python.org/3.9/library/stdtypes.html?highlight=hex#bytes.hex
