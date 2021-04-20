@@ -115,7 +115,9 @@ def filetime(func):
             nanosec = unpack("<q", binary)[0]
 
             if nanosec == 0:
-                raise ValueError
+                # If the date is 0 it means that the file has been created in an
+                # application, then saved from it, and never ever opened.
+                return None
 
             epoch_as_filetime = 116444736000000000
             hundreds_of_nanoseconds = 10000000
@@ -170,7 +172,10 @@ def dostime(func):
             # return datetime.fromtimestamp(timestamp, tz=timezone.utc)
 
             if dos == 0:
-                raise ValueError
+                # If the date is 0 it means that the file has been created in an
+                # application, then saved from it, and never ever opened.
+                return None
+
             ymdhms = (
                 ((dos & 0x0000FE00) >> 9) + 1980,
                 ((dos & 0x000001E0) >> 5),
