@@ -165,8 +165,9 @@ def dostime(func):
 
         try:
             dos = unpack("<I", binary)[0]
-            # NOTE An alternative solution using `dfdatetime` package.
-            # It returns the same date-time for all currently available tests.
+            # NOTE An alternative solution for DOS conversion is to use
+            # `dfdatetime` package. It returns the same date-time for all
+            # currently available tests.
             # from dfdatetime.fat_date_time import FATDateTime
             # timestamp = FATDateTime(dos).CopyToPosixTimestamp()
             # return datetime.fromtimestamp(timestamp, tz=timezone.utc)
