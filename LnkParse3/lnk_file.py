@@ -158,10 +158,31 @@ class LnkFile(object):
                 "Common path suffix offset: %s" % self.info.common_path_suffix_offset(),
                 2,
             )
-            if type(self.info).__name__ == "Local":
+            if self.info.local_base_path_offset():
                 cprint("Local_base_path: %s" % self.info.local_base_path(), 2)
+            if self.info.common_path_suffix_offset():
                 cprint("Common path suffix: %s" % self.info.common_path_suffix(), 2)
-
+            if self.info.local_base_path_offset_unicode():
+                cprint(
+                    "Local base path offset unicode: %s"
+                    % self.info.local_base_path_offset_unicode(),
+                    2,
+                )
+                cprint(
+                    "Local base unicode: %s" % self.info.local_base_path_unicode(), 2
+                )
+            if self.info.common_path_suffix_offset_unicode():
+                cprint(
+                    "Common path suffix offset unicode: %s"
+                    % self.info.common_path_suffix_offset_unicode(),
+                    2,
+                )
+                cprint(
+                    "Common path suffix unicode: %s"
+                    % self.info.common_path_suffix_unicode(),
+                    2,
+                )
+            if type(self.info).__name__ == "Local":
                 cprint("LOCAL:", 2)
                 cprint("Volume ID size: %s" % self.info.volume_id_size(), 3)
                 cprint("Drive type: %s" % self.info.r_drive_type(), 3)
@@ -169,20 +190,6 @@ class LnkFile(object):
                 cprint("Drive serial number: %s" % self.info.drive_serial_number(), 3)
                 cprint("Drive type: %s" % self.info.drive_type(), 3)
                 cprint("Volume label: %s" % self.info.volume_label(), 3)
-                if self.info.local_base_path_offset_unicode():
-                    cprint(
-                        "Local base path offset unicode: %s"
-                        % self.info.local_base_path_offset_unicode(),
-                        3,
-                    )
-                    cprint("Local base unicode: %s" % self.info.local_base_path_unicode(), 3)
-                if self.info.common_path_suffix_offset_unicode():
-                    cprint(
-                        "Common path suffix offset unicode: %s"
-                        % self.info.common_path_suffix_offset_unicode(),
-                        3,
-                    )
-                    cprint("Common path suffix unicode: %s" % self.info.common_path_suffix_unicode(), 3)
                 if self.info.common_network_relative_link():
                     cprint(
                         "Common network relative link: %s"
@@ -340,10 +347,27 @@ class LnkFile(object):
                 "common_path_suffix_offset": self.info.common_path_suffix_offset(),
             }
 
+            if self.info.local_base_path_offset():
+                res["link_info"]["local_base_path"] = self.info.local_base_path()
+            if self.info.common_path_suffix_offset():
+                res["link_info"]["common_path_suffix"] = self.info.common_path_suffix()
+            if self.info.local_base_path_offset_unicode():
+                res["link_info"][
+                    "local_base_path_offset_unicode"
+                ] = self.info.local_base_path_offset_unicode()
+                res["link_info"][
+                    "local_base_path_unicode"
+                ] = self.info.local_base_path_unicode()
+            if self.info.common_path_suffix_offset_unicode():
+                res["link_info"][
+                    "common_path_suffix_offset_unicode"
+                ] = self.info.common_path_suffix_offset_unicode()
+                res["link_info"][
+                    "common_path_suffix_unicode"
+                ] = self.info.common_path_suffix_unicode()
+
             res["link_info"]["location_info"] = {}
             if type(self.info).__name__ == "Local":
-                res["link_info"]["local_base_path"] = self.info.local_base_path()
-                res["link_info"]["common_path_suffix"] = self.info.common_path_suffix()
                 res["link_info"]["location"] = self.info.location()
 
                 res["link_info"]["location_info"] = {
@@ -355,20 +379,6 @@ class LnkFile(object):
                     "volume_label": self.info.volume_label(),
                 }
 
-                if self.info.local_base_path_offset_unicode():
-                    res["link_info"]["location_info"][
-                        "local_base_path_offset_unicode"
-                    ] = self.info.local_base_path_offset_unicode()
-                    res["link_info"]["location_info"][
-                        "local_base_path_unicode"
-                    ] = self.info.local_base_path_unicode()
-                if self.info.common_path_suffix_offset_unicode():
-                    res["link_info"]["location_info"][
-                        "common_path_suffix_offset_unicode"
-                    ] = self.info.common_path_suffix_offset_unicode()
-                    res["link_info"]["location_info"][
-                        "common_path_suffix_unicode"
-                    ] = self.info.common_path_suffix_unicode()
                 if self.info.common_network_relative_link():
                     res["link_info"]["location_info"][
                         "common_network_relative_link"
