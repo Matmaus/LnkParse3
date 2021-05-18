@@ -1,4 +1,6 @@
 from struct import unpack
+import warnings
+
 from LnkParse3.target_factory import TargetFactory
 
 """
@@ -15,7 +17,6 @@ HasLinkTargetIDList bit (LinkFlags section 2.1.1) in the ShellLinkHeader.
 |                             ...                                |
 ------------------------------------------------------------------
 """
-import warnings
 
 
 class LnkTargets:
