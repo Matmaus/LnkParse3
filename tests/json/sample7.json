@@ -57,8 +57,12 @@
                 "modification_time": null,
                 "primary_name": "ProgramData"
             },
-            null,
-            null
+            {
+                "class": "File entry"
+            },
+            {
+                "class": "File entry"
+            }
         ],
         "size": 321
     }

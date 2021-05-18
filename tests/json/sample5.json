@@ -73,8 +73,12 @@
                 "data": "E:\\",
                 "flags": "0xf"
             },
-            null,
-            null
+            {
+                "class": "File entry"
+            },
+            {
+                "class": "File entry"
+            }
         ],
         "size": 195
     }
