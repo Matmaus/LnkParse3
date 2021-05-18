@@ -36,10 +36,4 @@ class MyComputer(LnkTargetBase):
         return hex(flags & 0x0F)
 
     def data(self):
-        start = 1
-        binary = self._raw_target[start:]
-
-        # FIXME: Not text data
-        text = self.text_processor.read_string(binary)
-
-        return text
+        return None
