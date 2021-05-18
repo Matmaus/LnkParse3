@@ -49,10 +49,11 @@ class Local(LnkInfo):
         """
         if not self._has_opt_fields():
             return None
-        (lbp, cps) = self._opt_fields()
-        return lbp
 
-    def common_path_suffix_unicode(self):
+        start, end = 28, 32
+        return unpack("<I", self._raw[start:end])[0]
+
+    def common_path_suffix_offset_unicode(self):
         """CommonPathSuffixOffsetUnicode (4 bytes):
         An optional, 32-bit, unsigned integer that specifies the location of
         the CommonPathSuffixUnicode field. This value is an offset, in bytes,
@@ -62,34 +63,9 @@ class Local(LnkInfo):
         """
         if not self._has_opt_fields():
             return None
-        (lbp, cps) = self._opt_fields()
-        return cps
 
-    def volume_id(self):
-        """VolumeID (variable):
-        An optional VolumeID structure (section 2.3.1) that specifies
-        information about the volume that the link target was on when the
-        link was created. This field is present if the
-        VolumeIDAndLocalBasePath flag is set.
-        """
-        # TODO:
-        pass
-
-    def _opt_fields(self):
-        if not self._has_opt_fields():
-            return None
-
-        start, end = 28, 36
-        (lbp_offset, cps_offset) = unpack("<II", self._raw[start:end])
-        cps_offset += lbp_offset
-
-        lbp_binary = self._raw[lbp_offset:]
-        cps_binary = self._raw[cps_offset:]
-
-        lbp = self.text_processor.read_unicode_string(lbp_binary)
-        cps = self.text_processor.read_unicode_string(cps_binary)
-
-        return (lbp, cps)
+        start, end = 32, 36
+        return unpack("<I", self._raw[start:end])[0]
 
     def local_base_path(self):
         """LocalBasePath (variable):
@@ -98,10 +74,14 @@ class Local(LnkInfo):
         or link target by appending the string in the CommonPathSuffix field.
         This field is present if the VolumeIDAndLocalBasePath flag is set.
         """
-        if self._has_opt_fields():
+        if self.local_base_path_offset():
             return None
-        (lbp, cps) = self._non_opt_fields()
-        return lbp
+
+        start = self.local_base_path_offset()
+
+        binary = self._raw[start:]
+        text = self.text_processor.read_string(binary)
+        return text
 
     def common_network_relative_link(self):
         """CommonNetworkRelativeLink (variable):
@@ -118,24 +98,48 @@ class Local(LnkInfo):
         which is used to construct the full path to the link item or link
         target by being appended to the string in the LocalBasePath field.
         """
-        if self._has_opt_fields():
+        if self.common_path_suffix_offset():
             return None
-        (lbp, cps) = self._non_opt_fields()
-        return cps
 
-    def _non_opt_fields(self):
-        (lbp_offset, cps_offset) = (
-            self.local_base_path_offset(),
-            self.common_path_suffix_offset(),
-        )
+        start = self.common_path_suffix_offset()
 
-        lbp_binary = self._raw[lbp_offset:]
-        cps_binary = self._raw[cps_offset:]
+        binary = self._raw[start:]
+        text = self.text_processor.read_string(binary)
+        return text
 
-        lbp = self.text_processor.read_string(lbp_binary)
-        cps = self.text_processor.read_string(cps_binary)
+    def local_base_path_unicode(self):
+        """LocalBasePathUnicode (variable):
+        An optional, NULL-terminated, Unicode string that is used to construct
+        the full path to the link item or link target by appending the string
+        in the CommonPathSuffixUnicode field. This field can be present only
+        if the VolumeIDAndLocalBasePath flag is set and the value of the
+        LinkInfoHeaderSize field is greater than or equal to 0x00000024.
+        """
+        if not self.local_base_path_offset_unicode():
+            return None
 
-        return (lbp, cps)
+        start = self.local_base_path_offset_unicode()
+
+        binary = self._raw[start:]
+        text = self.text_processor.read_unicode_string(binary)
+        return text
+
+    def common_path_suffix_unicode(self):
+        """CommonPathSuffixUnicode (variable):
+        An optional, NULL-terminated, Unicode string that is used to construct
+        the full path to the link item or link target by appending the string
+        in the CommonPathSuffixUnicode field. This field can be present only
+        if the VolumeIDAndLocalBasePath flag is set and the value of the
+        LinkInfoHeaderSize field is greater than or equal to 0x00000024.
+        """
+        if not self.common_path_suffix_offset_unicode():
+            return None
+
+        start = self.common_path_suffix_offset_unicode() + 4
+
+        binary = self._raw[start:]
+        text = self.text_processor.read_unicode_string(binary)
+        return text
 
     def location(self):
         return "Local"
@@ -173,43 +177,27 @@ class Local(LnkInfo):
     def volume_label(self):
         if self._has_volume_label_offset_unicode():
             return None
-        else:
-            start = self.volume_id_offset() + self.volume_label_offset()
-            binary = self._raw[start:]
-            text = self.text_processor.read_string(binary)
-            return text
+
+        start = self.volume_id_offset() + self.volume_label_offset()
+
+        binary = self._raw[start:]
+        text = self.text_processor.read_string(binary)
+        return text
 
     def volume_label_unicode_offset(self):
         if not self._has_volume_label_offset_unicode():
             return None
-        else:
-            start = self.volume_id_offset() + 16
-            end = start + 4
-            offset = unpack("<I", self._raw[start:end])[0]
-            return offset
+
+        start = self.volume_id_offset() + 16
+        end = start + 4
+        return unpack("<I", self._raw[start:end])[0]
 
     def volume_label_unicode(self):
-        if self.volume_label_unicode_offset():
-            start = self.volume_id_offset() + 16
-            offset = start + self.volume_label_unicode_offset()
-            binary = self._raw[offset:]
-            text = self.text_processor.read_unicode_string(binary)
-            return text
-        else:
-            # TODO:
+        if not self.volume_label_unicode_offset():
             return None
 
-            start = self.volume_id_offset() + 16
-            end = start + 4
-            offset = unpack("<I", self._raw[start:end])[0]
+        start = self.volume_id_offset() + self.volume_labe_unicode_offset()
 
-    def local_base_unicode(self):
-        """LocalBasePathUnicode (variable):
-        An optional, NULL-terminated, Unicode string that is used to construct
-        the full path to the link item or link target by appending the string
-        in the CommonPathSuffixUnicode field. This field can be present only
-        if the VolumeIDAndLocalBasePath flag is set and the value of the
-        LinkInfoHeaderSize field is greater than or equal to 0x00000024.
-        """
-        # TODO:
-        pass
+        binary = self._raw[offset:]
+        text = self.text_processor.read_unicode_string(binary)
+        return text
