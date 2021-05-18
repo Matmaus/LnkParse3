@@ -84,8 +84,8 @@ Windows Shortcut Information:
          Device name offset: 41
          Network provider type: 0x20000
          Network provider type: WNNC_NET_DECORB
-         net_name: \\10.0.0.150\LMmetal
-         device_name: Z:
+         Net name: \\10.0.0.150\LMmetal
+         Device name: Z:
 
    DATA
       Working directory: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme

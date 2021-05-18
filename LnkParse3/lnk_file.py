@@ -228,22 +228,24 @@ class LnkFile(object):
                     )
                 if self.info.net_name_offset_unicode():
                     cprint(
-                        "net_name_offset_unicode: %s"
+                        "Net name offset unicode: %s"
                         % self.info.net_name_offset_unicode(),
                         3,
                     )
-                if self.info.net_name_unicode():
-                    cprint("net_name_unicode: %s" % self.info.net_name_unicode(), 3)
+                    cprint("Net name unicode: %s" % self.info.net_name_unicode(), 3)
                 if self.info.device_name_offset_unicode():
                     cprint(
-                        "device_name_offset_unicode: %s"
+                        "Device name offset unicode: %s"
                         % self.info.device_name_offset_unicode(),
                         3,
                     )
+                    cprint(
+                        "Device name unicode: %s" % self.info.device_name_unicode(), 3
+                    )
                 if self.info.net_name():
-                    cprint("net_name: %s" % self.info.net_name(), 3)
+                    cprint("Net name: %s" % self.info.net_name(), 3)
                 if self.info.device_name():
-                    cprint("device_name: %s" % self.info.device_name(), 3)
+                    cprint("Device name: %s" % self.info.device_name(), 3)
             cprint("")
 
         cprint("DATA", 1)
@@ -407,7 +409,6 @@ class LnkFile(object):
                     res["link_info"]["location_info"][
                         "net_name_offset_unicode"
                     ] = self.info.net_name_offset_unicode()
-                if self.info.net_name_unicode():
                     res["link_info"]["location_info"][
                         "net_name_unicode"
                     ] = self.info.net_name_unicode()
@@ -415,6 +416,9 @@ class LnkFile(object):
                     res["link_info"]["location_info"][
                         "device_name_offset_unicode"
                     ] = self.info.device_name_offset_unicode()
+                    res["link_info"]["location_info"][
+                        "device_name_unicode"
+                    ] = self.info.device_name_unicode()
                 if self.info.net_name():
                     res["link_info"]["location_info"]["net_name"] = self.info.net_name()
                 if self.info.device_name():
