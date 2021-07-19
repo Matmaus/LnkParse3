@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-07-19
+### Fixed
+- Catch more exceptions, and use warnings instead
+- Replace unknown characters in UTF-16
+- Fix parsing and output position of LNK info (`common_path_suffix`, `local_base_path`, ...)
+- Fix printing of `net_name`, `device_name`, and `local_base_path`
+
+### Changed
+- Treat `0` time as a valid value (it means a file was created in an application and never ever opened)
+- Always return at least target name when there is any problem
+- Disable `MyComputer` target (it is not implemented yet)
+
 ## [1.1.1] - 2021-04-17
 ### Changed
 - Even unimplemented target will return at least its name ([PR](https://github.com/Matmaus/LnkParse3/pull/17))
