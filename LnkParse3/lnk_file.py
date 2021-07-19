@@ -159,7 +159,7 @@ class LnkFile(object):
                 2,
             )
             if self.info.local_base_path_offset():
-                cprint("Local_base_path: %s" % self.info.local_base_path(), 2)
+                cprint("Local base path: %s" % self.info.local_base_path(), 2)
             if self.info.common_path_suffix_offset():
                 cprint("Common path suffix: %s" % self.info.common_path_suffix(), 2)
             if self.info.local_base_path_offset_unicode():
