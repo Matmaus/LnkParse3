@@ -137,10 +137,16 @@ class Network(LnkInfo):
     def device_name_offset_unicode(self):
         if self.net_name_offset() <= 20:
             return None
+        start = self.common_network_relative_link_offset() + 24
+        end = start + 4
+        return unpack("<I", self._raw[start:end])[0]
+
+    def device_name_unicode(self):
+        if self.net_name_offset() <= 20:
+            return None
 
         start = self.common_network_relative_link_offset()
-        start += self.net_name_offset_unicode()
-        start += 24
+        start += self.device_name_offset_unicode()
 
         binary = self._raw[start:]
         text = self.text_processor.read_unicode_string(binary)

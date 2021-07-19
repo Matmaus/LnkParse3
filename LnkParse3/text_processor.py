@@ -21,7 +21,7 @@ class TextProcessor:
                 string = bin_string.decode(self.cp)
             except UnicodeDecodeError as e:
                 string = bin_string.decode(self.cp, errors="replace")
-                msg = "Error while decoding string `%s` (%s)" % (string, e)
+                msg = f"Error while decoding string `{string}` ({e})"
                 warnings.warn(msg)
             yield string
 
@@ -43,7 +43,12 @@ class TextProcessor:
 
         def _chars_to_string(lst):
             bin_string = b"".join(lst)
-            string = bin_string.decode("utf-16le")
+            try:
+                string = bin_string.decode("utf-16le")
+            except UnicodeDecodeError as e:
+                string = bin_string.decode("utf-16le", errors="replace")
+                msg = f"Error while decoding string `{string}` ({e})"
+                warnings.warn(msg)
             yield string
 
         for char in self._2bytes_each(binary):

@@ -2,6 +2,7 @@ from struct import unpack
 from LnkParse3.decorators import must_be
 from LnkParse3.decorators import uuid
 from LnkParse3.decorators import filetime
+from LnkParse3.exceptions import LnkParserError
 
 """
 SHELL_LINK_HEADER:
@@ -288,6 +289,10 @@ class LnkHeader:
             self._raw = fhandle.read()
         elif indata:
             self._raw = indata
+        else:
+            raise LnkParserError(
+                "Both `LnkHeader` arguments `fhandle` and `indata` are evalued as `None`"
+            )
 
         self._lnk_header = {}
         self._stash = {}

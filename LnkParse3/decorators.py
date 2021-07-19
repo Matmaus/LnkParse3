@@ -115,14 +115,16 @@ def filetime(func):
             nanosec = unpack("<q", binary)[0]
 
             if nanosec == 0:
-                raise ValueError
+                # If the date is 0 it means that the file has been created in an
+                # application, then saved from it, and never ever opened.
+                return None
 
             epoch_as_filetime = 116444736000000000
             hundreds_of_nanoseconds = 10000000
 
             timestamp = (nanosec - epoch_as_filetime) / hundreds_of_nanoseconds
             return datetime.fromtimestamp(timestamp, tz=timezone.utc)
-        except ValueError:
+        except (OSError, OverflowError, ValueError):
             if sys.version_info < (3, 8, 0):
                 # HACK for older versions for bytes.hex()
                 # https://docs.python.org/3.9/library/stdtypes.html?highlight=hex#bytes.hex
@@ -163,14 +165,18 @@ def dostime(func):
 
         try:
             dos = unpack("<I", binary)[0]
-            # NOTE An alternative solution using `dfdatetime` package.
-            # It returns the same date-time for all currently available tests.
+            # NOTE An alternative solution for DOS conversion is to use
+            # `dfdatetime` package. It returns the same date-time for all
+            # currently available tests.
             # from dfdatetime.fat_date_time import FATDateTime
             # timestamp = FATDateTime(dos).CopyToPosixTimestamp()
             # return datetime.fromtimestamp(timestamp, tz=timezone.utc)
 
             if dos == 0:
-                raise ValueError
+                # If the date is 0 it means that the file has been created in an
+                # application, then saved from it, and never ever opened.
+                return None
+
             ymdhms = (
                 ((dos & 0x0000FE00) >> 9) + 1980,
                 ((dos & 0x000001E0) >> 5),

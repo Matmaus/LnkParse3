@@ -1,4 +1,6 @@
 from struct import unpack
+import warnings
+
 from LnkParse3.target_factory import TargetFactory
 
 """
@@ -15,7 +17,6 @@ HasLinkTargetIDList bit (LinkFlags section 2.1.1) in the ShellLinkHeader.
 |                             ...                                |
 ------------------------------------------------------------------
 """
-import warnings
 
 
 class LnkTargets:
@@ -71,6 +72,7 @@ class LnkTargets:
             target_class = factory.target_class()
 
             if not target_class:
+                # Empty or unknown target object.
                 break
 
             target = target_class(indata=rest, cp=self.cp)
@@ -85,7 +87,7 @@ class LnkTargets:
             try:
                 res.append(target.as_item())
             except KeyError as e:
-                msg = "Error while target `%s` (KeyError %s)" % (target.name, e)
+                msg = f"Error while parsing TargetID `{target.name}` (KeyError {e})"
                 warnings.warn(msg)
                 continue
         return res

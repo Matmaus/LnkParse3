@@ -46,7 +46,7 @@
             },
             {
                 "class": "Volume Item",
-                "data": "C:\\",
+                "data": null,
                 "flags": "0xf"
             },
             {
@@ -57,8 +57,12 @@
                 "modification_time": null,
                 "primary_name": "ProgramData"
             },
-            null,
-            null
+            {
+                "class": "File entry"
+            },
+            {
+                "class": "File entry"
+            }
         ],
         "size": 321
     }

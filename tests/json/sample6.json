@@ -87,7 +87,7 @@
             },
             {
                 "class": "Volume Item",
-                "data": "C:\\",
+                "data": null,
                 "flags": "0xf"
             },
             {
@@ -122,7 +122,9 @@
                 "modification_time": "2015-10-19T07:41:50+00:00",
                 "primary_name": "4.4"
             },
-            null
+            {
+                "class": "File entry"
+            }
         ],
         "size": 485
     }

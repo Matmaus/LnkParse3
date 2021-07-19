@@ -1,0 +1,97 @@
+{
+    "data": {
+        "relative_path": "..\\Downloads"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "40FB763A-5D8E-11E4-8262-54271EA34E74",
+            "birth_droid_volume_identifier": "84E595E4-E5B8-42F0-8024-0141D9095AD1",
+            "droid_file_identifier": "40FB763A-5D8E-11E4-8262-54271EA34E74",
+            "droid_volume_identifier": "84E595E4-E5B8-42F0-8024-0141D9095AD1",
+            "length": 88,
+            "machine_identifier": "asus",
+            "size": 96,
+            "version": 0
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "known_folder_id": "374DE290-123F-4565-9164-39C4925E467B",
+            "offset": 78,
+            "size": 28
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
+            "size": 544,
+            "storage_size": 85,
+            "version": "0x53505331"
+        },
+        "SPECIAL_FOLDER_LOCATION_BLOCK": {
+            "offset": 78,
+            "size": 16,
+            "special_folder_id": 4294967295
+        }
+    },
+    "header": {
+        "accessed_time": "2021-02-05T23:26:03+00:00",
+        "creation_time": "2014-10-27T04:05:06+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_READONLY",
+            "FILE_ATTRIBUTE_DIRECTORY"
+        ],
+        "file_size": 327680,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "IsUnicode",
+            "EnableTargetMetadata"
+        ],
+        "modified_time": "2021-04-17T08:21:08+00:00",
+        "r_file_flags": 17,
+        "r_hotkey": 0,
+        "r_link_flags": 524427,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 60,
+        "common_path_suffix": "Asus-PC\\Downloads",
+        "common_path_suffix_offset": 93,
+        "link_info_flags": 3,
+        "link_info_header_size": 28,
+        "link_info_size": 111,
+        "local_base_path": "C:\\Users\\",
+        "local_base_path_offset": 47,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x92bda1da",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 19,
+            "volume_label": "OS",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": null,
+                "flags": "0xe"
+            }
+        ],
+        "size": 80
+    }
+}

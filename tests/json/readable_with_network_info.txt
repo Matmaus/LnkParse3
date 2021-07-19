@@ -25,7 +25,7 @@ Windows Shortcut Information:
             Guid: 20D04FE0-3AEA-1069-A2D8-08002B30309D
          Volume Item
             Flags: 0xf
-            Data: Z:\
+            Data: None
          File entry
             Flags: Is directory
             File size: 0
@@ -77,14 +77,15 @@ Windows Shortcut Information:
       Local base path offset: 0
       Common network relative link offset: 28
       Common path suffix offset: 72
+      Common path suffix: A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme\ETN-lift programme 2017.pdf
          Common network relative link size: 44
          Common network relative link flags: 3
          Net name offset: 20
          Device name offset: 41
          Network provider type: 0x20000
          Network provider type: WNNC_NET_DECORB
-         net_name: \\10.0.0.150\LMmetal
-         device_name: Z:
+         Net name: \\10.0.0.150\LMmetal
+         Device name: Z:
 
    DATA
       Working directory: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme

@@ -45,7 +45,7 @@ Windows Shortcut Information:
       Local base path offset: 45
       Common network relative link offset: 0
       Common path suffix offset: 90
-      Local_base_path: C:\Users\Jonathan\AppData\Roaming\.minecraft
+      Local base path: C:\Users\Jonathan\AppData\Roaming\.minecraft
       Common path suffix: 
       LOCAL:
          Volume ID size: 17

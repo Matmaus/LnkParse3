@@ -1,0 +1,106 @@
+{
+    "data": {},
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "6235E142-8347-11EA-8477-54A05039FE79",
+            "birth_droid_volume_identifier": "84E595E4-E5B8-42F0-8024-0141D9095AD1",
+            "droid_file_identifier": "6235E142-8347-11EA-8477-54A05039FE79",
+            "droid_volume_identifier": "84E595E4-E5B8-42F0-8024-0141D9095AD1",
+            "length": 88,
+            "machine_identifier": "asus",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "format_id": "446D16B1-8DAD-4870-A748-402EA43D788C",
+            "size": 69,
+            "storage_size": 57,
+            "version": "0x53505331"
+        }
+    },
+    "header": {
+        "accessed_time": "2021-04-23T15:09:08+00:00",
+        "creation_time": "2014-10-27T04:05:06+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_READONLY",
+            "FILE_ATTRIBUTE_DIRECTORY"
+        ],
+        "file_size": 327680,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "IsUnicode",
+            "DisableKnownFolderTracking"
+        ],
+        "modified_time": "2021-04-23T15:09:08+00:00",
+        "r_file_flags": 17,
+        "r_hotkey": 0,
+        "r_link_flags": 2097283,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 60,
+        "common_path_suffix": "Asus-PC\\AppData\\Roaming\\Microsoft\\Windows\\Recent",
+        "common_path_suffix_offset": 93,
+        "link_info_flags": 3,
+        "link_info_header_size": 28,
+        "link_info_size": 142,
+        "local_base_path": "C:\\Users\\",
+        "local_base_path_offset": 47,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x92bda1da",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 19,
+            "volume_label": "OS",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "59031A47-3F72-44A7-89C5-5595FE6B30EE",
+                "sort_index": "Users"
+            },
+            {
+                "class": "Users files folder"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2021-04-22T20:43:52+00:00",
+                "primary_name": "Roaming"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 20,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2020-03-03T08:01:58+00:00",
+                "primary_name": "MICROS~1"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2021-04-23T15:06:40+00:00",
+                "primary_name": "Windows"
+            }
+        ],
+        "size": 604
+    }
+}

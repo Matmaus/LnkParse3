@@ -70,11 +70,15 @@
             },
             {
                 "class": "Volume Item",
-                "data": "E:\\",
+                "data": null,
                 "flags": "0xf"
             },
-            null,
-            null
+            {
+                "class": "File entry"
+            },
+            {
+                "class": "File entry"
+            }
         ],
         "size": 195
     }
