@@ -56,8 +56,8 @@ optional arguments:
 
 ## CLI tool
 
-```
-$ lnkparse tests/microsoft_example
+```console
+$ lnkparse tests/samples/microsoft_example
 Windows Shortcut Information:
    Link CLSID: 00021401-0000-0000-C000-000000000046
    Link Flags: HasTargetIDList | HasLinkInfo | HasRelativePath | HasWorkingDir | IsUnicode | E
@@ -87,7 +87,7 @@ nableTargetMetadata - (524443)
 
 ## Python package
 
-```
+```python
 >>> import LnkParse3
 >>> with open('tests/samples/microsoft_example', 'rb') as indata:
 >>> 	lnk = LnkParse3.lnk_file(indata)
