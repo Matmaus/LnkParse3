@@ -1,3 +1,4 @@
+import struct
 from struct import unpack
 from LnkParse3.extra.environment import Environment
 from LnkParse3.extra.console import Console
@@ -51,5 +52,9 @@ class ExtraFactory:
         return rsig
 
     def extra_class(self):
-        sig = str(hex(self._rsig()))[2:]  # huh?
-        return self.EXTRA_SIGS.get(sig)
+        # Allow for no accompanying data for a reported size, observed in malicious files
+        try:
+            sig = str(hex(self._rsig()))[2:]  # huh?
+            return self.EXTRA_SIGS.get(sig)
+        except struct.error:
+            pass
