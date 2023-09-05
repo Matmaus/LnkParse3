@@ -1,5 +1,7 @@
 import struct
 from struct import unpack
+import warnings
+
 from LnkParse3.extra.environment import Environment
 from LnkParse3.extra.console import Console
 from LnkParse3.extra.distributed_tracker import DistributedTracker
@@ -56,5 +58,6 @@ class ExtraFactory:
         try:
             sig = str(hex(self._rsig()))[2:]  # huh?
             return self.EXTRA_SIGS.get(sig)
-        except struct.error:
-            pass
+        except struct.error as e:
+            warnings.warn(f"Error while parsing extra's signature {e}")
+            return None
