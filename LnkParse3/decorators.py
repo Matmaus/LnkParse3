@@ -152,6 +152,7 @@ def dostime(func):
     Seconds are stored in two-second increments.
     (So if the "second" value is 15, it actually represents 30 seconds.)
     """
+
     #
     # Source:
     #   https://github.com/log2timeline/dfdatetime/blob/main/dfdatetime/fat_date_time.py
