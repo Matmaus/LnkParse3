@@ -21,7 +21,11 @@ class ExtraData:
         rest = self._raw
         while rest:
             factory = ExtraFactory(indata=rest)
-            size = factory.item_size()
+            try:
+                size = factory.item_size()
+            except StructError as e:
+                warnings.warn(f"Error while parsing extra data: {e!r}")
+                break
 
             if not size:
                 break
