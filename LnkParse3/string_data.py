@@ -1,3 +1,6 @@
+import warnings
+
+import struct
 from struct import unpack
 from LnkParse3.text_processor import TextProcessor
 
@@ -19,30 +22,33 @@ class StringData:
         self.text_processor = TextProcessor(cp=cp)
 
         start = 0
-        if self._lnk_file.has_name():
-            text, length = self.read(self._raw[start:])
-            self._data["description"] = text
-            start += length
+        try:
+            if self._lnk_file.has_name():
+                text, length = self.read(self._raw[start:])
+                self._data["description"] = text
+                start += length
 
-        if self._lnk_file.has_relative_path():
-            text, length = self.read(self._raw[start:])
-            self._data["relative_path"] = text
-            start += length
+            if self._lnk_file.has_relative_path():
+                text, length = self.read(self._raw[start:])
+                self._data["relative_path"] = text
+                start += length
 
-        if self._lnk_file.has_working_dir():
-            text, length = self.read(self._raw[start:])
-            self._data["working_directory"] = text
-            start += length
+            if self._lnk_file.has_working_dir():
+                text, length = self.read(self._raw[start:])
+                self._data["working_directory"] = text
+                start += length
 
-        if self._lnk_file.has_arguments():
-            text, length = self.read(self._raw[start:])
-            self._data["command_line_arguments"] = text
-            start += length
+            if self._lnk_file.has_arguments():
+                text, length = self.read(self._raw[start:])
+                self._data["command_line_arguments"] = text
+                start += length
 
-        if self._lnk_file.has_icon_location():
-            text, length = self.read(self._raw[start:])
-            self._data["icon_location"] = text
-            start += length
+            if self._lnk_file.has_icon_location():
+                text, length = self.read(self._raw[start:])
+                self._data["icon_location"] = text
+                start += length
+        except struct.error as e:
+            warnings.warn(f"Error while parsing String data: {e!r}")
 
         self._size = start
 
