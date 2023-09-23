@@ -20,6 +20,13 @@
         },
         "METADATA_PROPERTIES_BLOCK": {
             "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
+            "serialized_property_values": [
+                {
+                    "id": 100,
+                    "value": "Roaming (C:\\Usu\u00e1rios\\Jonathan\\AppData)",
+                    "value_size": 97
+                }
+            ],
             "size": 495,
             "storage_size": 125,
             "version": "0x53505331"

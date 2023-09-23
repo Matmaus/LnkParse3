@@ -17,6 +17,13 @@
         },
         "METADATA_PROPERTIES_BLOCK": {
             "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
+            "serialized_property_values": [
+                {
+                    "id": 100,
+                    "value": "AnonymusBrowser-v2.0 (C:)",
+                    "value_size": 69
+                }
+            ],
             "size": 484,
             "storage_size": 97,
             "version": "0x53505331"

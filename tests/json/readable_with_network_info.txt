@@ -105,3 +105,4 @@ Windows Shortcut Information:
          Storage size: 229
          Version: 0x53505331
          Format id: B725F130-47EF-101A-A5F1-02608C9EEBAC
+         Serialized property values: [{'value_size': 73, 'id': 10, 'value': 'ETN-lift programme 2017.pdf'}, {'value_size': 21, 'id': 15, 'value': None}, {'value_size': 21, 'id': 12, 'value': None}, {'value_size': 65, 'id': 4, 'value': 'Adobe Acrobat Document'}, {'value_size': 21, 'id': 14, 'value': None}]
