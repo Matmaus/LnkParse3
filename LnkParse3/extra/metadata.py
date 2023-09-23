@@ -25,6 +25,7 @@ from enum import IntEnum
 
 
 class PropertyType(IntEnum):
+    # fmt: off
     VT_EMPTY = 0x0000 #Type is undefined, and the minimum property set version is 0.
     VT_NULL = 0x0001 #Type is null, and the minimum property set version is 0.
     VT_I2 = 0x0002 #Type is 16-bit signed integer, and the minimum property set version is 0.
@@ -111,6 +112,7 @@ class PropertyType(IntEnum):
     VT_ARRAY_UI4 = 0x2013 #Type is Array of 4-byte unsigned integers, and the minimum property set version is 1.
     VT_ARRAY_INT = 0x2016 #Type is Array of 4-byte signed integers, and the minimum property set version is 1.
     VT_ARRAY_UINT = 0x2017 #Type is Array of 4-byte unsigned integers, and the minimum property set version is 1
+    # fmt: on
 
 
 class TypedPropertyValue:
