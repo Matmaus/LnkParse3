@@ -158,7 +158,7 @@ class Metadata(LnkExtraBase):
                 if value_padding == 0:
                     match value_type:
                         case PropertyType.VT_I2:
-                            value['value'] = unpack('<I', self._raw[name_size_end + 4: name_size_end + 6])[0]
+                            value['value'] = unpack('<i', self._raw[name_size_end + 4: name_size_end + 6])[0]
                         case PropertyType.VT_LPWSTR:
                             unicode_string_size = unpack('<I', self._raw[name_size_end + 6: name_size_end + 10])[0] * 2
                             unicode_string = self._raw[name_size_end + 10: name_size_end + 10 + unicode_string_size]
