@@ -141,7 +141,7 @@ class Metadata(LnkExtraBase):
     def serialized_property_value(self):
         start = 32
         result = []
-        if self.format_id().upper() == 'D5CDD5052E9C101B939708002B2CF9AE':
+        if self.format_id() == 'D5CDD505-2E9C-101B-9397-08002B2CF9AE':
             # Serialized Property Value (String Name)
             while True:
                 value = dict()
