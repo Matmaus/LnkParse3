@@ -144,16 +144,15 @@ class TypedPropertyValue:
             return None
 
         start = 4
-        match self.value_type():
-            case PropertyType.VT_I2:
-                end = 6
-                return unpack("<i", self._raw[start:end])[0]
-            case PropertyType.VT_LPWSTR:
-                unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
-                unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
-                return self._text_processor.read_unicode_string(unicode_string)
-            case _:
-                return None
+        if self.value_type() == PropertyType.VT_I2:
+            end = 6
+            return unpack("<i", self._raw[start:end])[0]
+        elif self.value_type() == PropertyType.VT_LPWSTR:
+            unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
+            unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
+            return self._text_processor.read_unicode_string(unicode_string)
+        else:
+            return None
 
 
 class SerializedPropertyValueIntegerName:
