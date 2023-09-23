@@ -21,6 +21,13 @@
         },
         "METADATA_PROPERTIES_BLOCK": {
             "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+            "serialized_property_values": [
+                {
+                    "id": 4,
+                    "value": "S-1-5-21-1430700990-1739138600-2653947104-1104",
+                    "value_size": 113
+                }
+            ],
             "size": 153,
             "storage_size": 141,
             "version": "0x53505331"

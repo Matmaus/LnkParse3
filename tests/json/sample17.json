@@ -20,6 +20,13 @@
         },
         "METADATA_PROPERTIES_BLOCK": {
             "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
+            "serialized_property_values": [
+                {
+                    "id": 100,
+                    "value": "Asus-PC (C:\\Users)",
+                    "value_size": 57
+                }
+            ],
             "size": 544,
             "storage_size": 85,
             "version": "0x53505331"

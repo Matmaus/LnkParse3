@@ -15,6 +15,33 @@
         },
         "METADATA_PROPERTIES_BLOCK": {
             "format_id": "B725F130-47EF-101A-A5F1-02608C9EEBAC",
+            "serialized_property_values": [
+                {
+                    "id": 10,
+                    "value": "ETN-lift programme 2017.pdf",
+                    "value_size": 73
+                },
+                {
+                    "id": 15,
+                    "value": null,
+                    "value_size": 21
+                },
+                {
+                    "id": 12,
+                    "value": null,
+                    "value_size": 21
+                },
+                {
+                    "id": 4,
+                    "value": "Adobe Acrobat Document",
+                    "value_size": 65
+                },
+                {
+                    "id": 14,
+                    "value": null,
+                    "value_size": 21
+                }
+            ],
             "size": 955,
             "storage_size": 229,
             "version": "0x53505331"

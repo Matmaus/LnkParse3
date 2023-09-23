@@ -15,6 +15,13 @@
         },
         "METADATA_PROPERTIES_BLOCK": {
             "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
+            "serialized_property_values": [
+                {
+                    "id": 100,
+                    "value": "Majd Py FT-IR (C:\\Utilisateurs\\Ibrahim\\Bureau\\PostDoc\\20190101 - 20191231 KU Leuven MD SPICY\\publications\\02_Majd)",
+                    "value_size": 249
+                }
+            ],
             "size": 791,
             "storage_size": 277,
             "version": "0x53505331"
