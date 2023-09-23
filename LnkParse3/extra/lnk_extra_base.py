@@ -13,6 +13,7 @@ from LnkParse3.text_processor import TextProcessor
 class LnkExtraBase:
     def __init__(self, indata=None, cp=None):
         self._raw = indata
+        self.cp = cp
         self.text_processor = TextProcessor(cp=cp)
 
     def size(self):
