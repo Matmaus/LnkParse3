@@ -87,8 +87,8 @@ class Local(LnkInfo):
         if not self.volume_label_unicode_offset():
             return None
 
-        start = self.volume_id_offset() + self.volume_labe_unicode_offset()
+        start = self.volume_id_offset() + self.volume_label_unicode_offset()
 
-        binary = self._raw[offset:]
+        binary = self._raw[start:]
         text = self.text_processor.read_unicode_string(binary)
         return text
