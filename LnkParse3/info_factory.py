@@ -1,3 +1,6 @@
+import struct
+import warnings
+
 from LnkParse3.info.local import Local
 from LnkParse3.info.network import Network
 
@@ -33,9 +36,13 @@ class InfoFactory:
         return bool(self._lnk_info.flags() & 0x0002)
 
     def info_class(self):
-        if self._volume_id_and_local_base_path():
-            return Local
-        elif self._common_network_relative_link_and_path_suffix():
-            return Network
-        else:
+        try:
+            if self._volume_id_and_local_base_path():
+                return Local
+            elif self._common_network_relative_link_and_path_suffix():
+                return Network
+            else:
+                return None
+        except struct.error as e:
+            warnings.warn(f"Error while selecting proper Info class: {e!r}")
             return None
