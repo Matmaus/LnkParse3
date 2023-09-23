@@ -168,7 +168,7 @@ pytest tests
 Also, to see code coverage in HTML output, run:
 
 ```sh
-pytest --cov=LnkParse3 tests --cov-fail-under=85 --cov-report=html --no-cov-on-fail
+pytest --cov=LnkParse3 tests --cov-fail-under=80 --cov-report=html --no-cov-on-fail
 ```
 
 ## Code
