@@ -141,11 +141,11 @@ For more information about each data, see [Microsoft LNK documentation](https://
   - [x] **EnvironmentVariableDataBlock** [`environment.py`]
   - [x] **IconEnvironmentDataBlock** [`icon.py`]
   - [x] **KnownFolderDataBlock** [`known_folder.py`]
-  - [ ] **PropertyStoreDataBlock** [`shell_item.py`]
+  - [ ] **PropertyStoreDataBlock** [`metadata.py`] (incomplete)
   - [x] **ShimDataBlock** [`shim_layer.py`]
   - [x] **SpecialFolderDataBlock** [`special_folder.py`]
   - [x] **TrackerDataBlock** [`distributed_tracker.py`]
-  - [x] **MetadataPropertiesBlock** [`metadata.py`]
+  - [x] **VistaAndAboveIDListDataBlock** [`shell_item.py`]
 
 # Contributing
 
