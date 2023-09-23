@@ -32,7 +32,7 @@ class TestSamples(unittest.TestCase):
                 with open(json_path, 'rb') as fp:
                     their = json.load(fp)
 
-                self.assertDictEqual(our, their)
+                self.assertDictEqual(our, their, msg=f'failed on test file {entry.name!r}')
 
     def test_unwanted_attributes_are_not_printed_if_not_specified(self):
         with open('tests/samples/microsoft_example', 'rb') as indata:
