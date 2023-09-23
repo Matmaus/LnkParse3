@@ -2,6 +2,7 @@ from struct import unpack
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 from LnkParse3.decorators import uuid
 from enum import IntEnum
+
 """
 ------------------------------------------------------------------
 |     0-7b     |     8-15b     |     16-23b     |     24-31b     |
@@ -112,6 +113,135 @@ class PropertyType(IntEnum):
     VT_ARRAY_UINT = 0x2017 #Type is Array of 4-byte unsigned integers, and the minimum property set version is 1
 
 
+class TypedPropertyValue:
+    """
+    ------------------------------------------------------------------
+    |     0-7b     |     8-15b     |     16-23b     |     24-31b     |
+    ------------------------------------------------------------------
+    |      <PropertyType> Type     |        Padding == 0x0000        |
+    ------------------------------------------------------------------
+    |                       <variable> Value                         |
+    |                             ? B                                |
+    ------------------------------------------------------------------
+    """
+
+    def __init__(self, raw, text_processor):
+        self._raw = raw
+        self._text_processor = text_processor
+
+    def value_type(self):
+        start, end = 0, 2
+        return unpack("<H", self._raw[start:end])[0]
+
+    def value_padding(self):
+        start, end = 2, 4
+        return unpack("<H", self._raw[start:end])[0]
+
+    def value(self):
+        if self.value_padding() != 0:
+            return None
+
+        start = 4
+        match self.value_type():
+            case PropertyType.VT_I2:
+                end = 6
+                return unpack("<i", self._raw[start:end])[0]
+            case PropertyType.VT_LPWSTR:
+                unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
+                unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
+                return self._text_processor.read_unicode_string(unicode_string)
+            case _:
+                return None
+
+
+class SerializedPropertyValueIntegerName:
+    """
+    ------------------------------------------------------------------
+    |     0-7b     |     8-15b     |     16-23b     |     24-31b     |
+    ------------------------------------------------------------------
+    |                     <u_int32> Value Size                       |
+    ------------------------------------------------------------------
+    |                          <u_int32> ID                          |
+    ------------------------------------------------------------------
+    |   Reserved   |      <vector<TypedPropertyValue>> Value         |
+    |                             ? B                                |
+    ------------------------------------------------------------------
+    """
+
+    def __init__(self, raw, text_processor):
+        self._raw = raw
+        self._text_processor = text_processor
+
+    def value_size(self):
+        start, end = 0, 4
+        return unpack("<I", self._raw[start:end])[0]
+
+    def id(self):
+        start, end = 4, 8
+        return unpack("<I", self._raw[start:end])[0]
+
+    def value(self):
+        return TypedPropertyValue(self._raw[9:], self._text_processor).value()
+
+    def as_dict(self):
+        return {
+            "value_size": self.value_size(),
+            "id": self.id(),
+            "value": self.value(),
+        }
+
+
+class SerializedPropertyValueStringName:
+    """
+    ------------------------------------------------------------------
+    |     0-7b     |     8-15b     |     16-23b     |     24-31b     |
+    ------------------------------------------------------------------
+    |                     <u_int32> Value Size                       |
+    ------------------------------------------------------------------
+    |                      <u_int32> Name Size                       |
+    ------------------------------------------------------------------
+    |   Reserved   |                   <str> Name                    |
+    |                             ? B                                |
+    ------------------------------------------------------------------
+    |       <vector<TypedPropertyValue>> Value (see MS-OLEPS)        |
+    |                             ? B                                |
+    ------------------------------------------------------------------
+    """
+
+    def __init__(self, raw, text_processor):
+        self._raw = raw
+        self._text_processor = text_processor
+
+    def value_size(self):
+        start, end = 0, 4
+        return unpack("<I", self._raw[start:end])[0]
+
+    def name_size(self):
+        start, end = 4, 8
+        return unpack("<I", self._raw[start:end])[0]
+
+    def name(self):
+        start, end = 9, self._value_offset()
+        binary = self._raw[start:end]
+        return self.text_processor.read_unicode_string(binary)
+
+    def _value_offset(self):
+        return (9 + int(self.name_size())) * 2
+
+    def value(self):
+        return TypedPropertyValue(
+            self._raw[self.value_offset() :], self._text_processor
+        ).value()
+
+    def as_dict(self):
+        return {
+            "value_size": self.value_size(),
+            "name_size": self.name_size(),
+            "name": self.name(),
+            "value": self.value(),
+        }
+
+
 class Metadata(LnkExtraBase):
     def name(self):
         return "METADATA_PROPERTIES_BLOCK"
@@ -135,65 +265,27 @@ class Metadata(LnkExtraBase):
         tmp["storage_size"] = self.storage_size()
         tmp["version"] = self.version()
         tmp["format_id"] = self.format_id()
-        tmp["serialized_property_values"] = self.serialized_property_value()
+        tmp["serialized_property_values"] = [
+            v.as_dict() for v in self.serialized_property_values()
+        ]
         return tmp
 
-    def serialized_property_value(self):
+    def serialized_property_values(self):
         start = 32
         result = []
-        if self.format_id() == 'D5CDD505-2E9C-101B-9397-08002B2CF9AE':
-            # Serialized Property Value (String Name)
-            while True:
-                value = dict()
-                value['value_size'] = unpack('<I', self._raw[start: start + 4])[0]
-                if hex(value['value_size']) == hex(0x0):
-                    break
-                value['name_size'] = unpack('<I', self._raw[start + 4: start + 8])[0]
-                name_size_end = (start + 9 + int(value['name_size'])) * 2
-                binary = self._raw[start + 9: name_size_end]
-                value['name'] = self.text_processor.read_unicode_string(binary)
 
-                value_type = unpack('<H', self._raw[name_size_end: name_size_end + 2])[0]
-                value_padding = unpack('<H', self._raw[name_size_end + 2: name_size_end + 4])[0]
-                if value_padding == 0:
-                    match value_type:
-                        case PropertyType.VT_I2:
-                            value['value'] = unpack('<i', self._raw[name_size_end + 4: name_size_end + 6])[0]
-                        case PropertyType.VT_LPWSTR:
-                            unicode_string_size = unpack('<I', self._raw[name_size_end + 6: name_size_end + 10])[0] * 2
-                            unicode_string = self._raw[name_size_end + 10: name_size_end + 10 + unicode_string_size]
-                            value['value'] = self.text_processor.read_unicode_string(unicode_string)
-                        case _:
-                            pass
+        serialized_property_value_class = SerializedPropertyValueIntegerName
+        if self.format_id() == "D5CDD505-2E9C-101B-9397-08002B2CF9AE":
+            serialized_property_value_class = SerializedPropertyValueStringName
 
-                result.append(value)
-                start += 4 + 4 + 2 + value['name_size'] + value['value_size']
+        while True:
+            value = serialized_property_value_class(
+                self._raw[start:], self.text_processor
+            )
+            if hex(value.value_size()) == hex(0x0):
+                break
 
-            return result
-        else:
-            # Serialized Property Value (Integer Name)
-            while True:
-                value = dict()
-                value['value_size'] = unpack('<I', self._raw[start: start + 4])[0]
-                if hex(value['value_size']) == hex(0x0):
-                    break
-                value['id'] = unpack('<I', self._raw[start + 4: start + 8])[0]
+            result.append(value)
+            start += value.value_size()
 
-                value_type = unpack('<H', self._raw[start + 9: start + 11])[0]
-                value_padding = unpack('<H', self._raw[start + 11: start + 13])[0]
-
-                if value_padding == 0:
-                    match value_type:
-                        # case PropertyType.VT_I2:
-                        #     value['value'] = unpack('<I', self._raw[start + 13: start + 15])[0]
-                        case PropertyType.VT_LPWSTR:
-                            unicode_string_size = unpack('<I', self._raw[start + 13: start + 17])[0] * 2
-                            unicode_string = self._raw[start + 17: start + 17 + unicode_string_size]
-                            value['value'] = self.text_processor.read_unicode_string(unicode_string)
-                        case _:
-                            pass
-
-                result.append(value)
-                start += value['value_size']
-
-            return result
+        return result
