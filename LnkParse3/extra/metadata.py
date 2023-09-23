@@ -135,7 +135,7 @@ class Metadata(LnkExtraBase):
         tmp["storage_size"] = self.storage_size()
         tmp["version"] = self.version()
         tmp["format_id"] = self.format_id()
-        tmp["property_values"] = self.serialized_property_value()
+        tmp["serialized_property_values"] = self.serialized_property_value()
         return tmp
 
     def serialized_property_value(self):
