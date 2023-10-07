@@ -21,7 +21,8 @@
                 {
                     "id": 100,
                     "value": "AnonymusBrowser-v2.0 (C:)",
-                    "value_size": 69
+                    "value_size": 69,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 484,

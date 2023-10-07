@@ -19,7 +19,8 @@
                 {
                     "id": 100,
                     "value": "Roaming (C:\\Users\\TEMP\\AppData)",
-                    "value_size": 81
+                    "value_size": 81,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 417,

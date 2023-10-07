@@ -19,27 +19,32 @@
                 {
                     "id": 10,
                     "value": "ETN-lift programme 2017.pdf",
-                    "value_size": 73
+                    "value_size": 73,
+                    "value_type": "VT_LPWSTR"
                 },
                 {
                     "id": 15,
                     "value": null,
-                    "value_size": 21
+                    "value_size": 21,
+                    "value_type": "VT_FILETIME"
                 },
                 {
                     "id": 12,
                     "value": null,
-                    "value_size": 21
+                    "value_size": 21,
+                    "value_type": "VT_UI8"
                 },
                 {
                     "id": 4,
                     "value": "Adobe Acrobat Document",
-                    "value_size": 65
+                    "value_size": 65,
+                    "value_type": "VT_LPWSTR"
                 },
                 {
                     "id": 14,
                     "value": null,
-                    "value_size": 21
+                    "value_size": 21,
+                    "value_type": "VT_FILETIME"
                 }
             ],
             "size": 955,

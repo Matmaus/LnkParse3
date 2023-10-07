@@ -19,7 +19,8 @@
                 {
                     "id": 100,
                     "value": "React-Navigation-with-drawer (E:\\Razwan Ali\\REACT NATIVE)",
-                    "value_size": 133
+                    "value_size": 133,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 539,

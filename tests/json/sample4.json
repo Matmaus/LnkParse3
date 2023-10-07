@@ -19,7 +19,8 @@
                 {
                     "id": 100,
                     "value": "Roaming (C:\\Pou\u017e\u00edvatelia\\roman\\AppData)",
-                    "value_size": 97
+                    "value_size": 97,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 487,

@@ -26,7 +26,8 @@
                 {
                     "id": 4,
                     "value": "S-1-5-21-3711686801-687107597-1149503783-1001",
-                    "value_size": 109
+                    "value_size": 109,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 149,

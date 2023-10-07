@@ -17,7 +17,8 @@
                 {
                     "id": 104,
                     "value": null,
-                    "value_size": 29
+                    "value_size": 29,
+                    "value_type": "VT_CLSID"
                 }
             ],
             "size": 69,
