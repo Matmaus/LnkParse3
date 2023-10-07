@@ -98,7 +98,7 @@ Windows Shortcut Information:
                   Property:
                      Value size: 21
                      Id: 15
-                     Value: None
+                     Value: 2018-08-30 23:42:24+00:00
                      Value type: VT_FILETIME
                   Property:
                      Value size: 53
@@ -108,7 +108,7 @@ Windows Shortcut Information:
                   Property:
                      Value size: 21
                      Id: 14
-                     Value: None
+                     Value: 2020-04-26 10:29:23.293963+00:00
                      Value type: VT_FILETIME
             Storage:
                Storage size: 137

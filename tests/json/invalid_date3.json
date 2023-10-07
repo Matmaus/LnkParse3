@@ -33,7 +33,7 @@
                     "serialized_property_values": [
                         {
                             "id": 15,
-                            "value": null,
+                            "value": "2020-08-25T18:03:30+00:00",
                             "value_size": 21,
                             "value_type": "VT_FILETIME"
                         },
@@ -45,7 +45,7 @@
                         },
                         {
                             "id": 14,
-                            "value": null,
+                            "value": "2020-09-11T11:46:36+00:00",
                             "value_size": 21,
                             "value_type": "VT_FILETIME"
                         }

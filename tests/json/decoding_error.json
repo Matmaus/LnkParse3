@@ -39,7 +39,7 @@
                         },
                         {
                             "id": 15,
-                            "value": null,
+                            "value": "2020-09-02T10:30:22+00:00",
                             "value_size": 21,
                             "value_type": "VT_FILETIME"
                         },
@@ -51,7 +51,7 @@
                         },
                         {
                             "id": 14,
-                            "value": null,
+                            "value": "2020-09-02T10:46:37+00:00",
                             "value_size": 21,
                             "value_type": "VT_FILETIME"
                         }

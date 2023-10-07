@@ -1,6 +1,7 @@
 from struct import unpack
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 from LnkParse3.decorators import uuid
+from LnkParse3.utils import parse_filetime
 from enum import IntEnum
 
 """
@@ -146,6 +147,9 @@ class TypedPropertyValue:
             unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
             unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
             return self._text_processor.read_unicode_string(unicode_string)
+        elif self.value_type() == PropertyType.VT_FILETIME:
+            end = 12
+            return parse_filetime(self._raw[start:end])
         else:
             return None
 
