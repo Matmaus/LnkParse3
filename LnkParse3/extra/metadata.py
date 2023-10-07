@@ -11,14 +11,9 @@ from enum import IntEnum
 ------------------------------------------------------------------
 |            <u_int32> BlockSignature == 0xA0000009              |
 ------------------------------------------------------------------
-|                    <u_int32> StorageSize                       |
+|                     <u_int32> StoreSize                        |
 ------------------------------------------------------------------
-|                    Version == 0x53505331                       |
-------------------------------------------------------------------
-|                      <GUID> FormatID                           |
-|                            16 B                                |
-------------------------------------------------------------------
-|   <vector<MS_OLEPS>> SerializedPropertyValue (see MS-OLEPS)    |
+|       <vector<SerilaizedPropertyStorage>> PropertyStore        |
 |                             ? B                                |
 ------------------------------------------------------------------
 """
@@ -245,36 +240,43 @@ class SerializedPropertyValueStringName:
         }
 
 
-class Metadata(LnkExtraBase):
-    def name(self):
-        return "METADATA_PROPERTIES_BLOCK"
+class SerializedPropertyStorage:
+    """
+    ------------------------------------------------------------------
+    |     0-7b     |     8-15b     |     16-23b     |     24-31b     |
+    ------------------------------------------------------------------
+    |                    <u_int32> StorageSize                       |
+    ------------------------------------------------------------------
+    |                    Version == 0x53505331                       |
+    ------------------------------------------------------------------
+    |                      <GUID> FormatID                           |
+    |                            16 B                                |
+    ------------------------------------------------------------------
+    |   <vector<SerializedPropertyValue>> SerializedPropertyValues   |
+    |                             ? B                                |
+    ------------------------------------------------------------------
+    """
+
+    def __init__(self, raw, text_processor):
+        self._raw = raw
+        self._text_processor = text_processor
 
     def storage_size(self):
-        start, end = 8, 12
+        start, end = 0, 4
         return unpack("<I", self._raw[start:end])[0]
 
     def version(self):
-        start, end = 12, 16
+        start, end = 4, 8
         version = unpack("<I", self._raw[start:end])[0]
         return hex(version)
 
     @uuid
     def format_id(self):
-        start, end = 16, 32
+        start, end = 8, 24
         return self._raw[start:end]
 
-    def as_dict(self):
-        tmp = super().as_dict()
-        tmp["storage_size"] = self.storage_size()
-        tmp["version"] = self.version()
-        tmp["format_id"] = self.format_id()
-        tmp["serialized_property_values"] = [
-            v.as_dict() for v in self.serialized_property_values()
-        ]
-        return tmp
-
     def serialized_property_values(self):
-        start = 32
+        start = 24
         result = []
 
         serialized_property_value_class = SerializedPropertyValueIntegerName
@@ -283,7 +285,7 @@ class Metadata(LnkExtraBase):
 
         while True:
             value = serialized_property_value_class(
-                self._raw[start:], self.text_processor
+                self._raw[start:], self._text_processor
             )
             if hex(value.value_size()) == hex(0x0):
                 break
@@ -292,3 +294,41 @@ class Metadata(LnkExtraBase):
             start += value.value_size()
 
         return result
+
+    def as_dict(self):
+        return {
+            "storage_size": self.storage_size(),
+            "version": self.version(),
+            "format_id": self.format_id(),
+            "serialized_property_values": [
+                v.as_dict() for v in self.serialized_property_values()
+            ],
+        }
+
+
+class Metadata(LnkExtraBase):
+    def name(self):
+        return "METADATA_PROPERTIES_BLOCK"
+
+    def store_size(self):
+        start, end = 4, 8
+        return unpack("<I", self._raw[start:end])[0]
+
+    def property_store(self):
+        start = 8
+        result = []
+
+        while True:
+            storage = SerializedPropertyStorage(self._raw[start:], self.text_processor)
+            if hex(storage.storage_size()) == hex(0x0):
+                break
+
+            result.append(storage)
+            start += storage.storage_size()
+
+        return result
+
+    def as_dict(self):
+        tmp = super().as_dict()
+        tmp["property_store"] = [storage.as_dict() for storage in self.property_store()]
+        return tmp

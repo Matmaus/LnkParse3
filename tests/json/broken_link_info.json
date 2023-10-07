@@ -15,18 +15,22 @@
             "version": 0
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "446D16B1-8DAD-4870-A748-402EA43D788C",
-            "serialized_property_values": [
+            "property_store": [
                 {
-                    "id": 104,
-                    "value": null,
-                    "value_size": 29,
-                    "value_type": "VT_CLSID"
+                    "format_id": "446D16B1-8DAD-4870-A748-402EA43D788C",
+                    "serialized_property_values": [
+                        {
+                            "id": 104,
+                            "value": null,
+                            "value_size": 29,
+                            "value_type": "VT_CLSID"
+                        }
+                    ],
+                    "storage_size": 57,
+                    "version": "0x53505331"
                 }
             ],
-            "size": 69,
-            "storage_size": 57,
-            "version": "0x53505331"
+            "size": 69
         }
     },
     "header": {

@@ -21,18 +21,22 @@
             "target_unicode": "%SystemDrive%\\b5tcj\\e25d12f380_96.ico"
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
-            "serialized_property_values": [
+            "property_store": [
                 {
-                    "id": 4,
-                    "value": "S-1-5-21-1060911111-3814209971-2681025962-500",
-                    "value_size": 109,
-                    "value_type": "VT_LPWSTR"
+                    "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                    "serialized_property_values": [
+                        {
+                            "id": 4,
+                            "value": "S-1-5-21-1060911111-3814209971-2681025962-500",
+                            "value_size": 109,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 137,
+                    "version": "0x53505331"
                 }
             ],
-            "size": 149,
-            "storage_size": 137,
-            "version": "0x53505331"
+            "size": 149
         }
     },
     "header": {
