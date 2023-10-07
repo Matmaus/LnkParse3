@@ -3,6 +3,7 @@ from datetime import timezone
 from struct import unpack
 import functools
 import sys
+import warnings
 
 
 def parse_uuid(binary):
