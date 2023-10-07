@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2023-10-07
+### Fixed
+- Add missing import
+
 ## [1.3.0] - 2023-10-07
 ### Added
 - Add support to process `SerializedPropertyValue` property in `METADATA_PROPERTIES_BLOCK`

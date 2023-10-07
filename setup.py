@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='LnkParse3',
-    version='1.3.0',
+    version='1.3.1',
     description='Windows Shortcut file (LNK) parser',
     long_description=long_description,
     long_description_content_type="text/markdown",
