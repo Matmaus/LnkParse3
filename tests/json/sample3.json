@@ -7,17 +7,20 @@
                 {
                     "id": 9,
                     "value": null,
-                    "value_size": 17
+                    "value_size": 17,
+                    "value_type": "VT_BOOL"
                 },
                 {
                     "id": 18,
                     "value": null,
-                    "value_size": 17
+                    "value_size": 17,
+                    "value_type": "VT_UI4"
                 },
                 {
                     "id": 5,
                     "value": "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}\\\\\\?\\usb#vid_12d1&pid_107e&mi_00#6&166135c4&0&0000#{6ac27878-a6fa-4155-ba85-f98f491d4f33}\\SID-{10001,,116775714816}\\{00000015-0001-0001-0000-000000000000}",
-                    "value_size": 409
+                    "value_size": 409,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 483,

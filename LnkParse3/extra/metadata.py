@@ -182,13 +182,14 @@ class SerializedPropertyValueIntegerName:
         return unpack("<I", self._raw[start:end])[0]
 
     def value(self):
-        return TypedPropertyValue(self._raw[9:], self._text_processor).value()
+        return TypedPropertyValue(self._raw[9:], self._text_processor)
 
     def as_dict(self):
         return {
             "value_size": self.value_size(),
             "id": self.id(),
-            "value": self.value(),
+            "value": self.value().value(),
+            "value_type": PropertyType(self.value().value_type()).name,
         }
 
 
@@ -232,14 +233,15 @@ class SerializedPropertyValueStringName:
     def value(self):
         return TypedPropertyValue(
             self._raw[self.value_offset() :], self._text_processor
-        ).value()
+        )
 
     def as_dict(self):
         return {
             "value_size": self.value_size(),
             "name_size": self.name_size(),
             "name": self.name(),
-            "value": self.value(),
+            "value": self.value().value(),
+            "value_type": PropertyType(self.value().value_type()).name,
         }
 
 

@@ -19,7 +19,8 @@
                 {
                     "id": 100,
                     "value": "Majd Py FT-IR (C:\\Utilisateurs\\Ibrahim\\Bureau\\PostDoc\\20190101 - 20191231 KU Leuven MD SPICY\\publications\\02_Majd)",
-                    "value_size": 249
+                    "value_size": 249,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 791,

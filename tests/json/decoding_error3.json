@@ -21,7 +21,8 @@
                 {
                     "id": 100,
                     "value": "Mod for Pixelmon (C:\\Users\\\u0414\u0438\u043c\u0430\\\u0420\u0430\u0431\u043e\u0447\u0438\u0439 \u0441\u0442\u043e\u043b\\PixelMod)",
-                    "value_size": 129
+                    "value_size": 129,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 592,

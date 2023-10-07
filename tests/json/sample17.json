@@ -24,7 +24,8 @@
                 {
                     "id": 100,
                     "value": "Asus-PC (C:\\Users)",
-                    "value_size": 57
+                    "value_size": 57,
+                    "value_type": "VT_LPWSTR"
                 }
             ],
             "size": 544,
