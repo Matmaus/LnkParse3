@@ -14,42 +14,72 @@
             "version": 0
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "B725F130-47EF-101A-A5F1-02608C9EEBAC",
-            "serialized_property_values": [
+            "property_store": [
                 {
-                    "id": 10,
-                    "value": "ETN-lift programme 2017.pdf",
-                    "value_size": 73,
-                    "value_type": "VT_LPWSTR"
+                    "format_id": "B725F130-47EF-101A-A5F1-02608C9EEBAC",
+                    "serialized_property_values": [
+                        {
+                            "id": 10,
+                            "value": "ETN-lift programme 2017.pdf",
+                            "value_size": 73,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 15,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        },
+                        {
+                            "id": 12,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_UI8"
+                        },
+                        {
+                            "id": 4,
+                            "value": "Adobe Acrobat Document",
+                            "value_size": 65,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 14,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        }
+                    ],
+                    "storage_size": 229,
+                    "version": "0x53505331"
                 },
                 {
-                    "id": 15,
-                    "value": null,
-                    "value_size": 21,
-                    "value_type": "VT_FILETIME"
+                    "format_id": "28636AA6-953D-11D2-B5D6-00C04FD918D0",
+                    "serialized_property_values": [
+                        {
+                            "id": 30,
+                            "value": "Z:\\A - LM METAL LIFT\\01.OBCHOD - BRO\u017dURY - Prodejn\u00ed a technick\u00e9 informace o produktech\\ETN\\ETN-Katalog-ENG\\Katalog ETN 10_2017\\Lift-programme\\ETN-lift programme 2017.pdf",
+                            "value_size": 357,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 385,
+                    "version": "0x53505331"
                 },
                 {
-                    "id": 12,
-                    "value": null,
-                    "value_size": 21,
-                    "value_type": "VT_UI8"
-                },
-                {
-                    "id": 4,
-                    "value": "Adobe Acrobat Document",
-                    "value_size": 65,
-                    "value_type": "VT_LPWSTR"
-                },
-                {
-                    "id": 14,
-                    "value": null,
-                    "value_size": 21,
-                    "value_type": "VT_FILETIME"
+                    "format_id": "E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD",
+                    "serialized_property_values": [
+                        {
+                            "id": 6,
+                            "value": "Z:\\A - LM METAL LIFT\\01.OBCHOD - BRO\u017dURY - Prodejn\u00ed a technick\u00e9 informace o produktech\\ETN\\ETN-Katalog-ENG\\Katalog ETN 10_2017\\Lift-programme",
+                            "value_size": 301,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 329,
+                    "version": "0x53505331"
                 }
             ],
-            "size": 955,
-            "storage_size": 229,
-            "version": "0x53505331"
+            "size": 955
         }
     },
     "header": {

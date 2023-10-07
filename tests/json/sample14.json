@@ -16,18 +16,85 @@
             "version": 0
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
-            "serialized_property_values": [
+            "property_store": [
                 {
-                    "id": 100,
-                    "value": "AnonymusBrowser-v2.0 (C:)",
-                    "value_size": 69,
-                    "value_type": "VT_LPWSTR"
+                    "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
+                    "serialized_property_values": [
+                        {
+                            "id": 100,
+                            "value": "AnonymusBrowser-v2.0 (C:)",
+                            "value_size": 69,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 97,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "B725F130-47EF-101A-A5F1-02608C9EEBAC",
+                    "serialized_property_values": [
+                        {
+                            "id": 10,
+                            "value": "AnonymusBrowser.exe",
+                            "value_size": 57,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 15,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        },
+                        {
+                            "id": 12,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_UI8"
+                        },
+                        {
+                            "id": 4,
+                            "value": "Uygulama",
+                            "value_size": 37,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 14,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        }
+                    ],
+                    "storage_size": 185,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "28636AA6-953D-11D2-B5D6-00C04FD918D0",
+                    "serialized_property_values": [
+                        {
+                            "id": 30,
+                            "value": "C:\\AnonymusBrowser-v2.0\\AnonymusBrowser.exe",
+                            "value_size": 105,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 133,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "446D16B1-8DAD-4870-A748-402EA43D788C",
+                    "serialized_property_values": [
+                        {
+                            "id": 104,
+                            "value": null,
+                            "value_size": 29,
+                            "value_type": "VT_CLSID"
+                        }
+                    ],
+                    "storage_size": 57,
+                    "version": "0x53505331"
                 }
             ],
-            "size": 484,
-            "storage_size": 97,
-            "version": "0x53505331"
+            "size": 484
         }
     },
     "header": {

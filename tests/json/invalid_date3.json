@@ -14,18 +14,73 @@
             "version": 0
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
-            "serialized_property_values": [
+            "property_store": [
                 {
-                    "id": 100,
-                    "value": "\u0420\u0430\u0431\u043e\u0447\u0438\u0439 \u0441\u0442\u043e\u043b (C:\\\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438\\\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c)",
-                    "value_size": 105,
-                    "value_type": "VT_LPWSTR"
+                    "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
+                    "serialized_property_values": [
+                        {
+                            "id": 100,
+                            "value": "\u0420\u0430\u0431\u043e\u0447\u0438\u0439 \u0441\u0442\u043e\u043b (C:\\\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438\\\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c)",
+                            "value_size": 105,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 133,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "B725F130-47EF-101A-A5F1-02608C9EEBAC",
+                    "serialized_property_values": [
+                        {
+                            "id": 15,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        },
+                        {
+                            "id": 4,
+                            "value": "\u041f\u0430\u043f\u043a\u0430 \u0441 \u0444\u0430\u0439\u043b\u0430\u043c\u0438",
+                            "value_size": 49,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 14,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        }
+                    ],
+                    "storage_size": 119,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "28636AA6-953D-11D2-B5D6-00C04FD918D0",
+                    "serialized_property_values": [
+                        {
+                            "id": 30,
+                            "value": "C:\\Users\\\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c\\Desktop\\",
+                            "value_size": 81,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 109,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "446D16B1-8DAD-4870-A748-402EA43D788C",
+                    "serialized_property_values": [
+                        {
+                            "id": 104,
+                            "value": null,
+                            "value_size": 29,
+                            "value_type": "VT_CLSID"
+                        }
+                    ],
+                    "storage_size": 57,
+                    "version": "0x53505331"
                 }
             ],
-            "size": 430,
-            "storage_size": 133,
-            "version": "0x53505331"
+            "size": 430
         }
     },
     "header": {

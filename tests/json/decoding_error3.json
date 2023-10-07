@@ -16,18 +16,85 @@
             "version": 0
         },
         "METADATA_PROPERTIES_BLOCK": {
-            "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
-            "serialized_property_values": [
+            "property_store": [
                 {
-                    "id": 100,
-                    "value": "Mod for Pixelmon (C:\\Users\\\u0414\u0438\u043c\u0430\\\u0420\u0430\u0431\u043e\u0447\u0438\u0439 \u0441\u0442\u043e\u043b\\PixelMod)",
-                    "value_size": 129,
-                    "value_type": "VT_LPWSTR"
+                    "format_id": "DABD30ED-0043-4789-A7F8-D013A4736622",
+                    "serialized_property_values": [
+                        {
+                            "id": 100,
+                            "value": "Mod for Pixelmon (C:\\Users\\\u0414\u0438\u043c\u0430\\\u0420\u0430\u0431\u043e\u0447\u0438\u0439 \u0441\u0442\u043e\u043b\\PixelMod)",
+                            "value_size": 129,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 157,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "B725F130-47EF-101A-A5F1-02608C9EEBAC",
+                    "serialized_property_values": [
+                        {
+                            "id": 10,
+                            "value": "Error Fix.bat",
+                            "value_size": 45,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 15,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        },
+                        {
+                            "id": 12,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_UI8"
+                        },
+                        {
+                            "id": 4,
+                            "value": "\u041f\u0430\u043a\u0435\u0442\u043d\u044b\u0439 \u0444\u0430\u0439\u043b Windows",
+                            "value_size": 61,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 14,
+                            "value": null,
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        }
+                    ],
+                    "storage_size": 197,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "28636AA6-953D-11D2-B5D6-00C04FD918D0",
+                    "serialized_property_values": [
+                        {
+                            "id": 30,
+                            "value": "C:\\Users\\\u0414\u0438\u043c\u0430\\Desktop\\PixelMod\\Mod for Pixelmon\\Error Fix.bat",
+                            "value_size": 141,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 169,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "446D16B1-8DAD-4870-A748-402EA43D788C",
+                    "serialized_property_values": [
+                        {
+                            "id": 104,
+                            "value": null,
+                            "value_size": 29,
+                            "value_type": "VT_CLSID"
+                        }
+                    ],
+                    "storage_size": 57,
+                    "version": "0x53505331"
                 }
             ],
-            "size": 592,
-            "storage_size": 157,
-            "version": "0x53505331"
+            "size": 592
         }
     },
     "header": {
