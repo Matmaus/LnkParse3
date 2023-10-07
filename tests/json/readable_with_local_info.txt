@@ -77,4 +77,9 @@ Windows Shortcut Information:
          Storage size: 125
          Version: 0x53505331
          Format id: DABD30ED-0043-4789-A7F8-D013A4736622
-         Serialized property values: [{'value_size': 97, 'id': 100, 'value': 'Roaming (C:\\Usuários\\Jonathan\\AppData)', 'value_type': 'VT_LPWSTR'}]
+         Serialized property values:
+            Property:
+               Value size: 97
+               Id: 100
+               Value: Roaming (C:\Usuários\Jonathan\AppData)
+               Value type: VT_LPWSTR
