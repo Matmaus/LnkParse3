@@ -257,7 +257,14 @@ class LnkFile(object):
         for extra_key, extra_value in self.extras.as_dict().items():
             cprint(f"{extra_key}", 2)
             for key, value in extra_value.items():
-                cprint(f"{nice_id(key)}: {value}", 3)
+                if extra_key == "METADATA_PROPERTIES_BLOCK" and isinstance(value, list):
+                    cprint(f"{nice_id(key)}:", 3)
+                    for item in value:
+                        cprint("Property:", 4)
+                        for item_key, item_value in item.items():
+                            cprint(f"{nice_id(item_key)}: {item_value}", 5)
+                else:
+                    cprint(f"{nice_id(key)}: {value}", 3)
 
     def format_linkFlags(self):
         return " | ".join(self.header.link_flags())
