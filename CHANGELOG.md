@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2023-10-07
+### Added
+- Add support to process `SerializedPropertyValue` property in `METADATA_PROPERTIES_BLOCK`
+- Add support to process `IDList` property in `SHELL_ITEM_IDENTIFIER_BLOCK`
+### Fixed
+- Fix issues in`Local.volume_label_unicode` method
+- Catch exception when parsing `StringData`
+- Catch exception when detecting a proper Info class (`Local`/`Network`)
+- Catch exception when parsing `ExtraData`
+
 ## [1.2.1] - 2023-09-08
 ### Fixed
 - Catch possible exception when processing extra_factory data, where a size is reported with no accompanying data (@ddash-ct)
