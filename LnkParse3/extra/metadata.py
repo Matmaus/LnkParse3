@@ -172,6 +172,11 @@ class TypedPropertyValue:
         elif self.value_type() == PropertyType.VT_R8:
             end = 12
             return unpack("<d", self._raw[start:end])[0]
+        # Other
+        elif self.value_type() == PropertyType.VT_CY:
+            end = 12
+            currency = unpack("<Q", self._raw[start:end])[0]
+            return currency / 10000
         elif self.value_type() == PropertyType.VT_LPWSTR:
             unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
             unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
