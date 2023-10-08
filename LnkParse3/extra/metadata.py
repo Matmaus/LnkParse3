@@ -241,6 +241,11 @@ class TypedPropertyValue:
         elif self.value_type() == PropertyType.VT_FILETIME:
             end = 12
             return parse_filetime(self._raw[start:end])
+        elif self.value_type() in [PropertyType.VT_BLOB, PropertyType.VT_BLOB_Object]:
+            # In case any issue will occur, try handle optional padding.
+            end = 8
+            blob_size = unpack("<I", self._raw[start:end])[0]
+            return hex(self._raw[end : end + blob_size])
         elif self.value_type() == PropertyType.VT_CLSID:
             end = 20
             return parse_uuid(self._raw[start:end])
