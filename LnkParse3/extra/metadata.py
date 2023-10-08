@@ -206,6 +206,12 @@ class TypedPropertyValue:
                 milliseconds=milliseconds,
                 microseconds=microseconds,
             )
+        elif self.value_type() in [PropertyType.VT_BSTR, PropertyType.VT_LPSTR]:
+            # In case any issue will occur, search for expected CodePage.
+            end = 8
+            string_size = unpack("<I", self._raw[start:end])[0]
+            string = self._raw[start + 4 : start + 4 + string_size]
+            return self._text_processor.read_unicode_string(string)
         elif self.value_type() == PropertyType.VT_LPWSTR:
             unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
             unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
