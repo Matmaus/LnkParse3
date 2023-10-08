@@ -140,9 +140,38 @@ class TypedPropertyValue:
             return None
 
         start = 4
-        if self.value_type() == PropertyType.VT_I2:
+        # Integer
+        if self.value_type() == PropertyType.VT_I1:
+            end = 5
+            return unpack("<b", self._raw[start:end])[0]
+        elif self.value_type() == PropertyType.VT_UI1:
+            end = 5
+            return unpack("<B", self._raw[start:end])[0]
+        elif self.value_type() == PropertyType.VT_I2:
             end = 6
+            return unpack("<h", self._raw[start:end])[0]
+        elif self.value_type() == PropertyType.VT_UI2:
+            end = 6
+            return unpack("<H", self._raw[start:end])[0]
+        elif self.value_type() == PropertyType.VT_I4:
+            end = 8
             return unpack("<i", self._raw[start:end])[0]
+        elif self.value_type() in [PropertyType.VT_UI4, PropertyType.VT_UINT]:
+            end = 8
+            return unpack("<I", self._raw[start:end])[0]
+        if self.value_type() == PropertyType.VT_I8:
+            end = 12
+            return unpack("<q", self._raw[start:end])[0]
+        if self.value_type() == PropertyType.VT_UI8:
+            end = 12
+            return unpack("<Q", self._raw[start:end])[0]
+        # Float
+        elif self.value_type() in [PropertyType.VT_R4, PropertyType.VT_INT]:
+            end = 8
+            return unpack("<f", self._raw[start:end])[0]
+        elif self.value_type() == PropertyType.VT_R8:
+            end = 12
+            return unpack("<d", self._raw[start:end])[0]
         elif self.value_type() == PropertyType.VT_LPWSTR:
             unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
             unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]

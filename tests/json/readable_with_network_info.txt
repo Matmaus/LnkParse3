@@ -121,7 +121,7 @@ Windows Shortcut Information:
                   Property:
                      Value size: 21
                      Id: 12
-                     Value: None
+                     Value: 21895266
                      Value type: VT_UI8
                   Property:
                      Value size: 65
