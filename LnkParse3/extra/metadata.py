@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta, timezone
 from struct import unpack
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 from LnkParse3.decorators import uuid
@@ -177,6 +178,34 @@ class TypedPropertyValue:
             end = 12
             currency = unpack("<Q", self._raw[start:end])[0]
             return currency / 10000
+        elif self.value_type() == PropertyType.VT_DATE:
+            end = 12
+            days_raw = unpack("<Q", self._raw[start:end])[0]
+            days = int(date)
+            days_remaining = days_raw - days
+            hours_raw = 24 * days_remaining
+            hours = int(seconds)
+            hours_remaining = hours_raw - hours
+            minutes_raw = 60 * hours_remaining
+            minutes = int(minutes_raw)
+            minutes_remaining = minutes_raw - minutes
+            seconds_raw = 60 * minutes_remaining
+            seconds = int(seconds_raw)
+            seconds_remaining = seconds_raw - seconds
+            milliseconds_raw = 1000 * seconds_remaining
+            milliseconds = int(milliseconds_raw)
+            milliseconds_remaining = milliseconds_raw - milliseconds
+            microseconds_raw = 1000 * milliseconds_remaining
+            microseconds = int(microseconds_raw)
+            microseconds_remaining = microseconds_raw - microseconds
+            return datetime(1899, 12, 30, tz=timezone.utc) + timedelta(
+                days=days,
+                hours=hours,
+                minutes=minutes,
+                seconds=seconds,
+                milliseconds=milliseconds,
+                microseconds=microseconds,
+            )
         elif self.value_type() == PropertyType.VT_LPWSTR:
             unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
             unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
