@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, timezone
 from struct import unpack
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 from LnkParse3.decorators import uuid
-from LnkParse3.utils import parse_filetime
+from LnkParse3.utils import parse_filetime, parse_uuid
 from enum import IntEnum
 
 """
@@ -231,6 +231,9 @@ class TypedPropertyValue:
         elif self.value_type() == PropertyType.VT_FILETIME:
             end = 12
             return parse_filetime(self._raw[start:end])
+        elif self.value_type() == PropertyType.VT_CLSID:
+            end = 20
+            return parse_uuid(self._raw[start:end])
         else:
             return None
 

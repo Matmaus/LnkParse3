@@ -128,5 +128,5 @@ Windows Shortcut Information:
                   Property:
                      Value size: 29
                      Id: 104
-                     Value: None
+                     Value: 944DD64C-0112-4748-96D7-6424D92292F1
                      Value type: VT_CLSID

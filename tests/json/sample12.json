@@ -85,7 +85,7 @@
                     "serialized_property_values": [
                         {
                             "id": 104,
-                            "value": null,
+                            "value": "023067A7-0000-0000-0000-501F00000000",
                             "value_size": 29,
                             "value_type": "VT_CLSID"
                         }
