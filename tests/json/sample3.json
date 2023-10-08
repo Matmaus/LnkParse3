@@ -8,7 +8,7 @@
                     "serialized_property_values": [
                         {
                             "id": 9,
-                            "value": null,
+                            "value": "True",
                             "value_size": 17,
                             "value_type": "VT_BOOL"
                         },
