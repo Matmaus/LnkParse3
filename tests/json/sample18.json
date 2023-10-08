@@ -1,0 +1,190 @@
+{
+    "data": {
+        "relative_path": ".\\Ekonomick\u00e1 pravidla Manatech CZ 2004.doc",
+        "working_directory": "C:\\Users\\Lesinova\\Documents"
+    },
+    "extra": {
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "2505C52A-E7D1-11EC-8014-E0D55E95DCF9",
+            "birth_droid_volume_identifier": "86E46C96-EF2B-4431-AF1C-24F9EE11E97B",
+            "droid_file_identifier": "2505C52A-E7D1-11EC-8014-E0D55E95DCF9",
+            "droid_volume_identifier": "86E46C96-EF2B-4431-AF1C-24F9EE11E97B",
+            "length": 88,
+            "machine_identifier": "desktop-25ed9ko",
+            "size": 96,
+            "version": 0
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "property_store": [
+                {
+                    "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                    "serialized_property_values": [
+                        {
+                            "id": 4,
+                            "value": [
+                                "Ing. Zden\u011bk T\u016fma"
+                            ],
+                            "value_size": 57,
+                            "value_type": "VT_VECTOR_LPWSTR"
+                        },
+                        {
+                            "id": 2,
+                            "value": "-",
+                            "value_size": 21,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 106,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "B725F130-47EF-101A-A5F1-02608C9EEBAC",
+                    "serialized_property_values": [
+                        {
+                            "id": 10,
+                            "value": "Ekonomick\u00e1 pravidla Manatech CZ 2004.doc",
+                            "value_size": 101,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 15,
+                            "value": "2018-07-12T09:27:36+00:00",
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        },
+                        {
+                            "id": 12,
+                            "value": 253440,
+                            "value_size": 21,
+                            "value_type": "VT_UI8"
+                        },
+                        {
+                            "id": 4,
+                            "value": "Dokument aplikace Microsoft Word 97\u20132003",
+                            "value_size": 101,
+                            "value_type": "VT_LPWSTR"
+                        },
+                        {
+                            "id": 14,
+                            "value": "2005-11-29T10:44:12+00:00",
+                            "value_size": 21,
+                            "value_type": "VT_FILETIME"
+                        }
+                    ],
+                    "storage_size": 293,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "28636AA6-953D-11D2-B5D6-00C04FD918D0",
+                    "serialized_property_values": [
+                        {
+                            "id": 30,
+                            "value": "C:\\Users\\Lesinova\\Documents\\Ekonomick\u00e1 pravidla Manatech CZ 2004.doc",
+                            "value_size": 157,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 185,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "446D16B1-8DAD-4870-A748-402EA43D788C",
+                    "serialized_property_values": [
+                        {
+                            "id": 104,
+                            "value": "50C9ABAE-0A81-421D-AD5F-75C8D39EDB50",
+                            "value_size": 29,
+                            "value_type": "VT_CLSID"
+                        }
+                    ],
+                    "storage_size": 57,
+                    "version": "0x53505331"
+                },
+                {
+                    "format_id": "E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD",
+                    "serialized_property_values": [
+                        {
+                            "id": 6,
+                            "value": "C:\\Users\\Lesinova\\Dokumenty",
+                            "value_size": 73,
+                            "value_type": "VT_LPWSTR"
+                        }
+                    ],
+                    "storage_size": 101,
+                    "version": "0x53505331"
+                }
+            ],
+            "size": 754
+        }
+    },
+    "header": {
+        "accessed_time": "2022-06-09T09:49:38+00:00",
+        "creation_time": "2018-07-12T09:27:34+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
+        "file_size": 253440,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "HasWorkingDir",
+            "IsUnicode",
+            "EnableTargetMetadata"
+        ],
+        "modified_time": "2005-11-29T10:44:12+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 524443,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 121,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 122,
+        "local_base_path": "C:\\Users\\Lesinova\\Documents\\Ekonomick\u00e1 pravidla Manatech CZ 2004.doc",
+        "local_base_path_offset": 52,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x6cc909a8",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 24,
+            "volume_label": "Windows",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "59031A47-3F72-44A7-89C5-5595FE6B30EE",
+                "sort_index": "Users"
+            },
+            {
+                "class": "Unknown"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 32,
+                "file_size": 253440,
+                "flags": "Is file",
+                "modification_time": "2005-11-29T10:44:12+00:00",
+                "primary_name": "EKONOM~1.DOC"
+            }
+        ],
+        "size": 250
+    }
+}

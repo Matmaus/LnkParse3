@@ -1,0 +1,201 @@
+{
+    "data": {
+        "command_line_arguments": "/C start \"\" \"%CD%\\bin\\krita.exe\" --workspace Animation",
+        "icon_location": "C:\\dev\\i\\bin\\krita.exe",
+        "relative_path": "..\\..\\..\\..\\Windows\\System32\\cmd.exe"
+    },
+    "extra": {
+        "CONSOLE_PROPERTIES_BLOCK": {
+            "auto_position": 1,
+            "color_table": 0,
+            "cursor_size": 25,
+            "face_name": "Lucida Console",
+            "fill_attributes": 15,
+            "font_family": 54,
+            "font_size": 917504,
+            "font_weight": 400,
+            "full_screen": 0,
+            "history_buffer_size": 999,
+            "history_no_dup": 0,
+            "insert_mode": 1,
+            "number_of_history_buffers": 4,
+            "popup_fill_attributes": 245,
+            "quick_edit": 1,
+            "screen_buffer_size_x": 120,
+            "screen_buffer_size_y": 9999,
+            "size": 204,
+            "window_origin_x": 0,
+            "window_origin_y": 0,
+            "window_size_x": 120,
+            "window_size_y": 30
+        },
+        "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+            "birth_droid_file_identifier": "26F8D509-26A0-11E2-B8B9-5404A6A1DD3D",
+            "birth_droid_volume_identifier": "0F318DEE-CE5B-41BF-B119-E2194663116F",
+            "droid_file_identifier": "26F8D509-26A0-11E2-B8B9-5404A6A1DD3D",
+            "droid_volume_identifier": "0F318DEE-CE5B-41BF-B119-E2194663116F",
+            "length": 88,
+            "machine_identifier": "bighost7",
+            "size": 96,
+            "version": 0
+        },
+        "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+            "size": 788,
+            "target_ansi": "%COMSPEC%",
+            "target_unicode": "%COMSPEC%"
+        },
+        "ICON_LOCATION_BLOCK": {
+            "size": 788,
+            "target_ansi": "%SystemDrive%\\dev\\i\\bin\\krita.exe",
+            "target_unicode": "%SystemDrive%\\dev\\i\\bin\\krita.exe"
+        },
+        "KNOWN_FOLDER_LOCATION_BLOCK": {
+            "known_folder_id": "1AC14E77-02E7-4E5D-B744-2EB1AE5198B7",
+            "offset": 213,
+            "size": 28
+        },
+        "METADATA_PROPERTIES_BLOCK": {
+            "property_store": [
+                {
+                    "format_id": "0C570607-0396-43DE-9D61-E321D7DF5026",
+                    "serialized_property_values": [
+                        {
+                            "id": 3,
+                            "value": "True",
+                            "value_size": 17,
+                            "value_type": "VT_BOOL"
+                        },
+                        {
+                            "id": 1,
+                            "value": "True",
+                            "value_size": 17,
+                            "value_type": "VT_BOOL"
+                        },
+                        {
+                            "id": 2,
+                            "value": "True",
+                            "value_size": 17,
+                            "value_type": "VT_BOOL"
+                        },
+                        {
+                            "id": 4,
+                            "value": "False",
+                            "value_size": 17,
+                            "value_type": "VT_BOOL"
+                        },
+                        {
+                            "id": 6,
+                            "value": 255,
+                            "value_size": 17,
+                            "value_type": "VT_I2"
+                        },
+                        {
+                            "id": 5,
+                            "value": "True",
+                            "value_size": 17,
+                            "value_type": "VT_BOOL"
+                        }
+                    ],
+                    "storage_size": 130,
+                    "version": "0x53505331"
+                }
+            ],
+            "size": 142
+        },
+        "SPECIAL_FOLDER_LOCATION_BLOCK": {
+            "offset": 213,
+            "size": 16,
+            "special_folder_id": 37
+        }
+    },
+    "header": {
+        "accessed_time": "2009-07-13T23:34:38+00:00",
+        "creation_time": "2009-07-13T23:34:38+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
+        "file_size": 344576,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 0,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasLinkInfo",
+            "HasRelativePath",
+            "HasArguments",
+            "HasIconLocation",
+            "IsUnicode",
+            "HasExpString",
+            "HasExpIcon"
+        ],
+        "modified_time": "2009-07-14T01:39:01+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 17131,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWNORMAL"
+    },
+    "link_info": {
+        "common_network_relative_link_offset": 0,
+        "common_path_suffix": "",
+        "common_path_suffix_offset": 73,
+        "link_info_flags": 1,
+        "link_info_header_size": 28,
+        "link_info_size": 74,
+        "local_base_path": "C:\\Windows\\System32\\cmd.exe",
+        "local_base_path_offset": 45,
+        "location": "Local",
+        "location_info": {
+            "drive_serial_number": "0x44d30902",
+            "drive_type": "DRIVE_FIXED",
+            "r_drive_type": 3,
+            "volume_id_size": 17,
+            "volume_label": "",
+            "volume_label_offset": 16
+        },
+        "volume_id_offset": 28
+    },
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": null,
+                "flags": "0xf"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2015-07-12T07:39:20+00:00",
+                "primary_name": "Windows"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2015-11-06T11:10:00+00:00",
+                "primary_name": "System32"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 32,
+                "file_size": 344576,
+                "flags": "Is file",
+                "modification_time": "2009-07-14T01:39:02+00:00",
+                "primary_name": "cmd.exe"
+            }
+        ],
+        "size": 297
+    }
+}
