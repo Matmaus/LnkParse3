@@ -224,6 +224,16 @@ class TypedPropertyValue:
             elif value == 0x0000:
                 return "False"
             return None
+        elif self.value_type() == PropertyType.VT_DECIMAL:
+            scale = unpack("<B", self._raw[start + 2 : start + 3])[0]
+            assert scale <= 28
+            sign = unpack("<B", self._raw[start + 3 : start + 4])[0]
+            high = unpack("<I", self._raw[start + 4 : start + 8])[0]
+            low = unpack("<Q", self._raw[start + 8 : start + 16])[0]
+            result = ((high << 64) + low) / scale
+            if sign == 0x80:
+                return result * -1
+            return result
         elif self.value_type() == PropertyType.VT_LPWSTR:
             unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
             unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
