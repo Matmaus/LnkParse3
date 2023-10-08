@@ -212,6 +212,10 @@ class TypedPropertyValue:
             string_size = unpack("<I", self._raw[start:end])[0]
             string = self._raw[start + 4 : start + 4 + string_size]
             return self._text_processor.read_unicode_string(string)
+        elif self.value_type() == PropertyType.VT_ERROR:
+            end = 8
+            error = unpack("<I", self._raw[start:end])[0]
+            return hex(error)
         elif self.value_type() == PropertyType.VT_LPWSTR:
             unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
             unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
