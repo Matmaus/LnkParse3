@@ -246,9 +246,67 @@ class TypedPropertyValue:
             end = 8
             blob_size = unpack("<I", self._raw[start:end])[0]
             return hex(self._raw[end : end + blob_size])
+        # elif self.value_type() in [PropertyType.VT_STREAM, PropertyType.VT_STREAMED_OBJECT]:
+        # elif self.value_type() in [PropertyType.VT_STORAGE, PropertyType.VT_STORED_OBJECT]:
+        # elif self.value_type() == PropertyType.VT_CF:
         elif self.value_type() == PropertyType.VT_CLSID:
             end = 20
             return parse_uuid(self._raw[start:end])
+        # elif self.value_type() == PropertyType.VT_VERSIONED_STREAM:
+        # elif self.value_type() == PropertyType.VT_VECTOR_I2:
+        # elif self.value_type() == PropertyType.VT_VECTOR_I4:
+        # elif self.value_type() == PropertyType.VT_VECTOR_R4:
+        # elif self.value_type() == PropertyType.VT_VECTOR_R8:
+        # elif self.value_type() == PropertyType.VT_VECTOR_CY:
+        # elif self.value_type() == PropertyType.VT_VECTOR_DATE:
+        # elif self.value_type() == PropertyType.VT_VECTOR_BSTR:
+        # elif self.value_type() == PropertyType.VT_VECTOR_ERROR:
+        # elif self.value_type() == PropertyType.VT_VECTOR_BOOL:
+        # elif self.value_type() == PropertyType.VT_VECTOR_VARIANT:
+        # elif self.value_type() == PropertyType.VT_VECTOR_I1:
+        # elif self.value_type() == PropertyType.VT_VECTOR_UI1:
+        # elif self.value_type() == PropertyType.VT_VECTOR_UI2:
+        # elif self.value_type() == PropertyType.VT_VECTOR_UI4:
+        # elif self.value_type() == PropertyType.VT_VECTOR_I8:
+        # elif self.value_type() == PropertyType.VT_VECTOR_UI8:
+        # elif self.value_type() == PropertyType.VT_VECTOR_LPSTR:
+        elif self.value_type() == PropertyType.VT_VECTOR_LPWSTR:
+            end = 8
+            vector_size = unpack("<I", self._raw[start:end])[0]
+            unicode_strings = []
+            offset = 0
+            for i in range(vector_size):
+                unicode_string_size = (
+                    unpack("<I", self._raw[end + offset : end + offset + 4])[0] * 2
+                )
+                unicode_string = self._raw[
+                    end + offset + 4 : end + offset + 4 + unicode_string_size
+                ]
+                offset += unicode_string_size + 4
+                unicode_strings.append(
+                    self._text_processor.read_unicode_string(unicode_string)
+                )
+            return unicode_strings
+        # elif self.value_type() == PropertyType.VT_VECTOR_FILETIME:
+        # elif self.value_type() == PropertyType.VT_VECTOR_CF:
+        # elif self.value_type() == PropertyType.VT_VECTOR_CLSID:
+        # elif self.value_type() == PropertyType.VT_ARRAY_I2:
+        # elif self.value_type() == PropertyType.VT_ARRAY_I4:
+        # elif self.value_type() == PropertyType.VT_ARRAY_R4:
+        # elif self.value_type() == PropertyType.VT_ARRAY_R8:
+        # elif self.value_type() == PropertyType.VT_ARRAY_CY:
+        # elif self.value_type() == PropertyType.VT_ARRAY_DATE:
+        # elif self.value_type() == PropertyType.VT_ARRAY_BSTR:
+        # elif self.value_type() == PropertyType.VT_ARRAY_ERROR:
+        # elif self.value_type() == PropertyType.VT_ARRAY_BOOL:
+        # elif self.value_type() == PropertyType.VT_ARRAY_VARIANT:
+        # elif self.value_type() == PropertyType.VT_ARRAY_DECIMAL:
+        # elif self.value_type() == PropertyType.VT_ARRAY_I1:
+        # elif self.value_type() == PropertyType.VT_ARRAY_UI1:
+        # elif self.value_type() == PropertyType.VT_ARRAY_UI2:
+        # elif self.value_type() == PropertyType.VT_ARRAY_UI4:
+        # elif self.value_type() == PropertyType.VT_ARRAY_INT:
+        # elif self.value_type() == PropertyType.VT_ARRAY_UINT:
         else:
             return None
 
