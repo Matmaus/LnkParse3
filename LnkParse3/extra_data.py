@@ -2,10 +2,11 @@ import warnings
 from struct import error as StructError
 
 from LnkParse3.extra_factory import ExtraFactory
+from LnkParse3.extra.terminal import Terminal
 
 """
 EXTRA_DATA:
-Zero or more ExtraData structures (section 2.5).
+A structure consisting of zero or more property data blocks followed by a terminal block (section 2.5).
 """
 
 
@@ -36,10 +37,15 @@ class ExtraData:
             if cls:
                 yield cls(indata=data, cp=self.cp)
 
+        # If there is data following the Terminal Block, we should take note of it and tell the user.
+        if len(rest) > 4 and rest[:4] < b"\x00\x00\x00\x04":
+            yield Terminal(indata=rest, cp=self.cp)
+
     def as_dict(self):
         res = {}
         for extra in self:
             try:
+                # If there are multiple Unknown blocks, the last one is going to overwrite the others
                 res[extra.name()] = extra.as_dict()
             except (StructError, ValueError) as e:
                 msg = "Error while parsing `%s` (%s)" % (extra.name(), e)
