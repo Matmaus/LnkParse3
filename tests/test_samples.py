@@ -44,7 +44,7 @@ class TestSamples(unittest.TestCase):
 
         our = json.loads(mock_stdout.getvalue())
 
-        json_path = os.path.join(JSON_DIR, f"microsoft_example_not_all_attributes.json")
+        json_path = os.path.join(JSON_DIR, "microsoft_example_not_all_attributes.json")
         with open(json_path, 'rb') as fp:
             their = json.load(fp)
 
@@ -60,7 +60,7 @@ class TestSamples(unittest.TestCase):
 
         our = mock_stdout.getvalue()
 
-        txt_path = os.path.join(JSON_DIR, f"readable_with_network_info.txt")
+        txt_path = os.path.join(JSON_DIR, "readable_with_network_info.txt")
         with open(txt_path, 'r') as fp:
             their = fp.read()
 
@@ -76,7 +76,7 @@ class TestSamples(unittest.TestCase):
 
         our = mock_stdout.getvalue()
 
-        txt_path = os.path.join(JSON_DIR, f"readable_with_local_info.txt")
+        txt_path = os.path.join(JSON_DIR, "readable_with_local_info.txt")
         with open(txt_path, 'r') as fp:
             their = fp.read()
 
@@ -92,7 +92,7 @@ class TestSamples(unittest.TestCase):
 
         our = json.loads(mock_stdout.getvalue())
 
-        json_path = os.path.join(JSON_DIR, f"shortcut_target_only.json")
+        json_path = os.path.join(JSON_DIR, "shortcut_target_only.json")
         with open(json_path, 'rb') as fp:
             their = json.load(fp)
 
@@ -108,8 +108,24 @@ class TestSamples(unittest.TestCase):
 
         our = mock_stdout.getvalue()
 
-        json_path = os.path.join(JSON_DIR, f"shortcut_target_only.txt")
-        with open(json_path, 'r') as fp:
+        txt_path = os.path.join(JSON_DIR, "shortcut_target_only.txt")
+        with open(txt_path, 'r') as fp:
+            their = fp.read()
+
+        self.assertEqual(our, their)
+
+    def test_print_unknown_target(self):
+        with open('tests/samples/unknown_target', 'rb') as indata:
+            lnk = LnkParse3.lnk_file(indata)
+
+        mock_stdout = StringIO()
+        with redirect_stdout(mock_stdout):
+            lnk.print_lnk_file(print_all=True)
+
+        our = mock_stdout.getvalue()
+
+        txt_path = os.path.join(JSON_DIR, "unknown_target.txt")
+        with open(txt_path, 'r') as fp:
             their = fp.read()
 
         self.assertEqual(our, their)

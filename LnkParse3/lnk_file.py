@@ -5,6 +5,7 @@ __author__ = "Matmaus"
 __version__ = "1.3.3"
 
 import json
+import hashlib
 import datetime
 import argparse
 from subprocess import list2cmdline
@@ -96,6 +97,8 @@ class LnkFile(object):
                 print(" " * (level * SPACING) + text)  # add leading spaces
 
         def nice_id(identifier):
+            if identifier.lower() in hashlib.algorithms_guaranteed:
+                return identifier.upper().replace("_", " ")
             return identifier.capitalize().replace("_", " ")
 
         # TODO recursive nice print
@@ -256,22 +259,28 @@ class LnkFile(object):
         cprint("EXTRA BLOCKS:", 1)
         for extra_key, extra_value in self.extras.as_dict().items():
             cprint(f"{extra_key}", 2)
-            for key, value in extra_value.items():
-                if extra_key == "METADATA_PROPERTIES_BLOCK" and isinstance(value, list):
-                    cprint(f"{nice_id(key)}:", 3)
-                    for storage in value:
-                        cprint("Storage:", 4)
-                        for storage_key, storage_value in storage.items():
-                            if isinstance(storage_value, list):
-                                cprint(f"{nice_id(storage_key)}:", 5)
-                                for item in storage_value:
-                                    cprint("Property:", 6)
-                                    for item_key, item_value in item.items():
-                                        cprint(f"{nice_id(item_key)}: {item_value}", 7)
-                            else:
-                                cprint(f"{nice_id(storage_key)}: {storage_value}", 5)
-                else:
-                    cprint(f"{nice_id(key)}: {value}", 3)
+            if extra_key == "UNKNOWN_BLOCK":
+                cprint("Block:", 3)
+                for list_value in extra_value:
+                    for key, value in list_value.items():
+                        cprint(f"{nice_id(key)}: {value}", 4)
+            else:
+                for key, value in extra_value.items():
+                    if extra_key == "METADATA_PROPERTIES_BLOCK" and isinstance(value, list):
+                        cprint(f"{nice_id(key)}:", 3)
+                        for storage in value:
+                            cprint("Storage:", 4)
+                            for storage_key, storage_value in storage.items():
+                                if isinstance(storage_value, list):
+                                    cprint(f"{nice_id(storage_key)}:", 5)
+                                    for item in storage_value:
+                                        cprint("Property:", 6)
+                                        for item_key, item_value in item.items():
+                                            cprint(f"{nice_id(item_key)}: {item_value}", 7)
+                                else:
+                                    cprint(f"{nice_id(storage_key)}: {storage_value}", 5)
+                    else:
+                        cprint(f"{nice_id(key)}: {value}", 3)
 
     def format_linkFlags(self):
         return " | ".join(self.header.link_flags())
