@@ -18,5 +18,5 @@ class Unknown(LnkExtraBase):
 
     def as_dict(self):
         tmp = super().as_dict()
-        tmp["sha256"] = hashlib.sha256(self.extra_data()).hexdigest()
+        tmp["extra_data_sha256"] = hashlib.sha256(self.extra_data()).hexdigest()
         return tmp

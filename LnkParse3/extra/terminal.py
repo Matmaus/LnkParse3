@@ -33,5 +33,5 @@ class Terminal(LnkExtraBase):
 
     def as_dict(self):
         tmp = super().as_dict()
-        tmp["sha256"] = hashlib.sha256(self.appended_data()).hexdigest()
+        tmp["appended_data_sha256"] = hashlib.sha256(self.appended_data()).hexdigest()
         return tmp

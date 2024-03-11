@@ -30,4 +30,4 @@ Windows Shortcut Information:
    EXTRA BLOCKS:
       TERMINAL_BLOCK
          Size: 67653
-         SHA256: d64c62e65398d37cd27e11fd729fa102016a05ba67f5020e17dfbd3b857dd96e
+         Appended data sha256: d64c62e65398d37cd27e11fd729fa102016a05ba67f5020e17dfbd3b857dd96e

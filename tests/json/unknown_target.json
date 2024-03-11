@@ -2,7 +2,7 @@
     "data": {},
     "extra": {
         "TERMINAL_BLOCK": {
-            "sha256": "d64c62e65398d37cd27e11fd729fa102016a05ba67f5020e17dfbd3b857dd96e",
+            "appended_data_sha256": "d64c62e65398d37cd27e11fd729fa102016a05ba67f5020e17dfbd3b857dd96e",
             "size": 67653
         }
     },
