@@ -130,6 +130,22 @@ class TestSamples(unittest.TestCase):
 
         self.assertEqual(our, their)
 
+    def test_print_unknown_block(self):
+        with open('tests/samples/unknown_block', 'rb') as indata:
+            lnk = LnkParse3.lnk_file(indata)
+
+        mock_stdout = StringIO()
+        with redirect_stdout(mock_stdout):
+            lnk.print_lnk_file(print_all=True)
+
+        our = mock_stdout.getvalue()
+
+        txt_path = os.path.join(JSON_DIR, "unknown_block.txt")
+        with open(txt_path, 'r') as fp:
+            their = fp.read()
+
+        self.assertEqual(our, their)
+
 
 if __name__ == '__main__':
     unittest.main()

