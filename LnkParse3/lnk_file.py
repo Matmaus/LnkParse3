@@ -257,8 +257,8 @@ class LnkFile(object):
         for extra_key, extra_value in self.extras.as_dict().items():
             cprint(f"{extra_key}", 2)
             if extra_key == "UNKNOWN_BLOCK":
-                cprint("Block:", 3)
                 for list_value in extra_value:
+                    cprint("Block:", 3)
                     for key, value in list_value.items():
                         cprint(f"{nice_id(key)}: {value}", 4)
             else:
