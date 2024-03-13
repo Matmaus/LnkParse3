@@ -55,9 +55,7 @@ Windows Shortcut Information:
          Special folder id: 37
          Offset: 213
       UNKNOWN_BLOCK
-         Block:
-            Size: 28
-            Extra data sha256: 4f022b4bc7668d870e158010c9877224df1b9b07bd24ef32b731963232b15eb2
-         Block:
-            Size: 153
-            Extra data sha256: 40ebe6ee6ad3303ae2db241742e857aee523b21553a51e2f6c2a2461f1010879
+       - Size: 28
+         Extra data sha256: 4f022b4bc7668d870e158010c9877224df1b9b07bd24ef32b731963232b15eb2
+       - Size: 153
+         Extra data sha256: 40ebe6ee6ad3303ae2db241742e857aee523b21553a51e2f6c2a2461f1010879

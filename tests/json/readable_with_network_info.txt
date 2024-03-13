@@ -103,53 +103,43 @@ Windows Shortcut Information:
       METADATA_PROPERTIES_BLOCK
          Size: 955
          Property store:
-            Storage:
-               Storage size: 229
-               Version: 0x53505331
-               Format id: B725F130-47EF-101A-A5F1-02608C9EEBAC
-               Serialized property values:
-                  Property:
-                     Value size: 73
-                     Id: 10
-                     Value: ETN-lift programme 2017.pdf
-                     Value type: VT_LPWSTR
-                  Property:
-                     Value size: 21
-                     Id: 15
-                     Value: None
-                     Value type: VT_FILETIME
-                  Property:
-                     Value size: 21
-                     Id: 12
-                     Value: None
-                     Value type: VT_UI8
-                  Property:
-                     Value size: 65
-                     Id: 4
-                     Value: Adobe Acrobat Document
-                     Value type: VT_LPWSTR
-                  Property:
-                     Value size: 21
-                     Id: 14
-                     Value: None
-                     Value type: VT_FILETIME
-            Storage:
-               Storage size: 385
-               Version: 0x53505331
-               Format id: 28636AA6-953D-11D2-B5D6-00C04FD918D0
-               Serialized property values:
-                  Property:
-                     Value size: 357
-                     Id: 30
-                     Value: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme\ETN-lift programme 2017.pdf
-                     Value type: VT_LPWSTR
-            Storage:
-               Storage size: 329
-               Version: 0x53505331
-               Format id: E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD
-               Serialized property values:
-                  Property:
-                     Value size: 301
-                     Id: 6
-                     Value: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme
-                     Value type: VT_LPWSTR
+          - Storage size: 229
+            Version: 0x53505331
+            Format id: B725F130-47EF-101A-A5F1-02608C9EEBAC
+            Serialized property values:
+             - Value size: 73
+               Id: 10
+               Value: ETN-lift programme 2017.pdf
+               Value type: VT_LPWSTR
+             - Value size: 21
+               Id: 15
+               Value: None
+               Value type: VT_FILETIME
+             - Value size: 21
+               Id: 12
+               Value: None
+               Value type: VT_UI8
+             - Value size: 65
+               Id: 4
+               Value: Adobe Acrobat Document
+               Value type: VT_LPWSTR
+             - Value size: 21
+               Id: 14
+               Value: None
+               Value type: VT_FILETIME
+          - Storage size: 385
+            Version: 0x53505331
+            Format id: 28636AA6-953D-11D2-B5D6-00C04FD918D0
+            Serialized property values:
+             - Value size: 357
+               Id: 30
+               Value: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme\ETN-lift programme 2017.pdf
+               Value type: VT_LPWSTR
+          - Storage size: 329
+            Version: 0x53505331
+            Format id: E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD
+            Serialized property values:
+             - Value size: 301
+               Id: 6
+               Value: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme
+               Value type: VT_LPWSTR

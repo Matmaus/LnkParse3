@@ -88,12 +88,21 @@ class LnkFile(object):
         self.extras = ExtraData(indata=self.indata[index:], cp=self.cp)
 
     def print_lnk_file(self, print_all=False):
-        def cprint(text, level=0):
+        # Returns boolean to tell if the next item should be the first item of a list,
+        # or if this one fullfilled the requirement to put a - in front.
+        # This is needed if the first item of a list is an unwanted trait, and we need
+        # to have the one (or the one after) be the first item of the list
+        def cprint(text, level=0, list_item=False) -> bool:
             SPACING = 3
             UNWANTED_TRAITS = ["offset", "reserved", "size"]
             text = str(text)
             if print_all or all(x not in text.lower() for x in UNWANTED_TRAITS):
-                print(" " * (level * SPACING) + text)  # add leading spaces
+                spaces = " " * (level * SPACING)
+                if list_item and level > 0 and SPACING >= 3:
+                    spaces = " " * ((level - 1) * SPACING) + " " * (SPACING - 3) + " - "
+                print(spaces + text)  # add leading spaces
+                return False
+            return list_item
 
         def nice_id(identifier):
             return identifier.capitalize().replace("_", " ")
@@ -253,37 +262,38 @@ class LnkFile(object):
             cprint("%s: %s" % (nice_id(key), value), 2)
         cprint("")
 
-        cprint("EXTRA BLOCKS:", 1)
-        for extra_key, extra_value in self.extras.as_dict().items():
-            cprint(f"{extra_key}", 2)
-            if extra_key == "UNKNOWN_BLOCK":
-                for list_value in extra_value:
-                    cprint("Block:", 3)
-                    for key, value in list_value.items():
-                        cprint(f"{nice_id(key)}: {value}", 4)
-            else:
+        def print_extra_block_information(
+            extra_key, extra_value, level=0, first_in_list=False
+        ) -> bool:
+            if isinstance(extra_value, dict):
+                if extra_key is not None:
+                    cprint(
+                        f"{extra_key if level < 3 else nice_id(extra_key)}{':' if level != 2 else ''}",
+                        level,
+                    )
+                sub_first_in_list = first_in_list
                 for key, value in extra_value.items():
-                    if extra_key == "METADATA_PROPERTIES_BLOCK" and isinstance(
-                        value, list
-                    ):
-                        cprint(f"{nice_id(key)}:", 3)
-                        for storage in value:
-                            cprint("Storage:", 4)
-                            for storage_key, storage_value in storage.items():
-                                if isinstance(storage_value, list):
-                                    cprint(f"{nice_id(storage_key)}:", 5)
-                                    for item in storage_value:
-                                        cprint("Property:", 6)
-                                        for item_key, item_value in item.items():
-                                            cprint(
-                                                f"{nice_id(item_key)}: {item_value}", 7
-                                            )
-                                else:
-                                    cprint(
-                                        f"{nice_id(storage_key)}: {storage_value}", 5
-                                    )
-                    else:
-                        cprint(f"{nice_id(key)}: {value}", 3)
+                    sub_first_in_list = print_extra_block_information(
+                        key, value, level + 1, sub_first_in_list
+                    )
+                return first_in_list
+
+            if isinstance(extra_value, list):
+                first_in_list = True
+                cprint(
+                    f"{extra_key if level < 3 else nice_id(extra_key)}{':' if level != 2 else ''}",
+                    level,
+                )
+                for item_index, extra_value_item in enumerate(extra_value):
+                    # first_in_list = item_index == 0
+                    first_in_list = print_extra_block_information(
+                        None, extra_value_item, level, first_in_list
+                    )
+                return first_in_list
+
+            return cprint(f"{nice_id(extra_key)}: {extra_value}", level, first_in_list)
+
+        print_extra_block_information("EXTRA BLOCKS", self.extras.as_dict(), 1)
 
     def format_linkFlags(self):
         return " | ".join(self.header.link_flags())

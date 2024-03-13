@@ -75,58 +75,47 @@ Windows Shortcut Information:
       METADATA_PROPERTIES_BLOCK
          Size: 495
          Property store:
-            Storage:
-               Storage size: 125
-               Version: 0x53505331
-               Format id: DABD30ED-0043-4789-A7F8-D013A4736622
-               Serialized property values:
-                  Property:
-                     Value size: 97
-                     Id: 100
-                     Value: Roaming (C:\Usuários\Jonathan\AppData)
-                     Value type: VT_LPWSTR
-            Storage:
-               Storage size: 164
-               Version: 0x53505331
-               Format id: B725F130-47EF-101A-A5F1-02608C9EEBAC
-               Serialized property values:
-                  Property:
-                     Value size: 41
-                     Id: 10
-                     Value: .minecraft
-                     Value type: VT_LPWSTR
-                  Property:
-                     Value size: 21
-                     Id: 15
-                     Value: None
-                     Value type: VT_FILETIME
-                  Property:
-                     Value size: 53
-                     Id: 4
-                     Value: Pasta de arquivos
-                     Value type: VT_LPWSTR
-                  Property:
-                     Value size: 21
-                     Id: 14
-                     Value: None
-                     Value type: VT_FILETIME
-            Storage:
-               Storage size: 137
-               Version: 0x53505331
-               Format id: 28636AA6-953D-11D2-B5D6-00C04FD918D0
-               Serialized property values:
-                  Property:
-                     Value size: 109
-                     Id: 30
-                     Value: C:\Users\Jonathan\AppData\Roaming\.minecraft
-                     Value type: VT_LPWSTR
-            Storage:
-               Storage size: 57
-               Version: 0x53505331
-               Format id: 446D16B1-8DAD-4870-A748-402EA43D788C
-               Serialized property values:
-                  Property:
-                     Value size: 29
-                     Id: 104
-                     Value: None
-                     Value type: VT_CLSID
+          - Storage size: 125
+            Version: 0x53505331
+            Format id: DABD30ED-0043-4789-A7F8-D013A4736622
+            Serialized property values:
+             - Value size: 97
+               Id: 100
+               Value: Roaming (C:\Usuários\Jonathan\AppData)
+               Value type: VT_LPWSTR
+          - Storage size: 164
+            Version: 0x53505331
+            Format id: B725F130-47EF-101A-A5F1-02608C9EEBAC
+            Serialized property values:
+             - Value size: 41
+               Id: 10
+               Value: .minecraft
+               Value type: VT_LPWSTR
+             - Value size: 21
+               Id: 15
+               Value: None
+               Value type: VT_FILETIME
+             - Value size: 53
+               Id: 4
+               Value: Pasta de arquivos
+               Value type: VT_LPWSTR
+             - Value size: 21
+               Id: 14
+               Value: None
+               Value type: VT_FILETIME
+          - Storage size: 137
+            Version: 0x53505331
+            Format id: 28636AA6-953D-11D2-B5D6-00C04FD918D0
+            Serialized property values:
+             - Value size: 109
+               Id: 30
+               Value: C:\Users\Jonathan\AppData\Roaming\.minecraft
+               Value type: VT_LPWSTR
+          - Storage size: 57
+            Version: 0x53505331
+            Format id: 446D16B1-8DAD-4870-A748-402EA43D788C
+            Serialized property values:
+             - Value size: 29
+               Id: 104
+               Value: None
+               Value type: VT_CLSID
