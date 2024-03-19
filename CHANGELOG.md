@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2024-03-19
+### Added
+- Add support to process unknown (`Unknown`) blocks in `ExtraData` section
+- Add support to process `Terminal` block in `ExtraData` section
+
 ## [1.3.3] - 2023-12-27
 ### Fixed
 - Exclude tests from setup.py ([PR](https://github.com/Matmaus/LnkParse3/pull/26))
