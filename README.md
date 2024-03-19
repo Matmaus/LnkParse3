@@ -146,6 +146,8 @@ For more information about each data, see [Microsoft LNK documentation](https://
   - [x] **SpecialFolderDataBlock** [`special_folder.py`]
   - [x] **TrackerDataBlock** [`distributed_tracker.py`]
   - [x] **VistaAndAboveIDListDataBlock** [`shell_item.py`]
+  - [x] *Unknown (undefined) block* [`unknown.py`]
+  - [x] **TerminalBlock** [`terminal.py`]
 
 # Contributing
 
