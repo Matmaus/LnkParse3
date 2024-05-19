@@ -59,23 +59,22 @@ optional arguments:
 ```console
 $ lnkparse tests/samples/microsoft_example
 Windows Shortcut Information:
-   Link CLSID: 00021401-0000-0000-C000-000000000046
-   Link Flags: HasTargetIDList | HasLinkInfo | HasRelativePath | HasWorkingDir | IsUnicode | E
-nableTargetMetadata - (524443)
-   File Flags: FILE_ATTRIBUTE_ARCHIVE - (32)
-
-   Creation Timestamp: 2008-09-12 20:27:17.101000+00:00
-   Modified Timestamp: 2008-09-12 20:27:17.101000+00:00
-   Accessed Timestamp: 2008-09-12 20:27:17.101000+00:00
-
-   Icon Index: 0
-   Window Style: SW_SHOWNORMAL
-   HotKey: UNSET - UNSET {0x0000}
+   Guid: 00021401-0000-0000-C000-000000000046
+   Link flags: HasTargetIDList | HasLinkInfo | HasRelativePath | HasWorkingDir | IsUnicode | EnableTargetMetadata - (524443)
+   File flags: FILE_ATTRIBUTE_ARCHIVE - (32)
+   Creation time: 2008-09-12 20:27:17.101000+00:00
+   Accessed time: 2008-09-12 20:27:17.101000+00:00
+   Modified time: 2008-09-12 20:27:17.101000+00:00
+   File size: 0
+   Icon index: 0
+   Windowstyle: SW_SHOWNORMAL
+   Hotkey: UNSET - UNSET {0x0000}
 
    ...more data...
 
-   EXTRA BLOCKS:
-      DISTRIBUTED_LINK_TRACKER_BLOCK
+   EXTRA:
+      DISTRIBUTED LINK TRACKER BLOCK:
+         Size: 96
          Length: 88
          Version: 0
          Machine identifier: chris-xps
