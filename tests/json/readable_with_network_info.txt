@@ -1,155 +1,149 @@
 Windows Shortcut Information:
-   Header Size: 76
-   Link CLSID: 00021401-0000-0000-C000-000000000046
-   Link Flags: HasTargetIDList | HasLinkInfo | HasWorkingDir | IsUnicode | EnableTargetMetadata - (524435)
-   File Flags: FILE_ATTRIBUTE_ARCHIVE - (32)
-
-   Creation Timestamp: 2018-11-23 11:31:09.534439+00:00
-   Modified Timestamp: 2017-10-05 10:29:28+00:00
-   Accessed Timestamp: 2020-08-24 07:45:46.320528+00:00
-
-   File Size: 21895266 (r: 2539)
-   Icon Index: 0 
-   Window Style: SW_SHOWNORMAL 
-   HotKey: UNSET - UNSET {0x0000} 
+   Guid: 00021401-0000-0000-C000-000000000046
+   Link flags: HasTargetIDList | HasLinkInfo | HasWorkingDir | IsUnicode | EnableTargetMetadata - (524435)
+   File flags: FILE_ATTRIBUTE_ARCHIVE - (32)
+   Creation time: 2018-11-23 11:31:09.534439+00:00
+   Accessed time: 2020-08-24 07:45:46.320528+00:00
+   Modified time: 2017-10-05 10:29:28+00:00
+   File size: 21895266
+   Icon index: 0
+   Windowstyle: SW_SHOWNORMAL
+   Hotkey: UNSET - UNSET {0x0000}
+   Header size: 76
    Reserved0: 0
    Reserved1: 0
    Reserved2: 0
 
-   TARGETS:
+   TARGET:
       Size: 883
-      Index: 78
-      ITEMS:
-         Root Folder
+      Items:
+      -  Root Folder:
             Sort index: My Computer
             Guid: 20D04FE0-3AEA-1069-A2D8-08002B30309D
-         Volume Item
-            Flags: 0xf
-            Data: None
-         File entry
+      -  Volume Item:
+            Flags: '0xf'
+            Data: null
+      -  File entry:
             Flags: Is directory
             File size: 0
             Modification time: 2020-07-28 05:57:04+00:00
             File attribute flags: 48
             Primary name: AML24F~C
-         File entry
+      -  File entry:
             Flags: Is directory
             File size: 0
             Modification time: 2020-03-25 08:41:42+00:00
             File attribute flags: 48
             Primary name: 0AQ2M9~8
-         File entry
+      -  File entry:
             Flags: Is directory
             File size: 0
             Modification time: 2019-11-11 11:52:34+00:00
             File attribute flags: 48
             Primary name: ETN
-         File entry
+      -  File entry:
             Flags: Is directory
             File size: 0
             Modification time: 2019-11-22 07:12:16+00:00
             File attribute flags: 16
             Primary name: EAH18X~X
-         File entry
+      -  File entry:
             Flags: Is directory
             File size: 0
             Modification time: 2018-11-23 11:31:10+00:00
             File attribute flags: 16
             Primary name: KFACY0~T
-         File entry
+      -  File entry:
             Flags: Is directory
             File size: 0
             Modification time: 2018-11-23 11:31:10+00:00
             File attribute flags: 16
             Primary name: LS87NY~7
-         File entry
+      -  File entry:
             Flags: Is file
             File size: 21895266
             Modification time: 2017-10-05 10:29:28+00:00
             File attribute flags: 32
             Primary name: EWYM7F~E.PDF
+      Index: 78
 
    LINK INFO:
       Link info size: 239
       Link info header size: 28
       Link info flags: 2
-      Volume ID offset: 0
+      Volume id offset: 0
       Local base path offset: 0
       Common network relative link offset: 28
       Common path suffix offset: 72
-      Common path suffix: A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme\ETN-lift programme 2017.pdf
+      Common path suffix: A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog
+         ETN 10_2017\Lift-programme\ETN-lift programme 2017.pdf
+      Location info:
          Common network relative link size: 44
          Common network relative link flags: 3
          Net name offset: 20
          Device name offset: 41
-         Network provider type: 0x20000
          Network provider type: WNNC_NET_DECORB
          Net name: \\10.0.0.150\LMmetal
-         Device name: Z:
+         Device name: 'Z:'
+      Location: Network
 
-   DATA
-      Working directory: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme
+   DATA:
+      Working directory: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog
+         ETN 10_2017\Lift-programme
 
-   EXTRA BLOCKS:
-      DISTRIBUTED_LINK_TRACKER_BLOCK
+   EXTRA:
+      DISTRIBUTED LINK TRACKER BLOCK:
          Size: 96
          Length: 88
          Version: 0
-         Machine identifier: 
+         Machine identifier: ''
          Droid volume identifier: 4D67303F-2DA7-16FB-F8AC-285508486733
          Droid file identifier: 00000024-0000-0000-6A6D-060000000000
          Birth droid volume identifier: 4D67303E-2DA7-16FB-F8AC-285508486733
          Birth droid file identifier: 00000024-0000-0000-6A6D-060000000000
-      METADATA_PROPERTIES_BLOCK
+      METADATA PROPERTIES BLOCK:
          Size: 955
          Property store:
-            Storage:
-               Storage size: 229
-               Version: 0x53505331
-               Format id: B725F130-47EF-101A-A5F1-02608C9EEBAC
-               Serialized property values:
-                  Property:
-                     Value size: 73
-                     Id: 10
-                     Value: ETN-lift programme 2017.pdf
-                     Value type: VT_LPWSTR
-                  Property:
-                     Value size: 21
-                     Id: 15
-                     Value: None
-                     Value type: VT_FILETIME
-                  Property:
-                     Value size: 21
-                     Id: 12
-                     Value: None
-                     Value type: VT_UI8
-                  Property:
-                     Value size: 65
-                     Id: 4
-                     Value: Adobe Acrobat Document
-                     Value type: VT_LPWSTR
-                  Property:
-                     Value size: 21
-                     Id: 14
-                     Value: None
-                     Value type: VT_FILETIME
-            Storage:
-               Storage size: 385
-               Version: 0x53505331
-               Format id: 28636AA6-953D-11D2-B5D6-00C04FD918D0
-               Serialized property values:
-                  Property:
-                     Value size: 357
-                     Id: 30
-                     Value: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme\ETN-lift programme 2017.pdf
-                     Value type: VT_LPWSTR
-            Storage:
-               Storage size: 329
-               Version: 0x53505331
-               Format id: E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD
-               Serialized property values:
-                  Property:
-                     Value size: 301
-                     Id: 6
-                     Value: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog ETN 10_2017\Lift-programme
-                     Value type: VT_LPWSTR
+         -  Storage size: 229
+            Version: '0x53505331'
+            Format id: B725F130-47EF-101A-A5F1-02608C9EEBAC
+            Serialized property values:
+            -  Value size: 73
+               Id: 10
+               Value: ETN-lift programme 2017.pdf
+               Value type: VT_LPWSTR
+            -  Value size: 21
+               Id: 15
+               Value: null
+               Value type: VT_FILETIME
+            -  Value size: 21
+               Id: 12
+               Value: null
+               Value type: VT_UI8
+            -  Value size: 65
+               Id: 4
+               Value: Adobe Acrobat Document
+               Value type: VT_LPWSTR
+            -  Value size: 21
+               Id: 14
+               Value: null
+               Value type: VT_FILETIME
+         -  Storage size: 385
+            Version: '0x53505331'
+            Format id: 28636AA6-953D-11D2-B5D6-00C04FD918D0
+            Serialized property values:
+            -  Value size: 357
+               Id: 30
+               Value: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog
+                  ETN 10_2017\Lift-programme\ETN-lift programme 2017.pdf
+               Value type: VT_LPWSTR
+         -  Storage size: 329
+            Version: '0x53505331'
+            Format id: E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD
+            Serialized property values:
+            -  Value size: 301
+               Id: 6
+               Value: Z:\A - LM METAL LIFT\01.OBCHOD - BROŽURY - Prodejní a technické informace o produktech\ETN\ETN-Katalog-ENG\Katalog
+                  ETN 10_2017\Lift-programme
+               Value type: VT_LPWSTR
+

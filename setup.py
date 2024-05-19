@@ -16,6 +16,7 @@ setup(
     author_email='matusjas.work@gmail.com',
     license='MIT',
     packages=find_packages(exclude=["tests*"]),
+    install_requires=['pyyaml'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
