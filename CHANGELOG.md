@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2024-05-19
+### Changed
+- Try UTF-8 encoding when decoding by specified codepage fails.
+- Change plain text output form to YAML-like style.
+### Fixed
+- Add missing import to `shell_item`.
+
 ## [1.4.0] - 2024-03-19
 ### Added
 - Add support to process unknown (`Unknown`) blocks in `ExtraData` section
