@@ -20,10 +20,14 @@ class TextProcessor:
             bin_string = b"".join(lst)
             try:
                 string = bin_string.decode(self.cp)
-            except UnicodeDecodeError as e:
-                string = bin_string.decode(self.cp, errors="replace")
-                msg = f"Error while decoding string `{string}` ({e})"
-                warnings.warn(msg)
+            except UnicodeDecodeError:
+                # Fallback to UTF-8 before giving up.
+                try:
+                    string = bin_string.decode("utf-8")
+                except UnicodeDecodeError as e:
+                    string = bin_string.decode(self.cp, errors="replace")
+                    msg = f"Error while decoding string `{string}` ({e})"
+                    warnings.warn(msg)
             yield string
 
         for char in binary:
