@@ -1,7 +1,8 @@
-from struct import unpack
 import warnings
+from struct import unpack
 
 from LnkParse3.target_factory import TargetFactory
+
 
 """
 LINKTARGET_IDLIST:

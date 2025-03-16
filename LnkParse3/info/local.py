@@ -1,5 +1,7 @@
 from struct import unpack
+
 from LnkParse3.lnk_info import LnkInfo
+
 
 """
 ------------------------------------------------------------------
@@ -59,8 +61,7 @@ class Local(LnkInfo):
     def drive_type(self):
         if self.r_drive_type() < len(self.DRIVE_TYPES):
             return self.DRIVE_TYPES[self.r_drive_type()]
-        else:
-            return None
+        return None
 
     def _has_volume_label_offset_unicode(self):
         return bool(self.volume_label_offset() == 0x00000014)

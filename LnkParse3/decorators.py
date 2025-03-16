@@ -1,11 +1,10 @@
-from datetime import datetime
-from datetime import timezone
-from struct import unpack
 import functools
-import sys
 import warnings
 
-from LnkParse3.utils import parse_uuid, parse_packed_uuid, parse_filetime, parse_dostime
+from LnkParse3.utils import parse_dostime
+from LnkParse3.utils import parse_filetime
+from LnkParse3.utils import parse_packed_uuid
+from LnkParse3.utils import parse_uuid
 
 
 def must_be(expected):

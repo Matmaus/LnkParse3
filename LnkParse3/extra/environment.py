@@ -1,5 +1,6 @@
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
 
+
 """
 ------------------------------------------------------------------
 |     0-7b     |     8-15b     |     16-23b     |     24-31b     |

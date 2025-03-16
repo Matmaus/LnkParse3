@@ -1,7 +1,9 @@
-from struct import unpack
-from LnkParse3.extra.lnk_extra_base import LnkExtraBase
-from LnkParse3.decorators import uuid
 from enum import IntEnum
+from struct import unpack
+
+from LnkParse3.decorators import uuid
+from LnkParse3.extra.lnk_extra_base import LnkExtraBase
+
 
 """
 ------------------------------------------------------------------
@@ -142,12 +144,11 @@ class TypedPropertyValue:
         if self.value_type() == PropertyType.VT_I2:
             end = 6
             return unpack("<i", self._raw[start:end])[0]
-        elif self.value_type() == PropertyType.VT_LPWSTR:
+        if self.value_type() == PropertyType.VT_LPWSTR:
             unicode_string_size = unpack("<I", self._raw[start : start + 4])[0] * 2
             unicode_string = self._raw[start + 4 : start + 4 + unicode_string_size]
             return self._text_processor.read_unicode_string(unicode_string)
-        else:
-            return None
+        return None
 
 
 class SerializedPropertyValueIntegerName:
@@ -226,9 +227,7 @@ class SerializedPropertyValueStringName:
         return (9 + int(self.name_size())) * 2
 
     def value(self):
-        return TypedPropertyValue(
-            self._raw[self.value_offset() :], self._text_processor
-        )
+        return TypedPropertyValue(self._raw[self.value_offset() :], self._text_processor)
 
     def as_dict(self):
         return {
@@ -284,9 +283,7 @@ class SerializedPropertyStorage:
             serialized_property_value_class = SerializedPropertyValueStringName
 
         while True:
-            value = serialized_property_value_class(
-                self._raw[start:], self._text_processor
-            )
+            value = serialized_property_value_class(self._raw[start:], self._text_processor)
             if hex(value.value_size()) == hex(0x0):
                 break
 
@@ -300,9 +297,7 @@ class SerializedPropertyStorage:
             "storage_size": self.storage_size(),
             "version": self.version(),
             "format_id": self.format_id(),
-            "serialized_property_values": [
-                v.as_dict() for v in self.serialized_property_values()
-            ],
+            "serialized_property_values": [v.as_dict() for v in self.serialized_property_values()],
         }
 
 

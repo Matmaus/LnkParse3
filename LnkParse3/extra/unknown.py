@@ -1,5 +1,7 @@
 import hashlib
+
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
+
 
 """
 This class does not represent a specific extra block defined in the [MS-SHLLINK] documentation.

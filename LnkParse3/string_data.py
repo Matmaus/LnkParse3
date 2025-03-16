@@ -1,8 +1,9 @@
-import warnings
-
 import struct
+import warnings
 from struct import unpack
+
 from LnkParse3.text_processor import TextProcessor
+
 
 """
 STRING_DATA:

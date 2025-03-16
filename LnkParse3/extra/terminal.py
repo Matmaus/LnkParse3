@@ -1,5 +1,7 @@
 import hashlib
+
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
+
 
 """
 TerminalBlock (4 bytes): A 32-bit, unsigned integer that indicates the end of the extra data section.

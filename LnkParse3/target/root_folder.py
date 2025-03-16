@@ -1,6 +1,8 @@
 from struct import unpack
-from LnkParse3.target.lnk_target_base import LnkTargetBase
+
 from LnkParse3.decorators import uuid
+from LnkParse3.target.lnk_target_base import LnkTargetBase
+
 
 """
 ----------------------------------------------------------------------
@@ -56,6 +58,5 @@ class RootFolder(LnkTargetBase):
     def extension_block(self):
         if self.item_id_size() > 20:
             # TODO: Extension block
-            return None
-        else:
-            return None
+            return
+        return

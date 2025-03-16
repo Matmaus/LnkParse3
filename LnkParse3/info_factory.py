@@ -39,10 +39,9 @@ class InfoFactory:
         try:
             if self._volume_id_and_local_base_path():
                 return Local
-            elif self._common_network_relative_link_and_path_suffix():
+            if self._common_network_relative_link_and_path_suffix():
                 return Network
-            else:
-                return None
+            return None
         except struct.error as e:
             warnings.warn(f"Error while selecting proper Info class: {e!r}")
             return None
