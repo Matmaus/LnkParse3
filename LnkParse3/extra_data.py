@@ -1,5 +1,5 @@
 import warnings
-from struct import error as StructError
+from struct import error as StructError  # noqa: N812
 from struct import unpack
 
 from LnkParse3.extra.terminal import Terminal
