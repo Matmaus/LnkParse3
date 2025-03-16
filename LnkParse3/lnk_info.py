@@ -1,5 +1,7 @@
 from struct import unpack
+
 from LnkParse3.text_processor import TextProcessor
+
 
 """
 LINKINFO:

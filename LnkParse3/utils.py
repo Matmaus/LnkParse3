@@ -1,9 +1,8 @@
+import sys
+import warnings
 from datetime import datetime
 from datetime import timezone
 from struct import unpack
-import functools
-import sys
-import warnings
 
 
 def parse_uuid(binary):
@@ -22,7 +21,9 @@ def parse_uuid(binary):
 def _quad_to_hex(quad):
     # An implemetation is based on
     # https://metadataconsulting.blogspot.com/2019/12/CSharp-Convert-a-GUID-to-a-Darwin-Descriptor-and-back.html
-    base_85 = "!$%&'()*+,-.0123456789=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{}~"
+    base_85 = (
+        "!$%&'()*+,-.0123456789=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{}~"
+    )
     i = 5
     ddec = 0
     while i >= 1:

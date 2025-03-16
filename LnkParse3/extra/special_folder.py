@@ -1,5 +1,7 @@
 from struct import unpack
+
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
+
 
 """
 ------------------------------------------------------------------

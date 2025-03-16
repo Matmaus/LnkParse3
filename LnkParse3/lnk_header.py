@@ -1,8 +1,10 @@
 from struct import unpack
+
+from LnkParse3.decorators import filetime
 from LnkParse3.decorators import must_be
 from LnkParse3.decorators import uuid
-from LnkParse3.decorators import filetime
 from LnkParse3.exceptions import LnkParserError
+
 
 """
 SHELL_LINK_HEADER:
@@ -447,8 +449,7 @@ class LnkHeader:
 
         if high and low:
             return "%s - %s {0x%s}" % (high, low, hot_key.hex())
-        else:
-            return hot_key.hex()
+        return hot_key.hex()
 
     def raw_hot_key(self):
         """HotKey (2 bytes):

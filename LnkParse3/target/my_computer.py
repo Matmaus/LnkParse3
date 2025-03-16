@@ -1,5 +1,5 @@
-from struct import unpack
 from LnkParse3.target.lnk_target_base import LnkTargetBase
+
 
 """
 ----------------------------------------------------------------------

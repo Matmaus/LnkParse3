@@ -4,24 +4,24 @@ __description__ = "Windows Shortcut file (LNK) parser"
 __author__ = "Matmaus"
 __version__ = "1.5.0"
 
-import json
-import datetime
 import argparse
-from subprocess import list2cmdline
+import datetime
+import json
 import re
 import textwrap
+from subprocess import list2cmdline
 
 import yaml
 
-from LnkParse3.lnk_header import LnkHeader
-from LnkParse3.lnk_targets import LnkTargets
-from LnkParse3.lnk_info import LnkInfo
-from LnkParse3.info_factory import InfoFactory
-from LnkParse3.string_data import StringData
 from LnkParse3.extra_data import ExtraData
+from LnkParse3.info_factory import InfoFactory
+from LnkParse3.lnk_header import LnkHeader
+from LnkParse3.lnk_info import LnkInfo
+from LnkParse3.lnk_targets import LnkTargets
+from LnkParse3.string_data import StringData
 
 
-class LnkFile(object):
+class LnkFile:
     def __init__(self, fhandle=None, indata=None, cp=None):
         if fhandle:
             self.indata = fhandle.read()
@@ -128,9 +128,7 @@ class LnkFile(object):
         res_json.pop("EMPTY_LINE_PLACEHOLDERHEADER")
         new_res_json.update(res_json)
 
-        res_yaml = yaml.dump(
-            new_res_json, indent=3, sort_keys=False, width=132, allow_unicode=True
-        )
+        res_yaml = yaml.dump(new_res_json, indent=3, sort_keys=False, width=132, allow_unicode=True)
 
         # replace palceholders for empty lines
         res_yaml = res_yaml.replace("EMPTY_LINE_PLACEHOLDER", "\n")
@@ -235,19 +233,17 @@ class LnkFile(object):
             if self.info.common_path_suffix_offset():
                 res["link_info"]["common_path_suffix"] = self.info.common_path_suffix()
             if self.info.local_base_path_offset_unicode():
-                res["link_info"][
-                    "local_base_path_offset_unicode"
-                ] = self.info.local_base_path_offset_unicode()
-                res["link_info"][
-                    "local_base_path_unicode"
-                ] = self.info.local_base_path_unicode()
+                res["link_info"]["local_base_path_offset_unicode"] = (
+                    self.info.local_base_path_offset_unicode()
+                )
+                res["link_info"]["local_base_path_unicode"] = self.info.local_base_path_unicode()
             if self.info.common_path_suffix_offset_unicode():
-                res["link_info"][
-                    "common_path_suffix_offset_unicode"
-                ] = self.info.common_path_suffix_offset_unicode()
-                res["link_info"][
-                    "common_path_suffix_unicode"
-                ] = self.info.common_path_suffix_unicode()
+                res["link_info"]["common_path_suffix_offset_unicode"] = (
+                    self.info.common_path_suffix_offset_unicode()
+                )
+                res["link_info"]["common_path_suffix_unicode"] = (
+                    self.info.common_path_suffix_unicode()
+                )
 
             res["link_info"]["location_info"] = {}
             if type(self.info).__name__ == "Local":
@@ -263,16 +259,16 @@ class LnkFile(object):
                 }
 
                 if self.info.common_network_relative_link():
-                    res["link_info"]["location_info"][
-                        "common_network_relative_link"
-                    ] = self.info.common_network_relative_link()
+                    res["link_info"]["location_info"]["common_network_relative_link"] = (
+                        self.info.common_network_relative_link()
+                    )
                 if self.info.volume_label_unicode_offset():
-                    res["link_info"]["location_info"][
-                        "volume_label_unicode_offset"
-                    ] = self.info.volume_label_unicode_offset()
-                    res["link_info"]["location_info"][
-                        "volume_label_unicode"
-                    ] = self.info.volume_label_unicode()
+                    res["link_info"]["location_info"]["volume_label_unicode_offset"] = (
+                        self.info.volume_label_unicode_offset()
+                    )
+                    res["link_info"]["location_info"]["volume_label_unicode"] = (
+                        self.info.volume_label_unicode()
+                    )
             elif type(self.info).__name__ == "Network":
                 res["link_info"]["location"] = self.info.location()
                 res["link_info"]["location_info"] = {
@@ -283,29 +279,27 @@ class LnkFile(object):
                     "r_network_provider_type": self.info.r_network_provider_type(),
                 }
                 if self.info.network_provider_type():
-                    res["link_info"]["location_info"][
-                        "network_provider_type"
-                    ] = self.info.network_provider_type()
+                    res["link_info"]["location_info"]["network_provider_type"] = (
+                        self.info.network_provider_type()
+                    )
                 if self.info.net_name_offset_unicode():
-                    res["link_info"]["location_info"][
-                        "net_name_offset_unicode"
-                    ] = self.info.net_name_offset_unicode()
-                    res["link_info"]["location_info"][
-                        "net_name_unicode"
-                    ] = self.info.net_name_unicode()
+                    res["link_info"]["location_info"]["net_name_offset_unicode"] = (
+                        self.info.net_name_offset_unicode()
+                    )
+                    res["link_info"]["location_info"]["net_name_unicode"] = (
+                        self.info.net_name_unicode()
+                    )
                 if self.info.device_name_offset_unicode():
-                    res["link_info"]["location_info"][
-                        "device_name_offset_unicode"
-                    ] = self.info.device_name_offset_unicode()
-                    res["link_info"]["location_info"][
-                        "device_name_unicode"
-                    ] = self.info.device_name_unicode()
+                    res["link_info"]["location_info"]["device_name_offset_unicode"] = (
+                        self.info.device_name_offset_unicode()
+                    )
+                    res["link_info"]["location_info"]["device_name_unicode"] = (
+                        self.info.device_name_unicode()
+                    )
                 if self.info.net_name():
                     res["link_info"]["location_info"]["net_name"] = self.info.net_name()
                 if self.info.device_name():
-                    res["link_info"]["location_info"][
-                        "device_name"
-                    ] = self.info.device_name()
+                    res["link_info"]["location_info"]["device_name"] = self.info.device_name()
 
         res["data"] = self.string_data.as_dict()
         res["extra"] = self.extras.as_dict()
@@ -321,19 +315,11 @@ class LnkFile(object):
             res["link_info"].pop("local_base_path_offset", None)
             res["link_info"].pop("common_network_relative_link_offset", None)
             res["link_info"].pop("common_path_suffix_offset", None)
-            if (
-                "location" in res["link_info"]
-                and "Local" in res["link_info"]["location"]
-            ):
+            if "location" in res["link_info"] and "Local" in res["link_info"]["location"]:
                 res["link_info"]["location_info"].pop("volume_id_size", None)
                 res["link_info"]["location_info"].pop("volume_label_offset", None)
-            if (
-                "location" in res["link_info"]
-                and "Network" in res["link_info"]["location"]
-            ):
-                res["link_info"]["location_info"].pop(
-                    "common_network_relative_link_size", None
-                )
+            if "location" in res["link_info"] and "Network" in res["link_info"]["location"]:
+                res["link_info"]["location_info"].pop("common_network_relative_link_size", None)
                 res["link_info"]["location_info"].pop("net_name_offset", None)
                 res["link_info"]["location_info"].pop("device_name_offset", None)
 
@@ -358,9 +344,7 @@ def main():
     arg_parser.add_argument(
         "-t", "--target", action="store_true", help="print shortcut target only"
     )
-    arg_parser.add_argument(
-        "-j", "--json", action="store_true", help="print output in JSON"
-    )
+    arg_parser.add_argument("-j", "--json", action="store_true", help="print output in JSON")
     arg_parser.add_argument(
         "-c",
         "--codepage",

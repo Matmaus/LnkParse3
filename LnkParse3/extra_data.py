@@ -1,10 +1,11 @@
 import warnings
-from struct import unpack
 from struct import error as StructError
+from struct import unpack
 
-from LnkParse3.extra_factory import ExtraFactory
-from LnkParse3.extra.unknown import Unknown
 from LnkParse3.extra.terminal import Terminal
+from LnkParse3.extra.unknown import Unknown
+from LnkParse3.extra_factory import ExtraFactory
+
 
 """
 EXTRA_DATA:

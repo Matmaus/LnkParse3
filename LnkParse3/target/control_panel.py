@@ -1,5 +1,5 @@
-from LnkParse3.target.lnk_target_base import LnkTargetBase
 from LnkParse3.decorators import uuid
+from LnkParse3.target.lnk_target_base import LnkTargetBase
 
 
 # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#38-control-panel-shell-item

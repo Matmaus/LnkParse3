@@ -1,19 +1,20 @@
 import struct
-from struct import unpack
 import warnings
+from struct import unpack
 
-from LnkParse3.extra.environment import Environment
-from LnkParse3.extra.console import Console
-from LnkParse3.extra.distributed_tracker import DistributedTracker
 from LnkParse3.extra.code_page import CodePage
-from LnkParse3.extra.special_folder import SpecialFolder
+from LnkParse3.extra.console import Console
 from LnkParse3.extra.darwin import Darwin
+from LnkParse3.extra.distributed_tracker import DistributedTracker
+from LnkParse3.extra.environment import Environment
 from LnkParse3.extra.icon import Icon
-from LnkParse3.extra.shim_layer import ShimLayer
-from LnkParse3.extra.metadata import Metadata
 from LnkParse3.extra.known_folder import KnownFolder
+from LnkParse3.extra.metadata import Metadata
 from LnkParse3.extra.shell_item import ShellItem
+from LnkParse3.extra.shim_layer import ShimLayer
+from LnkParse3.extra.special_folder import SpecialFolder
 from LnkParse3.extra.unknown import Unknown
+
 
 """
 ------------------------------------------------------------------

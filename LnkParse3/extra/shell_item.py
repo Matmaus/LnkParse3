@@ -1,8 +1,8 @@
 import warnings
 
 from LnkParse3.extra.lnk_extra_base import LnkExtraBase
-from LnkParse3.lnk_targets import LnkTargets
 from LnkParse3.lnk_targets import TargetFactory
+
 
 """
 ------------------------------------------------------------------
@@ -60,9 +60,7 @@ class ShellItem(LnkExtraBase):
             try:
                 res.append(target.as_item())
             except KeyError as e:
-                msg = (
-                    f"Error while parsing extra TargetID `{target.name}` (KeyError {e})"
-                )
+                msg = f"Error while parsing extra TargetID `{target.name}` (KeyError {e})"
                 warnings.warn(msg)
                 continue
         return res

@@ -1,5 +1,7 @@
 from struct import unpack
+
 from LnkParse3.text_processor import TextProcessor
+
 
 """
 An ItemID is an element in an IDList structure (section 2.2.1). The data stored
