@@ -1,0 +1,72 @@
+line-length = 100
+
+[lint]
+ignore = [
+    # The formatter tries its best to split lines but it doesn't
+    # enforce the line length limit. It is better to disable this rule.
+    # https://www.flake8rules.com/rules/E501.html
+    "E501",
+    # Use formatter to manage quotes/doublequotes
+    "Q000",
+    "Q003",
+    # First line should end with a period
+    "D400",
+    # one-blank-line-before-class
+    "D203",
+    # multi-line-summary-second-line
+    "D213",
+    # Allow unnecessary assignment before return
+    "RET504",
+    # Default stack level 1 for warning is good enough
+    "B028",
+    # Skip until using type checking
+    "RUF012",
+    # Allow lowercase names
+    "N802",
+    # Allow LnkFile/lnk_file inconsistency
+    "N813",
+    "N999",
+    # Allow old fashion of format strings
+    "UP031",
+    # Keep support for outdated version a bit longer
+    "UP036",
+    # Allow try-except in loop
+    "PERF203",
+    # Stick to old fashion open
+    "PTH123",
+]
+select = [
+    "E",     # pycodestyle
+    "W",     # pycodestyle warnings
+    "F",     # Pyflakes
+    "UP",    # pyupgrade
+    "I",     # isort
+    "Q",     # flake8-quotes
+    "RUF",   # ruff specific rules
+    "N",     # pep8-naming
+    "B",     # flake8-bugbear
+    "SIM",   # flake8-simplify
+    "C4",    # flake8-comprehensions
+    "PT",    # flake8-pytest-style
+    "RSE",   # flake8-raise
+    "SLF",   # flake8-self
+    "ARG",   # flake8-unused-arguments
+    "PTH",   # flake8-use-pathlib
+    "R",     # Refactor
+    "PERF",  # Perflint
+    "FURB",  # refurb
+]
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+
+[lint.isort]
+order-by-type = false
+force-single-line = true
+lines-after-imports = 2
+
+[lint.flake8-quotes]
+inline-quotes = "single"
+
+[format]
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
