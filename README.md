@@ -174,7 +174,7 @@ pytest --cov=LnkParse3 tests --cov-fail-under=80 --cov-report=html --no-cov-on-f
 
 ## Code
 
-Make sure to run [`black`](https://pypi.org/project/black/) auto-formatter before opening a PR. It will keep the code in good shape.
+Make sure to run [`ruff`](https://docs.astral.sh/ruff/) auto-formatter and linter before opening a PR. It will keep the code in good shape.
 
 Also, it would be nice to try to make meaningful commit messages and atomic commits.
 
