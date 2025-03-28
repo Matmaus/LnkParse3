@@ -74,12 +74,11 @@ class TargetFactory:
 
         # XXX: Move to table
         try:
-            if 0x20 < item_type <= 0x2F:
-                target = classes[0x20]
-            elif 0x30 < item_type <= 0x3F:
-                target = classes[0x30]
-            elif 0x40 < item_type <= 0x4F:
-                target = classes[0x40]
+            # 0x20, 0x30, and 0x40 should have an 0x70 bitmask applied per
+            # https://github.com/libyal/libfwsi/blob/main/documentation/Windows%20Shell%20Item%20format.asciidoc
+            masked_item_type = item_type & 0x70
+            if masked_item_type in [0x20, 0x30, 0x40]:
+                target = classes[masked_item_type]
             else:
                 target = classes[item_type]
         except KeyError:
