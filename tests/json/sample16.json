@@ -111,6 +111,14 @@
                 "flags": "Is directory",
                 "modification_time": "2021-04-23T15:06:40+00:00",
                 "primary_name": "Windows"
+            },
+            {
+                "class": "File entry",
+                "file_attribute_flags": 17,
+                "file_size": 0,
+                "flags": "Is directory",
+                "modification_time": "2021-04-23T15:04:00+00:00",
+                "primary_name": "Recent"
             }
         ],
         "size": 604
