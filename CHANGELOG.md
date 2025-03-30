@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2025-03-30
+### Fixed
+- Fix parsing of some targets by applying required bitmask ([issue](https://github.com/Matmaus/LnkParse3/issues/37), [PR](https://github.com/Matmaus/LnkParse3/pull/38))
+
 ## [1.5.0] - 2024-05-19
 ### Changed
 - Try UTF-8 encoding when decoding by specified codepage fails.
