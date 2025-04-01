@@ -25,17 +25,17 @@ class StringData:
         start = 0
         try:
             if self._lnk_file.has_name():
-                text, length = self.read(self._raw[start:])
+                text, length = self.read(self._raw[start:], limit_length=True)
                 self._data["description"] = text
                 start += length
 
             if self._lnk_file.has_relative_path():
-                text, length = self.read(self._raw[start:])
+                text, length = self.read(self._raw[start:], limit_length=True)
                 self._data["relative_path"] = text
                 start += length
 
             if self._lnk_file.has_working_dir():
-                text, length = self.read(self._raw[start:])
+                text, length = self.read(self._raw[start:], limit_length=True)
                 self._data["working_directory"] = text
                 start += length
 
@@ -71,10 +71,10 @@ class StringData:
     def icon_location(self):
         return self._data.get("icon_location")
 
-    def read(self, binary):
+    def read(self, binary, limit_length=False):
         offset = 2
         char_count = unpack("<H", binary[0:offset])[0]
-        length = char_count
+        length = 260 if limit_length and char_count > 260 else char_count
 
         if self._lnk_file.is_unicode():
             self._read = self.text_processor.read_unicode_string
