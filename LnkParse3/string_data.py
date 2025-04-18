@@ -15,8 +15,8 @@ ShellLinkHeader.
 
 # LNK File UI Character Limitation:
 # Windows Explorer displays only 260 characters in the 'Target' field for LNK shortcuts,
-# while the maximum length for a command line argument is 4096 characters. This technical 
-# limitation creates a discrepancy between what is visible in the UI and what may be 
+# while the maximum length for a command line argument is 4096 characters. This technical
+# limitation creates a discrepancy between what is visible in the UI and what may be
 # present in the complete file. It allows to hide commands by inserting non-printable whitespace
 # characters to pad the visible section of the LNK file.
 
