@@ -20,6 +20,7 @@ ShellLinkHeader.
 # present in the complete file. It allows to hide commands by inserting non-printable whitespace
 # characters to pad the visible section of the LNK file.
 
+
 class StringData:
     def __init__(self, lnk_file, indata=None, cp=None):
         self._raw = indata
