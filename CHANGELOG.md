@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.2] - 2025-04-18
+### Changed
+- Set length limit to 260 for some of `StringData` fields.
+
 ## [1.5.1] - 2025-03-30
 ### Fixed
 - Fix parsing of some targets by applying required bitmask ([issue](https://github.com/Matmaus/LnkParse3/issues/37), [PR](https://github.com/Matmaus/LnkParse3/pull/38))
