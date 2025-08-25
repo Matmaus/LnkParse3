@@ -1,0 +1,14 @@
+{
+    "format_id": "D5CDD505-2E9C-101B-9397-08002B2CF9AE",
+    "serialized_property_values": [
+        {
+            "name": "ItemsToRemove/",
+            "name_size": 30,
+            "value": "[]",
+            "value_size": 55,
+            "value_type": "VT_LPWSTR"
+        }
+    ],
+    "storage_size": 83,
+    "version": "0x53505331"
+}
