@@ -1,3 +1,4 @@
+import warnings
 from struct import unpack
 
 from LnkParse3.text_processor import TextProcessor
@@ -21,10 +22,15 @@ the items in that part of the namespace.
 
 class LnkTargetBase:
     SHELL_ITEM_SHEL_FS_FOLDER = {
+        # FIXME: Temporary solution for not make a breaking change
+        0x05: "Is Unicode directory",
+        0x06: "Is Unicode file",
+        0x07: "Is Unicode share",
+
+        0x03: "Is share",
         0x01: "Is directory",
         0x02: "Is file",
         0x04: "Has Unicode strings",
-        0x08: "Unknown",
         0x80: "Has CLSID",
     }
 
@@ -40,6 +46,19 @@ class LnkTargetBase:
         start = self.SIZE_OF_TARGET_SIZE
         end = start + self.size()
         self._raw_target = self._raw[start:end]
+
+    def get_item_shell_fs_folder(self, flags: int) -> str:
+        # FIXME: Can have many flags at once
+        for flag, name in self.SHELL_ITEM_SHEL_FS_FOLDER.items():
+            if flags & flag == flag:
+                return name
+        msg = (
+            f"Not implemented flags 0x{flags:02X} "
+            "in LnkTargetBase.SHELL_ITEM_SHELL_FS_FOLDER. "
+            'Use fallback value: "Unknown".'
+        )
+        warnings.warn(msg)
+        return "Unknown"
 
     def as_item(self):
         return {

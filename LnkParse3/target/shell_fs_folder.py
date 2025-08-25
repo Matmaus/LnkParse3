@@ -54,7 +54,7 @@ class ShellFSFolder(LnkTargetBase):
         flags = self.class_type_indicator()
 
         # FIXME: delete masking
-        return self.SHELL_ITEM_SHEL_FS_FOLDER[flags & 0x0F]
+        return self.get_item_shell_fs_folder(flags & 0x0F)
 
     def file_size(self):
         start, end = 2, 6

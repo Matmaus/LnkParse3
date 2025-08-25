@@ -79,10 +79,20 @@
                 "flags": "0xf"
             },
             {
-                "class": "File entry"
+                "class": "File entry",
+                "file_attribute_flags": 22,
+                "file_size": 0,
+                "flags": "Is Unicode directory",
+                "modification_time": "2016-05-05T08:47:24+00:00",
+                "primary_name": "\u00a0"
             },
             {
-                "class": "File entry"
+                "class": "File entry",
+                "file_attribute_flags": 7,
+                "file_size": 155648,
+                "flags": "Is Unicode file",
+                "modification_time": "2014-09-15T07:38:26+00:00",
+                "primary_name": "\u00a0.exe"
             }
         ],
         "size": 195

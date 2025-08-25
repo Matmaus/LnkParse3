@@ -48,21 +48,23 @@ class NetworkLocation(LnkTargetBase):
         item["flags"] = self.flags()
         item["content_flags"] = self.content_flags()
         item["location"] = self.location()
+        item["description"] = self.description()
+        item["comments"] = self.comments()
         return item
 
     # TODO: rename to class_type_indicator
     def flags(self):
         start, end = 0, 1
         flags = unpack("<B", self._raw_target[start:end])[0]
-        return self.SHELL_ITEM_SHEL_FS_FOLDER[flags & 0x0F]
+        return self.get_item_shell_fs_folder(flags & 0x0F)
 
     def content_flags(self):
         """
         0x40 ⇒ has comments
         0x80 ⇒ has description
         """
-        start, end = 2, 6
-        flags = unpack("<I", self._raw_target[start:end])[0]
+        start, end = 2, 3
+        flags = unpack("<B", self._raw_target[start:end])[0]
         return flags
 
     def _has_comments(self):
@@ -72,7 +74,7 @@ class NetworkLocation(LnkTargetBase):
         return bool(self.content_flags() & 0x80)
 
     def _string_data(self):
-        start = 6
+        start = 3
         binary = self._raw_target[start:]
         return self.text_processor.read_strings(binary)
 
