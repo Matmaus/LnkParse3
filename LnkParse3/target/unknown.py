@@ -9,4 +9,5 @@ class Unknown(LnkTargetBase):
 
     def as_item(self):
         item = super().as_item()
+        item["size"] = self.SIZE_OF_TARGET_SIZE + self.size()
         return item

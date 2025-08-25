@@ -38,7 +38,8 @@
                 "flags": "0xe"
             },
             {
-                "class": "Unknown"
+                "class": "Unknown",
+                "size": 684
             }
         ],
         "size": 877

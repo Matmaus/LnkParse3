@@ -20,7 +20,8 @@ Windows Shortcut Information:
       -  Volume Item:
             Flags: '0xe'
             Data: null
-      -  Unknown: {}
+      -  Unknown:
+            Size: 684
       Index: 78
 
    LINK INFO: {}

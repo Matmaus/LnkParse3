@@ -17,9 +17,6 @@ from LnkParse3.target.users_files_folder import UsersFilesFolder
 class TargetFactory:
     # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#3-type-indicator-based-shell-items
     SHELL_ITEM_CLASSES = {
-        0x00: Unknown,
-        0x01: Unknown,
-        0x17: Unknown,
         0x1E: RootFolder,
         0x1F: RootFolder,
         0x20: MyComputer,
@@ -32,10 +29,19 @@ class TargetFactory:
         0x72: Printers,
         0x73: CommonPlacesFolder,
         0x74: UsersFilesFolder,
-        0x76: Unknown,
-        0x80: Unknown,
-        0xFF: Unknown,
     }
+
+    @classmethod
+    def get_shell_item_classes(cls, item_type):
+        if item_type not in cls.SHELL_ITEM_CLASSES:
+            msg = (
+                f"Not implemented item_type 0x{item_type:02X} "
+                "in TargetFactory.SHELL_ITEM_CLASSES. "
+                f"Use fallback value: {Unknown!r}."
+            )
+            warnings.warn(msg)
+            return Unknown
+        return cls.SHELL_ITEM_CLASSES[item_type]
 
     def __init__(self, indata):
         self._target = {}
@@ -66,24 +72,18 @@ class TargetFactory:
             return None
 
         item_type = self.item_type()
-        classes = self.SHELL_ITEM_CLASSES
 
         # TODO: ControlPanelShellItems
         # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#43-control-panel-shell-items
         # if item_type == 0x00:
 
         # XXX: Move to table
-        try:
-            # 0x20, 0x30, and 0x40 should have an 0x70 bitmask applied per
-            # https://github.com/libyal/libfwsi/blob/main/documentation/Windows%20Shell%20Item%20format.asciidoc
-            masked_item_type = item_type & 0x70
-            if masked_item_type in [0x20, 0x30, 0x40]:
-                target = classes[masked_item_type]
-            else:
-                target = classes[item_type]
-        except KeyError:
-            msg = f"Unknown TargetID `{item_type}`"
-            warnings.warn(msg)
-            return None
+        # 0x20, 0x30, and 0x40 should have an 0x70 bitmask applied per
+        # https://github.com/libyal/libfwsi/blob/main/documentation/Windows%20Shell%20Item%20format.asciidoc
+        masked_item_type = item_type & 0x70
+        if masked_item_type in [0x20, 0x30, 0x40]:
+            target = self.get_shell_item_classes(masked_item_type)
+        else:
+            target = self.get_shell_item_classes(item_type)
 
         return target
