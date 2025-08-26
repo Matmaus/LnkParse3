@@ -26,7 +26,6 @@ class LnkTargetBase:
         0x05: "Is Unicode directory",
         0x06: "Is Unicode file",
         0x07: "Is Unicode share",
-
         0x03: "Is share",
         0x01: "Is directory",
         0x02: "Is file",
