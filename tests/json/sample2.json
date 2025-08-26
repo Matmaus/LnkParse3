@@ -130,7 +130,8 @@
             {
                 "class": "Root Folder",
                 "guid": "59031A47-3F72-44A7-89C5-5595FE6B30EE",
-                "sort_index": "Users"
+                "sort_index": "Users",
+                "sort_index_value": 68
             },
             {
                 "class": "Users files folder"

@@ -33,6 +33,12 @@
         "index": 78,
         "items": [
             {
+                "class": "Root Folder",
+                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                "sort_index": "Unknown",
+                "sort_index_value": 91
+            },
+            {
                 "class": "Volume Item",
                 "data": null,
                 "flags": "0xe"
