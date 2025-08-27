@@ -22,13 +22,14 @@ from LnkParse3.string_data import StringData
 
 
 class LnkFile:
-    def __init__(self, fhandle=None, indata=None, cp=None):
+    def __init__(self, fhandle=None, indata=None, cp=None, terminal=True):
         if fhandle:
             self.indata = fhandle.read()
         elif indata:
             self.indata = indata
 
         self.cp = cp
+        self.terminal = terminal
 
         self.process()
 
@@ -89,7 +90,14 @@ class LnkFile:
         index += self.string_data.size()
 
         # Parse Extra Data
-        self.extras = ExtraData(indata=self.indata[index:], cp=self.cp)
+        self.extras = ExtraData(indata=self.indata[index:], cp=self.cp, terminal=self.terminal)
+        index += self.extras.size()
+
+        # Add size of the footer if present
+        index += min(len(self.indata[index:]), 4)
+
+        # Final LNK size
+        self.size = index
 
     def print_lnk_file(self, print_all=False):
         res = self.get_json(print_all)
@@ -188,6 +196,7 @@ class LnkFile:
 
     def get_json(self, get_all=False):
         res = {
+            "size": self.size,
             "header": {
                 "guid": self.header.link_cls_id(),
                 "r_link_flags": self.header.r_link_flags(),

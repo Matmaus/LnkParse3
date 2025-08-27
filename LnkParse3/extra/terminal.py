@@ -11,6 +11,9 @@ No data should be expected or found after the terminal block, but in the rare ca
 does, this class will fulfill the undocumented feature of keeping track of it.
 This can be the case with malicious shortcut files trying to hide their payload.
 
+This can also be the case in customDestination-ms files,
+where LNK files are concatenated in sequence within a single file.
+
 ------------------------------------------------------------------
 |     0-7b     |     8-15b     |     16-23b     |     24-31b     |
 ------------------------------------------------------------------
