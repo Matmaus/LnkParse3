@@ -9,6 +9,8 @@ from io import StringIO
 
 import LnkParse3
 from LnkParse3.target.network_location import NetworkLocation
+from LnkParse3.extra.metadata import SerializedPropertyStorage
+from LnkParse3.text_processor import TextProcessor
 
 
 TARGET_DIR = os.path.join(os.path.dirname(__file__), 'samples')
@@ -154,6 +156,7 @@ class TestSamples(unittest.TestCase):
 
         self.assertEqual(our, their)
 
+
     def test_network_location(self):
         with open_sample('tests/raw/NetworkLocation') as indata:
             network_location = NetworkLocation(indata=indata)
@@ -162,6 +165,18 @@ class TestSamples(unittest.TestCase):
 
         json_path = os.path.join(JSON_DIR, "NetworkLocation.json")
         with open(json_path, 'rb') as fp:
+            their = json.load(fp)
+
+        self.assertDictEqual(our, their)
+
+    def test_serialized_property_storage(self):
+        with open_sample('tests/raw/SerializedPropertyStorage') as indata:
+            storage = SerializedPropertyStorage(indata, TextProcessor())
+
+        our = storage.as_dict()
+
+        txt_path = os.path.join(JSON_DIR, "SerializedPropertyStorage.json")
+        with open(txt_path, 'r') as fp:
             their = json.load(fp)
 
         self.assertDictEqual(our, their)
