@@ -47,13 +47,28 @@
                 "flags": "0xf"
             },
             {
-                "class": "File entry"
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 1048576,
+                "flags": "Is Unicode directory",
+                "modification_time": null,
+                "primary_name": "Windows"
             },
             {
-                "class": "File entry"
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 1048576,
+                "flags": "Is Unicode directory",
+                "modification_time": null,
+                "primary_name": "System32"
             },
             {
-                "class": "File entry"
+                "class": "File entry",
+                "file_attribute_flags": 0,
+                "file_size": 1048576,
+                "flags": "Is Unicode file",
+                "modification_time": null,
+                "primary_name": "cmd.exe"
             }
         ],
         "size": 139

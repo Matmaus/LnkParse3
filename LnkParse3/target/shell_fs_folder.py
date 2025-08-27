@@ -36,16 +36,11 @@ class ShellFSFolder(LnkTargetBase):
 
     def as_item(self):
         item = super().as_item()
-        try:
-            item["flags"] = self.flags()
-            item["file_size"] = self.file_size()
-            item["modification_time"] = self.modification_time()
-            item["file_attribute_flags"] = self.file_attribute_flags()
-            item["primary_name"] = self.primary_name()
-        except KeyError:
-            # FIXME This try-catch is just a hot-fix.
-            # We should probably solve failing attributes in a better way.
-            pass
+        item["flags"] = self.flags()
+        item["file_size"] = self.file_size()
+        item["modification_time"] = self.modification_time()
+        item["file_attribute_flags"] = self.file_attribute_flags()
+        item["primary_name"] = self.primary_name()
         return item
 
     # dup: ./my_computer.py flags()
@@ -54,7 +49,7 @@ class ShellFSFolder(LnkTargetBase):
         flags = self.class_type_indicator()
 
         # FIXME: delete masking
-        return self.SHELL_ITEM_SHEL_FS_FOLDER[flags & 0x0F]
+        return self.get_item_shell_fs_folder(flags & 0x0F)
 
     def file_size(self):
         start, end = 2, 6

@@ -63,10 +63,20 @@
                 "primary_name": "ProgramData"
             },
             {
-                "class": "File entry"
+                "class": "File entry",
+                "file_attribute_flags": 16,
+                "file_size": 0,
+                "flags": "Is Unicode directory",
+                "modification_time": null,
+                "primary_name": "V\u041a_DJ"
             },
             {
-                "class": "File entry"
+                "class": "File entry",
+                "file_attribute_flags": 0,
+                "file_size": 0,
+                "flags": "Is Unicode file",
+                "modification_time": null,
+                "primary_name": "V\u041a_DJ.exe"
             }
         ],
         "size": 321

@@ -135,7 +135,12 @@
                 "primary_name": "4.4"
             },
             {
-                "class": "File entry"
+                "class": "File entry",
+                "file_attribute_flags": 32,
+                "file_size": 756160,
+                "flags": "Is Unicode file",
+                "modification_time": "2015-07-13T10:59:48+00:00",
+                "primary_name": "\u64ad\u653e\u5668\u6b63\u5728\u52a0\u8f7d\uff08\u62e6\u622aR\b\u0004\ubeef\u4753\u3d39\u4753\u3d39*"
             }
         ],
         "size": 485

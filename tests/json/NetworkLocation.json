@@ -1,0 +1,8 @@
+{
+  "class": "Network location",
+  "comments": "",
+  "flags": "Is share",
+  "content_flags": 197,
+  "description": "Microsoft Network",
+  "location": "\\\\10.0.0.3\\Share"
+}
