@@ -221,13 +221,13 @@ class SerializedPropertyValueStringName:
     def name(self):
         start, end = 9, self._value_offset()
         binary = self._raw[start:end]
-        return self.text_processor.read_unicode_string(binary)
+        return self._text_processor.read_unicode_string(binary)
 
     def _value_offset(self):
-        return (9 + int(self.name_size())) * 2
+        return 9 + int(self.name_size())
 
     def value(self):
-        return TypedPropertyValue(self._raw[self.value_offset() :], self._text_processor)
+        return TypedPropertyValue(self._raw[self._value_offset() :], self._text_processor)
 
     def as_dict(self):
         return {

@@ -3,10 +3,14 @@ import json
 import os
 import unittest
 import warnings
-from contextlib import contextmanager, redirect_stdout
+from contextlib import contextmanager
+from contextlib import redirect_stdout
 from io import StringIO
 
 import LnkParse3
+from LnkParse3.extra.metadata import SerializedPropertyStorage
+from LnkParse3.text_processor import TextProcessor
+
 
 TARGET_DIR = os.path.join(os.path.dirname(__file__), 'samples')
 JSON_DIR = os.path.join(os.path.dirname(__file__), 'json')
@@ -150,6 +154,18 @@ class TestSamples(unittest.TestCase):
             their = fp.read()
 
         self.assertEqual(our, their)
+
+    def test_serialized_property_storage(self):
+        with open_sample('tests/raw/SerializedPropertyStorage') as indata:
+            storage = SerializedPropertyStorage(indata, TextProcessor())
+
+        our = storage.as_dict()
+
+        txt_path = os.path.join(JSON_DIR, "SerializedPropertyStorage.json")
+        with open(txt_path, 'r') as fp:
+            their = json.load(fp)
+
+        self.assertDictEqual(our, their)
 
 
 if __name__ == '__main__':
