@@ -17,6 +17,10 @@ Windows Shortcut Information:
    TARGET:
       Size: 877
       Items:
+      -  Root Folder:
+            Sort index: Unknown
+            Sort index value: 91
+            Guid: 20D04FE0-3AEA-1069-A2D8-08002B30309D
       -  Volume Item:
             Flags: '0xe'
             Data: null

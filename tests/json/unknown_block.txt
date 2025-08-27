@@ -19,6 +19,7 @@ Windows Shortcut Information:
       Items:
       -  Root Folder:
             Sort index: My Computer
+            Sort index value: 80
             Guid: 20D04FE0-3AEA-1069-A2D8-08002B30309D
       -  Volume Item:
             Flags: '0xf'
