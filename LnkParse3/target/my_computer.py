@@ -36,4 +36,7 @@ class MyComputer(LnkTargetBase):
         return hex(flags & 0x0F)
 
     def data(self):
+        if self.class_type_indicator() == 0x2F:
+            # FIXME: Some data seems to stay unparsed after \0
+            return self.text_processor.read_string(self._raw_target[1:])
         return None

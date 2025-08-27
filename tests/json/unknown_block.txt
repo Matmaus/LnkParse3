@@ -22,7 +22,7 @@ Windows Shortcut Information:
             Guid: 20D04FE0-3AEA-1069-A2D8-08002B30309D
       -  Volume Item:
             Flags: '0xf'
-            Data: null
+            Data: C:\
       -  File entry:
             Flags: Is directory
             File size: 0
