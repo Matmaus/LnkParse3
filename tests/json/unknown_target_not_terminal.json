@@ -1,11 +1,6 @@
 {
     "data": {},
-    "extra": {
-        "TERMINAL_BLOCK": {
-            "appended_data_sha256": "d64c62e65398d37cd27e11fd729fa102016a05ba67f5020e17dfbd3b857dd96e",
-            "size": 67653
-        }
-    },
+    "extra": {},
     "header": {
         "accessed_time": "2012-08-06T11:51:14+00:00",
         "creation_time": "2012-08-06T11:51:14+00:00",
@@ -29,24 +24,17 @@
         "windowstyle": "SW_SHOWNORMAL"
     },
     "link_info": {},
-    "size": 68608,
+    "size": 959,
     "target": {
         "index": 78,
         "items": [
-            {
-                "class": "Root Folder",
-                "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
-                "sort_index": "Unknown",
-                "sort_index_value": 91
-            },
             {
                 "class": "Volume Item",
                 "data": null,
                 "flags": "0xe"
             },
             {
-                "class": "Unknown",
-                "size": 684
+                "class": "Unknown"
             }
         ],
         "size": 877

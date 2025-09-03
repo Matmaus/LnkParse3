@@ -1,0 +1,1253 @@
+[
+    {
+        "data": {
+            "command_line_arguments": "{A97AF2A4-8EF1-49C1-8B4C-68B8AE925549} http://go.microsoft.com/fwlink/?LinkID=139460",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1102",
+            "icon_location": "%systemroot%\\branding\\shellbrd\\shellbrd.dll"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1101",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": -1076,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1893,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    },
+    {
+        "data": {
+            "command_line_arguments": "{6283D460-3C57-4F5A-96AE-30F77FEF3125} %systemroot%\\system32\\control.exe /name Microsoft.Personalization",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1122",
+            "icon_location": "%systemroot%\\system32\\themecpl.dll"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1121",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": -1,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1915,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    },
+    {
+        "data": {
+            "command_line_arguments": "{89ECBF03-2033-4BCB-AE4A-665E2B737389} %systemroot%\\System32\\migwiz\\migwiz.exe",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1142",
+            "icon_location": "%systemroot%\\System32\\migwiz\\migwiz.exe"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1141",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": 0,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1873,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    },
+    {
+        "data": {
+            "command_line_arguments": "{D36AFB67-9043-4714-B4A3-E9E9481750A1} %systemroot%\\system32\\control.exe /name Microsoft.HomeGroup",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1162",
+            "icon_location": "%systemroot%\\system32\\imageres.dll"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1161",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": -1013,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1903,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    },
+    {
+        "data": {
+            "command_line_arguments": "{6819DEE2-366D-4F92-8F73-EC24116674D3} %systemroot%\\system32\\UserAccountControlSettings.exe",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1182",
+            "icon_location": "%systemroot%\\system32\\imageres.dll"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1181",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": -78,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1889,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    },
+    {
+        "data": {
+            "command_line_arguments": "{AEB13B0B-E2A0-47AD-9C5C-D541FB776583} http://go.microsoft.com/fwlink/?LinkId=130744",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1202",
+            "icon_location": "%systemroot%\\branding\\shellbrd\\shellbrd.dll"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1201",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": -1077,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1893,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    },
+    {
+        "data": {
+            "command_line_arguments": "{8CA415C2-0F7F-4A7D-8B09-DF76E995775B} %systemroot%\\system32\\control.exe /name Microsoft.BackupAndRestoreCenter",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1222",
+            "icon_location": "%systemroot%\\system32\\sdcpl.dll"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1221",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": 0,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1923,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    },
+    {
+        "data": {
+            "command_line_arguments": "{100B7438-E8AF-470F-8676-87964C64E890} %systemroot%\\system32\\control.exe /name Microsoft.UserAccounts",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1242",
+            "icon_location": "%systemroot%\\system32\\usercpl.dll"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1241",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": -1,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1907,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    },
+    {
+        "data": {
+            "command_line_arguments": "{DE3895CB-077B-4C38-B6E3-F3DE1E0D84FC} %systemroot%\\system32\\control.exe /name Microsoft.Display",
+            "description": "@%systemroot%\\system32\\oobefldr.dll,-1262",
+            "icon_location": "%systemroot%\\system32\\display.dll"
+        },
+        "extra": {
+            "DISTRIBUTED_LINK_TRACKER_BLOCK": {
+                "birth_droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "birth_droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "droid_file_identifier": "2F190D28-7032-11DE-8C8B-001C23E25B76",
+                "droid_volume_identifier": "7BBEEDA0-6411-4C39-BAF9-CCB2B0029ACA",
+                "length": 88,
+                "machine_identifier": "w7x86",
+                "size": 96,
+                "version": 0
+            },
+            "ENVIRONMENTAL_VARIABLES_LOCATION_BLOCK": {
+                "size": 788,
+                "target_ansi": "%SystemRoot%\\system32\\GettingStarted.exe",
+                "target_unicode": "%SystemRoot%\\system32\\GettingStarted.exe"
+            },
+            "METADATA_PROPERTIES_BLOCK": {
+                "property_store": [
+                    {
+                        "format_id": "46588AE2-4CBC-4338-BBFC-139326986DCE",
+                        "serialized_property_values": [],
+                        "storage_size": 28,
+                        "version": "0x53505331"
+                    },
+                    {
+                        "format_id": "F29F85E0-4FF9-1068-AB91-08002B27B3D9",
+                        "serialized_property_values": [
+                            {
+                                "id": 2,
+                                "value": "@%systemroot%\\system32\\oobefldr.dll,-1261",
+                                "value_size": 101,
+                                "value_type": "VT_LPWSTR"
+                            }
+                        ],
+                        "storage_size": 129,
+                        "version": "0x53505331"
+                    }
+                ],
+                "size": 169
+            }
+        },
+        "header": {
+            "accessed_time": "2009-07-13T23:40:18+00:00",
+            "creation_time": "2009-07-13T23:40:18+00:00",
+            "file_flags": [
+                "FILE_ATTRIBUTE_ARCHIVE"
+            ],
+            "file_size": 10240,
+            "guid": "00021401-0000-0000-C000-000000000046",
+            "header_size": 76,
+            "hotkey": "UNSET - UNSET {0x0000}",
+            "icon_index": -1,
+            "link_flags": [
+                "HasTargetIDList",
+                "HasLinkInfo",
+                "HasName",
+                "HasArguments",
+                "HasIconLocation",
+                "IsUnicode",
+                "HasExpString",
+                "DisableKnownFolderTracking"
+            ],
+            "modified_time": "2009-07-14T01:14:20+00:00",
+            "r_file_flags": 32,
+            "r_hotkey": 0,
+            "r_link_flags": 2097895,
+            "reserved0": 0,
+            "reserved1": 0,
+            "reserved2": 0,
+            "windowstyle": "SW_SHOWNORMAL"
+        },
+        "link_info": {
+            "common_network_relative_link_offset": 0,
+            "common_path_suffix": "",
+            "common_path_suffix_offset": 84,
+            "link_info_flags": 1,
+            "link_info_header_size": 28,
+            "link_info_size": 85,
+            "local_base_path": "C:\\Windows\\System32\\GettingStarted.exe",
+            "local_base_path_offset": 45,
+            "location": "Local",
+            "location_info": {
+                "drive_serial_number": "0xd4675185",
+                "drive_type": "DRIVE_FIXED",
+                "r_drive_type": 3,
+                "volume_id_size": 17,
+                "volume_label": "",
+                "volume_label_offset": 16
+            },
+            "volume_id_offset": 28
+        },
+        "size": 1897,
+        "target": {
+            "index": 78,
+            "items": [
+                {
+                    "class": "Root Folder",
+                    "guid": "20D04FE0-3AEA-1069-A2D8-08002B30309D",
+                    "sort_index": "My Computer"
+                },
+                {
+                    "class": "Volume Item",
+                    "data": null,
+                    "flags": "0xf"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:37:12+00:00",
+                    "primary_name": "Windows"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": "2019-10-16T08:33:04+00:00",
+                    "primary_name": "System32"
+                },
+                {
+                    "class": "File entry",
+                    "file_attribute_flags": 32,
+                    "file_size": 10240,
+                    "flags": "Is file",
+                    "modification_time": "2009-07-14T01:14:22+00:00",
+                    "primary_name": "GettingStarted.exe"
+                }
+            ],
+            "size": 331
+        }
+    }
+]

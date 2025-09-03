@@ -122,6 +122,7 @@
         },
         "volume_id_offset": 28
     },
+    "size": 2236,
     "target": {
         "index": 78,
         "items": [

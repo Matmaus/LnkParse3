@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+import struct
 import unittest
 import warnings
 from contextlib import contextmanager
@@ -30,7 +31,15 @@ class TestSamples(unittest.TestCase):
         for entry in os.scandir(TARGET_DIR):
             with self.subTest(msg=entry.name):
                 with open_sample(entry.path) as indata:
+                    their_size = len(indata)
                     lnk = LnkParse3.lnk_file(indata=indata)
+
+                our_size = lnk.size
+                self.assertEqual(
+                    our_size,
+                    their_size,
+                    msg=f'failed size on test file {entry.name!r}'
+                )
 
                 mock_stdout = StringIO()
                 with redirect_stdout(mock_stdout):
@@ -155,6 +164,46 @@ class TestSamples(unittest.TestCase):
             their = fp.read()
 
         self.assertEqual(our, their)
+
+    def test_custom_destinations(self):
+        entry_name = "5afe4de1b92fc382.customDestinations-ms"
+        ours = []
+        with open_sample(f'tests/raw/{entry_name}') as indata:
+            indata = indata[4 * 5:]  # Skip header
+            for _ in range(9):  # 9 LNK is chained together
+                indata = indata[16:]  # Skip parsing of the UUID
+
+                lnk = LnkParse3.lnk_file(indata=indata, terminal=False)
+                mock_stdout = StringIO()
+                with redirect_stdout(mock_stdout):
+                    lnk.print_json(print_all=True)
+
+                our = json.loads(mock_stdout.getvalue())
+                indata = indata[lnk.size:]
+                ours.append(our)
+
+        json_path = os.path.join(JSON_DIR, f"{entry_name}.json")
+
+        with open(json_path, 'rb') as fp:
+            their = json.load(fp)
+
+        self.assertListEqual(ours, their, msg=f'failed on test file {entry_name!r}')
+
+    def test_unknown_target_not_terminal(self):
+        with open_sample('tests/samples/unknown_target') as indata:
+            lnk = LnkParse3.lnk_file(indata=indata, terminal=False)
+
+        mock_stdout = StringIO()
+        with redirect_stdout(mock_stdout):
+            lnk.print_json(print_all=True)
+
+        our = json.loads(mock_stdout.getvalue())
+
+        json_path = os.path.join(JSON_DIR, "unknown_target_not_terminal.json")
+        with open(json_path, 'rb') as fp:
+            their = json.load(fp)
+
+        self.assertDictEqual(our, their)
 
 
     def test_network_location(self):
