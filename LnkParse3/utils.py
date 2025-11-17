@@ -102,7 +102,7 @@ def parse_filetime(binary):
             # HACK for older versions for bytes.hex()
             # https://docs.python.org/3.9/library/stdtypes.html?highlight=hex#bytes.hex
             iterator = iter(binary.hex())
-            invalid_date = " ".join(a + b for a, b in zip(iterator, iterator))
+            invalid_date = " ".join(a + b for a, b in zip(iterator, iterator, strict=False))
         else:
             invalid_date = binary.hex(" ")
         msg = "Invalid filetime: %s" % invalid_date
@@ -160,7 +160,7 @@ def parse_dostime(binary):
             # HACK for older versions for bytes.hex()
             # https://docs.python.org/3.9/library/stdtypes.html?highlight=hex#bytes.hex
             iterator = iter(binary.hex())
-            invalid_date = " ".join(a + b for a, b in zip(iterator, iterator))
+            invalid_date = " ".join(a + b for a, b in zip(iterator, iterator, strict=False))
         else:
             invalid_date = binary.hex(" ")
         msg = "Invalid dostime: %s" % invalid_date
