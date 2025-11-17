@@ -173,7 +173,7 @@ class TestSamples(unittest.TestCase):
             for _ in range(9):  # 9 LNK is chained together
                 indata = indata[16:]  # Skip parsing of the UUID
 
-                lnk = LnkParse3.lnk_file(indata=indata, terminal=False)
+                lnk = LnkParse3.lnk_file(indata=indata, allow_terminal_blocks=False)
                 mock_stdout = StringIO()
                 with redirect_stdout(mock_stdout):
                     lnk.print_json(print_all=True)
@@ -191,7 +191,7 @@ class TestSamples(unittest.TestCase):
 
     def test_unknown_target_not_terminal(self):
         with open_sample('tests/samples/unknown_target') as indata:
-            lnk = LnkParse3.lnk_file(indata=indata, terminal=False)
+            lnk = LnkParse3.lnk_file(indata=indata, allow_terminal_blocks=False)
 
         mock_stdout = StringIO()
         with redirect_stdout(mock_stdout):

@@ -14,10 +14,10 @@ A structure consisting of zero or more property data blocks followed by a termin
 
 
 class ExtraData:
-    def __init__(self, indata=None, cp=None, terminal=True):
+    def __init__(self, indata=None, cp=None, allow_terminal_blocks=True):
         self.cp = cp
         self._raw = indata
-        self.terminal = terminal
+        self.allow_terminal_blocks = allow_terminal_blocks
 
         self.process()
 
@@ -46,7 +46,7 @@ class ExtraData:
                 self.data.append(extra)
 
         # If there is data following the Terminal Block, we should take note of it and tell the user.
-        if self.terminal and len(rest) > 4 and unpack("<I", rest[:4])[0] < 0x00000004:
+        if self.allow_terminal_blocks and len(rest) > 4 and unpack("<I", rest[:4])[0] < 0x00000004:
             extra = Terminal(indata=rest, cp=self.cp)
             self.data.append(extra)
 

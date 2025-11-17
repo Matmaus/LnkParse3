@@ -22,14 +22,14 @@ from LnkParse3.string_data import StringData
 
 
 class LnkFile:
-    def __init__(self, fhandle=None, indata=None, cp=None, terminal=True):
+    def __init__(self, fhandle=None, indata=None, cp=None, allow_terminal_blocks=True):
         if fhandle:
             self.indata = fhandle.read()
         elif indata:
             self.indata = indata
 
         self.cp = cp
-        self.terminal = terminal
+        self.allow_terminal_blocks = allow_terminal_blocks
 
         self.process()
 
@@ -90,7 +90,9 @@ class LnkFile:
         index += self.string_data.size()
 
         # Parse Extra Data
-        self.extras = ExtraData(indata=self.indata[index:], cp=self.cp, terminal=self.terminal)
+        self.extras = ExtraData(
+            indata=self.indata[index:], cp=self.cp, allow_terminal_blocks=self.allow_terminal_blocks
+        )
         index += self.extras.size()
 
         # Add size of the footer if present
