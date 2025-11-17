@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.3] - 2025-11-17
+### Changed
+- Make the Terminal block optional and add a field for the LNK structure size ([PR](https://github.com/Matmaus/LnkParse3/pull/51)).
+### Fixed
+- Fix parsing of serialized property storage ([issue](https://github.com/Matmaus/LnkParse3/issues/40), [PR](https://github.com/Matmaus/LnkParse3/pull/41)).
+- Fix parsing of Shell FS Folder items, propagate `description` and `comments` fields ([issue](https://github.com/Matmaus/LnkParse3/issues/42), [PR](https://github.com/Matmaus/LnkParse3/pull/43)).
+- Fix parsing of Volume Item with flags `0xf` ([issue](https://github.com/Matmaus/LnkParse3/issues/44), [PR](https://github.com/Matmaus/LnkParse3/pull/45)).
+- Handle missing shell item classes and add size on Unknown ([issue](https://github.com/Matmaus/LnkParse3/issues/46), [PR](https://github.com/Matmaus/LnkParse3/pull/47)).
+- Add unknown handler in `RootFolder` and add `sort_index_value` field ([issue](https://github.com/Matmaus/LnkParse3/issues/48), [PR](https://github.com/Matmaus/LnkParse3/pull/50)).
+
 ## [1.5.2] - 2025-04-18
 ### Changed
 - Set length limit to 260 for some of `StringData` fields.

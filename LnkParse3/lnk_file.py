@@ -2,7 +2,7 @@
 
 __description__ = "Windows Shortcut file (LNK) parser"
 __author__ = "Matmaus"
-__version__ = "1.5.2"
+__version__ = "1.5.3"
 
 import argparse
 import datetime
