@@ -71,12 +71,18 @@
                 "flags": "0xe"
             },
             {
-                "class": "Unknown",
-                "size": 1400
+                "class": "Control panel CPL file",
+                "comments": "rage",
+                "cpl_file_path": "",
+                "name": "",
+                "signature": "0x20050570"
             },
             {
-                "class": "Unknown",
-                "size": 714
+                "class": "Control panel CPL file",
+                "comments": "",
+                "cpl_file_path": "",
+                "name": "",
+                "signature": "0x200602C2"
             }
         ],
         "size": 2556

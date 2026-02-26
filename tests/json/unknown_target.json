@@ -45,8 +45,11 @@
                 "flags": "0xe"
             },
             {
-                "class": "Unknown",
-                "size": 684
+                "class": "Control panel CPL file",
+                "comments": "TOR#Disk&Ven_SanDisk&Prod_Ultra_USB_3.0&Rev_1.00#4C530001161121113063&0#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}#{53f5630d-b6bf-11d0-94f2-00a0c91efb8b}\\RECYCLER\\S-2-8-70-5474306100-0228258821-140406123-2478\\OCdTKeQM.cpl",
+                "cpl_file_path": "\\\\.\\STORAGE#Volume#1&19f7e59c&0&_??_USBSTOR#Disk&Ven_SanDisk&Prod_Ultra_USB_3.0&Rev_1.00#4C530001161121113063&0#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}#{53f5630d-b6bf-11d0-94f2-00a0c91efb8b}\\RECYCLER\\S-2-8-70-5474306100-0228258821-140406123-2478\\OCdTKeQM.cpl",
+                "name": "Microsoft Windows. Microsoft Corporation",
+                "signature": "0x00000000"
             }
         ],
         "size": 877

@@ -4,6 +4,8 @@ from struct import unpack
 from LnkParse3.target.common_places_folder import CommonPlacesFolder
 from LnkParse3.target.compressed_folder import CompressedFolder
 from LnkParse3.target.control_panel import ControlPanel
+from LnkParse3.target.control_panel_category import ControlPanelCategory
+from LnkParse3.target.control_panel_cpl import ControlPanelCPL
 from LnkParse3.target.internet import Internet
 from LnkParse3.target.my_computer import MyComputer
 from LnkParse3.target.network_location import NetworkLocation
@@ -17,6 +19,8 @@ from LnkParse3.target.users_files_folder import UsersFilesFolder
 class TargetFactory:
     # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#3-type-indicator-based-shell-items
     SHELL_ITEM_CLASSES = {
+        0x00: ControlPanelCPL,
+        0x01: ControlPanelCategory,
         0x1E: RootFolder,
         0x1F: RootFolder,
         0x20: MyComputer,
@@ -72,10 +76,6 @@ class TargetFactory:
             return None
 
         item_type = self.item_type()
-
-        # TODO: ControlPanelShellItems
-        # https://github.com/libyal/libfwsi/blob/master/documentation/Windows%20Shell%20Item%20format.asciidoc#43-control-panel-shell-items
-        # if item_type == 0x00:
 
         # XXX: Move to table
         # 0x20, 0x30, and 0x40 should have an 0x70 bitmask applied per
