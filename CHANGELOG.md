@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-02-27
+### Added
+- Implement targets from `LinkTargetIDList`: `ControlPanelCategory`, `ControlPanelCPL`.
+### Changed
+- Improve implementation of targets from `LinkTargetIDList`: `UsersFilesFolder`, `MyComputer`.
+
 ## [1.5.3] - 2025-11-17
 ### Changed
 - Make the Terminal block optional and add a field for the LNK structure size ([PR](https://github.com/Matmaus/LnkParse3/pull/51)).
