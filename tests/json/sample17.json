@@ -172,8 +172,8 @@
             },
             {
                 "class": "Volume Item",
-                "data": null,
-                "flags": "0xe"
+                "flags": "0xe",
+                "volume_identifier": "374DE290-123F-4565-9164-39C4925E467B"
             }
         ],
         "size": 80

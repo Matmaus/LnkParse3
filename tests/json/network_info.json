@@ -142,8 +142,8 @@
             },
             {
                 "class": "Volume Item",
-                "data": "Z:\\",
-                "flags": "0xf"
+                "flags": "0xf",
+                "volume_name": "Z:\\"
             },
             {
                 "class": "File entry",

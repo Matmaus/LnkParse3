@@ -77,8 +77,8 @@
             },
             {
                 "class": "Volume Item",
-                "data": "E:\\",
-                "flags": "0xf"
+                "flags": "0xf",
+                "volume_name": "E:\\"
             },
             {
                 "class": "File entry",

@@ -67,8 +67,8 @@
             },
             {
                 "class": "Volume Item",
-                "data": null,
-                "flags": "0xe"
+                "flags": "0xe",
+                "volume_identifier": "20060182-0831-0003-0000-000000000300"
             },
             {
                 "class": "Control panel CPL file",

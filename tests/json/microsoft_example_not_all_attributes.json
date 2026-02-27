@@ -62,8 +62,8 @@
             },
             {
                 "class": "Volume Item",
-                "data": "C:\\",
-                "flags": "0xf"
+                "flags": "0xf",
+                "volume_name": "C:\\"
             },
             {
                 "class": "File entry",

@@ -148,8 +148,8 @@
             },
             {
                 "class": "Volume Item",
-                "data": null,
-                "flags": "0xe"
+                "flags": "0xe",
+                "volume_identifier": "B4BFCC3A-DB2C-424C-B029-7FE99A87C641"
             },
             {
                 "class": "File entry",
