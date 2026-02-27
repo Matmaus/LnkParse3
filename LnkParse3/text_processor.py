@@ -11,7 +11,7 @@ import warnings
 
 class TextProcessor:
     def __init__(self, cp=None):
-        self.cp = cp if cp else "cp1252"
+        self.cp = cp or "cp1252"
 
     def read_strings(self, binary):
         chars = []
