@@ -147,7 +147,18 @@
                 "sort_index_value": 68
             },
             {
-                "class": "Users files folder"
+                "class": "Users files folder",
+                "delegate_class_id": "5E591A74-DF96-48D3-8D67-1733BCEE28BA",
+                "delegate_folder_id": "DFFACDC5-679F-4156-8947-C5C76BC0B67F",
+                "file_entry": {
+                    "class": "File entry",
+                    "file_attribute_flags": 16,
+                    "file_size": 0,
+                    "flags": "Is directory",
+                    "modification_time": null,
+                    "primary_name": "AppData"
+                },
+                "signature": "CFSF"
             },
             {
                 "class": "File entry",

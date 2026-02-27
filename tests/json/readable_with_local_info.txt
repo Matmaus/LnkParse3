@@ -23,7 +23,17 @@ Windows Shortcut Information:
             Sort index: Users
             Sort index value: 68
             Guid: 59031A47-3F72-44A7-89C5-5595FE6B30EE
-      -  Users files folder: {}
+      -  Users files folder:
+            Signature: CFSF
+            File entry:
+               File entry:
+                  Flags: Is directory
+                  File size: 0
+                  Modification time: 2019-01-16 18:17:20+00:00
+                  File attribute flags: 18
+                  Primary name: AppData
+            Delegate class id: 5E591A74-DF96-48D3-8D67-1733BCEE28BA
+            Delegate folder id: DFFACDC5-679F-4156-8947-C5C76BC0B67F
       -  File entry:
             Flags: Is directory
             File size: 0
